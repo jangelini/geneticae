@@ -8,6 +8,7 @@
 #' environments, replications and the response variable.
 #' @param rep logical. If TRUE the genotype by environment means is calculated.
 #' @param type imputation method. Either "EM-AMMI", "EM-SVD", "Gabriel","WGabriel"
+#' @return matrix with imputed data
 #' @export
 #'
 #' @importFrom stats var
