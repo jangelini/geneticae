@@ -38,7 +38,7 @@ rAMMI<-function(x, Ncomp = 2, type = "AMMI", rep=FALSE,
   if (missing(x)) stop("Need to provide x data frame or matrix")
 
   stopifnot(
-    class(X)  %in% c("matrix", "data.frame")
+    class(x) %in% c("matrix", "data.frame"),
     class(Ncomp) == "numerical",
     class(type) %in% c("AMMI", "rAMMI", "hAMMI", "gAMMI", "lAMMI", "ppAMMI"),
     class(rep)  == "logical",

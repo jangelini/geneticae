@@ -3,7 +3,7 @@
 #'@description GGE biplot allows visual examination of the relationships
 #'between test environments, genotypes and genotype interactions by
 #'environment. Produces the GGE biplot as an object of class 'ggplot'
-#'from a model produced by a call to \code{\link[geneticae]{GGE_Model}}.
+#'from a model produced by a call to \code{\link[geneticae]{GGEmodel}}.
 #'It is possible to customize it so that the stylistic attributes are to
 #'the user's liking. This function is a modification of \emph{GGEPlot} of
 #'GGEBiplots package.
@@ -68,7 +68,7 @@
 #'@examples
 #' library(geneticae)
 #' data(Ontario)
-#' GGE1<-GGEmodel(Ontario)
+#' GGE1<-GGEmodel(Ontario, centering="tester", rep=FALSE)
 #' GGEPlot(GGE1)
 #'
 #'@importFrom ggplot2 aes arrow coord_fixed element_text geom_abline geom_hline
@@ -83,6 +83,29 @@
 GGEPlot<-function(GGEModel,type="Biplot",d1=1,d2=2, selectedE=NA , selectedG=NA,selectedG1=NA,selectedG2=NA,
                   colGen="gray47",colEnv="darkred",colSegment="gray30",colHull="gray30",sizeGen=4,sizeEnv=4,largeSize=4.5,axis_expand=1.2,
                   axislabels=TRUE,axes=TRUE,limits=TRUE,titles=TRUE,footnote=TRUE){
+
+  stopifnot(
+    class(type) %in% c("Biplot", "Selected Environment","Selected Genotype","Relationship Among Environments",
+                       "Comparison of Genotype","Which won where/what","Discrimination vs.representativeness",
+                       "Ranking environments","Mean vs. stability","Ranking gentoypes"),
+    class(d1) == "numerical",
+    class(d2) == "numerical",
+    class(colGen) == "character",
+    class(colEnv) == "character",
+    class(colSegment) == "character",
+    class(colHull) == "character",
+    class(sizeGen) == "numerical",
+    class(sizeEnv) == "numerical",
+    class(largeSize) == "numerical",
+    class(axis_expand) == "numerical",
+    class(axislabels)  == "logical",
+    class(axes)  == "logical",
+    class(limits)  == "logical",
+    class(titles)  == "logical",
+    class(footnote)  == "logical"
+  )
+
+
   fail<-1
   if(class(GGEModel)=="GGEModel"){
 
@@ -96,7 +119,7 @@ GGEPlot<-function(GGEModel,type="Biplot",d1=1,d2=2, selectedE=NA , selectedG=NA,
   }
 
   if(fail==1){stop(paste("Object",deparse(substitute(GGEModel)),"is not of class 'GGEModel'"))}
-  if(centering==0|centering=="none"){stop("GGEPlot is not compatible with GGE models produced without centering")}
+  if(centering=="none"){stop("GGEPlot is not compatible with GGE models produced without centering")}
 
 
   plotdata<-data.frame(rbind(data.frame(coordgenotype,type="genotype",label=labelgen),data.frame(coordenviroment,type="environment",label=labelenv)))

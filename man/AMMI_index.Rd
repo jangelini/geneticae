@@ -10,6 +10,15 @@ AMMI_index(data)
 \item{data}{A numeric data frame with the columns in the following order: genotypes,
 environments, replications and the response variable.}
 }
+\value{
+A data frame containing:\itemize{
+\item{means}{average genotype by environment}
+ \item{ASV}{AMMI stability value}
+ \item{rASV}{Rank of AMMI stability value}
+ \item{YSI}{Yield stability index}
+ \item{rYSI}{Rank of yield stability index}
+ }
+}
 \description{
-Performs AMMI stability analysis
+Performs AMMI stability analysis. Calculate AMMI stability value (ASV) and Yield stability index (YSI).
 }

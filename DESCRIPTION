@@ -26,6 +26,9 @@ Imports: stats,
          missMDA,
          calibrate,
          graphics
-Suggests: knitr, rmarkdown
+Suggests: 
+    knitr,
+    rmarkdown,
+    testthat
 VignetteBuilder: knitr
 Depends: R (>= 2.12.0)

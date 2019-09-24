@@ -17,7 +17,7 @@
 #' @param centering centering method. Either "tester" for tester centered
 #'   (G+GE), "global" for global centered (E+G+GE), "double" for double centred
 #'   (GE) or "none" for no centering. If a centering method is not used, the
-#'   \code{\link[geneticae]{GGE_Plot}} function can not be used.
+#'   \code{\link[geneticae]{GGEPlot}} function can not be used.
 #' @param scaling scaling method. Either "sd" for standard deviation or "none"
 #'   for no scaling.
 #' @param SVP method for singular value partitioning. Either "row","column",
@@ -41,14 +41,24 @@
 #' @examples
 #'   library(geneticae)
 #'   data(Ontario)
-#'   GGE1<-GGEmodel(Ontario, rep=FALSE)
+#'   GGE1<-GGEmodel(Ontario, centering="tester", rep=FALSE)
 #'   GGEPlot(GGE1)
 #' @importFrom stats var
 #' @importFrom GGEBiplots stattable GGEModel
 #'
 GGEmodel <- function(Data,rep=FALSE,centering="tester",scaling="none",SVP="column"){
 
+  if (missing(Data)) stop("Need to provide Data data frame or matrix")
+
   if(any(is.na(Data))){stop("Missing data in input data frame, run the imputation function first to complete the data set")}
+
+  stopifnot(
+    class(Data) %in% c("matrix", "data.frame"),
+    class(rep) == "logical",
+    class(centering) %in% c("tester", "global","double","none"),
+    class(scaling) %in% c("sd", "none"),
+    class(SVP) %in% c("row", "column","dual","symmetrical")
+  )
 
 
   if(rep==TRUE){
