@@ -1,0 +1,36 @@
+---
+title: "Geneticae"
+subtitle: "An R package to analyze data from agricultural research"
+author: |
+    | Julia Angelini
+    | Marcos Prunello
+    | Gerardo Cervigni
+    |
+    | Centro de estudios fotosintéticos y bioquímicos
+    | Universidad Nacional de Rosario
+    | Suipacha 501
+date: "`r Sys.Date()`"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Geneticae}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+
+##1. Getting started
+
+__Installing the package.__ To install the _Geneticae_ package:
+
+```{r,eval=FALSE}
+install.packages("devtools")
+library(devtools)
+install_github("jangelini/geneticae")
+```
+
+
+## 8. Sesssion Info
+
+```{r, tidy=TRUE, echo = FALSE}
+sessionInfo()
+```
