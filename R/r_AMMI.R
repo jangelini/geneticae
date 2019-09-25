@@ -3,10 +3,9 @@
 #'Produces the AMMI biplot as an object of class 'ggplot'. It is possible to
 #'customize it so that the stylistic attributes are to the user's liking.
 #'
-#'@param x a data frame or matrix that contains the genotypes in the rows and the
-#' environments in the columns when there are no replications of the experiment. In case
-#' of replications, the data frame must have the columns in the following order: genotypes,
-#' environments, replications and the response variable.
+#'@param x a data frame that contains the genotypes in the first column, the columns in the
+#'  next and last the response. In case of replications, the data frame must have the columns
+#'  in the following order: genotypes, environments, replications and the response variable.
 #'@param Ncomp number of principal components that will be used in the analysis
 #'@param type method. Either "AMMI", "rAMMI", "hAMMI", "gAMMI", "lAMMI" or "ppAMMI".
 #'@param rep logical. If TRUE the genotype by environment means is calculated.
@@ -37,21 +36,21 @@ rAMMI<-function(x, Ncomp = 2, type = "AMMI", rep=FALSE,
 
   if (missing(x)) stop("Need to provide x data frame or matrix")
 
-  stopifnot(
-    class(x) %in% c("matrix", "data.frame"),
-    class(Ncomp) == "numerical",
-    class(type) %in% c("AMMI", "rAMMI", "hAMMI", "gAMMI", "lAMMI", "ppAMMI"),
-    class(rep)  == "logical",
-    class(colGen) == "character",
-    class(colEnv) == "character",
-    class(colSegment) == "character",
-    class(colHull) == "character",
-    class(sizeGen) == "numerical",
-    class(sizeEnv) == "numerical",
-    class(largeSize) == "numerical",
-    class(titles)  == "logical",
-    class(footnote)  == "logical"
-  )
+  # stopifnot(
+  #   class(x) == "data.frame",
+  #   class(Ncomp) == "numerical",
+  #   class(type) %in% c("AMMI", "rAMMI", "hAMMI", "gAMMI", "lAMMI", "ppAMMI"),
+  #   class(rep)  == "logical",
+  #   class(colGen) == "character",
+  #   class(colEnv) == "character",
+  #   class(colSegment) == "character",
+  #   class(colHull) == "character",
+  #   class(sizeGen) == "numerical",
+  #   class(sizeEnv) == "numerical",
+  #   class(largeSize) == "numerical",
+  #   class(titles)  == "logical",
+  #   class(footnote)  == "logical"
+  # )
 
 
   if(rep==TRUE){

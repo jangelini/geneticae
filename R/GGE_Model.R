@@ -52,22 +52,22 @@ GGEmodel <- function(Data,rep=FALSE,centering="tester",scaling="none",SVP="colum
 
   if(any(is.na(Data))){stop("Missing data in input data frame, run the imputation function first to complete the data set")}
 
-  stopifnot(
-    class(Data) %in% c("matrix", "data.frame"),
-    class(rep) == "logical",
-    class(centering) %in% c("tester", "global","double","none"),
-    class(scaling) %in% c("sd", "none"),
-    class(SVP) %in% c("row", "column","dual","symmetrical")
-  )
+  # stopifnot(
+  #   class(Data) %in% c("matrix", "data.frame"),
+  #   class(rep) == "logical",
+  #   class(centering) %in% c("tester", "global","double","none"),
+  #   class(scaling) %in% c("sd", "none"),
+  #   class(SVP) %in% c("row", "column","dual","symmetrical")
+  # )
 
 
   if(rep==TRUE){
     Data<-stattable(Data[,1],Data[,2],Data[,4],FUN=mean)
-    model<-GGEModel(Data,centering="tester",scaling="none",SVP="column")
+    model<-GGEModel(Data,centering=centering,scaling=scaling,SVP=SVP)
   }
 
   if(rep==FALSE){
-    model<-GGEModel(Data,centering="tester",scaling="none",SVP="column")
+    model<-GGEModel(Data,centering=centering,scaling=scaling,SVP=SVP)
   }
 
   class(model)<-"GGEModel"

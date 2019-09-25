@@ -10,10 +10,9 @@ rAMMI(x, Ncomp = 2, type = "AMMI", rep = FALSE, colGen = "gray47",
   footnote = TRUE)
 }
 \arguments{
-\item{x}{a data frame or matrix that contains the genotypes in the rows and the
-environments in the columns when there are no replications of the experiment. In case
-of replications, the data frame must have the columns in the following order: genotypes,
-environments, replications and the response variable.}
+\item{x}{a data frame that contains the genotypes in the first column, the columns in the
+next and last the response. In case of replications, the data frame must have the columns
+in the following order: genotypes, environments, replications and the response variable.}
 
 \item{Ncomp}{number of principal components that will be used in the analysis}
 
