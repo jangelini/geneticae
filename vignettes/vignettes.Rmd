@@ -6,7 +6,7 @@ author: |
     | Marcos Prunello
     | Gerardo Cervigni
     |
-    | Centro de estudios fotosintéticos y bioquímicos
+    | Centro de estudios fotosinteticos y bioquimicos
     | Universidad Nacional de Rosario
     | Suipacha 501
 date: "`r Sys.Date()`"
@@ -20,6 +20,9 @@ vignette: >
 
 ##1. Getting started
 
+The main program of R should be already installed in the platform of your computer (Windows, Linux or MAC). If it is not installed yet, you can download it from the R project (\link{www.r-project.org}) of a repository CRAN, R Core Team (2018).
+
+
 __Installing the package.__ To install the _Geneticae_ package:
 
 ```{r,eval=FALSE}
@@ -27,6 +30,28 @@ install.packages("devtools")
 library(devtools)
 install_github("jangelini/geneticae")
 ```
+
+
+__Loading the package.__ Once geneticae package is installed, it needs to be made accessible to the current R session by the command. To load the `Geneticae` package in your R session, type `library(Geneticae)`.
+
+
+
+__Help files.__  Detailed information on `Geneticae` package functions can be obtained in the help files obtained using `help(package="agricolae")`. The help file of particular command for the function `imputation` in a R session, can be obtained using `?imputation` or help(imputation).
+
+
+For a complete functionality, geneticae requires other packages
+\begin{itemize}
+\item HOLA
+\end{itemize}
+
+
+##2. Introduction
+
+
+The geneticae package offers functions for the analysis of genotype interaction by environment, an essential factor in an improvement program.
+
+
+
 
 
 ## 8. Sesssion Info
