@@ -15,11 +15,11 @@ WGabriel<-function(DBmiss,Winf,Wsup){
 
   if (missing(DBmiss)) stop("Need to provide DBmiss data frame or matrix")
 
-  stopifnot(
-    class(DBmiss) %in% c("matrix", "data.frame"),
-    class(Winf) == "numerical",
-    class(Wsup) == "numerical"
-  )
+  # stopifnot(
+  #   class(DBmiss) %in% c("matrix", "data.frame"),
+  #   class(Winf) == "numerical",
+  #   class(Wsup) == "numerical"
+  # )
 
 
   ######

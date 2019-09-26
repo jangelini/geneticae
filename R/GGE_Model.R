@@ -1,4 +1,4 @@
-#'Site regression model from a 2-way table
+#'Site regression model
 #'
 #'@description The site regression (SREG) model also named genotype plus
 #'genotype-by-environment (GGE) model is powerful a tools for effective

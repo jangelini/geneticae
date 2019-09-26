@@ -56,15 +56,15 @@ EM.AMMI<-function(X, PC.nb=1, initial.values=NA, precision=0.01,
                   max.iter=1000, change.factor=1, simplified.model=FALSE)
 {
   if (missing(X)) stop("Need to provide X data frame or matrix")
-  stopifnot(
-    class(X)  %in% c("matrix", "data.frame"),
-    class(PC.nb)=="numerical",
-    class(initial.values)  %in% c("matrix", "NA"),
-    class(precision)=="numerical",
-    class(max.iter)=="numerical",
-    class(change.factor)=="numerical",
-    class(simplified.model) == "logical"
-  )
+  # stopifnot(
+  #   class(X)  %in% c("matrix", "data.frame"),
+  #   class(PC.nb)=="numerical",
+  #   class(initial.values)  %in% c("matrix", "NA"),
+  #   class(precision)=="numerical",
+  #   class(max.iter)=="numerical",
+  #   class(change.factor)=="numerical",
+  #   class(simplified.model) == "logical"
+  # )
 
   X<-as.matrix(X)
   X.missing<-matrix(1,nrow(X),ncol(X))

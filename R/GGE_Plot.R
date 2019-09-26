@@ -443,7 +443,7 @@ GGEPlot<-function(GGEModel,type="Biplot",d1=1,d2=2, selectedE=NA , selectedG=NA,
     footnotetxt=paste("\nGGE Biplot showing components ",d1," and ",d2," explaining ",sum(varexpl),"% of the total variation\nusing ",
                       SVPtext," and ",centertext," with ",Scalingtext,sep="")
 
-    GGE2<-GGE2+ labs(caption = footnotetxt)+theme(plot.caption = element_text(size=10,hjust=0,face="italic"))
+    GGE2<-GGE2+ labs(caption = footnotetxt)+theme(plot.caption = element_text(size=8,hjust=0,face="italic"))
   }
 
 

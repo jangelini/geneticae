@@ -21,52 +21,51 @@
 #'
 imputation <- function(Data,rep=FALSE,type="EM-AMMI") {
 
-  if (missing(Data)) stop("Need to provide Data data frame")
-  stopifnot(
-    class(Data) == "data.frame",
-    class(type) %in% c("EM-AMMI", "EM-SVD","Gabriel","WGabriel","EM-PCA"),
-    class(rep) == "logical"
-  )
+  # if (missing(Data)) stop("Need to provide Data data frame")
+  # stopifnot(
+  #   class(Data) == "data.frame",
+  #   class(type) %in% c("EM-AMMI", "EM-SVD","Gabriel","WGabriel","EM-PCA"),
+  #   class(rep) == "logical"
+  # )
 
 
   if(rep==TRUE){
     Data<-stattable(Data[,1],Data[,2],Data[,4],FUN=mean)
     if(type=="EM-AMMI"){
-      matrix<-EM.AMMI(Data)
+      matrix<-EM.AMMI(Data)$X
     }
     if(type=="EM-SVD"){
-      matrix<-impute.svd(Data)
+      matrix<-impute.svd(Data)$x
     }
     if(type=="Gabriel"){
-      matrix<-Gabriel.Calinski(Data)
+      matrix<-Gabriel.Calinski(Data)$GabrielImput
     }
     if(type=="WGabriel"){
-      matrix<-WGabriel(Data,0.8,1)
+      matrix<-WGabriel(Data,0.8,1)$GabrielWImput
     }
     if(type=="EM-PCA"){
-      matrix<-imputePCA(Data)
+      matrix<-imputePCA(Data)$completeObs
     }
   }
 
   if(rep==FALSE){
     if(type=="EM-AMMI"){
-        matrix<-EM.AMMI(Data)
+        matrix<-EM.AMMI(Data)$X
     }
     if(type=="EM-SVD"){
-      matrix<-impute.svd(Data)
+      matrix<-impute.svd(Data)$x
     }
     if(type=="Gabriel"){
-      matrix<-Gabriel.Calinski(Data)
+      matrix<-Gabriel.Calinski(Data)$GabrielImput
     }
     if(type=="WGabriel"){
-      matrix<-WGabriel(Data,0.8,1)
+      matrix<-WGabriel(Data,0.8,1)$GabrielWImput
     }
     if(type=="EM-PCA"){
-      matrix<-imputePCA(Data)
+      matrix<-imputePCA(Data)$completeObs
     }
 
   }
 
 return(matrix)
-
 }

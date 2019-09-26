@@ -2,7 +2,7 @@
 % Please edit documentation in R/GGE_Model.R
 \name{GGEmodel}
 \alias{GGEmodel}
-\title{Site regression model from a 2-way table}
+\title{Site regression model}
 \usage{
 GGEmodel(Data, rep = FALSE, centering = "tester", scaling = "none",
   SVP = "column")

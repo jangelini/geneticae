@@ -319,9 +319,9 @@ rAMMI<-function(x, Ncomp = 2, type = "AMMI", rep=FALSE,
 
 
   if(footnote==TRUE){
-    footnotetxt=paste("\n Biplot showing components 1 and 2",sum(varexpl),"% of the total variation")
+    footnotetxt=paste("\n", type,"biplot showing components 1 and 2 explaining ",sum(varexpl),"% of the total variation")
 
-    AMMI2<-AMMI2+ labs(caption = footnotetxt)+theme(plot.caption = element_text(size=10,hjust=0,face="italic"))
+    AMMI2<-AMMI2+ labs(caption = footnotetxt)+theme(plot.caption = element_text(size=8,hjust=0,face="italic"))
   }
 
 
