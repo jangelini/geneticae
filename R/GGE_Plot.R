@@ -66,10 +66,21 @@
 #'  for Breeders, Geneticists, and Agronomists}. CRC Press.
 #'@export
 #'@examples
-#' library(geneticae)
-#' data(Ontario)
-#' GGE1<-GGEmodel(Ontario, centering="tester", rep=FALSE)
-#' GGEPlot(GGE1)
+#'  library(geneticae)
+#'  library(reshape2)
+#'  # Data without replication
+#'  data(yan.winterwheat)
+#'  dat1 <- yan.winterwheat
+#'  # The data in the required format genotypes in rows and environments in columns
+#'  dat <- t(round(acast(dat1, env ~ gen, value.var = "yield"), 2))
+#'  GGE1 <- GGEmodel(dat, centering = "tester", rep = FALSE)
+#'  GGEPlot(GGE1)
+#'
+#'  # Data with replication
+#'  data(plrv)
+#'  dat <- plrv[,-c(4,5)]
+#'  GGE1 <- GGEmodel(dat, centering = "tester", rep = TRUE)
+#'  GGEPlot(GGE1)
 #'
 #'@importFrom ggplot2 aes arrow coord_fixed element_text geom_abline geom_hline
 #'  geom_point geom_polygon geom_segment geom_text geom_vline ggplot ggtitle
@@ -84,26 +95,26 @@ GGEPlot<-function(GGEModel,type="Biplot",d1=1,d2=2, selectedE=NA , selectedG=NA,
                   colGen="gray47",colEnv="darkred",colSegment="gray30",colHull="gray30",sizeGen=4,sizeEnv=4,largeSize=4.5,axis_expand=1.2,
                   axislabels=TRUE,axes=TRUE,limits=TRUE,titles=TRUE,footnote=TRUE){
 
-  # stopifnot(
-  #   class(type) %in% c("Biplot", "Selected Environment","Selected Genotype","Relationship Among Environments",
-  #                      "Comparison of Genotype","Which won where/what","Discrimination vs.representativeness",
-  #                      "Ranking environments","Mean vs. stability","Ranking gentoypes"),
-  #   class(d1) == "numerical",
-  #   class(d2) == "numerical",
-  #   class(colGen) == "character",
-  #   class(colEnv) == "character",
-  #   class(colSegment) == "character",
-  #   class(colHull) == "character",
-  #   class(sizeGen) == "numerical",
-  #   class(sizeEnv) == "numerical",
-  #   class(largeSize) == "numerical",
-  #   class(axis_expand) == "numerical",
-  #   class(axislabels)  == "logical",
-  #   class(axes)  == "logical",
-  #   class(limits)  == "logical",
-  #   class(titles)  == "logical",
-  #   class(footnote)  == "logical"
-  # )
+    stopifnot(
+    type %in% c("Biplot", "Selected Environment","Selected Genotype","Relationship Among Environments",
+                       "Comparison of Genotype","Which Won Where/What","Discrimination vs.representativeness",
+                       "Ranking environments","Mean vs. Stability","Ranking gentoypes"),
+    class(d1) == "numeric",
+    class(d2) == "numeric",
+    class(colGen) == "character",
+    class(colEnv) == "character",
+    class(colSegment) == "character",
+    class(colHull) == "character",
+    class(sizeGen) == "numeric",
+    class(sizeEnv) == "numeric",
+    class(largeSize) == "numeric",
+    class(axis_expand) == "numeric",
+    class(axislabels)  == "logical",
+    class(axes)  == "logical",
+    class(limits)  == "logical",
+    class(titles)  == "logical",
+    class(footnote)  == "logical"
+  )
 
 
   fail<-1

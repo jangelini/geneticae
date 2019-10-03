@@ -4,16 +4,13 @@
 \alias{rAMMI}
 \title{AMMI biplots with \pkg{ggplot2}}
 \usage{
-rAMMI(x, Ncomp = 2, type = "AMMI", rep = FALSE, colGen = "gray47",
+rAMMI(Data, environment = "env", genotype = "gen", response = "Y",
+  Ncomp = 2, type = "AMMI", rep = FALSE, colGen = "gray47",
   colEnv = "darkred", colSegment = "gray30", colHull = "gray30",
   sizeGen = 4, sizeEnv = 4, largeSize = 4.5, titles = TRUE,
   footnote = TRUE)
 }
 \arguments{
-\item{x}{a data frame that contains the genotypes in the first column, the columns in the
-next and last the response. In case of replications, the data frame must have the columns
-in the following order: genotypes, environments, replications and the response variable.}
-
 \item{Ncomp}{number of principal components that will be used in the analysis}
 
 \item{type}{method. Either "AMMI", "rAMMI", "hAMMI", "gAMMI", "lAMMI" or "ppAMMI".}
@@ -39,6 +36,10 @@ in the following order: genotypes, environments, replications and the response v
 \item{footnote}{logical. If TRUE then include automatically generated footbote
 two selected genotypes, and where type=6, used for the outermost genotypes.
 Defaults to 4.5}
+
+\item{x}{a data frame that contains the genotypes in the first column, the columns in the
+next and last the response. In case of replications, the data frame must have the columns
+in the following order: genotypes, environments, replications and the response variable.}
 }
 \value{
 A biplot of class  \code{ggplot}

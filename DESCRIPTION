@@ -25,7 +25,10 @@ Imports: stats,
          bcv,
          missMDA,
          calibrate,
-         graphics
+         graphics,
+         agridat,
+         reshape2,
+         matrixStats
 Suggests: 
     knitr,
     rmarkdown,

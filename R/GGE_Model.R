@@ -39,26 +39,37 @@
 #'   \url{http://dx.doi.org/10.2134/agronj2002.0990}
 #' @export
 #' @examples
-#'   library(geneticae)
-#'   data(Ontario)
-#'   GGE1<-GGEmodel(Ontario, centering="tester", rep=FALSE)
-#'   GGEPlot(GGE1)
+#'
+#'  library(geneticae)
+#'  library(reshape2)
+#'  # Data without replication
+#'  data(yan.winterwheat)
+#'  dat1 <- yan.winterwheat
+#'  # The data in the required format genotypes in rows and environments in columns
+#'  dat <- t(round(acast(dat1, env ~ gen, value.var = "yield"), 2))
+#'  GGE1 <- GGEmodel(dat, centering = "tester", rep = FALSE)
+#'  GGE1
+#'
+#'  # Data with replication
+#'  data(plrv)
+#'  dat <- plrv[,-c(4,5)]
+#'  GGE1 <- GGEmodel(dat, centering = "tester", rep = TRUE)
+#'  GGE1
+#'
 #' @importFrom stats var
 #' @importFrom GGEBiplots stattable GGEModel
 #'
 GGEmodel <- function(Data,rep=FALSE,centering="tester",scaling="none",SVP="column"){
 
   if (missing(Data)) stop("Need to provide Data data frame or matrix")
-
   if(any(is.na(Data))){stop("Missing data in input data frame, run the imputation function first to complete the data set")}
-
-  # stopifnot(
-  #   class(Data) %in% c("matrix", "data.frame"),
-  #   class(rep) == "logical",
-  #   class(centering) %in% c("tester", "global","double","none"),
-  #   class(scaling) %in% c("sd", "none"),
-  #   class(SVP) %in% c("row", "column","dual","symmetrical")
-  # )
+  stopifnot(
+     class(Data) %in% c("matrix", "data.frame"),
+     class(rep) == "logical",
+     centering %in% c("tester", "global","double","none"),
+     scaling %in% c("sd", "none"),
+     SVP %in% c("row", "column","dual","symmetrical")
+  )
 
 
   if(rep==TRUE){

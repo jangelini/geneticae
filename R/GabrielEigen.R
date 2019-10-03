@@ -14,9 +14,9 @@
 Gabriel.Calinski<-function(X){
 
   if (missing(X)) stop("Need to provide X data frame or matrix")
-
-  # stopifnot(
-  # class(X)  %in% c("matrix", "data.frame"))
+  stopifnot(
+  class(X) %in% c("matrix", "data.frame")
+  )
 
 
   nfilasX<-nrow(X)

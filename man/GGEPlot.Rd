@@ -98,10 +98,21 @@ the user's liking. This function is a modification of \emph{GGEPlot} of
 GGEBiplots package.
 }
 \examples{
-library(geneticae)
-data(Ontario)
-GGE1<-GGEmodel(Ontario, centering="tester", rep=FALSE)
-GGEPlot(GGE1)
+ library(geneticae)
+ library(reshape2)
+ # Data without replication
+ data(yan.winterwheat)
+ dat1 <- yan.winterwheat
+ # The data in the required format genotypes in rows and environments in columns
+ dat <- t(round(acast(dat1, env ~ gen, value.var = "yield"), 2))
+ GGE1 <- GGEmodel(dat, centering = "tester", rep = FALSE)
+ GGEPlot(GGE1)
+
+ # Data with replication
+ data(plrv)
+ dat <- plrv[,-c(4,5)]
+ GGE1 <- GGEmodel(dat, centering = "tester", rep = TRUE)
+ GGEPlot(GGE1)
 
 }
 \references{

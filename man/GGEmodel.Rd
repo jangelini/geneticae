@@ -4,7 +4,8 @@
 \alias{GGEmodel}
 \title{Site regression model}
 \usage{
-GGEmodel(Data, rep = FALSE, centering = "tester", scaling = "none",
+GGEmodel(Data, environment = "env", genotype = "gen", response = "Y",
+  rep = NULL, centering = "tester", scaling = "none",
   SVP = "column")
 }
 \arguments{
@@ -49,10 +50,23 @@ means with the genotypes in rows and environments in columns. By contrast,
 repetitions are allowed in this function.
 }
 \examples{
-  library(geneticae)
-  data(Ontario)
-  GGE1<-GGEmodel(Ontario, centering="tester", rep=FALSE)
-  GGEPlot(GGE1)
+
+ library(geneticae)
+ library(reshape2)
+ # Data without replication
+ data(yan.winterwheat)
+ dat1 <- yan.winterwheat
+ # The data in the required format genotypes in rows and environments in columns
+ dat <- t(round(acast(dat1, env ~ gen, value.var = "yield"), 2))
+ GGE1 <- GGEmodel(dat, centering = "tester", rep = FALSE)
+ GGE1
+
+ # Data with replication
+ data(plrv)
+ dat <- plrv[,-c(4,5)]
+ GGE1 <- GGEmodel(dat, centering = "tester", rep = TRUE)
+ GGE1
+
 }
 \references{
 Yan W, Kang M (2003). \emph{GGE Biplot Analysis: A Graphical Tool

@@ -25,7 +25,19 @@ Produces genotype plus genotype-by-environment model from a 2-way table of
 means
 }
 \examples{
-  library(geneticae)
-  data(Ontario)
-  imputation(Ontario, rep=FALSE, type="EM-SVD")
+library(geneticae)
+library(reshape2)
+data(yan.winterwheat)
+dat1 <- yan.winterwheat
+dat <-t(round(acast(dat1, env~gen, value.var='yield'),2))
+# generates missing data
+dat[1,2]<-NA
+dat[3,4]<-NA
+dat[2,7]<-NA
+imputation(dat, rep=FALSE, type="EM-SVD")
+imputation(dat, rep=FALSE, type="EM-AMMI")
+imputation(dat, rep=FALSE, type="Gabriel")
+imputation(dat, rep=FALSE, type="WGabriel")
+imputation(dat, rep=FALSE, type="EM-PCA")
+
 }

@@ -35,22 +35,22 @@ rAMMI<-function(x, Ncomp = 2, type = "AMMI", rep=FALSE,
                 sizeGen=4,sizeEnv=4,largeSize=4.5, titles=TRUE, footnote=TRUE){
 
   if (missing(x)) stop("Need to provide x data frame or matrix")
-
-  # stopifnot(
-  #   class(x) == "data.frame",
-  #   class(Ncomp) == "numerical",
-  #   class(type) %in% c("AMMI", "rAMMI", "hAMMI", "gAMMI", "lAMMI", "ppAMMI"),
-  #   class(rep)  == "logical",
-  #   class(colGen) == "character",
-  #   class(colEnv) == "character",
-  #   class(colSegment) == "character",
-  #   class(colHull) == "character",
-  #   class(sizeGen) == "numerical",
-  #   class(sizeEnv) == "numerical",
-  #   class(largeSize) == "numerical",
-  #   class(titles)  == "logical",
-  #   class(footnote)  == "logical"
-  # )
+  if(any(is.na(x))){stop("Missing data in input data frame, run the imputation function first to complete the data set")}
+  stopifnot(
+    class(x) == "data.frame",
+    class(Ncomp) == "numeric",
+    type %in% c("AMMI", "rAMMI", "hAMMI", "gAMMI", "lAMMI", "ppAMMI"),
+    class(rep)  == "logical",
+    class(colGen) == "character",
+    class(colEnv) == "character",
+    class(colSegment) == "character",
+    class(colHull) == "character",
+    class(sizeGen) == "numeric",
+    class(sizeEnv) == "numeric",
+    class(largeSize) == "numeric",
+    class(titles)  == "logical",
+    class(footnote)  == "logical"
+  )
 
 
   if(rep==TRUE){
