@@ -59,7 +59,7 @@
 #' @importFrom stats var
 #' @importFrom GGEBiplots stattable GGEModel
 #'
-GGEmodel <- function(Data,rep=FALSE,centering="tester",scaling="none",SVP="column"){
+GGEmodel <- function(Data,environment="env", genotype="gen", response="Y",rep=NULL,centering="tester",scaling="none",SVP="column"){
 
   if (missing(Data)) stop("Need to provide Data data frame or matrix")
   if(any(is.na(Data))){stop("Missing data in input data frame, run the imputation function first to complete the data set")}
@@ -71,15 +71,21 @@ GGEmodel <- function(Data,rep=FALSE,centering="tester",scaling="none",SVP="colum
      SVP %in% c("row", "column","dual","symmetrical")
   )
 
+  if (rep) {
 
-  if(rep==TRUE){
-    Data<-stattable(Data[,1],Data[,2],Data[,4],FUN=mean)
-    model<-GGEModel(Data,centering=centering,scaling=scaling,SVP=SVP)
+    Data<-Data %>%
+      group_by({{genotype}}, {{environment}}) %>%
+      summarise(y=mean({{response}}))
   }
 
-  if(rep==FALSE){
+    Data<-spread(Data, {{environment}}, {{response}})
+
+    rownames(Data) <- Data[,1]
+    Data[,1] <- NULL
+    Data <-as.matrix(Data)
+    # GGEModel is a function of GGEBiplots package
     model<-GGEModel(Data,centering=centering,scaling=scaling,SVP=SVP)
-  }
+
 
   class(model)<-"GGEModel"
   return(model)

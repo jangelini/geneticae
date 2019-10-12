@@ -30,14 +30,14 @@
 #'@importFrom rrcov PcaHubert PcaGrid PcaLocantore PcaProj
 #'@importFrom stats lm residuals
 #'
-rAMMI<-function(x, Ncomp = 2, type = "AMMI", rep=FALSE,
+rAMMI<-function(Data,environment="env", genotype="gen", response="Y", Ncomp = 2, type = "AMMI", rep=FALSE,
                 colGen="gray47",colEnv="darkred",colSegment="gray30",colHull="gray30",
                 sizeGen=4,sizeEnv=4,largeSize=4.5, titles=TRUE, footnote=TRUE){
 
-  if (missing(x)) stop("Need to provide x data frame or matrix")
-  if(any(is.na(x))){stop("Missing data in input data frame, run the imputation function first to complete the data set")}
+  if (missing(Data)) stop("Need to provide Data data frame or matrix")
+  if(any(is.na(Data))){stop("Missing data in input data frame, run the imputation function first to complete the data set")}
   stopifnot(
-    class(x) == "data.frame",
+    class(Data) == "data.frame",
     class(Ncomp) == "numeric",
     type %in% c("AMMI", "rAMMI", "hAMMI", "gAMMI", "lAMMI", "ppAMMI"),
     class(rep)  == "logical",
@@ -53,42 +53,34 @@ rAMMI<-function(x, Ncomp = 2, type = "AMMI", rep=FALSE,
   )
 
 
-  if(rep==TRUE){
-    x <-
-      x %>%
-      group_by(x[,1], x[,2]) %>%
-      summarise(y = mean(y))
+  if(rep){
+    Data <-
+      Data %>%
+      mutate(gen= factor({{genotype}}), env= factor({{environment}})) %>%
+      group_by({{genotype}}, {{environment}}) %>%
+      summarise(y=mean({{response}}))%>%
+      as.data.frame()
 
-    x <-as.data.frame(x)
-    gen <- as.factor(x[,1])
-    env <- as.factor(x[, 2])
-    y <- as.vector(x[, 3])
-    labelgen <- unique(gen)
-    labelenv <- unique(env)
-    Ngen <- nlevels(gen)
-    Nenv <- nlevels(env)
-    Max <- min(Ngen - 1, Nenv - 1)
-    lm.x<- lm(y~gen+env, data=x)             # AMMI model - stage 1
-    residuals.x<- matrix(residuals(lm.x), nrow = Ngen , ncol = Nenv)
-    rlm.x<- rlm(y~gen+env, data=x)           # Robust AMMi model - stage 1
-    rresiduals.x<- matrix(residuals(rlm.x), nrow = Ngen, ncol = Nenv)
+  } else{
+    Data <-Data %>%
+      mutate(gen= factor({{genotype}}), env= factor({{environment}}))%>%
+      as.data.frame()
   }
 
-  if(rep==FALSE){
-    x <-as.data.frame(x)
-    gen <- as.factor(x[,1])
-    env <- as.factor(x[, 2])
-    y <- as.vector(x[, 3])
-    labelgen <- unique(gen)
-    labelenv <- unique(env)
-    Ngen <- nlevels(gen)
-    Nenv <- nlevels(env)
-    Max <- min(Ngen - 1, Nenv - 1)
-    lm.x<- lm(y~gen+env, data=x)             # AMMI model - stage 1
-    residuals.x<- matrix(residuals(lm.x), nrow = Ngen , ncol = Nenv)
-    rlm.x<- MASS::rlm(y~gen+env, data=x)           # Robust AMMi model - stage 1
-    rresiduals.x<- matrix(residuals(rlm.x), nrow = Ngen, ncol = Nenv)
-  }
+
+  Data <-as.data.frame(Data)
+  gen <- as.factor(Data[,1])
+  env <- as.factor(Data[, 2])
+  y <- as.vector(Data[, 3])
+  labelgen <- unique(gen)
+  labelenv <- unique(env)
+  Ngen <- nlevels(gen)
+  Nenv <- nlevels(env)
+  Max <- min(Ngen - 1, Nenv - 1)
+  lm.x<- lm(y~gen+env, data=Data)             # AMMI model - stage 1
+  residuals.x<- matrix(residuals(lm.x), nrow = Ngen , ncol = Nenv)
+  rlm.x<- rlm(y~gen+env, data=Data)           # Robust AMMi model - stage 1
+  rresiduals.x<- matrix(residuals(rlm.x), nrow = Ngen, ncol = Nenv)
 
   if (type == "AMMI"){              # H-AMMI model
     svd.x<- svd((residuals.x))               # AMMI model - stage 2                        # AMMI2 biplot

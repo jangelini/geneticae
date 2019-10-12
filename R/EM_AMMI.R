@@ -59,6 +59,7 @@ EM.AMMI<-function(X, PC.nb=1, initial.values=NA, precision=0.01,
   stopifnot(
     class(X)  %in% c("matrix", "data.frame"),
     class(PC.nb)=="numeric",
+    class(initial.values) == "matrix" | is.na(initial.values),
     # class(initial.values) %in% c("matrix", "NA"),
     class(precision)=="numeric",
     class(max.iter)=="numeric",
