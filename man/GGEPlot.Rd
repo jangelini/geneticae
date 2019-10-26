@@ -25,13 +25,13 @@ GGEPlot(GGEModel, type = "Biplot", d1 = 1, d2 = 2, selectedE = NA,
  \item \code{Comparison of Genotype}.
  \item \code{Which won where/what}: Identifying the ’best’ cultivar in each
        environment.
- \item \code{Discrimination vs.representativeness}: Evaluating the environments
+ \item \code{Discrimination vs. representativeness}: Evaluating the environments
        based on both discriminating ability and representativeness.
- \item \code{Ranking environments}: Ranking environments with respect to the ideal
+ \item \code{Ranking Environments}: Ranking environments with respect to the ideal
        environment.
  \item \code{Mean vs. stability}: Evaluating cultivars based on both average yield
        and stability.
- \item \code{Ranking gentoypes}: Ranking genotypes with respect to the ideal
+ \item \code{Ranking Gentoypes}: Ranking genotypes with respect to the ideal
        genotype.}}
 
 \item{d1}{PCA component to plot on x axis. Defaults to 1.}
@@ -99,20 +99,18 @@ GGEBiplots package.
 }
 \examples{
  library(geneticae)
- library(reshape2)
+
  # Data without replication
  data(yan.winterwheat)
- dat1 <- yan.winterwheat
- # The data in the required format genotypes in rows and environments in columns
- dat <- t(round(acast(dat1, env ~ gen, value.var = "yield"), 2))
- GGE1 <- GGEmodel(dat, centering = "tester", rep = FALSE)
+ dat <- yan.winterwheat
+ GGE1 <- GGEmodel(dat, centering = "tester")
  GGEPlot(GGE1)
 
  # Data with replication
  data(plrv)
- dat <- plrv[,-c(4,5)]
- GGE1 <- GGEmodel(dat, centering = "tester", rep = TRUE)
- GGEPlot(GGE1)
+ dat2<-plrv
+ GGE2 <- GGEmodel(dat2, centering = "tester", rep="Rep")
+ GGEPlot(GGE2)
 
 }
 \references{

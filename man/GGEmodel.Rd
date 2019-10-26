@@ -4,18 +4,21 @@
 \alias{GGEmodel}
 \title{Site regression model}
 \usage{
-GGEmodel(Data, environment = "env", genotype = "gen", response = "Y",
-  rep = NULL, centering = "tester", scaling = "none",
-  SVP = "column")
+GGEmodel(Data, genotype = "gen", environment = "env",
+  response = "yield", rep = NULL, centering = "tester",
+  scaling = "none", SVP = "column")
 }
 \arguments{
-\item{Data}{a data frame or matrix that contains the genotypes in the rows
-and the environments in the columns when there no replications in the
-experiment. In case of replications, the data frame must have the columns
-in the following order: genotypes, environments, replications and the
-response variable.}
+\item{Data}{a data frame}
 
-\item{rep}{logical. If TRUE the genotype by environment means is calculated.}
+\item{genotype}{name of the column that contains the genotypes}
+
+\item{environment}{name of the column that contains the environments}
+
+\item{response}{name of the column that contains the response}
+
+\item{rep}{name of the column that contains the replications.If this argument
+is NULL, there is no replications in the data.}
 
 \item{centering}{centering method. Either "tester" for tester centered
 (G+GE), "global" for global centered (E+G+GE), "double" for double centred
@@ -52,20 +55,17 @@ repetitions are allowed in this function.
 \examples{
 
  library(geneticae)
- library(reshape2)
  # Data without replication
  data(yan.winterwheat)
- dat1 <- yan.winterwheat
- # The data in the required format genotypes in rows and environments in columns
- dat <- t(round(acast(dat1, env ~ gen, value.var = "yield"), 2))
- GGE1 <- GGEmodel(dat, centering = "tester", rep = FALSE)
+ dat <- yan.winterwheat
+ GGE1 <- GGEmodel(dat, genotype="gen",environment="env", response="yield", centering = "tester")
  GGE1
 
  # Data with replication
  data(plrv)
- dat <- plrv[,-c(4,5)]
- GGE1 <- GGEmodel(dat, centering = "tester", rep = TRUE)
- GGE1
+ dat2 <- plrv
+ GGE2 <- GGEmodel(dat2, genotype="Genotype",environment="Locality", response="Yield", rep="Rep", centering = "tester")
+ GGE2
 
 }
 \references{

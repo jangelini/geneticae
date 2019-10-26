@@ -3,12 +3,13 @@
 #'Produces the AMMI biplot as an object of class 'ggplot'. It is possible to
 #'customize it so that the stylistic attributes are to the user's liking.
 #'
-#'@param x a data frame that contains the genotypes in the first column, the columns in the
-#'  next and last the response. In case of replications, the data frame must have the columns
-#'  in the following order: genotypes, environments, replications and the response variable.
+#'@param Data a data frame
+#'@param genotype name of the column that contains the genotypes
+#'@param environment name of the column that contains the environments
+#'@param response name of the column that contains the response
+#'@param rep name of the column that contains the replications.If this argument is NULL, there is no replications in the data.
 #'@param Ncomp number of principal components that will be used in the analysis
 #'@param type method. Either "AMMI", "rAMMI", "hAMMI", "gAMMI", "lAMMI" or "ppAMMI".
-#'@param rep logical. If TRUE the genotype by environment means is calculated.
 #'@param colGen colour for genotype attributes on biplot. Defaults to "gray"
 #'@param colEnv colour for environment attributes on biplot. Defaults to "darkred"
 #'@param colSegment colour for segment or circle lines. Defaults to "gray"
@@ -20,17 +21,36 @@
 #'@param footnote logical. If TRUE then include automatically generated footbote
 #'  two selected genotypes, and where type=6, used for the outermost genotypes.
 #'  Defaults to 4.5
+#'
 #'@return A biplot of class  \code{ggplot}
 #'@references Rodrigues PC, Monteiro A and Lourenco VM (2015). \emph{A robust AMMI model for the analysis of
 #'genotype-by-environment data}. Bioinformatics, 32, 58–66.
 #'@export
+#'
+#'@examples
+#'
+#'library(geneticae)
+#'# Data without replication
+#'data(yan.winterwheat)
+#'dat <- yan.winterwheat
+#'GGE1 <- rAMMI(dat, genotype="gen",environment="env", response="yield", type = "AMMI")
+#'GGE1
+#'
+#'# Data with replication
+#'data(plrv)
+#'dat2 <- plrv
+#'GGE2 <- rAMMI(dat2, genotype="Genotype",environment="Locality", response="Yield", rep="Rep", type = "AMMI")
+#'GGE2
+#'
+#'
 #'@import dplyr
 #'@importFrom MASS rlm
 #'@importFrom pcaMethods robustSvd
 #'@importFrom rrcov PcaHubert PcaGrid PcaLocantore PcaProj
 #'@importFrom stats lm residuals
+#'@importFrom dplyr group_by summarise rename
 #'
-rAMMI<-function(Data,environment="env", genotype="gen", response="Y", Ncomp = 2, type = "AMMI", rep=FALSE,
+rAMMI<-function(Data, genotype="gen", environment="env", response="Y", rep=NULL,Ncomp = 2, type = "AMMI",
                 colGen="gray47",colEnv="darkred",colSegment="gray30",colHull="gray30",
                 sizeGen=4,sizeEnv=4,largeSize=4.5, titles=TRUE, footnote=TRUE){
 
@@ -40,7 +60,7 @@ rAMMI<-function(Data,environment="env", genotype="gen", response="Y", Ncomp = 2,
     class(Data) == "data.frame",
     class(Ncomp) == "numeric",
     type %in% c("AMMI", "rAMMI", "hAMMI", "gAMMI", "lAMMI", "ppAMMI"),
-    class(rep)  == "logical",
+    class(rep)%in% c("character", "NULL"),
     class(colGen) == "character",
     class(colEnv) == "character",
     class(colSegment) == "character",
@@ -52,264 +72,115 @@ rAMMI<-function(Data,environment="env", genotype="gen", response="Y", Ncomp = 2,
     class(footnote)  == "logical"
   )
 
-
-  if(rep){
+  if(!is.null(rep)){
     Data <-
       Data %>%
-      mutate(gen= factor({{genotype}}), env= factor({{environment}})) %>%
       group_by({{genotype}}, {{environment}}) %>%
-      summarise(y=mean({{response}}))%>%
-      as.data.frame()
-
-  } else{
-    Data <-Data %>%
-      mutate(gen= factor({{genotype}}), env= factor({{environment}}))%>%
-      as.data.frame()
+      summarise(y=mean({{response}}))
   }
+  # type <- match.arg(type)
+  gen <- as.factor(Data[, {{genotype}}])
+  env <- as.factor(Data[, {{environment}}])
+  y <- as.vector(Data[, {{response}}])
 
 
-  Data <-as.data.frame(Data)
-  gen <- as.factor(Data[,1])
-  env <- as.factor(Data[, 2])
-  y <- as.vector(Data[, 3])
+  # Asi funciona
+  # gen <- as.factor(Data[, 1])
+  # env <- as.factor(Data[, 2])
+  # y <- as.vector(Data[, 3])
+  Ngen <- nlevels(gen)
+  Nenv <- nlevels(env)
+  #Nreps <- nlevels(reps)
   labelgen <- unique(gen)
   labelenv <- unique(env)
   Ngen <- nlevels(gen)
   Nenv <- nlevels(env)
   Max <- min(Ngen - 1, Nenv - 1)
-  lm.x<- lm(y~gen+env, data=Data)             # AMMI model - stage 1
-  residuals.x<- matrix(residuals(lm.x), nrow = Ngen , ncol = Nenv)
-  rlm.x<- rlm(y~gen+env, data=Data)           # Robust AMMi model - stage 1
-  rresiduals.x<- matrix(residuals(rlm.x), nrow = Ngen, ncol = Nenv)
+  lm.x <- lm(y ~ gen + env, data=Data)             # AMMI model - stage 1
+  residuals.x <- matrix(residuals(lm.x), nrow = Ngen , ncol = Nenv)
+  rlm.x <- rlm(y ~ gen + env, data=Data)           # Robust AMMi model - stage 1
+  rresiduals.x <- matrix(residuals(rlm.x), nrow = Ngen, ncol = Nenv)
 
   if (type == "AMMI"){              # H-AMMI model
-    svd.x<- svd((residuals.x))               # AMMI model - stage 2                        # AMMI2 biplot
+    svd.x<- svd((residuals.x))               # AMMI model - stage 2
+    eigenvalues<-svd.x$d
     biplot.x.u<- -svd.x$u[,1:2] * matrix(rep(svd.x$d[1:2]^0.5, Ngen), ncol=2, byrow=T)
     biplot.x.v<- -svd.x$v[,1:2] * matrix(rep(svd.x$d[1:2]^0.5, Nenv), ncol=2, byrow=T)
-
-    coordgenotype=biplot.x.u
-    coordenviroment=biplot.x.v
-    eigenvalues = svd.x$d
-
-    labelaxes <- paste("Component ",1:ncol(diag(svd.x$d)), sep = "")
-    labelaxes=labelaxes[1:2]
-
-    vartotal = round(as.numeric(sum(eigenvalues^2)),5)
-    varexpl = c(round(as.numeric((eigenvalues[1]^2/vartotal) *100), 2),
-                round(as.numeric((eigenvalues[2]^2/vartotal) *100), 2))
-
-    plotdata<-data.frame(rbind(data.frame(coordgenotype,type="genotype",label=labelgen),
-                               data.frame(coordenviroment,type="environment",label=labelenv)))
-    colnames(plotdata)[1:2]<-c("Component1","Component2")
-    plotdata$type<-factor(plotdata$type)
-
-    AMMI1<-ggplot(data=plotdata,aes(x=Component1,y=Component2,group="type"))+
-      theme_classic() +
-      theme(plot.caption = element_text(size=12,hjust=0)) +
-      scale_color_manual(values=c(colGen,colEnv)) +
-      scale_size_manual(values=c(sizeGen,sizeEnv))+
-      xlab(paste(labelaxes[1],format(varexpl[1],nsmall=2), "%", sep = " "))+
-      ylab(paste(labelaxes[2], format(varexpl[2],nsmall=2),"%", sep = " "))+
-      geom_hline(yintercept=0)+geom_vline(xintercept=0)
-
-     AMMI2<-AMMI1+geom_segment(xend=0,yend=0,col=alpha(colEnv,0.5),data=subset(plotdata,type=="environment"))+
-      geom_text(aes(col=type,label=label,size=type),show.legend = FALSE)
-     if(titles==TRUE){AMMI2<-AMMI2+ggtitle("AMMI Biplot")}
-
     }
-
 
    if (type == "rAMMI"){
      rsvd.x<-robustSvd(rresiduals.x)      # r-AMMI model
-     biplot.rx.u<- cbind(rsvd.x$u[,1], -rsvd.x$u[,2]) * matrix(rep(rsvd.x$d[1:2]^0.5, Ngen), ncol=2, byrow=T)
-     biplot.rx.v<- cbind(rsvd.x$v[,1], -rsvd.x$v[,2]) * matrix(rep(rsvd.x$d[1:2]^0.5, Nenv), ncol=2, byrow=T)
-     coordgenotype=biplot.rx.u
-     coordenviroment=biplot.rx.v
-     eigenvalues = rsvd.x$d
-
-     labelaxes <- paste("Component ",1:ncol(diag(rsvd.x$d)), sep = "")
-     labelaxes=labelaxes[1:2]
-
-
-     vartotal = round(as.numeric(sum(eigenvalues^2)),5)
-     varexpl = c(round(as.numeric((eigenvalues[1]^2/vartotal) *100), 2),
-                 round(as.numeric((eigenvalues[2]^2/vartotal) *100), 2))
-
-
-     plotdata<-data.frame(rbind(data.frame(coordgenotype,type="genotype",label=labelgen),
-                                data.frame(coordenviroment,type="environment",label=labelenv)))
-     colnames(plotdata)[1:2]<-c("Component1","Component2")
-     plotdata$type<-factor(plotdata$type)
-
-     AMMI1<-ggplot(data=plotdata,aes(x=Component1,y=Component2,group="type"))+
-       theme_classic() +
-       theme(plot.caption = element_text(size=12,hjust=0)) +
-       scale_color_manual(values=c(colGen,colEnv)) +
-       scale_size_manual(values=c(sizeGen,sizeEnv))+
-       xlab(paste(labelaxes[1],format(varexpl[1],nsmall=2), "%", sep = " "))+
-       ylab(paste(labelaxes[2], format(varexpl[2],nsmall=2),"%", sep = " "))+
-       geom_hline(yintercept=0)+geom_vline(xintercept=0)
-
-     AMMI2<-AMMI1+geom_segment(xend=0,yend=0,col=alpha(colEnv,0.5),data=subset(plotdata,type=="environment"))+
-       geom_text(aes(col=type,label=label,size=type),show.legend = FALSE)
-
-     if(titles==TRUE){AMMI2<-AMMI2+ggtitle("rAMMI Biplot")}
+     eigenvalues<- rsvd.x$d
+     biplot.x.u<- cbind(rsvd.x$u[,1], -rsvd.x$u[,2]) * matrix(rep(rsvd.x$d[1:2]^0.5, Ngen), ncol=2, byrow=T)
+     biplot.x.v<- cbind(rsvd.x$v[,1], -rsvd.x$v[,2]) * matrix(rep(rsvd.x$d[1:2]^0.5, Nenv), ncol=2, byrow=T)
    }
-
 
    if (type == "hAMMI"){              # H-AMMI model
      modeloHubert<- PcaHubert(rresiduals.x, mcd=FALSE)
-     eigenvalues.Hx<- modeloHubert@eigenvalues
+     eigenvalues<- modeloHubert@eigenvalues
      loadings.Hx<- modeloHubert@loadings
      scores.Hx<- modeloHubert@scores
-     biplot.Hx.u<- matrix(c(scores.Hx[,1], -scores.Hx[,2]), ncol=2, byrow=F) * matrix(rep(eigenvalues.Hx[1:2]^0.5, Ngen), ncol=2, byrow=T)
-     biplot.Hx.v<- matrix(c(loadings.Hx[,1], -loadings.Hx[,2]), ncol=2, byrow=F) * matrix(rep(eigenvalues.Hx[1:2]^0.5, Nenv), ncol=2, byrow=T)
+     biplot.x.u<- matrix(c(scores.Hx[,1], -scores.Hx[,2]), ncol=2, byrow=F) * matrix(rep(eigenvalues[1:2]^0.5, Ngen), ncol=2, byrow=T)
+     biplot.x.v<- matrix(c(loadings.Hx[,1], -loadings.Hx[,2]), ncol=2, byrow=F) * matrix(rep(eigenvalues[1:2]^0.5, Nenv), ncol=2, byrow=T)
+   }
 
-     coordgenotype=biplot.Hx.u
-     coordenviroment=biplot.Hx.v
-     eigenvalues = eigenvalues.Hx
-
-     labelaxes <- paste("Component ",1:ncol(diag(eigenvalues.Hx)), sep = "")
-     labelaxes=labelaxes[1:2]
-
-     vartotal = round(as.numeric(sum(eigenvalues)),5)
-     varexpl = c(round(as.numeric((eigenvalues[1]/vartotal) *100), 2),
-                 round(as.numeric((eigenvalues[2]/vartotal) *100), 2))
-
-     plotdata<-data.frame(rbind(data.frame(coordgenotype,type="genotype",label=labelgen),
-                                data.frame(coordenviroment,type="environment",label=labelenv)))
-     colnames(plotdata)[1:2]<-c("Component1","Component2")
-     plotdata$type<-factor(plotdata$type)
-
-     AMMI1<-ggplot(data=plotdata,aes(x=Component1,y=Component2,group="type"))+
-       theme_classic() +
-       theme(plot.caption = element_text(size=12,hjust=0)) +
-       scale_color_manual(values=c(colGen,colEnv)) +
-       scale_size_manual(values=c(sizeGen,sizeEnv))+
-       xlab(paste(labelaxes[1],format(varexpl[1],nsmall=2), "%", sep = " "))+
-       ylab(paste(labelaxes[2], format(varexpl[2],nsmall=2),"%", sep = " "))+
-       geom_hline(yintercept=0)+geom_vline(xintercept=0)
-
-     AMMI2<-AMMI1+geom_segment(xend=0,yend=0,col=alpha(colEnv,0.5),data=subset(plotdata,type=="environment"))+
-       geom_text(aes(col=type,label=label,size=type),show.legend = FALSE)
-     if(titles==TRUE){AMMI2<-AMMI2+ggtitle("hAMMI Biplot")}
-
-    }
    if (type == "gAMMI"){             # G-AMMI model
      modeloGrid<- PcaGrid(rresiduals.x)
-     eigenvalues.gx<- modeloGrid@eigenvalues
+     eigenvalues<- modeloGrid@eigenvalues
      loadings.gx<- modeloGrid@loadings
      scores.gx<- modeloGrid@scores
-     biplot.gx.u<- scores.gx[,1:2] * matrix(rep(eigenvalues.gx[1:2]^0.5, Ngen), ncol=2, byrow=T)
-     biplot.gx.v<- loadings.gx[,1:2] * matrix(rep(eigenvalues.gx[1:2]^0.5, Nenv), ncol=2, byrow=T)
+     biplot.x.u<- scores.gx[,1:2] * matrix(rep(eigenvalues[1:2]^0.5, Ngen), ncol=2, byrow=T)
+     biplot.x.v<- loadings.gx[,1:2] * matrix(rep(eigenvalues[1:2]^0.5, Nenv), ncol=2, byrow=T)
+   }
 
-     coordgenotype=biplot.gx.u
-     coordenviroment=biplot.gx.v
-     eigenvalues = eigenvalues.gx[1:2]
-
-     labelaxes <- paste("Component ",1:ncol(diag(eigenvalues.gx)), sep = "")
-     labelaxes=labelaxes
-
-     vartotal = round(as.numeric(sum(eigenvalues)),5)
-     varexpl = c(round(as.numeric((eigenvalues[1]/vartotal) *100), 2),
-                 round(as.numeric((eigenvalues[2]/vartotal) *100), 2))
-
-     plotdata<-data.frame(rbind(data.frame(coordgenotype,type="genotype",label=labelgen),
-                                data.frame(coordenviroment,type="environment",label=labelenv)))
-     colnames(plotdata)[1:2]<-c("Component1","Component2")
-     plotdata$type<-factor(plotdata$type)
-
-     AMMI1<-ggplot(data=plotdata,aes(x=Component1,y=Component2,group="type"))+
-       theme_classic() +
-       theme(plot.caption = element_text(size=12,hjust=0)) +
-       scale_color_manual(values=c(colGen,colEnv)) +
-       scale_size_manual(values=c(sizeGen,sizeEnv))+
-       xlab(paste(labelaxes[1],format(varexpl[1],nsmall=2), "%", sep = " "))+
-       ylab(paste(labelaxes[2], format(varexpl[2],nsmall=2),"%", sep = " "))+
-       geom_hline(yintercept=0)+geom_vline(xintercept=0)
-
-     AMMI2<-AMMI1+geom_segment(xend=0,yend=0,col=alpha(colEnv,0.5),data=subset(plotdata,type=="environment"))+
-       geom_text(aes(col=type,label=label,size=type),show.legend = FALSE)
-     if(titles==TRUE){AMMI2<-AMMI2+ggtitle("gAMMI Biplot")}
-     }
    if (type == "lAMMI"){             # L-AMMI model
      modeloLocantore<- PcaLocantore(rresiduals.x)
-     eigenvalues.lx<- modeloLocantore@eigenvalues
+     eigenvalues<- modeloLocantore@eigenvalues
      loadings.lx<- modeloLocantore@loadings
      scores.lx<- modeloLocantore@scores
-     biplot.lx.u<- matrix(c(-scores.lx[,1], scores.lx[,2]), ncol=2, byrow=F) * matrix(rep(eigenvalues.lx[1:2]^0.5, Ngen), ncol=2, byrow=T)
-     biplot.lx.v<- matrix(c(-loadings.lx[,1], loadings.lx[,2]), ncol=2, byrow=F) * matrix(rep(eigenvalues.lx[1:2]^0.5, Nenv), ncol=2, byrow=T)
-     coordgenotype=biplot.lx.u
-     coordenviroment=biplot.lx.v
-     eigenvalues = eigenvalues.lx
+     biplot.x.u<- matrix(c(-scores.lx[,1], scores.lx[,2]), ncol=2, byrow=F) * matrix(rep(eigenvalues[1:2]^0.5, Ngen), ncol=2, byrow=T)
+     biplot.x.v<- matrix(c(-loadings.lx[,1], loadings.lx[,2]), ncol=2, byrow=F) * matrix(rep(eigenvalues[1:2]^0.5, Nenv), ncol=2, byrow=T)
+   }
 
-     labelaxes <- paste("Component ",1:ncol(diag(eigenvalues.lx)), sep = "")
-     labelaxes=labelaxes
-
-     vartotal = round(as.numeric(sum(eigenvalues)),5)
-     varexpl = c(round(as.numeric((eigenvalues[1]/vartotal) *100), 2),
-                 round(as.numeric((eigenvalues[2]/vartotal) *100), 2))
-
-     plotdata<-data.frame(rbind(data.frame(coordgenotype,type="genotype",label=labelgen),
-                                data.frame(coordenviroment,type="environment",label=labelenv)))
-     colnames(plotdata)[1:2]<-c("Component1","Component2")
-     plotdata$type<-factor(plotdata$type)
-
-     AMMI1<-ggplot(data=plotdata,aes(x=Component1,y=Component2,group="type"))+
-       theme_classic() +
-       theme(plot.caption = element_text(size=12,hjust=0)) +
-       scale_color_manual(values=c(colGen,colEnv)) +
-       scale_size_manual(values=c(sizeGen,sizeEnv))+
-       xlab(paste(labelaxes[1],format(varexpl[1],nsmall=2), "%", sep = " "))+
-       ylab(paste(labelaxes[2], format(varexpl[2],nsmall=2),"%", sep = " "))+
-       geom_hline(yintercept=0)+geom_vline(xintercept=0)
-
-     AMMI2<-AMMI1+geom_segment(xend=0,yend=0,col=alpha(colEnv,0.5),data=subset(plotdata,type=="environment"))+
-       geom_text(aes(col=type,label=label,size=type),show.legend = FALSE)
-
-     if(titles==TRUE){AMMI2<-AMMI2+ggtitle("lAMMI Biplot")}
-
-     }
    if (type == "ppAMMI"){             # PP-AMMI model
      modeloProj<- PcaProj(rresiduals.x)
-     eigenvalues.px<- modeloProj@eigenvalues
+     eigenvalues<- modeloProj@eigenvalues
      loadings.px<- modeloProj@loadings
      scores.px<- modeloProj@scores
-     biplot.px.u<- matrix(c(-scores.px[,1], -scores.px[,2]), ncol=2, byrow=F) * matrix(rep(eigenvalues.px[1:2]^0.5, Ngen), ncol=2, byrow=T)
-     biplot.px.v<- matrix(c(-loadings.px[,1], -loadings.px[,2]), ncol=2, byrow=F) * matrix(rep(eigenvalues.px[1:2]^0.5, Nenv), ncol=2, byrow=T)
-
-     coordgenotype=biplot.px.u
-     coordenviroment=biplot.px.v
-     eigenvalues = eigenvalues.px
-
-     labelaxes <- paste("Component ",1:ncol(diag(eigenvalues.px)), sep = "")
-     labelaxes=labelaxes[1:2]
-
-     vartotal = round(as.numeric(sum(eigenvalues)),5)
-     varexpl = c(round(as.numeric((eigenvalues[1]/vartotal) *100), 2),
-                 round(as.numeric((eigenvalues[2]/vartotal) *100), 2))
-
-          plotdata<-data.frame(rbind(data.frame(coordgenotype,type="genotype",label=labelgen),
-                                data.frame(coordenviroment,type="environment",label=labelenv)))
-     colnames(plotdata)[1:2]<-c("Component1","Component2")
-     plotdata$type<-factor(plotdata$type)
-
-     AMMI1<-ggplot(data=plotdata,aes(x=Component1,y=Component2,group="type"))+
-       theme_classic() +
-       theme(plot.caption = element_text(size=12,hjust=0)) +
-       scale_color_manual(values=c(colGen,colEnv)) +
-       scale_size_manual(values=c(sizeGen,sizeEnv))+
-       xlab(paste(labelaxes[1],format(varexpl[1],nsmall=2), "%", sep = " "))+
-       ylab(paste(labelaxes[2], format(varexpl[2],nsmall=2),"%", sep = " "))+
-       geom_hline(yintercept=0)+geom_vline(xintercept=0)
-
-     AMMI2<-AMMI1+geom_segment(xend=0,yend=0,col=alpha(colEnv,0.5),data=subset(plotdata,type=="environment"))+
-       geom_text(aes(col=type,label=label,size=type),show.legend = FALSE)
-
-     if(titles==TRUE){AMMI2<-AMMI2+ggtitle("ppAMMI Biplot")}
+     biplot.x.u<- matrix(c(-scores.px[,1], -scores.px[,2]), ncol=2, byrow=F) * matrix(rep(eigenvalues[1:2]^0.5, Ngen), ncol=2, byrow=T)
+     biplot.x.v<- matrix(c(-loadings.px[,1], -loadings.px[,2]), ncol=2, byrow=F) * matrix(rep(eigenvalues[1:2]^0.5, Nenv), ncol=2, byrow=T)
      }
 
 
+  coordgenotype=biplot.x.u
+  coordenviroment=biplot.x.v
+
+
+  labelaxes <- paste("Component ",1:ncol(diag(eigenvalues)), sep = "")
+  labelaxes=labelaxes[1:2]
+
+  vartotal = round(as.numeric(sum(eigenvalues^2)),5)
+  varexpl = c(round(as.numeric((eigenvalues[1]^2/vartotal) *100), 2),
+              round(as.numeric((eigenvalues[2]^2/vartotal) *100), 2))
+
+  plotdata<-data.frame(rbind(data.frame(coordgenotype,type="genotype",label=labelgen),
+                             data.frame(coordenviroment,type="environment",label=labelenv)))
+  colnames(plotdata)[1:2]<-c("Component1","Component2")
+  plotdata$type<-factor(plotdata$type)
+
+  AMMI1<-ggplot(data=plotdata,aes(x=Component1,y=Component2,group="type"))+
+    theme_classic() +
+    theme(plot.caption = element_text(size=12,hjust=0)) +
+    scale_color_manual(values=c(colGen,colEnv)) +
+    scale_size_manual(values=c(sizeGen,sizeEnv))+
+    xlab(paste(labelaxes[1],format(varexpl[1],nsmall=2), "%", sep = " "))+
+    ylab(paste(labelaxes[2], format(varexpl[2],nsmall=2),"%", sep = " "))+
+    geom_hline(yintercept=0)+geom_vline(xintercept=0)
+
+  AMMI2<-AMMI1+geom_segment(xend=0,yend=0,col=alpha(colEnv,0.5),data=subset(plotdata,type=="environment"))+
+    geom_text(aes(col=type,label=label,size=type),show.legend = FALSE)
+
+  if(titles==TRUE){AMMI2<-AMMI2+ggtitle(type)}
   if(footnote==TRUE){
     footnotetxt=paste("\n", type,"biplot showing components 1 and 2 explaining ",sum(varexpl),"% of the total variation")
 

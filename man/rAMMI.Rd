@@ -4,18 +4,26 @@
 \alias{rAMMI}
 \title{AMMI biplots with \pkg{ggplot2}}
 \usage{
-rAMMI(Data, environment = "env", genotype = "gen", response = "Y",
-  Ncomp = 2, type = "AMMI", rep = FALSE, colGen = "gray47",
+rAMMI(Data, genotype = "gen", environment = "env", response = "Y",
+  rep = NULL, Ncomp = 2, type = "AMMI", colGen = "gray47",
   colEnv = "darkred", colSegment = "gray30", colHull = "gray30",
   sizeGen = 4, sizeEnv = 4, largeSize = 4.5, titles = TRUE,
   footnote = TRUE)
 }
 \arguments{
+\item{Data}{a data frame}
+
+\item{genotype}{name of the column that contains the genotypes}
+
+\item{environment}{name of the column that contains the environments}
+
+\item{response}{name of the column that contains the response}
+
+\item{rep}{name of the column that contains the replications.If this argument is NULL, there is no replications in the data.}
+
 \item{Ncomp}{number of principal components that will be used in the analysis}
 
 \item{type}{method. Either "AMMI", "rAMMI", "hAMMI", "gAMMI", "lAMMI" or "ppAMMI".}
-
-\item{rep}{logical. If TRUE the genotype by environment means is calculated.}
 
 \item{colGen}{colour for genotype attributes on biplot. Defaults to "gray"}
 
@@ -36,10 +44,6 @@ rAMMI(Data, environment = "env", genotype = "gen", response = "Y",
 \item{footnote}{logical. If TRUE then include automatically generated footbote
 two selected genotypes, and where type=6, used for the outermost genotypes.
 Defaults to 4.5}
-
-\item{x}{a data frame that contains the genotypes in the first column, the columns in the
-next and last the response. In case of replications, the data frame must have the columns
-in the following order: genotypes, environments, replications and the response variable.}
 }
 \value{
 A biplot of class  \code{ggplot}
@@ -47,6 +51,23 @@ A biplot of class  \code{ggplot}
 \description{
 Produces the AMMI biplot as an object of class 'ggplot'. It is possible to
 customize it so that the stylistic attributes are to the user's liking.
+}
+\examples{
+
+library(geneticae)
+# Data without replication
+data(yan.winterwheat)
+dat <- yan.winterwheat
+GGE1 <- rAMMI(dat, genotype="gen",environment="env", response="yield", type = "AMMI")
+GGE1
+
+# Data with replication
+data(plrv)
+dat2 <- plrv
+GGE2 <- rAMMI(dat2, genotype="Genotype",environment="Locality", response="Yield", rep="Rep", type = "AMMI")
+GGE2
+
+
 }
 \references{
 Rodrigues PC, Monteiro A and Lourenco VM (2015). \emph{A robust AMMI model for the analysis of

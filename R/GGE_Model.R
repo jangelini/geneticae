@@ -8,12 +8,12 @@
 #'means with the genotypes in rows and environments in columns. By contrast,
 #'repetitions are allowed in this function.
 #'
-#' @param Data a data frame or matrix that contains the genotypes in the rows
-#'   and the environments in the columns when there no replications in the
-#'   experiment. In case of replications, the data frame must have the columns
-#'   in the following order: genotypes, environments, replications and the
-#'   response variable.
-#' @param rep logical. If TRUE the genotype by environment means is calculated.
+#' @param Data a data frame
+#' @param genotype name of the column that contains the genotypes
+#' @param environment name of the column that contains the environments
+#' @param response name of the column that contains the response
+#' @param rep name of the column that contains the replications.If this argument
+#'   is NULL, there is no replications in the data.
 #' @param centering centering method. Either "tester" for tester centered
 #'   (G+GE), "global" for global centered (E+G+GE), "double" for double centred
 #'   (GE) or "none" for no centering. If a centering method is not used, the
@@ -41,50 +41,57 @@
 #' @examples
 #'
 #'  library(geneticae)
-#'  library(reshape2)
 #'  # Data without replication
 #'  data(yan.winterwheat)
-#'  dat1 <- yan.winterwheat
-#'  # The data in the required format genotypes in rows and environments in columns
-#'  dat <- t(round(acast(dat1, env ~ gen, value.var = "yield"), 2))
-#'  GGE1 <- GGEmodel(dat, centering = "tester", rep = FALSE)
+#'  dat <- yan.winterwheat
+#'  GGE1 <- GGEmodel(dat, genotype="gen",environment="env", response="yield", centering = "tester")
 #'  GGE1
 #'
 #'  # Data with replication
 #'  data(plrv)
-#'  dat <- plrv[,-c(4,5)]
-#'  GGE1 <- GGEmodel(dat, centering = "tester", rep = TRUE)
-#'  GGE1
+#'  dat2 <- plrv
+#'  GGE2 <- GGEmodel(dat2, genotype="Genotype",environment="Locality", response="Yield", rep="Rep", centering = "tester")
+#'  GGE2
 #'
 #' @importFrom stats var
-#' @importFrom GGEBiplots stattable GGEModel
+#' @importFrom GGEBiplots GGEModel
+#' @importFrom tidyr spread
+#' @importFrom dplyr group_by summarise rename
 #'
-GGEmodel <- function(Data,environment="env", genotype="gen", response="Y",rep=NULL,centering="tester",scaling="none",SVP="column"){
+GGEmodel <- function(Data, genotype="gen", environment="env", response="yield", rep=NULL,centering="tester",scaling="none",SVP="column"){
 
   if (missing(Data)) stop("Need to provide Data data frame or matrix")
   if(any(is.na(Data))){stop("Missing data in input data frame, run the imputation function first to complete the data set")}
   stopifnot(
-     class(Data) %in% c("matrix", "data.frame"),
-     class(rep) == "logical",
+     class(Data) %in% c("data.frame"),
+     class(rep)%in% c("character", "NULL"),
      centering %in% c("tester", "global","double","none"),
      scaling %in% c("sd", "none"),
      SVP %in% c("row", "column","dual","symmetrical")
   )
 
-  if (rep) {
-
-    Data<-Data %>%
+  if(!is.null(rep)){
+  Data <-
+      Data %>%
       group_by({{genotype}}, {{environment}}) %>%
-      summarise(y=mean({{response}}))
+      summarise(mean_resp=mean({{response}}))%>%
+      spread({{genotype}}, {{environment}}, mean_resp) %>%
+      as.data.frame()
+
+  } else{
+    Data <-
+      Data %>%
+      spread({{environment}}, {{response}})%>%
+      as.data.frame()
+
   }
 
-    Data<-spread(Data, {{environment}}, {{response}})
 
-    rownames(Data) <- Data[,1]
-    Data[,1] <- NULL
-    Data <-as.matrix(Data)
-    # GGEModel is a function of GGEBiplots package
-    model<-GGEModel(Data,centering=centering,scaling=scaling,SVP=SVP)
+  rownames(Data) <- Data[,{{genotype}}]
+  Data[,{{genotype}}] <- NULL
+
+  # GGEModel is a function of GGEBiplots package
+  model<-GGEModel(Data,centering=centering,scaling=scaling,SVP=SVP)
 
 
   class(model)<-"GGEModel"

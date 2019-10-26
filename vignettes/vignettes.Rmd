@@ -10,208 +10,275 @@ author: |
     | Universidad Nacional de Rosario
     | Suipacha 501
 date: "`r Sys.Date()`"
-output: rmarkdown::html_vignette
+output:
+  prettydoc::html_pretty:
+    theme: cayman
+    highlight: github
 vignette: >
   %\VignetteIndexEntry{Geneticae}
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
 ---
+<style type="text/css">
 
+body{
+  text-align: justify}
+  </style>
+  
 <!-- devtools::build_vignettes() -->
 ##1. Getting started
 
-__Installing the package.__ To install the _Geneticae_ package:
+__Installing the package.__ To install the _geneticae_ package:
 
-```{r,eval=FALSE}
+```{r,eval=FALSE, tidy=TRUE}
 install.packages("devtools")
 library(devtools)
 install_github("jangelini/geneticae")
 ```
 
 
-__Loading the package.__ Once geneticae package is installed, it needs to be made accessible to the current R session by the command `library(Geneticae)`.
+__Loading the package.__ Once geneticae package is installed, it needs to be made accessible to the current R session by the command `library(geneticae)`.
 
 
 
-__Help files.__  Detailed information on `Geneticae` package functions can be obtained from the help files using `help(package="agricolae")`.
+__Help files.__  Detailed information on `geneticae` package functions can be obtained from the help files using `help(package="geneticae")`.
 The help file for a function, for example `imputation`, in a R session can be obtained using `?imputation` or `help(imputation)`.
-
-
-For a complete functionality, geneticae requires other packages
-
-+ stats: for....
-+ GGEBiplots
-+ GGEBiplots
-+ ggforce
-+ ggplot2
-+ scales
-+ MASS
-+ pcaMethods
-+ rrcov
-+ dplyr
-+ agricolae
-+ bcv
-+ missMDA
-+ calibrate
-+ graphics
 
 
 ##2. Introduction
 
-The yield trial is one of the most common experiments performed by plant breeders. It is conducted by testing a number of genotypes across multiple environments, called multi-environment trials (MET). MET is commonly managed to identify superior genotypes. There are two factors included in MET: genotypes and environments. Superior genotypes should be selected using the largest amount of available information, and thus obtain a good measure of genotype performance in a given environment. Because the genotype-by-environment interaction (GE) genotype performance may differ among environments, particularly when they are selected in one and produced in another. This GE is a particular problem for plant breeders (Giauffret et al., 2000). Therefore, the study of GE effect is of great importance and can be performed using several statistical models. Two linear-bilinear models gained prominence in the context of plant breeding and evaluation of data from MET: the additive main effects and multiplicative interaction (AMMI) model (Gauch, 1988; 1992), and the genotype main effect (G) and GE effect models (Yan et al., 2000; Yan and Kang, 2002), also known as sites regression (SREG) models (Cornelius et al., 1996; Crossa and Cornelius, 1997; Crossa et al., 2002). The objective of these models is to carry out a detailed analysis of the GE and an adequate evaluation of the varieties (Zobel et al., 1988; Crossa, 1990; Flores et al., 1998; Gauch et al., 2008). However, neither AMMI nor SREG are always effective enough in analyzing the MET data structure in breeding programs (Zobel et al., 1988; Navabi et al., 2006). SREG explore a matrix of genotype-by-environment performing a singular value decomposition (SVD) on the matrix of residuals from a one-way ANOVA with fixed effects for environments. 
+Understanding the relationship between crops performance and environment is a key problem for plant breeders and geneticists. In advanced stages of breeding programs, where few genotypes are evaluated, multi-environmental trials (MET) is one of the most common experiments. They are conducted by testing a number of genotypes across multiple environments, allowing the identification of superior genotypes. Crop performance, the observed phenotype, is a function of genotype (G), environment (E) and genotype x environment interaction (GEI). METs are essential due to the presence of GEI which generates differential genotypic responses in the different environments evaluated (Crossa et al., 1990; Cruz Medina, 1992; Kang and Magari, 1996). This is a particular problem for plant breeders (Giauffret et al., 2000), therefore appropriate statistical methods should be used to obtain an adequate GEI analysis.
 
-The geneticae package offers functions for the analysis of genotype interaction by environment, an essential factor in an improvement program.
+The `geneticae` package offers functions for the analysis of data from advanced stages of breeding programs, where few genotypes are evaluated.
 
-##3. Running Geneticae
 
-`Geneticae` package includes the data used in the example of @yan2006biplot which includes the yield of 18 varieties of winter wheat grown at 9 environments in Ontario in 1993. The examples of the package will be carried out considering this data set. 
+##3. Data set in geneticae
 
-###3.1 Site regression model
+The `geneticae` package provides two datasets to illustrate the methodology included to analize MET data. 
+
+* _yan.winterwheat_ dataset: yield of 18 winter wheat varieties grown at nine environments in Ontario in 1993. No replications are available in the data. This data set was obtained from the `agridat` package.
+
+
+```{r, tidy=TRUE}
+library(geneticae)
+data(yan.winterwheat)
+dat_yan <- yan.winterwheat
+head(dat_yan)
+```
+
+* _plrv_ dataset: yield, plant and plot weight of 28 clones from the potato leafroll virus (PLRV) population evaluated in six environments. Replications are available in the data. This data set was obtained from the `agricolae` package.
+
+```{r, tidy=TRUE}
+data(plrv)
+dat_rep <- plrv
+head(dat_rep)
+```
+
+
+##4. Running geneticae
+
+###4.1 Site regression model
 
 #### The model
-The site regression (SREG) model also named genotype plus genotype-by-environment (GGE) model is powerful a tools for effective analysis and interpretation of multienvironment data structure in breeding programs.
+The site regression model also named genotype plus genotype-by-environment (GGE) model is a powerful tool for effective analysis and interpretation of MET data structure in breeding programs. GGE explore a matrix of G + GE performing a singular value decomposition (SVD) on the matrix of residuals from a one-way ANOVA with fixed effects for E. 
 
-SREG explore a matrix of genotype-by-environment performing a singular value decomposition (SVD) on the matrix of residuals from a one-way ANOVA with fixed effects for environments. 
+To run `GGEmodel` a dataset with genotypes, environments, repetitions (if there are available), the observed phenotype, and the names of those variables must be provided. Also, the centering, scaling and SVD method should be indicated.
 
-The data for SREG should come from similar experiments conducted in diferent environments. Homogeneity of variance of the experimental error, produced in the difeerent environments, is required.
+When there \textbf{no repetitions} available in the dataset, as is the case of _yan.winterwheat_ dataset, the GGE model is indicated as follows:
 
-The analysis is done by combining the experiments.
-
-The data can be organized in columns, thus: environment, genotype, repetition, and variable.
-
-The data can also be the averages of the genotypes in each environment, but it is necessary to consider a harmonious average for the repetitions and a common variance of the error. The data should be organized with genotypes in rows and environments in columns.
-
-When performing `GGEmodel`, this generates a list of class \code{GGE_Model} containing:
-
-+ coordgenotype: plotting coordinates for genotypes from all components 
-+ coordenviroment: plotting coordinates for environments from all components 
-+ eigenvalues:vector of eigenvalues from each component
-+ vartotal: overall variance
-+ varexpl: percentage of variance explained by each component 
-+ labelgen: genotype names
-+ labelenv: environment names
-+ axes: axis labels
-+ Data: scaled and centered input data 
-+ centering: name of centering method
-+ scaling: name of scaling method
-+ SVP: name of SVP method
-
-
-```{r}
-library(geneticae)
-library(reshape2)
-data(yan.winterwheat)
-dat1 <- yan.winterwheat
-dat <-t(round(acast(dat1, env~gen, value.var='yield'),2))
-
-GGE1<-GGEmodel(dat, centering="tester", rep=FALSE)
-names(GGE1)
-GGE1$varexpl
-GGE1$centering
-GGE1$scaling
-GGE1$SVP
+```{r, tidy=TRUE}
+GGE1 <- GGEmodel(dat_yan, genotype="gen",environment="env", response="yield", centering = "tester")
 ```
+
+However, in the case where repetitions are available, such as _plrv_ dataset, it is indicated as follows:
+
+```{r, eval=FALSE, tidy=TRUE}
+GGE1_rep <- GGEmodel(dat_rep, genotype="Genotype",environment="Locality", response="Yield", rep="Rep", centering = "tester")
+```
+
+The output from `GGEmodel` function is a list with the following elements:
+
+* `coordgenotype`: plotting coordinates for genotypes from all components. 
+* `coordenviroment`: plotting coordinates for environments from all components.
+* `eigenvalues`: vector of eigenvalues from each component.
+* `vartotal`: overall variance.
+* `varexpl`: percentage of variance explained by each component. 
+* `labelgen`: genotype names.
+* `labelenv`: environment names.
+* `axes`: axis labels.
+* `Data`: scaled and centered input data. 
+* `centering`: name of centering method.
+* `scaling`: name of scaling method.
+* `SVP`: name of SVP method.
+
+For example, for _yan.winterwheat_ dataset:
+```{r, tidy=TRUE}
+names(GGE1)
+```
+
 
 #### The biplot GGE
 
-The result of the first two multiplicative terms of the SVD is often presented in a biplot called genotype plus genotype x environment interaction (GGE) (Yan et al., 2000). Such biplot represents a rank-two approximation of the G+GE effects. Increasingly, plant breeders have found GGE biplots as useful tools in mega environment (ME) analysis (Yan et al., 2001; Yan and Rajcan, 2002), and genotype and environment evaluation (Bhan et al., 2005; Kang et al., 2006; Yan et al., 2007). The GGE biplot visually addresses many issues relative to genotype and test environment evaluation. Considering the average genotypes performance, the GGE biplot allows to evaluate the specific and general adaptation of them. In addition, environments could be visually evaluated and grouped according to their ability to discriminate among genotypes and their representativeness of other test environments. GGE biplot reveals the which-won-where pattern and allows to recommend specific genotypes for each ME (Yan and Tinker, 2005). 
+The result of the first two multiplicative terms of the SVD is often presented in a biplot called genotype plus genotype x environment interaction (GGE) (Yan et al., 2000). Such biplot represents a rank-two approximation of the G + GE effects. Increasingly, plant breeders have found GGE biplots as useful tools in mega environment analysis (Yan et al., 2001; Yan and Rajcan, 2002), and genotype and environment evaluation (Bhan et al., 2005; Kang et al., 2006; Yan et al., 2007). The GGE biplot visually addresses many issues relative to genotype and test environment evaluation. Considering the average genotypes performance, the GGE biplot allows to evaluate the specific and general adaptation of them. In addition, environments could be visually evaluated and grouped according to their ability to discriminate among genotypes and their representativeness of other test environments. GGE biplot reveals the which-won-where pattern and allows to recommend specific genotypes for each ME (Yan and Tinker, 2005). 
 
+To run `GGEPlot` function, an object of class `GGEmodel` is required. The output is a biplot constructed through the principal components generated by `GGEmodel`.
 
-The output from the `GGEPlot` function is a biplot constructed through the principal components generated by the genotype plus genotype-by-environment.
+The different biplots that can be obtained using `GGEPlot` function are displayed using _yan.winterwheat_ dataset.
 
+* Basic biplot, is obtained by indicating `type="Biplot"`.
 
-```{r,fig.height=5.5, fig.width=5.5}
+```{r,fig.height=5.5, fig.width=5.5, fig.align='center', tidy=TRUE}
+GGEPlot(GGE1, type="Biplot")
+```
+
+* Ranking of cultivars based on their performance in any given environment, is obtained by indicating `type="Selected Environment"` and the name of the environment to examine `selectedE = "OA93"`.
+
+```{r,fig.height=5.5, fig.width=5.5, fig.align='center', tidy=TRUE}
+GGEPlot(GGE1, type="Selected Environment", selectedE = "OA93")
+```
+
+* Ranking of environments based on the relative performance of any given cultivar, is obtained by indicating `type="Selected Genotype"` and the name of the genotype to examine `selectedG = "Kat"`.
+```{r,fig.height=5.5, fig.width=5.5, fig.align='center', tidy=TRUE}
+GGEPlot(GGE1, type="Selected Genotype", selectedG = "Kat")
+```
+
+* Relationship Among Environments, is obtained by indicating `type="Relationship Among Environments"`.
+```{r,fig.height=5.5, fig.width=5.5, fig.align='center', tidy=TRUE}
+GGEPlot(GGE1, type="Relationship Among Environments")
+```
+
+* Comparison between two genotypes is obtained by indicating `type=Comparison of Genotype` and the genotipes to compare `selectedG1 = "Kat"` with `selectedG2 = "Cas"`.
+```{r,fig.height=5.5, fig.width=5.5, fig.align='center', tidy=TRUE}
+GGEPlot(GGE1, type="Comparison of Genotype", selectedG1 = "Kat", selectedG2 = "Cas")
+```
+
+* Identification of the best cultivar in each environment by indicating `type="Which Won Where/What"`.
+```{r,fig.height=5.5, fig.width=5.5, fig.align='center', tidy=TRUE}
 GGEPlot(GGE1, type="Which Won Where/What")
 ```
 
+* Evaluating of environments based on both discriminating ability and representativeness, indicating `type="Discrimination vs. representativeness"`.
+```{r,fig.height=5.5, fig.width=5.5, fig.align='center', tidy=TRUE}
+GGEPlot(GGE1, type="Discrimination vs. representativeness")
+```
 
-Different types of biplot can be produced:
+* Ranking of environments with respect to the ideal environment, indicating `type="Ranking Environments"`.
+```{r,fig.height=5.5, fig.width=5.5, fig.align='center', tidy=TRUE}
+GGEPlot(GGE1, type="Ranking Environments")
+```
 
-+ Biplot: Basic biplot.
-+ Selected Environment: Ranking the cultivars based on their performance in any given environment.
-+ Selected Genotype: Ranking the environments based on the relative performance of any given cultivar.
-+ Relationship Among Environments.
-+ Comparison of Genotype.
-+ Which won where/what: Identifying the best cultivar in each environment.
-+ Discrimination vs.representativeness: Evaluating the environments based on both discriminating ability and representativeness.
-+ Ranking environments: Ranking environments with respect to the ideal environment.
-+ Mean vs. stability: Evaluating cultivars based on both average yield and stability.
-+ Ranking gentoypes: Ranking genotypes with respect to the ideal genotype.
+* Ranking of genotypes with respect to the ideal genotype, indicating `type="Ranking Genotypes"`.
+```{r,fig.height=5.5, fig.width=5.5, fig.align='center', tidy=TRUE}
+GGEPlot(GGE1, type="Ranking Genotypes")
+```
 
-```{r,fig.height=5.5, fig.width=5.5}
+* Evaluating of cultivars based on both average yield and stability, indicating `type="Mean vs. Stability"`.
+
+```{r,fig.height=5.5, fig.width=5.5, fig.align='center', tidy=TRUE}
 GGEPlot(GGE1, type="Mean vs. Stability")
 ```
 
-
-###3.2 AMMI
+###4.2 AMMI
 
 #### The clasic AMMI model
 The AMMI model (Gauch, 1988, 1992) is one of the most widely used tools to
-analyse and structure GEI. This model works under a fixed-model
-framework and is fit in two stages. First, the main effects of the
-model are estimated using the additive two-way analysis of variance(ANOVA) by least squares. Then, the singular value decomposition (SVD) is applied to the residuals from the ANOVA, i.e. to the interaction, to obtain the estimates for the multiplicative terms of the AMMI model.
+analyse and structure GE. This model is fit in two stages: first, the main effects (G and E) of the model are estimated using ANOVA by least squares; Second, the SVD is applied to the residuals from the ANOVA, i.e. to the interaction, to obtain the estimates for the multiplicative terms of the AMMI model. In order to visualize the interaction patterns, the Genotipe-Environment (GE) biplots are constructed.
 
-```{r,fig.height=5.5, fig.width=5.5}
-rAMMI(dat1,type='AMMI', rep=FALSE)
+To run `rAMMI` function, as in the `GGEmodel` function, a dataset with genotype, environment, repetitions (if there is), and the response variable must be provided. The name of the columns that contains genotype, environment, repetitions and the resposnse must be indicated. The output is a biplot.
+
+The biplots from clasic AMMI model, using `type="AMMI"`, that can be produced using _yan.winterwheat_ dataset is shown below.
+
+```{r,fig.height=5.5, fig.width=5.5, fig.align='center', tidy=TRUE}
+rAMMI(dat_yan,genotype="gen",environment="env", response="yield", type = "AMMI")
 ```
-
 
 #### Robust AMMI model
 The AMMI model, in its standard form, implicitly assumes equal weights for all entries of the two-way dataset and that no outliers (leverage points) are present in the data.
 To overcome the problem of data contamination with outlying observations, Rodrigues 2015 propose five robust AMMI models, which can be obtained in two stages as follows: (i) use the robust regression based on the M-Huber estimator (Huber, 1981) to replace the ANOVA model; and (ii) use a robust SVD/PCA procedure to replace the
 standard SVD.
 
+The biplots of the five robust AMMI model proposed, using _yan.winterwheat_ dataset are shown below.
 
-```{r,fig.height=5.5, fig.width=5.5}
-rAMMI(dat1,type='rAMMI', rep=FALSE)
+* `type = "rAMMI"`
+```{r,fig.height=5.5, fig.width=5.5, fig.align='center', tidy=TRUE}
+rAMMI(dat_yan, genotype="gen",environment="env", response="yield", type = "rAMMI")
 ```
 
-###3.3 Imputation methods
+* `type = "hAMMI"`
+```{r,fig.height=5.5, fig.width=5.5, fig.align='center', tidy=TRUE}
+rAMMI(dat_yan, genotype="gen",environment="env", response="yield", type = "hAMMI")
+```
+
+* `type = "gAMMI"`
+```{r,fig.height=5.5, fig.width=5.5, fig.align='center', tidy=TRUE}
+rAMMI(dat_yan, genotype="gen",environment="env", response="yield", type = "gAMMI")
+```
+
+* `type = "lAMMI"`
+```{r,fig.height=5.5, fig.width=5.5, fig.align='center', tidy=TRUE}
+rAMMI(dat_yan, genotype="gen",environment="env", response="yield", type = "lAMMI")
+```
+
+* `type = "ppAMMI"`
+```{r,fig.height=5.5, fig.width=5.5, fig.align='center', tidy=TRUE}
+rAMMI(dat_yan, genotype="gen",environment="env", response="yield", type = "ppAMMI")
+```
+
+If repetitions are available in dataset, as _plrv_, the name of the column that contains the replications must be indicated.
+
+###4.3 Imputation methods
 
 One major limitation of the multiplicative models is that require a complete two-way data table. Although METs are designed so that all genotypes are evaluated in all environments, the presence of missing values is very common. These occur for example due to the incorporation of new genotypes, measurement errors or natural causes such as, for example, destruction of plants by animals, floods or during harvest.
 
-Numerous methodologies have been proposed in order to overcome the lack of balance problem:
+Numerous methodologies have been proposed in order to overcome the lack of balance problem. The _yan.winterwheat_ dataset was used as example.Since the dataset was complete, some observations are eliminated.
 
-+ GabrielEigein proposed by  Arciniegas-Alarcón S., García-Peña M., Dias C.T.S., Krzanowski W.J.. (2010).
-+ EM-AMMI proposed by
-+ EM-SVD proposed by
-+ WGabriel
-+ EM-PCA
-
-```{r,fig.height=5.5, fig.width=5.5}
+```{r, tidy=TRUE}
 # generates missing data
-dat[1,2]<-NA
-dat[3,4]<-NA
-dat[2,7]<-NA
+dat_yan[1,3]<-NA
+dat_yan[3,3]<-NA
+dat_yan[2,3]<-NA
 ```
 
+* GabrielEigein proposed by  Arciniegas-Alarcón S., García-Peña M., Dias C.T.S., Krzanowski W.J.. (2010).
 
-```{r,fig.height=5.5, fig.width=5.5}
-imputation(dat, rep=FALSE, type="EM-SVD")
+```{r, tidy=TRUE}
+imputation(dat_yan, PC.nb=2, genotype="gen",environment="env", response="yield", type="EM-AMMI")
 ```
 
-```{r,fig.height=5.5, fig.width=5.5}
-imputation(dat, rep=FALSE, type="EM-AMMI")
+* EM-AMMI proposed by
+
+```{r, tidy=TRUE}
+imputation(dat_yan, PC.nb=1, genotype="gen",environment="env", response="yield", type="EM-AMMI")
 ```
 
-```{r,fig.height=5.5, fig.width=5.5}
-imputation(dat, rep=FALSE, type="Gabriel")
+* EM-SVD proposed by
+
+```{r, tidy=TRUE}
+imputation(dat_yan, genotype="gen",environment="env", response="yield", type="EM-SVD")
 ```
 
-```{r,fig.height=5.5, fig.width=5.5}
-imputation(dat, rep=FALSE, type="WGabriel")
+* WGabriel
+
+```{r, tidy=TRUE}
+imputation(dat_yan, genotype="gen",environment="env", response="yield", type="WGabriel")
 ```
 
-```{r,fig.height=5.5, fig.width=5.5}
-imputation(dat, rep=FALSE, type="EM-PCA")
+* EM-PCA
+
+```{r, tidy=TRUE}
+imputation(dat_yan, genotype="gen",environment="env", response="yield", type="EM-PCA")
 ```
 
-##4. References
+If repetitions are available in dataset, as _plrv_, the name of the column that contains the replications must be indicated.
+
+##5. References
+
+Giauffret, C., Lothrop, J., Dorvillez, D., Gouesnard, B., Derieux, M., 2000. Genotype x environment interactions in maize hybrids from temperate or highland tropical origin. Crop Sci. 40, 1004-1012. \n
 
 
 
 
-##5. Sesssion Info
+##6. Sesssion Info
 
 ```{r, echo = FALSE}
 sessionInfo()

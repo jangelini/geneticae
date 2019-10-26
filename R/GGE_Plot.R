@@ -20,13 +20,13 @@
 #'  \item \code{Comparison of Genotype}.
 #'  \item \code{Which won where/what}: Identifying the ’best’ cultivar in each
 #'        environment.
-#'  \item \code{Discrimination vs.representativeness}: Evaluating the environments
+#'  \item \code{Discrimination vs. representativeness}: Evaluating the environments
 #'        based on both discriminating ability and representativeness.
-#'  \item \code{Ranking environments}: Ranking environments with respect to the ideal
+#'  \item \code{Ranking Environments}: Ranking environments with respect to the ideal
 #'        environment.
 #'  \item \code{Mean vs. stability}: Evaluating cultivars based on both average yield
 #'        and stability.
-#'  \item \code{Ranking gentoypes}: Ranking genotypes with respect to the ideal
+#'  \item \code{Ranking Gentoypes}: Ranking genotypes with respect to the ideal
 #'        genotype.}
 #'@param d1 PCA component to plot on x axis. Defaults to 1.
 #'@param d2 PCA component to plot on y axis. Defaults to 2.
@@ -67,20 +67,18 @@
 #'@export
 #'@examples
 #'  library(geneticae)
-#'  library(reshape2)
+#'
 #'  # Data without replication
 #'  data(yan.winterwheat)
-#'  dat1 <- yan.winterwheat
-#'  # The data in the required format genotypes in rows and environments in columns
-#'  dat <- t(round(acast(dat1, env ~ gen, value.var = "yield"), 2))
-#'  GGE1 <- GGEmodel(dat, centering = "tester", rep = FALSE)
+#'  dat <- yan.winterwheat
+#'  GGE1 <- GGEmodel(dat, centering = "tester")
 #'  GGEPlot(GGE1)
 #'
 #'  # Data with replication
 #'  data(plrv)
-#'  dat <- plrv[,-c(4,5)]
-#'  GGE1 <- GGEmodel(dat, centering = "tester", rep = TRUE)
-#'  GGEPlot(GGE1)
+#'  dat2<-plrv
+#'  GGE2 <- GGEmodel(dat2, centering = "tester", rep="Rep")
+#'  GGEPlot(GGE2)
 #'
 #'@importFrom ggplot2 aes arrow coord_fixed element_text geom_abline geom_hline
 #'  geom_point geom_polygon geom_segment geom_text geom_vline ggplot ggtitle
@@ -97,8 +95,8 @@ GGEPlot<-function(GGEModel,type="Biplot",d1=1,d2=2, selectedE=NA , selectedG=NA,
 
     stopifnot(
     type %in% c("Biplot", "Selected Environment","Selected Genotype","Relationship Among Environments",
-                       "Comparison of Genotype","Which Won Where/What","Discrimination vs.representativeness",
-                       "Ranking environments","Mean vs. Stability","Ranking gentoypes"),
+                       "Comparison of Genotype","Which Won Where/What","Discrimination vs. representativeness",
+                       "Ranking Environments","Mean vs. Stability","Ranking Genotypes"),
     class(d1) == "numeric",
     class(d2) == "numeric",
     class(colGen) == "character",
@@ -141,7 +139,7 @@ GGEPlot<-function(GGEModel,type="Biplot",d1=1,d2=2, selectedE=NA , selectedG=NA,
   GGE1<-ggplot(data=plotdata,aes(x=d1,y=d2,group="type"))+
     theme(panel.grid = element_blank())+
     scale_color_manual(values=c(colGen,colEnv)) +
-    scale_size_manual(values=c(sizeGen,sizeEnv)) + theme_classic ()
+    scale_size_manual(values=c(sizeGen,sizeEnv)) + theme_classic()
 
   if(axislabels==TRUE){
     GGE1<-GGE1+xlab(paste(labelaxes[1],format(varexpl[1],nsmall=2), "%", sep = " "))+ylab(paste(labelaxes[2], format(varexpl[2],nsmall=2),"%", sep = " "))
@@ -196,8 +194,8 @@ GGEPlot<-function(GGEModel,type="Biplot",d1=1,d2=2, selectedE=NA , selectedG=NA,
     plotdata$x1_y[plotdata$type=="genotype"]<-x1[,2]
 
     GGE2<-GGE1+
-      geom_abline(slope=coordenviroment[venvironment, 2]/coordenviroment[venvironment,1],intercept=0,col=alpha(colEnv,0.5))+
-      geom_abline(slope=-coordenviroment[venvironment, 1]/coordenviroment[venvironment,2],intercept=0,col=alpha(colEnv,0.5))+
+      geom_abline(slope=coordenviroment[venvironment, 2]/coordenviroment[venvironment,1],intercept=0,col=colEnv,)+
+      geom_abline(slope=-coordenviroment[venvironment, 1]/coordenviroment[venvironment,2],intercept=0,col=colEnv)+
       geom_segment(xend=0,yend=0,col=alpha(colEnv,0.5),data=subset(plotdata,type=="environment"&label==selectedE),
                    arrow =arrow(ends ="first",length=unit(0.2,"inches") ),size=1)+
       geom_segment(aes(xend=x1_x,yend=x1_y),col=colGen,data=subset(plotdata,type=="genotype"),linetype=2)+

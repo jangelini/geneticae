@@ -28,7 +28,8 @@ Imports: stats,
          graphics,
          agridat,
          reshape2,
-         matrixStats
+         matrixStats,
+         tidyr
 Suggests: 
     knitr,
     rmarkdown,
