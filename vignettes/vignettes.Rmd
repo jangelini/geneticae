@@ -6,7 +6,7 @@ author: |
     | Marcos Prunello
     | Gerardo Cervigni
     |
-    | Centro de estudios fotosinteticos y bioquimicos
+    | Centro de Estudios Fotosintéticos y Bioquímicos
     | Universidad Nacional de Rosario
     | Suipacha 501
 date: "`r Sys.Date()`"
@@ -47,7 +47,7 @@ The help file for a function, for example `imputation`, in a R session can be ob
 
 ##2. Introduction
 
-Understanding the relationship between crops performance and environment is a key problem for plant breeders and geneticists. In advanced stages of breeding programs, where few genotypes are evaluated, multi-environmental trials (MET) is one of the most common experiments. They are conducted by testing a number of genotypes across multiple environments, allowing the identification of superior genotypes. Crop performance, the observed phenotype, is a function of genotype (G), environment (E) and genotype x environment interaction (GEI). METs are essential due to the presence of GEI which generates differential genotypic responses in the different environments evaluated (Crossa et al., 1990; Cruz Medina, 1992; Kang and Magari, 1996). This is a particular problem for plant breeders (Giauffret et al., 2000), therefore appropriate statistical methods should be used to obtain an adequate GEI analysis.
+Understanding the relationship between crops performance and environment is a key problem for plant breeders and geneticists. In advanced stages of breeding programs, where few genotypes are evaluated, multi-environmental trials (MET) is one of the most common experiments. They are conducted by testing a number of genotypes across multiple environments, allowing the identification of superior genotypes. Crop performance, the observed phenotype, is a function of genotype (G), environment (E) and genotype x environment (GE) interaction . METs are essential due to the presence of GEI which generates differential genotypic responses in the different environments evaluated (Crossa et al., 1990; Cruz Medina, 1992; Kang and Magari, 1996). This is a particular problem for plant breeders (Giauffret et al., 2000), therefore appropriate statistical methods should be used to obtain an adequate GEI analysis.
 
 The `geneticae` package offers functions for the analysis of data from advanced stages of breeding programs, where few genotypes are evaluated.
 
@@ -56,7 +56,7 @@ The `geneticae` package offers functions for the analysis of data from advanced 
 
 The `geneticae` package provides two datasets to illustrate the methodology included to analize MET data. 
 
-* _yan.winterwheat_ dataset: yield of 18 winter wheat varieties grown at nine environments in Ontario in 1993. No replications are available in the data. This data set was obtained from the `agridat` package.
+* _yan.winterwheat_ dataset: yield of 18 winter wheat varieties grown at nine environments in Ontario in 1993. No replications are available in the data. This dataset was obtained from the `agridat` package.
 
 
 ```{r, tidy=TRUE}
@@ -66,7 +66,7 @@ dat_yan <- yan.winterwheat
 head(dat_yan)
 ```
 
-* _plrv_ dataset: yield, plant and plot weight of 28 clones from the potato leafroll virus (PLRV) population evaluated in six environments. Replications are available in the data. This data set was obtained from the `agricolae` package.
+* _plrv_ dataset: yield, plant and plot weight of 28 clones from the potato leafroll virus (PLRV) population evaluated in six environments. Replications are available in the data. This dataset was obtained from the `agricolae` package.
 
 ```{r, tidy=TRUE}
 data(plrv)
@@ -84,7 +84,7 @@ The site regression model also named genotype plus genotype-by-environment (GGE)
 
 To run `GGEmodel` a dataset with genotypes, environments, repetitions (if there are available), the observed phenotype, and the names of those variables must be provided. Also, the centering, scaling and SVD method should be indicated.
 
-When there \textbf{no repetitions} available in the dataset, as is the case of _yan.winterwheat_ dataset, the GGE model is indicated as follows:
+When there __no repetitions__ available in the dataset, as is the case of _yan.winterwheat_ dataset, the GGE model is indicated as follows:
 
 ```{r, tidy=TRUE}
 GGE1 <- GGEmodel(dat_yan, genotype="gen",environment="env", response="yield", centering = "tester")
@@ -180,21 +180,21 @@ GGEPlot(GGE1, type="Mean vs. Stability")
 
 ###4.2 AMMI
 
-#### The clasic AMMI model
-The AMMI model (Gauch, 1988, 1992) is one of the most widely used tools to
-analyse and structure GE. This model is fit in two stages: first, the main effects (G and E) of the model are estimated using ANOVA by least squares; Second, the SVD is applied to the residuals from the ANOVA, i.e. to the interaction, to obtain the estimates for the multiplicative terms of the AMMI model. In order to visualize the interaction patterns, the Genotipe-Environment (GE) biplots are constructed.
+#### The classic AMMI model
+The AMMI model (Gauch, 1988, 1992) is another widely used tools to
+analyse and structure GE. This model is fit in two stages: first, the main effects (G and E) are estimated using ANOVA by least squares; second, the SVD is applied to the residuals from the ANOVA, i.e. to the interaction, to obtain the estimates for the multiplicative terms of the AMMI model. In order to visualize the interaction patterns, the Genotipe-Environment (GE) biplots are constructed.
 
-To run `rAMMI` function, as in the `GGEmodel` function, a dataset with genotype, environment, repetitions (if there is), and the response variable must be provided. The name of the columns that contains genotype, environment, repetitions and the resposnse must be indicated. The output is a biplot.
+To run `rAMMI` function, as in the `GGEmodel` function, a dataset with genotype, environment, repetitions (if there is), and the response variable must be provided. The name of the columns that contains genotype, environment, repetitions and the response must be indicated. The output is a biplot.
 
-The biplots from clasic AMMI model, using `type="AMMI"`, that can be produced using _yan.winterwheat_ dataset is shown below.
+The biplots from classic AMMI model, using `type="AMMI"`, that can be produced using _yan.winterwheat_ dataset is shown below.
 
 ```{r,fig.height=5.5, fig.width=5.5, fig.align='center', tidy=TRUE}
 rAMMI(dat_yan,genotype="gen",environment="env", response="yield", type = "AMMI")
 ```
 
 #### Robust AMMI model
-The AMMI model, in its standard form, implicitly assumes equal weights for all entries of the two-way dataset and that no outliers (leverage points) are present in the data.
-To overcome the problem of data contamination with outlying observations, Rodrigues 2015 propose five robust AMMI models, which can be obtained in two stages as follows: (i) use the robust regression based on the M-Huber estimator (Huber, 1981) to replace the ANOVA model; and (ii) use a robust SVD/PCA procedure to replace the
+The AMMI model, in its standard form, implicitly assumes equal weights for all entries of the two-way dataset and that no outliers are present in the data.
+To overcome the problem of data contamination with outlying observations, Rodrigues et al. (2015) propose five robust AMMI models, which can be obtained in two stages as follows: (i) use the robust regression based on the M-Huber estimator (Huber, 1981) to replace the ANOVA model; and (ii) use a robust SVD/PCA procedure to replace the
 standard SVD.
 
 The biplots of the five robust AMMI model proposed, using _yan.winterwheat_ dataset are shown below.
@@ -228,9 +228,9 @@ If repetitions are available in dataset, as _plrv_, the name of the column that 
 
 ###4.3 Imputation methods
 
-One major limitation of the multiplicative models is that require a complete two-way data table. Although METs are designed so that all genotypes are evaluated in all environments, the presence of missing values is very common. These occur for example due to the incorporation of new genotypes, measurement errors or natural causes such as, for example, destruction of plants by animals, floods or during harvest.
+One major limitation of the included models is that require a complete two-way data table. Although METs are designed so that all genotypes are evaluated in all environments, the presence of missing values is very common. These occur for example due to the incorporation of new genotypes, measurement errors or natural causes such as, for example, destruction of plants by animals, floods or during harvest.
 
-Numerous methodologies have been proposed in order to overcome the lack of balance problem. The _yan.winterwheat_ dataset was used as example.Since the dataset was complete, some observations are eliminated.
+Numerous methodologies have been proposed in order to overcome the lack of balance problem. The _yan.winterwheat_ dataset was used as example. Since the dataset was complete, some observations are eliminated in order to show the imputation methodologies.
 
 ```{r, tidy=TRUE}
 # generates missing data
@@ -239,31 +239,31 @@ dat_yan[3,3]<-NA
 dat_yan[2,3]<-NA
 ```
 
-* GabrielEigein proposed by  Arciniegas-Alarcón S., García-Peña M., Dias C.T.S., Krzanowski W.J.. (2010).
+* __GabrielEigein__ proposed by Arciniegas-Alarcón S., et al. (2010).
 
 ```{r, tidy=TRUE}
 imputation(dat_yan, PC.nb=2, genotype="gen",environment="env", response="yield", type="EM-AMMI")
 ```
 
-* EM-AMMI proposed by
+* __EM-AMMI__ proposed by Gauch and Zobel (1990).
 
 ```{r, tidy=TRUE}
 imputation(dat_yan, PC.nb=1, genotype="gen",environment="env", response="yield", type="EM-AMMI")
 ```
 
-* EM-SVD proposed by
+* __EM-SVD__ proposed by Perry (2009)
 
 ```{r, tidy=TRUE}
 imputation(dat_yan, genotype="gen",environment="env", response="yield", type="EM-SVD")
 ```
 
-* WGabriel
+* __WGabriel__ proposed by Alarcon.....
 
 ```{r, tidy=TRUE}
 imputation(dat_yan, genotype="gen",environment="env", response="yield", type="WGabriel")
 ```
 
-* EM-PCA
+* __EM-PCA__ proposed by 
 
 ```{r, tidy=TRUE}
 imputation(dat_yan, genotype="gen",environment="env", response="yield", type="EM-PCA")
