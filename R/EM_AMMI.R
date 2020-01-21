@@ -57,7 +57,7 @@ EM.AMMI<-function(X, PC.nb=1, initial.values=NA, precision=0.01,
 {
   if (missing(X)) stop("Need to provide X data frame or matrix")
   stopifnot(
-    class(X)  %in% c("matrix", "data.frame"),
+    class(X) %in% c("matrix", "data.frame"),
     class(PC.nb)=="numeric",
     class(initial.values) == "matrix" | is.na(initial.values),
     # class(initial.values) %in% c("matrix", "NA"),

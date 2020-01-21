@@ -58,13 +58,16 @@
 #' @importFrom tidyr spread
 #' @importFrom dplyr group_by summarise rename
 #'
-GGEmodel <- function(Data, genotype="gen", environment="env", response="yield", rep=NULL,centering="tester",scaling="none",SVP="column"){
+GGEmodel <- function(Data, genotype="gen", environment="env", response="yield", rep=NULL, centering="tester",scaling="none",SVP="column"){
 
   if (missing(Data)) stop("Need to provide Data data frame or matrix")
   if(any(is.na(Data))){stop("Missing data in input data frame, run the imputation function first to complete the data set")}
   stopifnot(
      class(Data) %in% c("data.frame"),
      class(rep)%in% c("character", "NULL"),
+     class(genotype) == "character",
+     class(environment) == "character",
+     class(response) == "character",
      centering %in% c("tester", "global","double","none"),
      scaling %in% c("sd", "none"),
      SVP %in% c("row", "column","dual","symmetrical")
@@ -75,7 +78,7 @@ GGEmodel <- function(Data, genotype="gen", environment="env", response="yield", 
       Data %>%
       group_by({{genotype}}, {{environment}}) %>%
       summarise(mean_resp=mean({{response}}))%>%
-      spread({{genotype}}, {{environment}}, mean_resp) %>%
+      spread({{environment}}, mean_resp) %>%
       as.data.frame()
 
   } else{
