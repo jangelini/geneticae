@@ -7,7 +7,7 @@
 #' @param response name of the column that contains the response
 #' @param rep name of the column that contains the replications.If this argument
 #'   is NULL, there is no replications in the data.
-#' @param type imputation method. Either "EM-AMMI", "EM-SVD", "Gabriel","WGabriel"
+#' @param type imputation method. Either "EM-AMMI", "EM-SVD", "Gabriel","WGabriel","EM-PCA".
 #' @inheritParams EM.AMMI
 #' @inheritParams bcv::impute.svd
 #' @inheritParams missMDA::imputePCA
