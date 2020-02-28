@@ -5,14 +5,33 @@
 \title{Produces genotype plus genotype-by-environment model from a 2-way table of
 means}
 \usage{
-imputation(Data, genotype = "gen", environment = "env",
-  response = "yield", rep = NULL, type = "EM-AMMI", PC.nb = 1,
-  initial.values = NA, precision = 0.01, max.iter = 1000,
-  change.factor = 1, simplified.model = FALSE, k = min(nrow(Data),
-  ncol(Data)), tol = max(nrow(Data), ncol(Data)) * 1e-10,
-  maxiter = 100, Winf = 0.8, Wsup = 1, ncp = 2, scale = TRUE,
-  method = c("Regularized", "EM"), row.w = NULL, coeff.ridge = 1,
-  threshold = 1e-06, seed = NULL, nb.init = 1)
+imputation(
+  Data,
+  genotype = "gen",
+  environment = "env",
+  response = "yield",
+  rep = NULL,
+  type = "EM-AMMI",
+  PC.nb = 1,
+  initial.values = NA,
+  precision = 0.01,
+  max.iter = 1000,
+  change.factor = 1,
+  simplified.model = FALSE,
+  k = min(nrow(Data), ncol(Data)),
+  tol = max(nrow(Data), ncol(Data)) * 1e-10,
+  maxiter = 100,
+  Winf = 0.8,
+  Wsup = 1,
+  ncp = 2,
+  scale = TRUE,
+  method = c("Regularized", "EM"),
+  row.w = NULL,
+  coeff.ridge = 1,
+  threshold = 1e-06,
+  seed = NULL,
+  nb.init = 1
+)
 }
 \arguments{
 \item{Data}{a data frame}
@@ -26,7 +45,7 @@ imputation(Data, genotype = "gen", environment = "env",
 \item{rep}{name of the column that contains the replications.If this argument
 is NULL, there is no replications in the data.}
 
-\item{type}{imputation method. Either "EM-AMMI", "EM-SVD", "Gabriel","WGabriel"}
+\item{type}{imputation method. Either "EM-AMMI", "EM-SVD", "Gabriel","WGabriel","EM-PCA".}
 
 \item{PC.nb}{the number of principal components in the AMMI model that will be
 used; the default value is 1. For PC.nb=0 only main effects are used to estimate cells in the

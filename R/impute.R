@@ -63,24 +63,42 @@ imputation <- function(Data, genotype="gen",environment="env", response="yield",
     class(rep)%in% c("character", "NULL")
   )
 
-  if(!is.null(rep)){
-    Data <-
-      Data %>%
-      group_by({{genotype}}, {{environment}}) %>%
-      summarise(mean_resp=mean({{response}}))%>%
-      plyr::rename(gen={{genotype}}, env= {{environment}}, mean_resp) %>%
-      spread(env, mean_resp) %>%
-      as.data.frame()
+  # if(!is.null(rep)){
+  #   Data <-
+  #     Data %>%
+  #     group_by({{genotype}}, {{environment}}) %>%
+  #     summarise(mean_resp=mean({{response}}))%>%
+  #     plyr::rename(gen={{genotype}}, env= {{environment}}, mean_resp) %>%
+  #     spread(env, mean_resp) %>%
+  #     as.data.frame()
+  #
+  # } else{
+  #   Data <-
+  #     Data %>%
+  #     spread({{environment}}, {{response}})%>%
+  #     as.data.frame()
+  # }
+  #
 
-  } else{
-    Data <-
-      Data %>%
-      spread({{environment}}, {{response}})%>%
-      as.data.frame()
-  }
+    if(!is.null(rep)){
+      Data <-
+        Data %>%
+        group_by(!!sym(genotype), !!sym(environment)) %>%
+        summarise(mean_resp=mean(!!sym(response)))%>%
+        spread(!!sym(environment), mean_resp) %>%
+        as.data.frame()
 
-  rownames(Data) <- Data[,{{genotype}}]
-  Data[,{{genotype}}] <- NULL
+    } else{
+      Data <-
+        Data %>%
+        spread(!!sym(environment), !!sym(response)) %>%
+        as.data.frame()
+
+    }
+
+  rownames(Data) <- pull(Data, genotype)
+  Data <- dplyr::select(Data, -!!sym(genotype))
+  # Data[,{{genotype}}] <- NULL
 
 
   if(type=="EM-AMMI"){

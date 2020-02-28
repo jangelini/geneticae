@@ -44,13 +44,15 @@
 #'  # Data without replication
 #'  data(yan.winterwheat)
 #'  dat <- yan.winterwheat
-#'  GGE1 <- GGEmodel(dat, genotype="gen",environment="env", response="yield", centering = "tester")
+#'  GGE1 <- GGEmodel(dat, genotype="gen",environment="env", response="yield",
+#'  centering = "tester")
 #'  GGE1
 #'
 #'  # Data with replication
 #'  data(plrv)
 #'  dat2 <- plrv
-#'  GGE2 <- GGEmodel(dat2, genotype="Genotype",environment="Locality", response="Yield", rep="Rep", centering = "tester")
+#'  GGE2 <- GGEmodel(dat2, genotype="Genotype",environment="Locality",
+#'  response="Yield", rep="Rep", centering = "tester")
 #'  GGE2
 #'
 #' @importFrom stats var
@@ -58,7 +60,8 @@
 #' @importFrom tidyr spread
 #' @importFrom dplyr group_by summarise rename
 #'
-GGEmodel <- function(Data, genotype="gen", environment="env", response="yield", rep=NULL, centering="tester",scaling="none",SVP="column"){
+GGEmodel <- function(Data, genotype="gen", environment="env", response="yield",
+                     rep=NULL, centering="tester",scaling="none",SVP="column"){
 
   if (missing(Data)) stop("Need to provide Data data frame or matrix")
   if(any(is.na(Data))){stop("Missing data in input data frame, run the imputation function first to complete the data set")}

@@ -4,9 +4,16 @@
 \alias{GGEmodel}
 \title{Site regression model}
 \usage{
-GGEmodel(Data, genotype = "gen", environment = "env",
-  response = "yield", rep = NULL, centering = "tester",
-  scaling = "none", SVP = "column")
+GGEmodel(
+  Data,
+  genotype = "gen",
+  environment = "env",
+  response = "yield",
+  rep = NULL,
+  centering = "tester",
+  scaling = "none",
+  SVP = "column"
+)
 }
 \arguments{
 \item{Data}{a data frame}
@@ -58,13 +65,15 @@ repetitions are allowed in this function.
  # Data without replication
  data(yan.winterwheat)
  dat <- yan.winterwheat
- GGE1 <- GGEmodel(dat, genotype="gen",environment="env", response="yield", centering = "tester")
+ GGE1 <- GGEmodel(dat, genotype="gen",environment="env", response="yield",
+ centering = "tester")
  GGE1
 
  # Data with replication
  data(plrv)
  dat2 <- plrv
- GGE2 <- GGEmodel(dat2, genotype="Genotype",environment="Locality", response="Yield", rep="Rep", centering = "tester")
+ GGE2 <- GGEmodel(dat2, genotype="Genotype",environment="Locality",
+ response="Yield", rep="Rep", centering = "tester")
  GGE2
 
 }
