@@ -75,16 +75,16 @@ GGEmodel <- function(Data, genotype="gen", environment="env", response="yield", 
 
   if(!is.null(rep)){
   Data <-
-      Data %>%
-      group_by({{genotype}}, {{environment}}) %>%
-      summarise(mean_resp=mean({{response}}))%>%
-      spread({{environment}}, mean_resp) %>%
-      as.data.frame()
+    Data %>%
+    group_by(!!sym(genotype), !!sym(environment)) %>%
+    summarise(mean_resp=mean(!!sym(response)))%>%
+    spread(!!sym(environment), mean_resp) %>%
+    as.data.frame()
 
   } else{
     Data <-
       Data %>%
-      spread({{environment}}, {{response}})%>%
+      spread(!!sym(environment), !!sym(response)) %>%
       as.data.frame()
 
   }
