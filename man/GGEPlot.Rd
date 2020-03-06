@@ -4,12 +4,29 @@
 \alias{GGEPlot}
 \title{GGE biplots with \pkg{ggplot2}}
 \usage{
-GGEPlot(GGEModel, type = "Biplot", d1 = 1, d2 = 2, selectedE = NA,
-  selectedG = NA, selectedG1 = NA, selectedG2 = NA,
-  colGen = "gray47", colEnv = "darkred", colSegment = "gray30",
-  colHull = "gray30", sizeGen = 4, sizeEnv = 4, largeSize = 4.5,
-  axis_expand = 1.2, axislabels = TRUE, axes = TRUE, limits = TRUE,
-  titles = TRUE, footnote = TRUE)
+GGEPlot(
+  GGEModel,
+  type = "Biplot",
+  d1 = 1,
+  d2 = 2,
+  selectedE = NA,
+  selectedG = NA,
+  selectedG1 = NA,
+  selectedG2 = NA,
+  colGen = "gray47",
+  colEnv = "darkred",
+  colSegment = "gray30",
+  colHull = "gray30",
+  sizeGen = 4,
+  sizeEnv = 4,
+  largeSize = 4.5,
+  axis_expand = 1.2,
+  axislabels = TRUE,
+  axes = TRUE,
+  limits = TRUE,
+  titles = TRUE,
+  footnote = TRUE
+)
 }
 \arguments{
 \item{GGEModel}{An object of class \code{GGEModel}.}
@@ -109,7 +126,8 @@ GGEBiplots package.
  # Data with replication
  data(plrv)
  dat2<-plrv
- GGE2 <- GGEmodel(dat2, centering = "tester", rep="Rep")
+ GGE2 <- GGEmodel(dat2,genotype="Genotype",environment="Locality",
+ response="Yield", rep="Rep", centering = "tester")
  GGEPlot(GGE2)
 
 }

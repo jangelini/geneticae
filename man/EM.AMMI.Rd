@@ -4,8 +4,15 @@
 \alias{EM.AMMI}
 \title{EM-AMMI imputation}
 \usage{
-EM.AMMI(X, PC.nb = 1, initial.values = NA, precision = 0.01,
-  max.iter = 1000, change.factor = 1, simplified.model = FALSE)
+EM.AMMI(
+  X,
+  PC.nb = 1,
+  initial.values = NA,
+  precision = 0.01,
+  max.iter = 1000,
+  change.factor = 1,
+  simplified.model = FALSE
+)
 }
 \arguments{
 \item{X}{a data frame or matrix that contains the genotypes in the rows and the

@@ -7,11 +7,14 @@
 #'@param genotype name of the column that contains the genotypes
 #'@param environment name of the column that contains the environments
 #'@param response name of the column that contains the response
-#'@param rep name of the column that contains the replications.If this argument is NULL, there is no replications in the data.
+#'@param rep name of the column that contains the replications.If this argument
+#'  is NULL, there is no replications in the data.
 #'@param Ncomp number of principal components that will be used in the analysis
-#'@param type method. Either "AMMI", "rAMMI", "hAMMI", "gAMMI", "lAMMI" or "ppAMMI".
+#'@param type method. Either "AMMI", "rAMMI", "hAMMI", "gAMMI", "lAMMI" or
+#'  "ppAMMI".
 #'@param colGen colour for genotype attributes on biplot. Defaults to "gray"
-#'@param colEnv colour for environment attributes on biplot. Defaults to "darkred"
+#'@param colEnv colour for environment attributes on biplot. Defaults to
+#'  "darkred"
 #'@param colSegment colour for segment or circle lines. Defaults to "gray"
 #'@param colHull colour for hull when type=6. Defaults to "gray"
 #'@param sizeGen text size for genotype labels. Defaults to 4
@@ -23,8 +26,9 @@
 #'  Defaults to 4.5
 #'
 #'@return A biplot of class  \code{ggplot}
-#'@references Rodrigues PC, Monteiro A and Lourenco VM (2015). \emph{A robust AMMI model for the analysis of
-#'genotype-by-environment data}. Bioinformatics, 32, 58–66.
+#'@references Rodrigues PC, Monteiro A and Lourenco VM (2015). \emph{A robust
+#'  AMMI model for the analysis of genotype-by-environment data}.
+#'  Bioinformatics, 32, 58–66.
 #'@export
 #'
 #'@examples
@@ -33,13 +37,15 @@
 #'# Data without replication
 #'data(yan.winterwheat)
 #'dat <- yan.winterwheat
-#'GGE1 <- rAMMI(dat, genotype="gen",environment="env", response="yield", type = "AMMI")
+#'GGE1 <- rAMMI(dat, genotype="gen",environment="env", response="yield",
+#'              type = "AMMI")
 #'GGE1
 #'
 #'# Data with replication
 #'data(plrv)
 #'dat2 <- plrv
-#'GGE2 <- rAMMI(dat2, genotype="Genotype",environment="Locality", response="Yield", rep="Rep", type = "AMMI")
+#'GGE2 <- rAMMI(dat2, genotype="Genotype",environment="Locality", response="Yield",
+#'              rep="Rep", type = "AMMI")
 #'GGE2
 #'
 #'
@@ -48,7 +54,7 @@
 #'@importFrom pcaMethods robustSvd
 #'@importFrom rrcov PcaHubert PcaGrid PcaLocantore PcaProj
 #'@importFrom stats lm residuals
-#'@importFrom dplyr group_by summarise rename
+#'@importFrom dplyr group_by summarise rename pull
 #'
 rAMMI<-function(Data, genotype="gen", environment="env", response="Y", rep=NULL,Ncomp = 2, type = "AMMI",
                 colGen="gray47",colEnv="darkred",colSegment="gray30",colHull="gray30",
@@ -75,14 +81,14 @@ rAMMI<-function(Data, genotype="gen", environment="env", response="Y", rep=NULL,
   if(!is.null(rep)){
     Data <-
       Data %>%
-      group_by({{genotype}}, {{environment}}) %>%
-      summarise(y=mean({{response}}))
+      group_by(!!sym(genotype), !!sym(environment)) %>%
+      summarise(y=mean(!!sym(response)))
+    response = "y"
   }
-  # type <- match.arg(type)
-  gen <- as.factor(Data[, {{genotype}}])
-  env <- as.factor(Data[, {{environment}}])
-  y <- as.vector(Data[, {{response}}])
 
+  gen <- as.factor(pull(Data, genotype))
+  env <- as.factor(pull(Data, environment))
+  y <- pull(Data, response)
 
   # Asi funciona
   # gen <- as.factor(Data[, 1])
@@ -177,7 +183,8 @@ rAMMI<-function(Data, genotype="gen", environment="env", response="Y", rep=NULL,
     ylab(paste(labelaxes[2], format(varexpl[2],nsmall=2),"%", sep = " "))+
     geom_hline(yintercept=0)+geom_vline(xintercept=0)
 
-  AMMI2<-AMMI1+geom_segment(xend=0,yend=0,col=alpha(colEnv,0.5),data=subset(plotdata,type=="environment"))+
+  AMMI2 <- AMMI1 + geom_segment(xend = 0, yend = 0, col = alpha(colEnv, 0.5),
+                                data = subset(plotdata, type == "environment")) +
     geom_text(aes(col=type,label=label,size=type),show.legend = FALSE)
 
   if(titles==TRUE){AMMI2<-AMMI2+ggtitle(type)}

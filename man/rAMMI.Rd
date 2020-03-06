@@ -4,11 +4,24 @@
 \alias{rAMMI}
 \title{AMMI biplots with \pkg{ggplot2}}
 \usage{
-rAMMI(Data, genotype = "gen", environment = "env", response = "Y",
-  rep = NULL, Ncomp = 2, type = "AMMI", colGen = "gray47",
-  colEnv = "darkred", colSegment = "gray30", colHull = "gray30",
-  sizeGen = 4, sizeEnv = 4, largeSize = 4.5, titles = TRUE,
-  footnote = TRUE)
+rAMMI(
+  Data,
+  genotype = "gen",
+  environment = "env",
+  response = "Y",
+  rep = NULL,
+  Ncomp = 2,
+  type = "AMMI",
+  colGen = "gray47",
+  colEnv = "darkred",
+  colSegment = "gray30",
+  colHull = "gray30",
+  sizeGen = 4,
+  sizeEnv = 4,
+  largeSize = 4.5,
+  titles = TRUE,
+  footnote = TRUE
+)
 }
 \arguments{
 \item{Data}{a data frame}
@@ -19,15 +32,18 @@ rAMMI(Data, genotype = "gen", environment = "env", response = "Y",
 
 \item{response}{name of the column that contains the response}
 
-\item{rep}{name of the column that contains the replications.If this argument is NULL, there is no replications in the data.}
+\item{rep}{name of the column that contains the replications.If this argument
+is NULL, there is no replications in the data.}
 
 \item{Ncomp}{number of principal components that will be used in the analysis}
 
-\item{type}{method. Either "AMMI", "rAMMI", "hAMMI", "gAMMI", "lAMMI" or "ppAMMI".}
+\item{type}{method. Either "AMMI", "rAMMI", "hAMMI", "gAMMI", "lAMMI" or
+"ppAMMI".}
 
 \item{colGen}{colour for genotype attributes on biplot. Defaults to "gray"}
 
-\item{colEnv}{colour for environment attributes on biplot. Defaults to "darkred"}
+\item{colEnv}{colour for environment attributes on biplot. Defaults to
+"darkred"}
 
 \item{colSegment}{colour for segment or circle lines. Defaults to "gray"}
 
@@ -58,18 +74,21 @@ library(geneticae)
 # Data without replication
 data(yan.winterwheat)
 dat <- yan.winterwheat
-GGE1 <- rAMMI(dat, genotype="gen",environment="env", response="yield", type = "AMMI")
+GGE1 <- rAMMI(dat, genotype="gen",environment="env", response="yield",
+             type = "AMMI")
 GGE1
 
 # Data with replication
 data(plrv)
 dat2 <- plrv
-GGE2 <- rAMMI(dat2, genotype="Genotype",environment="Locality", response="Yield", rep="Rep", type = "AMMI")
+GGE2 <- rAMMI(dat2, genotype="Genotype",environment="Locality", response="Yield",
+             rep="Rep", type = "AMMI")
 GGE2
 
 
 }
 \references{
-Rodrigues PC, Monteiro A and Lourenco VM (2015). \emph{A robust AMMI model for the analysis of
-genotype-by-environment data}. Bioinformatics, 32, 58–66.
+Rodrigues PC, Monteiro A and Lourenco VM (2015). \emph{A robust
+ AMMI model for the analysis of genotype-by-environment data}.
+ Bioinformatics, 32, 58–66.
 }

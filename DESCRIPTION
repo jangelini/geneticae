@@ -1,7 +1,7 @@
 Package: geneticae
 Type: Package
 Title: Statistical analysis tool for agricultural research
-Version: 0.1.0
+Version: 0.0.9000
 Date: 13-04-2019
 Author: Julia Angelini - Marcos Prunello - Gerardo Cervigni
 Maintainer: Julia Angelini <jangelini_93@hotmail.com>
@@ -11,7 +11,7 @@ Encoding: UTF-8
 LazyData: true
 NeedsCompilation: no
 Repository: CRAN
-RoxygenNote: 6.1.1
+RoxygenNote: 7.0.2
 Imports: stats,
          GGEBiplots,
          ggforce,

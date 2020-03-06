@@ -77,7 +77,8 @@
 #'  # Data with replication
 #'  data(plrv)
 #'  dat2<-plrv
-#'  GGE2 <- GGEmodel(dat2, centering = "tester", rep="Rep")
+#'  GGE2 <- GGEmodel(dat2,genotype="Genotype",environment="Locality",
+#'  response="Yield", rep="Rep", centering = "tester")
 #'  GGEPlot(GGE2)
 #'
 #'@importFrom ggplot2 aes arrow coord_fixed element_text geom_abline geom_hline
