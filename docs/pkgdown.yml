@@ -1,6 +1,9 @@
-pandoc: '2.5'
+pandoc: 2.7.2
 pkgdown: 1.4.1
 pkgdown_sha: ~
 articles:
   vignettes: vignettes.html
+urls:
+  reference: http://valr.hesselberthlab.org/reference
+  article: http://valr.hesselberthlab.org/articles
 

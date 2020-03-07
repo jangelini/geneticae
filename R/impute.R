@@ -1,20 +1,21 @@
-#' Produces genotype plus genotype-by-environment model from a 2-way table of
-#' means
+#'Produces genotype plus genotype-by-environment model from a 2-way table of
+#'means
 #'
-#' @param Data a data frame
-#' @param genotype name of the column that contains the genotypes
-#' @param environment name of the column that contains the environments
-#' @param response name of the column that contains the response
-#' @param rep name of the column that contains the replications.If this argument
-#'   is NULL, there is no replications in the data.
-#' @param type imputation method. Either "EM-AMMI", "EM-SVD", "Gabriel","WGabriel","EM-PCA".
-#' @inheritParams EM.AMMI
-#' @inheritParams bcv::impute.svd
-#' @inheritParams missMDA::imputePCA
-#' @inheritParams Gabriel.Calinski
-#' @inheritParams WGabriel
-#' @return matrix with imputed data
-#' @export
+#'@param Data a data frame
+#'@param genotype name of the column that contains the genotypes
+#'@param environment name of the column that contains the environments
+#'@param response name of the column that contains the response
+#'@param rep name of the column that contains the replications.If this argument
+#'  is NULL, there is no replications in the data.
+#'@param type imputation method. Either "EM-AMMI", "EM-SVD",
+#'  "Gabriel","WGabriel","EM-PCA".
+#'@inheritParams EM.AMMI
+#'@inheritParams bcv::impute.svd
+#'@inheritParams missMDA::imputePCA
+#'@inheritParams Gabriel.Calinski
+#'@inheritParams WGabriel
+#'@return matrix with imputed data
+#'@export
 #'
 #' @examples
 #' library(geneticae)
@@ -43,10 +44,10 @@
 #' imputation(dat2, genotype="gen",environment="env", response="yield", rep= "rep", type="WGabriel")
 #' imputation(dat2, genotype="gen",environment="env", response="yield", rep= "rep", type="EM-PCA")
 #'
-#' @importFrom stats var
-#' @importFrom bcv impute.svd
-#' @importFrom missMDA imputePCA
-#' @importFrom dplyr group_by summarise rename
+#'@importFrom stats var
+#'@importFrom bcv impute.svd
+#'@importFrom missMDA imputePCA
+#'@importFrom dplyr group_by summarise rename
 #'
 imputation <- function(Data, genotype="gen",environment="env", response="yield", rep=NULL,type="EM-AMMI",
                        PC.nb=1, initial.values=NA, precision=0.01, max.iter=1000, change.factor=1, simplified.model=FALSE,

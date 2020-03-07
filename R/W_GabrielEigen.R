@@ -1,7 +1,8 @@
 #' Weighted Gabriel Eigen imputation
 #'
-#' @param DBmiss a data frame or matrix that contains the genotypes in the rows and the
-#'    environments in the columns when there are no replications of the experiment.
+#' @param DBmiss a data frame or matrix that contains the genotypes in the rows
+#'   and the environments in the columns when there are no replications of the
+#'   experiment.
 #' @param Winf peso inferior
 #' @param Wsup peso superior
 #'

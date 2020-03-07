@@ -15,6 +15,7 @@ knitr::opts_chunk$set(
 
 # geneticae
 
+# <img src="man/figures/baseplot.png" align="right" />
 <!-- badges: start -->
 [![CRAN status](https://www.r-pkg.org/badges/version/geneticae)](https://CRAN.R-project.org/package=geneticae)
 [![Lifecycle: experimental](https://img.shields.io/badge/lifecycle-experimental-orange.svg)](https://www.tidyverse.org/lifecycle/#experimental)
