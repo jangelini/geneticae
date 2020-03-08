@@ -3,6 +3,8 @@
 
 # geneticae
 
+# <img src="man/figures/baseplot.png" align="right">
+
 <!-- badges: start -->
 
 [![CRAN
@@ -10,10 +12,25 @@ status](https://www.r-pkg.org/badges/version/geneticae)](https://CRAN.R-project.
 [![Lifecycle:
 experimental](https://img.shields.io/badge/lifecycle-experimental-orange.svg)](https://www.tidyverse.org/lifecycle/#experimental)
 [![Downloads](https://cranlogs.r-pkg.org/badges/geneticae?color=blue)](https://cran.rstudio.com/package=geneticae)
-[![Codecov test coverage](https://codecov.io/gh/r-lib/geneticae/branch/master/graphs/badge.svg)](https://codecov.io/gh/r-lib/geneticae?branch=master)
+[![Codecov test
+coverage](https://codecov.io/gh/r-lib/geneticae/branch/master/graphs/badge.svg)](https://codecov.io/gh/r-lib/geneticae?branch=master)
 <!-- badges: end -->
 
-The goal of geneticae is to ...
+The geneticae package provides tools to analize data from advanced
+stages of breeding programs, where few genotypes are evaluated.
+
+geneticae package there are several functions for use after fitting
+models (AMMI or SREG). The plots created by the package are ggplot
+objects, which means that after a plot is created it can be further
+customized using various functions from the ggplot2 package.
+
+## Getting Started
+
+If you are just getting started with geneticae we recommend starting
+with the tutorial
+[*vignettes*](file:///F:/Especializacion%20en%20bioinformatica/Para%20proyecto%20final/Geneticae%20Package/geneticae/docs/articles/vignettes.html),
+and the examples throughout the package
+[*documentation*](file:///F:/Especializacion%20en%20bioinformatica/Para%20proyecto%20final/Geneticae%20Package/geneticae/docs/reference/index.html).
 
 ## Installation
 
@@ -33,33 +50,12 @@ devtools::install_github("jangelini/geneticae")
 
 ## Example
 
-This is a basic example which shows you how to solve a common problem:
+Some quick examples obtained from the geneticae package.
 
 ``` r
 library(geneticae)
-## basic example code
+
+data(yan.winterwheat)
+GGE1 <- GGEmodel(yan.winterwheat, centering = "tester")
+GGEPlot(GGE1)
 ```
-
-What is special about using `README.Rmd` instead of just `README.md`?
-You can include R chunks like so:
-
-``` r
-summary(cars)
-#>      speed           dist       
-#>  Min.   : 4.0   Min.   :  2.00  
-#>  1st Qu.:12.0   1st Qu.: 26.00  
-#>  Median :15.0   Median : 36.00  
-#>  Mean   :15.4   Mean   : 42.98  
-#>  3rd Qu.:19.0   3rd Qu.: 56.00  
-#>  Max.   :25.0   Max.   :120.00
-```
-
-You’ll still need to render `README.Rmd` regularly, to keep `README.md`
-up-to-date.
-
-You can also embed plots, for example:
-
-<img src="man/figures/README-pressure-1.png" width="100%" />
-
-In that case, don’t forget to commit and push the resulting figure
-files, so they display on GitHub\!
