@@ -1,0 +1,34 @@
+url: https://github.com/jangelini
+
+template:
+  params:
+    bootswatch: cosmo
+    ganalytics: UA-000000-01
+
+navbar:
+  title: "geneticae"
+  left:
+    - text: "Get started"
+      href: articles/index.html
+    - text: "Functions and data"
+      href: reference/index.html
+    - text: "News"
+      href: news/index.html
+    - text: "Shiny APP"
+      href: https://github.com/jangelini/Geneticae_shinnyAPP
+  right:
+   - icon: fa-github
+     href: https://github.com/jangelini/geneticae
+
+authors:
+    Julia Angelini:
+    href: https://www.linkedin.com/in/julia-angelini-609a67a7
+
+home:
+  links:
+  - text: Browse source code
+    href: https://github.com/jangelini/geneticae
+  - text: Report a bug at
+    href: https://github.com/jangelini/geneticae/issues
+
+

@@ -1,36 +1,36 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
-    <loc>http://valr.hesselberthlab.org/index.html</loc>
+    <loc>https://github.com/jangelini/index.html</loc>
   </url>
   <url>
-    <loc>http://valr.hesselberthlab.org/reference/plrv.html</loc>
+    <loc>https://github.com/jangelini/reference/plrv.html</loc>
   </url>
   <url>
-    <loc>http://valr.hesselberthlab.org/reference/yan.winterwheat.html</loc>
+    <loc>https://github.com/jangelini/reference/yan.winterwheat.html</loc>
   </url>
   <url>
-    <loc>http://valr.hesselberthlab.org/reference/EM.AMMI.html</loc>
+    <loc>https://github.com/jangelini/reference/EM.AMMI.html</loc>
   </url>
   <url>
-    <loc>http://valr.hesselberthlab.org/reference/GGEPlot.html</loc>
+    <loc>https://github.com/jangelini/reference/GGEPlot.html</loc>
   </url>
   <url>
-    <loc>http://valr.hesselberthlab.org/reference/GGEmodel.html</loc>
+    <loc>https://github.com/jangelini/reference/GGEmodel.html</loc>
   </url>
   <url>
-    <loc>http://valr.hesselberthlab.org/reference/Gabriel.Calinski.html</loc>
+    <loc>https://github.com/jangelini/reference/Gabriel.Calinski.html</loc>
   </url>
   <url>
-    <loc>http://valr.hesselberthlab.org/reference/WGabriel.html</loc>
+    <loc>https://github.com/jangelini/reference/WGabriel.html</loc>
   </url>
   <url>
-    <loc>http://valr.hesselberthlab.org/reference/imputation.html</loc>
+    <loc>https://github.com/jangelini/reference/imputation.html</loc>
   </url>
   <url>
-    <loc>http://valr.hesselberthlab.org/reference/rAMMI.html</loc>
+    <loc>https://github.com/jangelini/reference/rAMMI.html</loc>
   </url>
   <url>
-    <loc>http://valr.hesselberthlab.org/articles/vignettes.html</loc>
+    <loc>https://github.com/jangelini/articles/vignettes.html</loc>
   </url>
 </urlset>

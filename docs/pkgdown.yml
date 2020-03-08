@@ -4,6 +4,6 @@ pkgdown_sha: ~
 articles:
   vignettes: vignettes.html
 urls:
-  reference: http://valr.hesselberthlab.org/reference
-  article: http://valr.hesselberthlab.org/articles
+  reference: https://github.com/jangelini/reference
+  article: https://github.com/jangelini/articles
 
