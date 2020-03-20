@@ -1,22 +1,33 @@
-#' Data clones from the PLRV population
+#' Clones from the PLRV population
 #'
-#' Six environments: Ayacucho, La Molina 02, San Ramon 02, Huancayo, La Molina
-#' 03, San Ramon 03. This data.frame was obtained from agricolae Package.
+#' @description  Resistance study to PLRV (Patato Leaf Roll Virus), the disease
+#'   is leaf curl due to the effect of the virus. 28 genotypes were experimented
+#'   in 6 locations in Peru, being 504 the total number of records. This dataset
+#'   was obtained from agricolae Package.
+#'
 #' @name plrv
 #' @docType data
 #' @usage data(plrv)
 #'
-#' @format A data frame with 504 observations on the following 6 variables.
+#' @format A data frame with 504 observations on the following 6 variables
+#'
 #'   Genotype a factor with levels 102.18 104.22 121.31 141.28 157.26 163.9
 #'   221.19 233.11 235.6 241.2 255.7 314.12 317.6 319.20 320.16 342.15 346.2
-#'   351.26 364.21 402.7 405.2 406.12 427.7 450.3 506.2 Canchan Desiree Unica
-#'   Locality a factor with levels Ayac Hyo-02 LM-02 LM-03 SR-02 SR-03 Rep a
-#'   numeric vector WeightPlant a numeric vector WeightPlot a numeric vector
-#'   Yield a numeric vector
+#'   351.26 364.21 402.7 405.2 406.12 427.7 450.3 506.2 Canchan Desiree Unica.
+#'
+#'   Locality a factor with levels Ayacucho (Ayac), La Molina 02 (LM-02), San
+#'   Ramon 02 (SR-02), Huancayo (Hyo-02), La Molina 03 (LM-03), San Ramon 03
+#'   (SR-03).
+#'
+#'   Rep a numeric vector
+#'
+#'   WeightPlant, WeightPlot and Yield are numeric vectors
 #'
 #' @keywords datasets
 #'
-#' @references AAAAA
+#' @references Felipe de Mendiburu (2020). agricolae: Statistical Procedures for
+#'   Agricultural Research. R package version 1.3-2.
+#'   \url{https://CRAN.R-project.org/package=agricolae}
 #'
 #' @examples
 #' library(geneticae)
@@ -25,24 +36,27 @@
 #'
 NULL
 
-#' Multi-environment trial of winter wheat in Ontario
+#' Winter wheat varieties from Ontario
 #'
-#' Yield of 18 varieties of winter wheat grown at 9 environments in Ontario in 1993.
-#' This data.frame was obtained from agridat Package.
+#' @description Yield of 18 winter wheat varieties grown at 9 environments in
+#'   Ontario in 1993. This dataset was obtained from agridat Package.
 #'
 #' @name yan.winterwheat
 #' @docType data
 #' @usage data(yan.winterwheat)
 #'
 #' @format A data frame with 162 observations on the following 3 variables.
-#' gen genotype
-#' env environment
-#' yield yield in metric tons per hectare
+#'
+#'   gen genotype
+#'
+#'   env environment
+#'
+#'   yield yield in metric tons per hectare
 #'
 #' @keywords datasets
-#' @references
-#' Weikai Yan and Manjit S. Kang and Baoluo Ma and Sheila Woods, 2007, GGE Biplot vs. AMMI
-#' Analysis of Genotype-by-Environment Data, Crop Science, 2007, 47, 641–653. \url{http://doi.org/10.2135/cropsci2006.06.0374}
+#' @references Kevin Wright (2018). agridat: Agricultural Datasets. R package
+#'   version 1.16.\url{https://CRAN.R-project.org/package=agridat}
+#'
 #' @examples
 #' library(geneticae)
 #' data(yan.winterwheat)

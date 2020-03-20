@@ -3,17 +3,20 @@
 \docType{data}
 \name{yan.winterwheat}
 \alias{yan.winterwheat}
-\title{Multi-environment trial of winter wheat in Ontario}
+\title{Winter wheat varieties from Ontario}
 \format{A data frame with 162 observations on the following 3 variables.
-gen genotype
-env environment
-yield yield in metric tons per hectare}
+
+  gen genotype
+
+  env environment
+
+  yield yield in metric tons per hectare}
 \usage{
 data(yan.winterwheat)
 }
 \description{
-Yield of 18 varieties of winter wheat grown at 9 environments in Ontario in 1993.
-This data.frame was obtained from agridat Package.
+Yield of 18 winter wheat varieties grown at 9 environments in
+  Ontario in 1993. This dataset was obtained from agridat Package.
 }
 \examples{
 library(geneticae)
@@ -21,7 +24,7 @@ data(yan.winterwheat)
 str(yan.winterwheat)
 }
 \references{
-Weikai Yan and Manjit S. Kang and Baoluo Ma and Sheila Woods, 2007, GGE Biplot vs. AMMI
-Analysis of Genotype-by-Environment Data, Crop Science, 2007, 47, 641–653. \url{http://doi.org/10.2135/cropsci2006.06.0374}
+Kevin Wright (2018). agridat: Agricultural Datasets. R package
+  version 1.16.\url{https://CRAN.R-project.org/package=agridat}
 }
 \keyword{datasets}

@@ -7,8 +7,9 @@
 WGabriel(DBmiss, Winf, Wsup)
 }
 \arguments{
-\item{DBmiss}{a data frame or matrix that contains the genotypes in the rows and the
-environments in the columns when there are no replications of the experiment.}
+\item{DBmiss}{a data frame or matrix that contains the genotypes in the rows
+and the environments in the columns when there are no replications of the
+experiment.}
 
 \item{Winf}{peso inferior}
 

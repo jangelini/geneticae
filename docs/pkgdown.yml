@@ -1,8 +1,7 @@
 pandoc: 2.7.2
 pkgdown: 1.4.1
 pkgdown_sha: ~
-articles:
-  vignettes: vignettes.html
+articles: []
 urls:
   reference: https://github.com/jangelini/reference
   article: https://github.com/jangelini/articles

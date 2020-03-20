@@ -73,15 +73,13 @@ customize it so that the stylistic attributes are to the user's liking.
 library(geneticae)
 # Data without replication
 data(yan.winterwheat)
-dat <- yan.winterwheat
-GGE1 <- rAMMI(dat, genotype="gen",environment="env", response="yield",
+GGE1 <- rAMMI(yan.winterwheat, genotype="gen",environment="env", response="yield",
              type = "AMMI")
 GGE1
 
 # Data with replication
 data(plrv)
-dat2 <- plrv
-GGE2 <- rAMMI(dat2, genotype="Genotype",environment="Locality", response="Yield",
+GGE2 <- rAMMI(plrv, genotype="Genotype",environment="Locality", response="Yield",
              rep="Rep", type = "AMMI")
 GGE2
 

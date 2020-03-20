@@ -1,11 +1,13 @@
 #'GGE biplots with \pkg{ggplot2}
 #'
-#'@description GGE biplot allows visual examination of the relationships between
-#'  test environments, genotypes and genotype interactions by environment.
-#'  Produces the GGE biplot as an object of class 'ggplot' from a model produced
-#'  by a call to \code{\link[geneticae]{GGEmodel}}. It is possible to customize
-#'  it so that the stylistic attributes are to the user's liking. This function
-#'  is a modification of \emph{GGEPlot} of GGEBiplots package.
+#'@description The GGE biplot allows a visual examination of the relationships
+#'  between test environments, genotypes, and genotype interactions by
+#'  environment. The GGE biplot is an object of class 'ggplot' obtained from an
+#'  object produced by the \code{\link[geneticae]{GGEmodel}} function. It is
+#'  possible to personalize the graphic so that the stylistic attributes are
+#'  liked by the user. This function is a modification of the
+#'  \code{\link[GGEBiplots]{GGEPlot}} package of the GGEBiplots.
+#'
 #'
 #'@param GGEModel An object of class \code{GGEModel}.
 #'@param type type of biplot to produce. \itemize{ \item \code{Biplot}: Basic
@@ -56,6 +58,8 @@
 #'@return A biplot of class \code{ggplot}
 #'@references Yan W, Kang M (2003). \emph{GGE Biplot Analysis: A Graphical Tool
 #'  for Breeders, Geneticists, and Agronomists}. CRC Press.
+#'@references Sam Dumble (2017). GGEBiplots: GGE Biplots with 'ggplot2'. R
+#'  package version 0.1.1. \url{https://CRAN.R-project.org/package=GGEBiplots}
 #'@export
 #'@examples
 #'  library(geneticae)

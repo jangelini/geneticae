@@ -1,5 +1,8 @@
-#'Produces genotype plus genotype-by-environment model from a 2-way table of
-#'means
+#'Imputation of missing cells in two-way data sets
+#'
+#'AMMI or GGE methods require the data to be complete, that is, no missing cells
+#'are allowed. This function offers several methods to impute the missing cells,
+#'so that the previously mentioned models can be adjusted later.
 #'
 #'@param Data a data frame
 #'@param genotype name of the column that contains the genotypes
@@ -15,6 +18,12 @@
 #'@inheritParams Gabriel.Calinski
 #'@inheritParams WGabriel
 #'@return matrix with imputed data
+#'@references Paderewski, J. (2013). An R function for imputation of missing
+#'  cells in two-way data sets by EM-AMMI algorithm. Communications in Biometry
+#'  and Crop Science 8 (2), 60–69.
+#'@references FALTAN CITAS....GABRIEL EMPCA...
+#'
+#'
 #'@export
 #'
 #' @examples
@@ -38,11 +47,12 @@
 #'  dat2[1,3]<-NA
 #' dat2[3,3]<-NA
 #' dat2[2,3]<-NA
-#' imputation(dat2, genotype="gen",environment="env", response="yield", rep= "rep", type="EM-SVD")
-#' imputation(dat2, genotype="gen",environment="env", response="yield", rep= "rep", type="EM-AMMI")
-#' imputation(dat2, genotype="gen",environment="env", response="yield", rep= "rep", type="Gabriel")
-#' imputation(dat2, genotype="gen",environment="env", response="yield", rep= "rep", type="WGabriel")
-#' imputation(dat2, genotype="gen",environment="env", response="yield", rep= "rep", type="EM-PCA")
+#' imputation(dat2, genotype="Genotype",environment="Locality", response="Yield", rep= "Rep", type="EM-SVD")
+#' imputation(dat2, genotype="Genotype",environment="Locality", response="Yield", rep= "Rep", type="EM-AMMI")
+#' imputation(dat2, genotype="Genotype",environment="Locality", response="Yield", rep= "Rep", type="Gabriel")
+#' imputation(dat2, genotype="Genotype",environment="Locality", response="Yield", rep= "Rep", type="WGabriel")
+#' imputation(dat2, genotype="Genotype",environment="Locality", response="Yield", rep= "Rep", type="EM-PCA")
+#'
 #'
 #'@importFrom stats var
 #'@importFrom bcv impute.svd

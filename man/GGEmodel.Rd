@@ -27,9 +27,9 @@ GGEmodel(
 \item{rep}{name of the column that contains the replications.If this argument
 is NULL, there is no replications in the data.}
 
-\item{centering}{centering method. Either "tester" for tester centered
-(G+GE), "global" for global centered (E+G+GE), "double" for double centred
-(GE) or "none" for no centering. If a centering method is not used, the
+\item{centering}{centering method. Either "tester" for tester centered (G+GE),
+"global" for global centered (E+G+GE), "double" for double centred (GE) or
+"none" for no centering. If a centering method is not used, the
 \code{\link[geneticae]{GGEPlot}} function can not be used.}
 
 \item{scaling}{scaling method. Either "sd" for standard deviation or "none"
@@ -40,48 +40,45 @@ for no scaling.}
 }
 \value{
 A list of class \code{GGE_Model} containing:
-  \item{coordgenotype}{plotting coordinates for genotypes from all
-  components} \item{coordenviroment}{plotting coordinates for environments
-  from all components} \item{eigenvalues}{vector of eigenvalues from each
-  component} \item{vartotal}{overall variance} \item{varexpl}{percentage of
-  variance explained by each component} \item{labelgen}{genotype names}
-  \item{labelenv}{environment names} \item{axes}{axis labels}
-  \item{Data}{scaled and centered input data} \item{centering}{name of
-  centering method} \item{scaling}{name of scaling method} \item{SVP}{name
-  of SVP method}
+ \item{coordgenotype}{plotting coordinates for genotypes from all components}
+ \item{coordenviroment}{plotting coordinates for environments from all
+ components} \item{eigenvalues}{vector of eigenvalues from each component}
+ \item{vartotal}{overall variance} \item{varexpl}{percentage of variance
+ explained by each component} \item{labelgen}{genotype names}
+ \item{labelenv}{environment names} \item{axes}{axis labels}
+ \item{Data}{scaled and centered input data} \item{centering}{name of
+ centering method} \item{scaling}{name of scaling method} \item{SVP}{name of
+ SVP method}
 }
 \description{
-The site regression (SREG) model also named genotype plus
-genotype-by-environment (GGE) model is powerful a tools for effective
-analysis and interpretation of multienvironment data structure in breeding
-programs.This function is a modification of \emph{GGEModel} of GGEBiplots
-package, where the data frame or matrix contains genotype by environment
-means with the genotypes in rows and environments in columns. By contrast,
-repetitions are allowed in this function.
+The site regression model also named genotype plus
+ genotype-by-environment (GGE) model is powerful a tools for effective
+ analysis and interpretation of multienvironment data structure in breeding
+ programs.This function is a modification of
+ \code{\link[GGEBiplots]{GGEModel}} of GGEBiplots package, where the dataset
+ contains genotype by environment means with the genotypes in  rows and
+ environments in columns. By contrast, in this function a less restrictive
+ format of the data set is allowed, such as repetitions or other variables
+ that will not be used in the analysis can be included.
 }
 \examples{
 
  library(geneticae)
  # Data without replication
- data(yan.winterwheat)
- dat <- yan.winterwheat
- GGE1 <- GGEmodel(dat, genotype="gen",environment="env", response="yield",
+ GGE1 <- GGEmodel(yan.winterwheat, genotype="gen",environment="env", response="yield",
  centering = "tester")
- GGE1
 
  # Data with replication
  data(plrv)
- dat2 <- plrv
- GGE2 <- GGEmodel(dat2, genotype="Genotype",environment="Locality",
+ GGE2 <- GGEmodel(plrv, genotype="Genotype",environment="Locality",
  response="Yield", rep="Rep", centering = "tester")
- GGE2
 
 }
 \references{
 Yan W, Kang M (2003). \emph{GGE Biplot Analysis: A Graphical Tool
-  for Breeders, Geneticists, and Agronomists}. CRC Press.
+ for Breeders, Geneticists, and Agronomists}. CRC Press.
 
 Yan W, Kang M (2002). \emph{Singular-Value Partitioning in Biplot
-  Analysis of Multienvironment Trial Data}. Agronomy Journal, 94, 990-996.
-  \url{http://dx.doi.org/10.2134/agronj2002.0990}
+ Analysis of Multienvironment Trial Data}. Agronomy Journal, 94, 990-996.
+ \url{http://dx.doi.org/10.2134/agronj2002.0990}
 }

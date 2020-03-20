@@ -186,7 +186,7 @@ is NULL, there is no replications in the data.</p></td>
       <td><p>centering method. Either "tester" for tester centered
 (G+GE), "global" for global centered (E+G+GE), "double" for double centred
 (GE) or "none" for no centering. If a centering method is not used, the
-<code><a href='GGEPlot.html'>GGEPlot</a></code> function can not be used.</p></td>
+<code>GGEPlot</code> function can not be used.</p></td>
     </tr>
     <tr>
       <th>scaling</th>
@@ -227,7 +227,7 @@ for no scaling.</p></td>
  <span class='co'># Data without replication</span>
  <span class='fu'><a href='https://rdrr.io/r/utils/data.html'>data</a></span>(<span class='no'>yan.winterwheat</span>)
  <span class='no'>dat</span> <span class='kw'>&lt;-</span> <span class='no'>yan.winterwheat</span>
- <span class='no'>GGE1</span> <span class='kw'>&lt;-</span> <span class='fu'>GGEmodel</span>(<span class='no'>dat</span>, <span class='kw'>genotype</span><span class='kw'>=</span><span class='st'>"gen"</span>,<span class='kw'>environment</span><span class='kw'>=</span><span class='st'>"env"</span>, <span class='kw'>response</span><span class='kw'>=</span><span class='st'>"yield"</span>,
+ <span class='no'>GGE1</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/pkg/geneticae/man/GGEmodel.html'>GGEmodel</a></span>(<span class='no'>dat</span>, <span class='kw'>genotype</span><span class='kw'>=</span><span class='st'>"gen"</span>,<span class='kw'>environment</span><span class='kw'>=</span><span class='st'>"env"</span>, <span class='kw'>response</span><span class='kw'>=</span><span class='st'>"yield"</span>,
  <span class='kw'>centering</span> <span class='kw'>=</span> <span class='st'>"tester"</span>)
  <span class='no'>GGE1</span></div><div class='output co'>#&gt; $coordgenotype
 #&gt;             [,1]        [,2]        [,3]        [,4]         [,5]         [,6]
@@ -366,7 +366,7 @@ for no scaling.</p></td>
  <span class='co'># Data with replication</span>
  <span class='fu'><a href='https://rdrr.io/r/utils/data.html'>data</a></span>(<span class='no'>plrv</span>)
  <span class='no'>dat2</span> <span class='kw'>&lt;-</span> <span class='no'>plrv</span>
- <span class='no'>GGE2</span> <span class='kw'>&lt;-</span> <span class='fu'>GGEmodel</span>(<span class='no'>dat2</span>, <span class='kw'>genotype</span><span class='kw'>=</span><span class='st'>"Genotype"</span>,<span class='kw'>environment</span><span class='kw'>=</span><span class='st'>"Locality"</span>,
+ <span class='no'>GGE2</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/pkg/geneticae/man/GGEmodel.html'>GGEmodel</a></span>(<span class='no'>dat2</span>, <span class='kw'>genotype</span><span class='kw'>=</span><span class='st'>"Genotype"</span>,<span class='kw'>environment</span><span class='kw'>=</span><span class='st'>"Locality"</span>,
  <span class='kw'>response</span><span class='kw'>=</span><span class='st'>"Yield"</span>, <span class='kw'>rep</span><span class='kw'>=</span><span class='st'>"Rep"</span>, <span class='kw'>centering</span> <span class='kw'>=</span> <span class='st'>"tester"</span>)
  <span class='no'>GGE2</span></div><div class='output co'>#&gt; $coordgenotype
 #&gt;              [,1]        [,2]        [,3]       [,4]        [,5]         [,6]

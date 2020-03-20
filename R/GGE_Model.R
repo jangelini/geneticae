@@ -1,12 +1,14 @@
 #'Site regression model
 #'
-#'@description The site regression (SREG) model also named genotype plus
+#'@description The site regression model also named genotype plus
 #'  genotype-by-environment (GGE) model is powerful a tools for effective
 #'  analysis and interpretation of multienvironment data structure in breeding
-#'  programs.This function is a modification of \emph{GGEModel} of GGEBiplots
-#'  package, where the data frame or matrix contains genotype by environment
-#'  means with the genotypes in rows and environments in columns. By contrast,
-#'  repetitions are allowed in this function.
+#'  programs.This function is a modification of
+#'  \code{\link[GGEBiplots]{GGEModel}} of GGEBiplots package, where the dataset
+#'  contains genotype by environment means with the genotypes in  rows and
+#'  environments in columns. By contrast, in this function a less restrictive
+#'  format of the data set is allowed, such as repetitions or other variables
+#'  that will not be used in the analysis can be included.
 #'
 #'@param Data a data frame
 #'@param genotype name of the column that contains the genotypes
@@ -44,13 +46,11 @@
 #'  # Data without replication
 #'  GGE1 <- GGEmodel(yan.winterwheat, genotype="gen",environment="env", response="yield",
 #'  centering = "tester")
-#'  GGE1
 #'
 #'  # Data with replication
 #'  data(plrv)
 #'  GGE2 <- GGEmodel(plrv, genotype="Genotype",environment="Locality",
 #'  response="Yield", rep="Rep", centering = "tester")
-#'  GGE2
 #'
 #'@importFrom stats var
 #'@importFrom GGEBiplots GGEModel

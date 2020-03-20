@@ -31,25 +31,19 @@ GGEPlot(
 \arguments{
 \item{GGEModel}{An object of class \code{GGEModel}.}
 
-\item{type}{type of biplot to produce.
-\itemize{
- \item \code{Biplot}: Basic biplot.
- \item \code{Selected Environment}: Ranking the cultivars based on their performance
-       in any given environment.
- \item \code{Selected Genotype}: Ranking the environments based on the relative
-       performance of any given cultivar.
- \item \code{Relationship Among Environments}.
- \item \code{Comparison of Genotype}.
- \item \code{Which won where/what}: Identifying the ’best’ cultivar in each
-       environment.
- \item \code{Discrimination vs. representativeness}: Evaluating the environments
-       based on both discriminating ability and representativeness.
- \item \code{Ranking Environments}: Ranking environments with respect to the ideal
-       environment.
- \item \code{Mean vs. stability}: Evaluating cultivars based on both average yield
-       and stability.
- \item \code{Ranking Gentoypes}: Ranking genotypes with respect to the ideal
-       genotype.}}
+\item{type}{type of biplot to produce. \itemize{ \item \code{Biplot}: Basic
+biplot. \item \code{Selected Environment}: Ranking the cultivars based on
+their performance in any given environment. \item \code{Selected Genotype}:
+Ranking the environments based on the relative performance of any given
+cultivar. \item \code{Relationship Among Environments}. \item
+\code{Comparison of Genotype}. \item \code{Which won where/what}:
+Identifying the ’best’ cultivar in each environment. \item
+\code{Discrimination vs. representativeness}: Evaluating the environments
+based on both discriminating ability and representativeness. \item
+\code{Ranking Environments}: Ranking environments with respect to the ideal
+environment. \item \code{Mean vs. stability}: Evaluating cultivars based on
+both average yield and stability. \item \code{Ranking Gentoypes}: Ranking
+genotypes with respect to the ideal genotype.}}
 
 \item{d1}{PCA component to plot on x axis. Defaults to 1.}
 
@@ -61,37 +55,36 @@ Environment". Must be a string which matches an environment label.}
 \item{selectedG}{name of the genotype to examine when type="Selected
 Genotype". Must be a string which matches a genotype label.}
 
-\item{selectedG1}{name of a genotype to compare when type="Comparison
-of Genotype". Must be a string which matches a genotype labe.}
+\item{selectedG1}{name of a genotype to compare when type="Comparison of
+Genotype". Must be a string which matches a genotype labe.}
 
-\item{selectedG2}{name of a genotype to compare when type="Comparison
-of Genotype". Must be a string which matches a genotype label and not
-equal to selectedG1}
+\item{selectedG2}{name of a genotype to compare when type="Comparison of
+Genotype". Must be a string which matches a genotype label and not equal to
+selectedG1}
 
-\item{colGen}{colour for genotype attributes on biplot. Defaults to
-"gray47"}
+\item{colGen}{colour for genotype attributes on biplot. Defaults to "gray47"}
 
-\item{colEnv}{colour for environment attributes on biplot. Defaults
-to "darkred"}
+\item{colEnv}{colour for environment attributes on biplot. Defaults to
+"darkred"}
 
 \item{colSegment}{colour for segment or circle lines. Defaults to "gray30"}
 
-\item{colHull}{colour for hull when type="Which won where/what". Defaults
-to "gray30"}
+\item{colHull}{colour for hull when type="Which won where/what". Defaults to
+"gray30"}
 
 \item{sizeGen}{text size for genotype labels. Defaults to 4}
 
 \item{sizeEnv}{text size for environment labels. Defaults to 4}
 
-\item{largeSize}{text size to use for larger labels where type=5, used for
-the two selected genotypes, and where type="Which won where/what", used
-for the outermost genotypes. Defaults to 4.5}
+\item{largeSize}{text size to use for larger labels where type=5, used for the
+two selected genotypes, and where type="Which won where/what", used for the
+outermost genotypes. Defaults to 4.5}
 
 \item{axis_expand}{multiplication factor to expand the axis limits by to
 enable fitting of labels. Defaults to 1.2}
 
-\item{axislabels}{logical. If TRUE then include automatically generated
-labels for axes}
+\item{axislabels}{logical. If TRUE then include automatically generated labels
+for axes}
 
 \item{axes}{logical. If TRUE then include x and y axes going through the
 origin}
@@ -106,27 +99,25 @@ origin}
 A biplot of class \code{ggplot}
 }
 \description{
-GGE biplot allows visual examination of the relationships
-between test environments, genotypes and genotype interactions by
-environment. Produces the GGE biplot as an object of class 'ggplot'
-from a model produced by a call to \code{\link[geneticae]{GGEmodel}}.
-It is possible to customize it so that the stylistic attributes are to
-the user's liking. This function is a modification of \emph{GGEPlot} of
-GGEBiplots package.
+The GGE biplot allows a visual examination of the relationships
+ between test environments, genotypes, and genotype interactions by
+ environment. The GGE biplot is an object of class 'ggplot' obtained from an
+ object produced by the \code{\link[geneticae]{GGEmodel}} function. It is
+ possible to personalize the graphic so that the stylistic attributes are
+ liked by the user. This function is a modification of the
+ \code{\link[GGEBiplots]{GGEPlot}} package of the GGEBiplots.
 }
 \examples{
  library(geneticae)
 
  # Data without replication
  data(yan.winterwheat)
- dat <- yan.winterwheat
- GGE1 <- GGEmodel(dat, centering = "tester")
+ GGE1 <- GGEmodel(yan.winterwheat, centering = "tester")
  GGEPlot(GGE1)
 
  # Data with replication
  data(plrv)
- dat2<-plrv
- GGE2 <- GGEmodel(dat2,genotype="Genotype",environment="Locality",
+ GGE2 <- GGEmodel(plrv,genotype="Genotype",environment="Locality",
  response="Yield", rep="Rep", centering = "tester")
  GGEPlot(GGE2)
 
@@ -134,6 +125,9 @@ GGEBiplots package.
 \references{
 Yan W, Kang M (2003). \emph{GGE Biplot Analysis: A Graphical Tool
  for Breeders, Geneticists, and Agronomists}. CRC Press.
+
+Sam Dumble (2017). GGEBiplots: GGE Biplots with 'ggplot2'. R
+ package version 0.1.1. \url{https://CRAN.R-project.org/package=GGEBiplots}
 }
 \keyword{Biplot}
 \keyword{GGE}
