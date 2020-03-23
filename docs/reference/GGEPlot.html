@@ -43,13 +43,13 @@
 
 
 <meta property="og:title" content="GGE biplots with <span class="pkg">ggplot2</span> — GGEPlot" />
-<meta property="og:description" content="GGE biplot allows visual examination of the relationships
-between test environments, genotypes and genotype interactions by
-environment. Produces the GGE biplot as an object of class 'ggplot'
-from a model produced by a call to GGEmodel.
-It is possible to customize it so that the stylistic attributes are to
-the user's liking. This function is a modification of GGEPlot of
-GGEBiplots package." />
+<meta property="og:description" content="The GGE biplot allows a visual examination of the relationships
+ between test environments, genotypes, and genotype interactions by
+ environment. The GGE biplot is an object of class 'ggplot' obtained from an
+ object produced by the GGEmodel function. It is
+ possible to personalize the graphic so that the stylistic attributes are
+ liked by the user. This function is a modification of the
+ GGEPlot package of the GGEBiplots." />
 <meta name="twitter:card" content="summary" />
 
 
@@ -137,13 +137,13 @@ GGEBiplots package." />
     </div>
 
     <div class="ref-description">
-    <p>GGE biplot allows visual examination of the relationships
-between test environments, genotypes and genotype interactions by
-environment. Produces the GGE biplot as an object of class 'ggplot'
-from a model produced by a call to <code>GGEmodel</code>.
-It is possible to customize it so that the stylistic attributes are to
-the user's liking. This function is a modification of <em>GGEPlot</em> of
-GGEBiplots package.</p>
+    <p>The GGE biplot allows a visual examination of the relationships
+ between test environments, genotypes, and genotype interactions by
+ environment. The GGE biplot is an object of class 'ggplot' obtained from an
+ object produced by the <code><a href='GGEmodel.html'>GGEmodel</a></code> function. It is
+ possible to personalize the graphic so that the stylistic attributes are
+ liked by the user. This function is a modification of the
+ <code><a href='https://rdrr.io/pkg/GGEBiplots/man/GGEPlot.html'>GGEPlot</a></code> package of the GGEBiplots.</p>
     </div>
 
     <pre class="usage"><span class='fu'>GGEPlot</span>(
@@ -180,23 +180,25 @@ GGEBiplots package.</p>
     <tr>
       <th>type</th>
       <td><p>type of biplot to produce.</p><ul>
-<li><p><code>Biplot</code>: Basic biplot.</p></li>
-<li><p><code>Selected Environment</code>: Ranking the cultivars based on their performance
-       in any given environment.</p></li>
-<li><p><code>Selected Genotype</code>: Ranking the environments based on the relative
-       performance of any given cultivar.</p></li>
+<li><p><code>Biplot</code>: Basic
+biplot.</p></li>
+<li><p><code>Selected Environment</code>: Ranking the cultivars based on
+their performance in any given environment.</p></li>
+<li><p><code>Selected Genotype</code>:
+Ranking the environments based on the relative performance of any given
+cultivar.</p></li>
 <li><p><code>Relationship Among Environments</code>.</p></li>
 <li><p><code>Comparison of Genotype</code>.</p></li>
-<li><p><code>Which won where/what</code>: Identifying the ’best’ cultivar in each
-       environment.</p></li>
+<li><p><code>Which won where/what</code>:
+Identifying the ’best’ cultivar in each environment.</p></li>
 <li><p><code>Discrimination vs. representativeness</code>: Evaluating the environments
-       based on both discriminating ability and representativeness.</p></li>
+based on both discriminating ability and representativeness.</p></li>
 <li><p><code>Ranking Environments</code>: Ranking environments with respect to the ideal
-       environment.</p></li>
-<li><p><code>Mean vs. stability</code>: Evaluating cultivars based on both average yield
-       and stability.</p></li>
-<li><p><code>Ranking Gentoypes</code>: Ranking genotypes with respect to the ideal
-       genotype.</p></li>
+environment.</p></li>
+<li><p><code>Mean vs. stability</code>: Evaluating cultivars based on
+both average yield and stability.</p></li>
+<li><p><code>Ranking Gentoypes</code>: Ranking
+genotypes with respect to the ideal genotype.</p></li>
 </ul></td>
     </tr>
     <tr>
@@ -219,24 +221,23 @@ Genotype". Must be a string which matches a genotype label.</p></td>
     </tr>
     <tr>
       <th>selectedG1</th>
-      <td><p>name of a genotype to compare when type="Comparison
-of Genotype". Must be a string which matches a genotype labe.</p></td>
+      <td><p>name of a genotype to compare when type="Comparison of
+Genotype". Must be a string which matches a genotype labe.</p></td>
     </tr>
     <tr>
       <th>selectedG2</th>
-      <td><p>name of a genotype to compare when type="Comparison
-of Genotype". Must be a string which matches a genotype label and not
-equal to selectedG1</p></td>
+      <td><p>name of a genotype to compare when type="Comparison of
+Genotype". Must be a string which matches a genotype label and not equal to
+selectedG1</p></td>
     </tr>
     <tr>
       <th>colGen</th>
-      <td><p>colour for genotype attributes on biplot. Defaults to
-"gray47"</p></td>
+      <td><p>colour for genotype attributes on biplot. Defaults to "gray47"</p></td>
     </tr>
     <tr>
       <th>colEnv</th>
-      <td><p>colour for environment attributes on biplot. Defaults
-to "darkred"</p></td>
+      <td><p>colour for environment attributes on biplot. Defaults to
+"darkred"</p></td>
     </tr>
     <tr>
       <th>colSegment</th>
@@ -244,8 +245,8 @@ to "darkred"</p></td>
     </tr>
     <tr>
       <th>colHull</th>
-      <td><p>colour for hull when type="Which won where/what". Defaults
-to "gray30"</p></td>
+      <td><p>colour for hull when type="Which won where/what". Defaults to
+"gray30"</p></td>
     </tr>
     <tr>
       <th>sizeGen</th>
@@ -257,9 +258,9 @@ to "gray30"</p></td>
     </tr>
     <tr>
       <th>largeSize</th>
-      <td><p>text size to use for larger labels where type=5, used for
-the two selected genotypes, and where type="Which won where/what", used
-for the outermost genotypes. Defaults to 4.5</p></td>
+      <td><p>text size to use for larger labels where type=5, used for the
+two selected genotypes, and where type="Which won where/what", used for the
+outermost genotypes. Defaults to 4.5</p></td>
     </tr>
     <tr>
       <th>axis_expand</th>
@@ -268,8 +269,8 @@ enable fitting of labels. Defaults to 1.2</p></td>
     </tr>
     <tr>
       <th>axislabels</th>
-      <td><p>logical. If TRUE then include automatically generated
-labels for axes</p></td>
+      <td><p>logical. If TRUE then include automatically generated labels
+for axes</p></td>
     </tr>
     <tr>
       <th>axes</th>
@@ -297,21 +298,21 @@ origin</p></td>
 
     <p>Yan W, Kang M (2003). <em>GGE Biplot Analysis: A Graphical Tool
  for Breeders, Geneticists, and Agronomists</em>. CRC Press.</p>
+<p>Sam Dumble (2017). GGEBiplots: GGE Biplots with 'ggplot2'. R
+ package version 0.1.1. <a href='https://CRAN.R-project.org/package=GGEBiplots'>https://CRAN.R-project.org/package=GGEBiplots</a></p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'> <span class='fu'><a href='https://rdrr.io/r/base/library.html'>library</a></span>(<span class='no'>geneticae</span>)
 
  <span class='co'># Data without replication</span>
  <span class='fu'><a href='https://rdrr.io/r/utils/data.html'>data</a></span>(<span class='no'>yan.winterwheat</span>)
- <span class='no'>dat</span> <span class='kw'>&lt;-</span> <span class='no'>yan.winterwheat</span>
- <span class='no'>GGE1</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/pkg/geneticae/man/GGEmodel.html'>GGEmodel</a></span>(<span class='no'>dat</span>, <span class='kw'>centering</span> <span class='kw'>=</span> <span class='st'>"tester"</span>)
- <span class='fu'><a href='https://rdrr.io/pkg/geneticae/man/GGEPlot.html'>GGEPlot</a></span>(<span class='no'>GGE1</span>)</div><div class='img'><img src='GGEPlot-1.png' alt='' width='700' height='433' /></div><div class='input'>
+ <span class='no'>GGE1</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='GGEmodel.html'>GGEmodel</a></span>(<span class='no'>yan.winterwheat</span>, <span class='kw'>centering</span> <span class='kw'>=</span> <span class='st'>"tester"</span>)
+ <span class='fu'>GGEPlot</span>(<span class='no'>GGE1</span>)</div><div class='img'><img src='GGEPlot-1.png' alt='' width='700' height='433' /></div><div class='input'>
  <span class='co'># Data with replication</span>
  <span class='fu'><a href='https://rdrr.io/r/utils/data.html'>data</a></span>(<span class='no'>plrv</span>)
- <span class='no'>dat2</span><span class='kw'>&lt;-</span><span class='no'>plrv</span>
- <span class='no'>GGE2</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/pkg/geneticae/man/GGEmodel.html'>GGEmodel</a></span>(<span class='no'>dat2</span>,<span class='kw'>genotype</span><span class='kw'>=</span><span class='st'>"Genotype"</span>,<span class='kw'>environment</span><span class='kw'>=</span><span class='st'>"Locality"</span>,
+ <span class='no'>GGE2</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='GGEmodel.html'>GGEmodel</a></span>(<span class='no'>plrv</span>,<span class='kw'>genotype</span><span class='kw'>=</span><span class='st'>"Genotype"</span>,<span class='kw'>environment</span><span class='kw'>=</span><span class='st'>"Locality"</span>,
  <span class='kw'>response</span><span class='kw'>=</span><span class='st'>"Yield"</span>, <span class='kw'>rep</span><span class='kw'>=</span><span class='st'>"Rep"</span>, <span class='kw'>centering</span> <span class='kw'>=</span> <span class='st'>"tester"</span>)
- <span class='fu'><a href='https://rdrr.io/pkg/geneticae/man/GGEPlot.html'>GGEPlot</a></span>(<span class='no'>GGE2</span>)</div><div class='img'><img src='GGEPlot-2.png' alt='' width='700' height='433' /></div><div class='input'>
+ <span class='fu'>GGEPlot</span>(<span class='no'>GGE2</span>)</div><div class='img'><img src='GGEPlot-2.png' alt='' width='700' height='433' /></div><div class='input'>
 </div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">

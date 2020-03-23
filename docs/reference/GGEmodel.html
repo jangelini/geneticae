@@ -43,13 +43,15 @@
 
 
 <meta property="og:title" content="Site regression model — GGEmodel" />
-<meta property="og:description" content="The site regression (SREG) model also named genotype plus
-genotype-by-environment (GGE) model is powerful a tools for effective
-analysis and interpretation of multienvironment data structure in breeding
-programs.This function is a modification of GGEModel of GGEBiplots
-package, where the data frame or matrix contains genotype by environment
-means with the genotypes in rows and environments in columns. By contrast,
-repetitions are allowed in this function." />
+<meta property="og:description" content="The site regression model also named genotype plus
+ genotype-by-environment (GGE) model is powerful a tools for effective
+ analysis and interpretation of multienvironment data structure in breeding
+ programs.This function is a modification of
+ GGEModel of GGEBiplots package, where the dataset
+ contains genotype by environment means with the genotypes in  rows and
+ environments in columns. By contrast, in this function a less restrictive
+ format of the data set is allowed, such as repetitions or other variables
+ that will not be used in the analysis can be included." />
 <meta name="twitter:card" content="summary" />
 
 
@@ -137,13 +139,15 @@ repetitions are allowed in this function." />
     </div>
 
     <div class="ref-description">
-    <p>The site regression (SREG) model also named genotype plus
-genotype-by-environment (GGE) model is powerful a tools for effective
-analysis and interpretation of multienvironment data structure in breeding
-programs.This function is a modification of <em>GGEModel</em> of GGEBiplots
-package, where the data frame or matrix contains genotype by environment
-means with the genotypes in rows and environments in columns. By contrast,
-repetitions are allowed in this function.</p>
+    <p>The site regression model also named genotype plus
+ genotype-by-environment (GGE) model is powerful a tools for effective
+ analysis and interpretation of multienvironment data structure in breeding
+ programs.This function is a modification of
+ <code><a href='https://rdrr.io/pkg/GGEBiplots/man/GGEModel.html'>GGEModel</a></code> of GGEBiplots package, where the dataset
+ contains genotype by environment means with the genotypes in  rows and
+ environments in columns. By contrast, in this function a less restrictive
+ format of the data set is allowed, such as repetitions or other variables
+ that will not be used in the analysis can be included.</p>
     </div>
 
     <pre class="usage"><span class='fu'>GGEmodel</span>(
@@ -183,10 +187,10 @@ is NULL, there is no replications in the data.</p></td>
     </tr>
     <tr>
       <th>centering</th>
-      <td><p>centering method. Either "tester" for tester centered
-(G+GE), "global" for global centered (E+G+GE), "double" for double centred
-(GE) or "none" for no centering. If a centering method is not used, the
-<code>GGEPlot</code> function can not be used.</p></td>
+      <td><p>centering method. Either "tester" for tester centered (G+GE),
+"global" for global centered (E+G+GE), "double" for double centred (GE) or
+"none" for no centering. If a centering method is not used, the
+<code><a href='GGEPlot.html'>GGEPlot</a></code> function can not be used.</p></td>
     </tr>
     <tr>
       <th>scaling</th>
@@ -203,276 +207,35 @@ for no scaling.</p></td>
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
     <p>A list of class <code>GGE_Model</code> containing:</p>
-<dt>coordgenotype</dt><dd><p>plotting coordinates for genotypes from all
-  components</p></dd> <dt>coordenviroment</dt><dd><p>plotting coordinates for environments
-  from all components</p></dd> <dt>eigenvalues</dt><dd><p>vector of eigenvalues from each
-  component</p></dd> <dt>vartotal</dt><dd><p>overall variance</p></dd> <dt>varexpl</dt><dd><p>percentage of
-  variance explained by each component</p></dd> <dt>labelgen</dt><dd><p>genotype names</p></dd>
-  <dt>labelenv</dt><dd><p>environment names</p></dd> <dt>axes</dt><dd><p>axis labels</p></dd>
-  <dt>Data</dt><dd><p>scaled and centered input data</p></dd> <dt>centering</dt><dd><p>name of
-  centering method</p></dd> <dt>scaling</dt><dd><p>name of scaling method</p></dd> <dt>SVP</dt><dd><p>name
-  of SVP method</p></dd>
+<dt>coordgenotype</dt><dd><p>plotting coordinates for genotypes from all components</p></dd>
+ <dt>coordenviroment</dt><dd><p>plotting coordinates for environments from all
+ components</p></dd> <dt>eigenvalues</dt><dd><p>vector of eigenvalues from each component</p></dd>
+ <dt>vartotal</dt><dd><p>overall variance</p></dd> <dt>varexpl</dt><dd><p>percentage of variance
+ explained by each component</p></dd> <dt>labelgen</dt><dd><p>genotype names</p></dd>
+ <dt>labelenv</dt><dd><p>environment names</p></dd> <dt>axes</dt><dd><p>axis labels</p></dd>
+ <dt>Data</dt><dd><p>scaled and centered input data</p></dd> <dt>centering</dt><dd><p>name of
+ centering method</p></dd> <dt>scaling</dt><dd><p>name of scaling method</p></dd> <dt>SVP</dt><dd><p>name of
+ SVP method</p></dd>
 
     <h2 class="hasAnchor" id="references"><a class="anchor" href="#references"></a>References</h2>
 
     <p>Yan W, Kang M (2003). <em>GGE Biplot Analysis: A Graphical Tool
-  for Breeders, Geneticists, and Agronomists</em>. CRC Press.</p>
+ for Breeders, Geneticists, and Agronomists</em>. CRC Press.</p>
 <p>Yan W, Kang M (2002). <em>Singular-Value Partitioning in Biplot
-  Analysis of Multienvironment Trial Data</em>. Agronomy Journal, 94, 990-996.
-  <a href='http://dx.doi.org/10.2134/agronj2002.0990'>http://dx.doi.org/10.2134/agronj2002.0990</a></p>
+ Analysis of Multienvironment Trial Data</em>. Agronomy Journal, 94, 990-996.
+ <a href='http://dx.doi.org/10.2134/agronj2002.0990'>http://dx.doi.org/10.2134/agronj2002.0990</a></p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'>
  <span class='fu'><a href='https://rdrr.io/r/base/library.html'>library</a></span>(<span class='no'>geneticae</span>)
  <span class='co'># Data without replication</span>
- <span class='fu'><a href='https://rdrr.io/r/utils/data.html'>data</a></span>(<span class='no'>yan.winterwheat</span>)
- <span class='no'>dat</span> <span class='kw'>&lt;-</span> <span class='no'>yan.winterwheat</span>
- <span class='no'>GGE1</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/pkg/geneticae/man/GGEmodel.html'>GGEmodel</a></span>(<span class='no'>dat</span>, <span class='kw'>genotype</span><span class='kw'>=</span><span class='st'>"gen"</span>,<span class='kw'>environment</span><span class='kw'>=</span><span class='st'>"env"</span>, <span class='kw'>response</span><span class='kw'>=</span><span class='st'>"yield"</span>,
+ <span class='no'>GGE1</span> <span class='kw'>&lt;-</span> <span class='fu'>GGEmodel</span>(<span class='no'>yan.winterwheat</span>, <span class='kw'>genotype</span><span class='kw'>=</span><span class='st'>"gen"</span>,<span class='kw'>environment</span><span class='kw'>=</span><span class='st'>"env"</span>, <span class='kw'>response</span><span class='kw'>=</span><span class='st'>"yield"</span>,
  <span class='kw'>centering</span> <span class='kw'>=</span> <span class='st'>"tester"</span>)
- <span class='no'>GGE1</span></div><div class='output co'>#&gt; $coordgenotype
-#&gt;             [,1]        [,2]        [,3]        [,4]         [,5]         [,6]
-#&gt;  [1,]  0.1530082  0.64758635  0.45535381 -0.33211373  0.377789909 -0.453443016
-#&gt;  [2,] -0.1851836  0.32433305 -0.43286219  0.91748483  0.380819224 -0.332849761
-#&gt;  [3,] -0.2096042  0.60297502  0.18263630  0.10825688  0.490524748  0.535015232
-#&gt;  [4,] -0.4772053 -0.46154085  0.17501312  0.17861310 -0.604117102 -0.582292840
-#&gt;  [5,] -0.3593281  0.34237274 -0.68722493  0.20097912  0.291386833  0.773924623
-#&gt;  [6,] -0.3499930  0.10889283  1.28579282 -0.06574775 -0.009171201  0.005615267
-#&gt;  [7,]  0.6641520  0.74384864 -0.21063990 -0.38693194 -0.810012831 -0.513988780
-#&gt;  [8,] -0.5649265 -1.16033283 -0.65841811 -1.00050309  0.335638216  0.272346055
-#&gt;  [9,] -0.4398616  0.33044030 -0.15634328 -0.34163767  1.129945352 -0.903440010
-#&gt; [10,] -0.4099374 -0.57062640  0.51130172 -0.42091109  0.514867748  0.344239026
-#&gt; [11,] -0.1937651  0.47694745 -0.09877450  0.99969959 -0.193095654  0.361285148
-#&gt; [12,]  1.4954927  0.26573099 -0.13551355 -0.77372387  0.609245552 -0.200591842
-#&gt; [13,]  0.8147874 -1.26445173  0.73553533  0.66831872 -0.263395166 -0.700287477
-#&gt; [14,] -0.2209619 -0.08360623  0.20751722 -0.82290422 -0.856840944  0.774885191
-#&gt; [15,] -0.3393550 -0.07530689  0.53553930  0.69785370  0.170163694  0.206414297
-#&gt; [16,]  0.1186967 -0.62283850 -1.36574900  0.47062367 -0.132941519 -0.425160384
-#&gt; [17,] -0.5360915  0.54950407 -0.26307545 -0.41458523 -1.270691048 -0.457691607
-#&gt; [18,]  1.0400763 -0.15392802 -0.08008873  0.31722897 -0.160115810  1.296020877
-#&gt;              [,7]        [,8]        [,9]
-#&gt;  [1,]  0.78468782 -0.03161651  0.84782446
-#&gt;  [2,] -0.09663567 -0.14640551 -0.47109903
-#&gt;  [3,] -0.36720028 -0.34068173 -0.02171504
-#&gt;  [4,]  0.59998884  0.36745201 -0.73350992
-#&gt;  [5,] -1.26230713  0.75025350  0.37720771
-#&gt;  [6,] -0.10878484 -0.12420615 -0.88614083
-#&gt;  [7,] -1.01157997 -0.73458792 -0.34003225
-#&gt;  [8,] -0.15603728  0.65737572 -0.63124600
-#&gt;  [9,] -0.03166559 -0.46225638 -0.47127507
-#&gt; [10,]  0.30353079 -0.42050719  1.22782190
-#&gt; [11,]  0.96062765  0.73916245 -0.35577215
-#&gt; [12,]  0.34014846  0.87746823 -0.11055128
-#&gt; [13,] -0.78746434  0.30555011  0.33483101
-#&gt; [14,]  0.17769439 -0.84404021 -0.29456414
-#&gt; [15,] -0.39559342 -0.09368576  0.50227642
-#&gt; [16,]  0.50251438 -1.04809923  0.39897150
-#&gt; [17,]  0.08354379  0.81930936  0.85740201
-#&gt; [18,]  0.46453239 -0.27048479 -0.23042931
-#&gt; 
-#&gt; $coordenviroment
-#&gt;             [,1]       [,2]       [,3]        [,4]         [,5]        [,6]
-#&gt;  [1,] -2.1606324 -0.3962828  1.0338080 -0.03068891  0.792291230 -0.10683324
-#&gt;  [2,] -1.7095519 -0.1383092 -0.4265392  0.36953124 -0.184558998 -0.02987519
-#&gt;  [3,] -1.7210341 -0.5400457 -0.7629747 -1.07091282  0.003151382  0.17078173
-#&gt;  [4,] -1.4871368 -0.6045948  0.2439564  0.22016939 -0.391461568 -0.08306449
-#&gt;  [5,] -2.4765733  1.0413288  0.9368192 -0.15127409 -0.530310012  0.04712930
-#&gt;  [6,] -0.9817773 -1.0666473 -0.2680677  0.44192910  0.090926672  0.62975013
-#&gt;  [7,] -1.9042955  1.6251605 -1.1154354  0.30314300  0.301298301 -0.15818896
-#&gt;  [8,] -0.4161541 -1.2123532 -0.2689810  0.01107449 -0.083633790 -0.70108103
-#&gt;  [9,] -1.2026972 -0.9983865 -0.3118339  0.25701646 -0.111813864 -0.02535111
-#&gt;              [,7]        [,8]          [,9]
-#&gt;  [1,] -0.02645051 -0.06221716  0.0221005939
-#&gt;  [2,] -0.01495705 -0.62132931 -0.0007087952
-#&gt;  [3,] -0.05712120 -0.02827907  0.0102841702
-#&gt;  [4,] -0.53594210  0.17802529  0.1120363445
-#&gt;  [5,]  0.20708586  0.08443108 -0.0825000342
-#&gt;  [6,] -0.04839046  0.15029717 -0.1345654959
-#&gt;  [7,] -0.05991222  0.20457586 -0.0042288408
-#&gt;  [8,]  0.01962540  0.09666242 -0.1448006851
-#&gt;  [9,]  0.51435651  0.16137641  0.1445840078
-#&gt; 
-#&gt; $eigenvalues
-#&gt; [1] 5.0107627 2.8571277 2.0629148 1.3073198 1.1021858 0.9820180 0.7779354
-#&gt; [8] 0.7275774 0.2827554
-#&gt; 
-#&gt; $vartotal
-#&gt; [1] 42.63
-#&gt; 
-#&gt; $varexpl
-#&gt; [1] 58.90 19.15  9.98  4.01  2.85  2.26  1.42  1.24  0.19
-#&gt; 
-#&gt; $labelgen
-#&gt;  [1] "Ann" "Ari" "Aug" "Cas" "Del" "Dia" "Ena" "Fun" "Ham" "Har" "Kar" "Kat"
-#&gt; [13] "Luc" "Reb" "Ron" "Rub" "Zav" "m12"
-#&gt; 
-#&gt; $labelenv
-#&gt; [1] "BH93" "EA93" "HW93" "ID93" "KE93" "NN93" "OA93" "RN93" "WP93"
-#&gt; 
-#&gt; $labelaxes
-#&gt; [1] "Component 1" "Component 2" "Component 3" "Component 4" "Component 5"
-#&gt; [6] "Component 6" "Component 7" "Component 8" "Component 9"
-#&gt; 
-#&gt; $Data
-#&gt;            BH93        EA93        HW93        ID93        KE93        NN93
-#&gt; Ann  0.09705556 -0.28822222 -0.28794444 -0.41105556  0.25744444 -0.61016667
-#&gt; Ari  0.05405556  0.33277778 -0.22494444  0.01094444  0.01644444  0.09183333
-#&gt; Aug  0.30605556  0.13977778 -0.03894444 -0.03505556  0.38744444 -0.03516667
-#&gt; Cas  0.36905556  0.30677778  0.23805556  0.40894444  0.54144444  0.27983333
-#&gt; Del  0.02705556  0.16477778  0.37405556  0.35294444  0.09044444  0.36083333
-#&gt; Dia  0.81505556  0.03677778 -0.14694444  0.27894444  0.90044444 -0.01516667
-#&gt; Ena -0.98794444 -0.26322222 -0.39594444 -0.33805556 -0.34055556 -0.79316667
-#&gt; Fun  0.48905556  0.22577778  1.28805556  0.45694444 -0.14655556  0.77183333
-#&gt; Ham  0.67505556  0.30277778  0.37105556 -0.05805556  0.27744444 -0.20116667
-#&gt; Har  0.83205556  0.22377778  0.45905556  0.26394444  0.25444444  0.28483333
-#&gt; Kar -0.06994444  0.09177778 -0.37694444 -0.07305556  0.45944444  0.18983333
-#&gt; Kat -1.21194444 -1.39822222 -0.74894444 -1.14505556 -1.45355556 -0.80316667
-#&gt; Luc -0.25894444 -0.56022222 -0.83494444  0.22294444 -1.12755556  0.08883333
-#&gt; Reb  0.01205556  0.26277778  0.51805556  0.09694444  0.50644444  0.08083333
-#&gt; Ron  0.57705556  0.25977778 -0.18694444  0.40294444  0.38044444  0.26583333
-#&gt; Rub -0.57694444  0.53077778  0.24205556 -0.14205556 -0.90855556  0.24383333
-#&gt; Zav -0.12494444  0.21577778  0.47005556  0.41894444  0.95844444 -0.23016667
-#&gt; m12 -1.02294444 -0.58422222 -0.71794444 -0.71205556 -1.05355556  0.02983333
-#&gt;            OA93         RN93        WP93
-#&gt; Ann  0.11294444 -0.321222222 -0.22816667
-#&gt; Ari  0.71794444  0.025777778  0.03783333
-#&gt; Aug  0.49194444 -0.460222222 -0.27916667
-#&gt; Cas -0.01205556  0.532777778  0.55083333
-#&gt; Del  0.90894444 -0.262222222 -0.06816667
-#&gt; Dia -0.25305556 -0.089222222 -0.12416667
-#&gt; Ena -0.07605556 -0.297222222 -0.86816667
-#&gt; Fun -0.07005556  0.699777778  0.67383333
-#&gt; Ham  0.73894444  0.153777778 -0.04116667
-#&gt; Har -0.34305556  0.089777778  0.39983333
-#&gt; Kar  0.61794444 -0.223222222  0.24883333
-#&gt; Kat -0.85405556 -0.289222222 -0.79716667
-#&gt; Luc -1.64205556  0.595777778 -0.01416667
-#&gt; Reb -0.30505556 -0.152222222  0.02483333
-#&gt; Ron  0.06394444 -0.061222222  0.13083333
-#&gt; Rub  0.08394444  0.497777778  0.48183333
-#&gt; Zav  0.77594444  0.002777778  0.21083333
-#&gt; m12 -0.95705556 -0.442222222 -0.33916667
-#&gt; 
-#&gt; $centering
-#&gt; [1] "tester"
-#&gt; 
-#&gt; $scaling
-#&gt; [1] "none"
-#&gt; 
-#&gt; $SVP
-#&gt; [1] "column"
-#&gt; 
-#&gt; attr(,"class")
-#&gt; [1] "GGEModel"</div><div class='input'>
+
  <span class='co'># Data with replication</span>
  <span class='fu'><a href='https://rdrr.io/r/utils/data.html'>data</a></span>(<span class='no'>plrv</span>)
- <span class='no'>dat2</span> <span class='kw'>&lt;-</span> <span class='no'>plrv</span>
- <span class='no'>GGE2</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/pkg/geneticae/man/GGEmodel.html'>GGEmodel</a></span>(<span class='no'>dat2</span>, <span class='kw'>genotype</span><span class='kw'>=</span><span class='st'>"Genotype"</span>,<span class='kw'>environment</span><span class='kw'>=</span><span class='st'>"Locality"</span>,
- <span class='kw'>response</span><span class='kw'>=</span><span class='st'>"Yield"</span>, <span class='kw'>rep</span><span class='kw'>=</span><span class='st'>"Rep"</span>, <span class='kw'>centering</span> <span class='kw'>=</span> <span class='st'>"tester"</span>)
- <span class='no'>GGE2</span></div><div class='output co'>#&gt; $coordgenotype
-#&gt;              [,1]        [,2]        [,3]       [,4]        [,5]         [,6]
-#&gt;  [1,]  13.1599199  11.2402379 -11.3258699   1.100730  -9.7700163  -0.08423373
-#&gt;  [2,]  -2.6712833 -13.4010093   4.6435963 -11.879490   9.3604154  18.06379977
-#&gt;  [3,]  -2.8388013  15.4708753   6.4980730 -23.665421 -38.3615150 -26.21450937
-#&gt;  [4,] -22.1004225  10.8276350   0.4140370  23.518765  -6.5829733  -3.78313886
-#&gt;  [5,] -13.1586184  26.5511807 -29.9653225 -18.715062  32.7516100 -11.10401765
-#&gt;  [6,]  22.5805933  -4.9545868   3.5960527  -5.438240  10.6578624   2.45875675
-#&gt;  [7,]  15.0715498   4.8891815  10.7524987 -18.048322   4.8180940 -13.36021466
-#&gt;  [8,]   2.4086333 -10.0595627  18.4555772   8.944282  -2.2419523  12.06958195
-#&gt;  [9,] -17.6581301 -30.6832122   3.8042823  12.046447 -19.7570706  -6.66522749
-#&gt; [10,]   9.8382082   2.0579479  -0.7785275 -15.759563  -4.2295163   0.89757505
-#&gt; [11,]   6.0593949 -17.2171230 -12.5525191  20.141091   2.8798804  -7.64512658
-#&gt; [12,]  -2.2283185   1.7179779  27.7544974 -23.260580   3.8583008   7.84283766
-#&gt; [13,] -11.3460070   0.8891889  -5.5073572 -10.578012 -10.7867387   8.46852746
-#&gt; [14,] -24.3859940  26.8839018   9.7054951  10.494141  20.4825989   5.27342121
-#&gt; [15,]  13.2085618   5.4358912  -9.4227183  -3.425477 -23.6720784  46.48987222
-#&gt; [16,]  12.4153127  -9.8136191   4.0148161  12.286318  20.2756363  -2.79290110
-#&gt; [17,]  20.4731660  -8.3636916  -4.5088310  18.715584  15.2860365  -2.37073236
-#&gt; [18,] -12.7570474  17.7566036  -0.1082452  28.915017  -1.2148570   7.18167090
-#&gt; [19,]  -6.3151692  -5.6600986  -6.4711582   3.358178 -15.6790099 -17.78903149
-#&gt; [20,]   5.2615918   0.2747575  10.1223656  -3.972556   8.0931779  -6.89976350
-#&gt; [21,]  10.6159858  -1.4798333 -19.6422305  17.085264 -12.5157572  -4.63531840
-#&gt; [22,]  -7.3166573 -17.0645764  11.0824721  -8.015591   8.2589644 -10.93134865
-#&gt; [23,] -10.2440511  -9.2642899 -15.7623808  -6.699083   7.9887612  21.01413708
-#&gt; [24,] -13.6335351  15.3074039  -4.7705166   4.647580 -12.3202620  -5.76200109
-#&gt; [25,]  -2.6045867  -5.5835582 -20.7332201 -16.623147  -0.5609186  18.53176294
-#&gt; [26,]  -0.5662632  10.3852101  42.1542792   9.088932   3.4944553   6.78852929
-#&gt; [27,]  37.3978781  14.7748463  -3.8412065   7.503855  -0.7326625 -17.61176202
-#&gt; [28,] -18.6659103 -30.9176788  -7.6079390 -11.765642  10.2195346 -17.43114535
-#&gt; 
-#&gt; $coordenviroment
-#&gt;            [,1]       [,2]       [,3]       [,4]        [,5]         [,6]
-#&gt; [1,] -11.184716   1.529300  -7.849664  13.296756 -12.4257247   7.06096768
-#&gt; [2,] -63.299208 -31.348427   9.866225   3.288961   0.6398973  -0.05102558
-#&gt; [3,] -22.563962  -9.855275 -17.789036 -19.015619  -2.6739543   2.25623708
-#&gt; [4,] -67.881957  32.965961   1.351353  -1.218949   0.5462053  -1.61037165
-#&gt; [5,] -10.148932  -1.245570 -13.675776   9.890225  13.1346849   5.48008878
-#&gt; [6,]  -6.098084  -5.830166 -14.475827   8.941828  -1.8976939 -11.96384777
-#&gt; 
-#&gt; $eigenvalues
-#&gt; [1] 96.89772 46.95195 29.56031 26.99025 18.39504 15.18910
-#&gt; 
-#&gt; $vartotal
-#&gt; [1] 13765.03
-#&gt; 
-#&gt; $varexpl
-#&gt; [1] 68.21 16.02  6.35  5.29  2.46  1.68
-#&gt; 
-#&gt; $labelgen
-#&gt;  [1] "102.18"  "104.22"  "121.31"  "141.28"  "157.26"  "163.9"   "221.19" 
-#&gt;  [8] "233.11"  "235.6"   "241.2"   "255.7"   "314.12"  "317.6"   "319.20" 
-#&gt; [15] "320.16"  "342.15"  "346.2"   "351.26"  "364.21"  "402.7"   "405.2"  
-#&gt; [22] "406.12"  "427.7"   "450.3"   "506.2"   "Canchan" "Desiree" "Unica"  
-#&gt; 
-#&gt; $labelenv
-#&gt; [1] "Ayac"   "Hyo-02" "LM-02"  "LM-03"  "SR-02"  "SR-03" 
-#&gt; 
-#&gt; $labelaxes
-#&gt; [1] "Component 1" "Component 2" "Component 3" "Component 4" "Component 5"
-#&gt; [6] "Component 6"
-#&gt; 
-#&gt; $Data
-#&gt;               Ayac     Hyo-02       LM-02       LM-03       SR-02      SR-03
-#&gt; 102.18   1.2225074 -16.841931  -2.6075838  -7.0571527  -1.4327601  0.6162674
-#&gt; 104.22  -2.2519194   7.787698   4.5529101  -3.4165491   1.0981041 -4.0545145
-#&gt; 121.31  -0.2423172  -4.434524   3.7504409   9.8687733 -12.4512787  0.1018641
-#&gt; 141.28   8.1414767  14.732143  -0.6940035  23.7329708   4.2832892  4.3240863
-#&gt; 157.26  -4.0327346  -4.341931  10.5158730  23.1505977   8.9993386  3.4022756
-#&gt; 163.9   -6.1646178 -16.193783  -5.7557319 -21.8054380  -2.2352293 -3.3578655
-#&gt; 221.19  -8.2889564 -13.693783  -3.6199295 -10.3822555  -6.4080688 -3.7156942
-#&gt; 233.11   0.5807281   4.824735  -5.4470899  -6.5015971  -1.8031305 -3.6717985
-#&gt; 235.6    6.2110436  27.787698   5.7257496   2.3008720  -0.1488095  5.9146213
-#&gt; 241.2   -3.2580922  -9.712302   1.0961199  -7.5880169  -3.8648589 -2.6479889
-#&gt; 255.7    2.3644827   1.306217  -1.9656085 -13.0424922   4.2339065  6.6244978
-#&gt; 314.12  -6.3774338   3.713624  -0.1384480   3.4109543  -6.4204145 -9.1656256
-#&gt; 317.6    2.9112199   7.695106   7.7010582  10.1774152  -0.1364638 -0.4108245
-#&gt; 319.20   2.0724976  10.935847  -1.6816578  32.9730943   6.2585979 -2.0298231
-#&gt; 320.16   6.6266814 -14.619709   0.6393298 -10.5448070  -1.3216490 -6.7088355
-#&gt; 342.15  -3.8054173  -4.990079  -7.1137566 -15.0346046   2.6413139  0.3652386
-#&gt; 346.2   -2.1277767 -13.045635  -9.0890653 -21.7978934   3.0734127  2.0200005
-#&gt; 351.26   8.0464345   4.454365  -5.3853616  18.1891436   5.4190917  1.9537160
-#&gt; 364.21   2.9367931   6.676587   3.2566138   3.2309132  -1.4327601  5.6728518
-#&gt; 402.7   -4.4055545  -3.230820  -3.4100529  -4.0694983  -2.1117725 -1.9248849
-#&gt; 405.2    4.9648159  -9.990079  -2.2989418 -10.5756712   1.8388448  5.9633181
-#&gt; 406.12  -4.1160189  14.083995   3.1331570  -0.2464531  -1.1241182  0.3513252
-#&gt; 427.7    2.3865286   9.917328   9.7998236   4.5011464   6.2832892  0.2356090
-#&gt; 450.3    5.0217432   4.454365   2.2442681  18.4070449   0.4808201  2.5504238
-#&gt; 506.2    1.2974633   1.028439  10.9109347  -0.5852734   3.1968695 -0.2685063
-#&gt; Canchan -2.3753762   2.046958 -13.0396825   5.4119831  -5.3216490 -8.7321551
-#&gt; Desiree -4.9371046 -36.841931 -14.2742504 -26.4074613  -4.8895503  0.2669631
-#&gt; Unica   -2.4010963  26.491402  13.1948854   3.7002548   3.2956349  6.3254581
-#&gt; 
-#&gt; $centering
-#&gt; [1] "tester"
-#&gt; 
-#&gt; $scaling
-#&gt; [1] "none"
-#&gt; 
-#&gt; $SVP
-#&gt; [1] "column"
-#&gt; 
-#&gt; attr(,"class")
-#&gt; [1] "GGEModel"</div><div class='input'>
-</div></pre>
+ <span class='no'>GGE2</span> <span class='kw'>&lt;-</span> <span class='fu'>GGEmodel</span>(<span class='no'>plrv</span>, <span class='kw'>genotype</span><span class='kw'>=</span><span class='st'>"Genotype"</span>,<span class='kw'>environment</span><span class='kw'>=</span><span class='st'>"Locality"</span>,
+ <span class='kw'>response</span><span class='kw'>=</span><span class='st'>"Yield"</span>, <span class='kw'>rep</span><span class='kw'>=</span><span class='st'>"Rep"</span>, <span class='kw'>centering</span> <span class='kw'>=</span> <span class='st'>"tester"</span>)</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>

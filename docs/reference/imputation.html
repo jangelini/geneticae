@@ -6,8 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Produces genotype plus genotype-by-environment model from a 2-way table of
-means — imputation • geneticae</title>
+<title>Imputation of missing cells in two-way data sets — imputation • geneticae</title>
 
 <!-- favicons -->
 <link rel="icon" type="image/png" sizes="16x16" href="../favicon-16x16.png">
@@ -43,10 +42,10 @@ means — imputation • geneticae</title>
 
 
 
-<meta property="og:title" content="Produces genotype plus genotype-by-environment model from a 2-way table of
-means — imputation" />
-<meta property="og:description" content="Produces genotype plus genotype-by-environment model from a 2-way table of
-means" />
+<meta property="og:title" content="Imputation of missing cells in two-way data sets — imputation" />
+<meta property="og:description" content="AMMI or GGE methods require the data to be complete, that is, no missing cells
+are allowed. This function offers several methods to impute the missing cells,
+so that the previously mentioned models can be adjusted later." />
 <meta name="twitter:card" content="summary" />
 
 
@@ -128,15 +127,15 @@ means" />
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Produces genotype plus genotype-by-environment model from a 2-way table of
-means</h1>
+    <h1>Imputation of missing cells in two-way data sets</h1>
     
     <div class="hidden name"><code>imputation.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p>Produces genotype plus genotype-by-environment model from a 2-way table of
-means</p>
+    <p>AMMI or GGE methods require the data to be complete, that is, no missing cells
+are allowed. This function offers several methods to impute the missing cells,
+so that the previously mentioned models can be adjusted later.</p>
     </div>
 
     <pre class="usage"><span class='fu'>imputation</span>(
@@ -193,60 +192,73 @@ is NULL, there is no replications in the data.</p></td>
     </tr>
     <tr>
       <th>type</th>
-      <td><p>imputation method. Either "EM-AMMI", "EM-SVD", "Gabriel","WGabriel","EM-PCA".</p></td>
+      <td><p>imputation method. Either "EM-AMMI", "EM-SVD",
+"Gabriel","WGabriel","EM-PCA".</p></td>
     </tr>
     <tr>
       <th>PC.nb</th>
       <td><p>the number of principal components in the AMMI model that will be
-used; the default value is 1. For PC.nb=0 only main effects are used to estimate cells in the
-data table (the interaction is ignored). The number of principal components must not be
-greater than min(number of rows in the X table, number of columns in the X table)–2.</p></td>
+used; the default value is 1. For PC.nb=0 only main effects are used to
+estimate cells in the data table (the interaction is ignored). The number of
+principal components must not be greater than min(number of rows in the X
+table, number of columns in the X table)–2.</p></td>
     </tr>
     <tr>
       <th>initial.values</th>
-      <td><p>(optional) the initial values of the missing cells. It can be a single value,
-which then will be used for all empty cells, or a vector of length equal to the number of
-missing cells (starting from the missing values in the first column). If omitted, the initial
-values will be obtained by the main effects from the corresponding model, that is, by the
-grand mean of the observed data increased (or decreased) by row and column main effects.</p></td>
+      <td><p>(optional) the initial values of the missing cells. It
+can be a single value, which then will be used for all empty cells, or a
+vector of length equal to the number of missing cells (starting from the
+missing values in the first column). If omitted, the initial values will be
+obtained by the main effects from the corresponding model, that is, by the
+grand mean of the observed data increased (or decreased) by row and column
+main effects.</p></td>
     </tr>
     <tr>
       <th>precision</th>
-      <td><p>(optional) the algorithm converges if the maximal change in the values of the
-missing cells in two subsequent steps is not greater than this value (the default is 0.01);</p></td>
+      <td><p>(optional) the algorithm converges if the maximal change in
+the values of the missing cells in two subsequent steps is not greater than
+this value (the default is 0.01);</p></td>
     </tr>
     <tr>
       <th>max.iter</th>
-      <td><p>(optional) a maximum permissible number of iterations (that is, number of
-repeats of the algorithm’s steps 2 through 5); the default value is 1000;</p></td>
+      <td><p>(optional) a maximum permissible number of iterations (that
+is, number of repeats of the algorithm’s steps 2 through 5); the default
+value is 1000;</p></td>
     </tr>
     <tr>
       <th>change.factor</th>
-      <td><p>(optional) introduced by analogy to step size in gradient descent method,
-this parameter that can shorten the time of executing the algorithm by decreasing the
-number of iterations. The change.factor=1 (default) defines that the previous
-approximation is changed with the new values of missing cells (standard EM-AMMI algorithm). However, when change.factor&lt;1, then the new approximations are computed
-and the values of missing cells are changed in the direction of this new approximation but
-the change is smaller. It could be useful if the changes are cyclic and thus convergence could
-not be reached. Usually, this argument should not affect the final outcome (that is, the
-imputed values) as compared to the default value of change.factor=1.</p></td>
+      <td><p>(optional) introduced by analogy to step size in gradient
+descent method, this parameter that can shorten the time of executing the
+algorithm by decreasing the number of iterations. The change.factor=1
+(default) defines that the previous approximation is changed with the new
+values of missing cells (standard EM-AMMI algorithm). However, when
+change.factor&lt;1, then the new approximations are computed and the values of
+missing cells are changed in the direction of this new approximation but the
+change is smaller. It could be useful if the changes are cyclic and thus
+convergence could not be reached. Usually, this argument should not affect
+the final outcome (that is, the imputed values) as compared to the default
+value of change.factor=1.</p></td>
     </tr>
     <tr>
       <th>simplified.model</th>
-      <td><p>the AMMI model contains the general mean, effects of rows, columns
-and interaction terms. So the EM-AMMI algorithm in step 2 calculates the current effects of
-rows and columns; these effects change from iteration to iteration because the empty (at the
-outset) cells in each iteration are filled with different values. In step 3 EM-AMMI uses those
-effects to re-estimate cells marked as missed (as default, simplified.model=FALSE). It is,
-however, possible that this procedure will not converge. Thus the user is offered a simplified
-EM-AMMI procedure that calculates the general mean and effects of rows and columns only
-in the first iteration and in next iterations uses these values (simplified.model=TRUE). In
-this simplified procedure the initial values affect the outcome (whilst EM-AMMI results
-usually do not depend on initial values). For the simplified procedure the number of
-iterations to convergence is usually smaller and, furthermore, convergence will be reached
-even in some cases where the regular procedure fails. If the regular procedure does not
-converge for the standard initial values (see the description of the argument
-initial.values), the simplified model can be used to determine a better set of initial values.</p></td>
+      <td><p>the AMMI model contains the general mean, effects of
+rows, columns and interaction terms. So the EM-AMMI algorithm in step 2
+calculates the current effects of rows and columns; these effects change
+from iteration to iteration because the empty (at the outset) cells in each
+iteration are filled with different values. In step 3 EM-AMMI uses those
+effects to re-estimate cells marked as missed (as default,
+simplified.model=FALSE). It is, however, possible that this procedure will
+not converge. Thus the user is offered a simplified EM-AMMI procedure that
+calculates the general mean and effects of rows and columns only in the
+first iteration and in next iterations uses these values
+(simplified.model=TRUE). In this simplified procedure the initial values
+affect the outcome (whilst EM-AMMI results usually do not depend on initial
+values). For the simplified procedure the number of iterations to
+convergence is usually smaller and, furthermore, convergence will be reached
+even in some cases where the regular procedure fails. If the regular
+procedure does not converge for the standard initial values (see the
+description of the argument initial.values), the simplified model can be
+used to determine a better set of initial values.</p></td>
     </tr>
     <tr>
       <th>k</th>
@@ -305,6 +317,12 @@ initial.values), the simplified model can be used to determine a better set of i
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
     <p>matrix with imputed data</p>
+    <h2 class="hasAnchor" id="references"><a class="anchor" href="#references"></a>References</h2>
+
+    <p>Paderewski, J. (2013). An R function for imputation of missing
+ cells in two-way data sets by EM-AMMI algorithm. Communications in Biometry
+ and Crop Science 8 (2), 60–69.</p>
+<p>FALTAN CITAS....GABRIEL EMPCA...</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='fu'><a href='https://rdrr.io/r/base/library.html'>library</a></span>(<span class='no'>geneticae</span>)
@@ -315,7 +333,7 @@ initial.values), the simplified model can be used to determine a better set of i
 <span class='no'>dat</span>[<span class='fl'>1</span>,<span class='fl'>3</span>]<span class='kw'>&lt;-</span><span class='fl'>NA</span>
 <span class='no'>dat</span>[<span class='fl'>3</span>,<span class='fl'>3</span>]<span class='kw'>&lt;-</span><span class='fl'>NA</span>
 <span class='no'>dat</span>[<span class='fl'>2</span>,<span class='fl'>3</span>]<span class='kw'>&lt;-</span><span class='fl'>NA</span>
-<span class='fu'><a href='https://rdrr.io/pkg/geneticae/man/imputation.html'>imputation</a></span>(<span class='no'>dat</span>, <span class='kw'>genotype</span><span class='kw'>=</span><span class='st'>"gen"</span>,<span class='kw'>environment</span><span class='kw'>=</span><span class='st'>"env"</span>, <span class='kw'>response</span><span class='kw'>=</span><span class='st'>"yield"</span>, <span class='kw'>type</span><span class='kw'>=</span><span class='st'>"EM-SVD"</span>)</div><div class='output co'>#&gt;           [,1]  [,2]  [,3]  [,4]  [,5]  [,6]  [,7]  [,8]  [,9]
+<span class='fu'>imputation</span>(<span class='no'>dat</span>, <span class='kw'>genotype</span><span class='kw'>=</span><span class='st'>"gen"</span>,<span class='kw'>environment</span><span class='kw'>=</span><span class='st'>"env"</span>, <span class='kw'>response</span><span class='kw'>=</span><span class='st'>"yield"</span>, <span class='kw'>type</span><span class='kw'>=</span><span class='st'>"EM-SVD"</span>)</div><div class='output co'>#&gt;           [,1]  [,2]  [,3]  [,4]  [,5]  [,6]  [,7]  [,8]  [,9]
 #&gt;  [1,] 4.332467 4.150 2.849 3.084 5.940 4.450 4.351 4.039 2.672
 #&gt;  [2,] 4.332467 4.771 2.912 3.506 5.699 5.152 4.956 4.386 2.938
 #&gt;  [3,] 4.332467 4.578 3.098 3.460 6.070 5.025 4.730 3.900 2.621
@@ -333,7 +351,7 @@ initial.values), the simplified model can be used to determine a better set of i
 #&gt; [15,] 4.940000 4.698 2.950 3.898 6.063 5.326 4.302 4.299 3.031
 #&gt; [16,] 3.786000 4.969 3.379 3.353 4.774 5.304 4.322 4.858 3.382
 #&gt; [17,] 4.238000 4.654 3.607 3.914 6.641 4.830 5.014 4.363 3.111
-#&gt; [18,] 3.340000 3.854 2.419 2.783 4.629 5.090 3.281 3.918 2.561</div><div class='input'><span class='fu'><a href='https://rdrr.io/pkg/geneticae/man/imputation.html'>imputation</a></span>(<span class='no'>dat</span>, <span class='kw'>genotype</span><span class='kw'>=</span><span class='st'>"gen"</span>,<span class='kw'>environment</span><span class='kw'>=</span><span class='st'>"env"</span>, <span class='kw'>response</span><span class='kw'>=</span><span class='st'>"yield"</span>, <span class='kw'>type</span><span class='kw'>=</span><span class='st'>"EM-AMMI"</span>)</div><div class='output co'>#&gt;         BH93  EA93  HW93  ID93  KE93  NN93  OA93  RN93  WP93
+#&gt; [18,] 3.340000 3.854 2.419 2.783 4.629 5.090 3.281 3.918 2.561</div><div class='input'><span class='fu'>imputation</span>(<span class='no'>dat</span>, <span class='kw'>genotype</span><span class='kw'>=</span><span class='st'>"gen"</span>,<span class='kw'>environment</span><span class='kw'>=</span><span class='st'>"env"</span>, <span class='kw'>response</span><span class='kw'>=</span><span class='st'>"yield"</span>, <span class='kw'>type</span><span class='kw'>=</span><span class='st'>"EM-AMMI"</span>)</div><div class='output co'>#&gt;         BH93  EA93  HW93  ID93  KE93  NN93  OA93  RN93  WP93
 #&gt; Ann 4.136249 4.150 2.849 3.084 5.940 4.450 4.351 4.039 2.672
 #&gt; Ari 4.474249 4.771 2.912 3.506 5.699 5.152 4.956 4.386 2.938
 #&gt; Aug 4.386299 4.578 3.098 3.460 6.070 5.025 4.730 3.900 2.621
@@ -351,7 +369,7 @@ initial.values), the simplified model can be used to determine a better set of i
 #&gt; Ron 4.940000 4.698 2.950 3.898 6.063 5.326 4.302 4.299 3.031
 #&gt; Rub 3.786000 4.969 3.379 3.353 4.774 5.304 4.322 4.858 3.382
 #&gt; Zav 4.238000 4.654 3.607 3.914 6.641 4.830 5.014 4.363 3.111
-#&gt; m12 3.340000 3.854 2.419 2.783 4.629 5.090 3.281 3.918 2.561</div><div class='input'><span class='fu'><a href='https://rdrr.io/pkg/geneticae/man/imputation.html'>imputation</a></span>(<span class='no'>dat</span>, <span class='kw'>genotype</span><span class='kw'>=</span><span class='st'>"gen"</span>,<span class='kw'>environment</span><span class='kw'>=</span><span class='st'>"env"</span>, <span class='kw'>response</span><span class='kw'>=</span><span class='st'>"yield"</span>, <span class='kw'>type</span><span class='kw'>=</span><span class='st'>"Gabriel"</span>)</div><div class='output co'>#&gt;         BH93  EA93  HW93  ID93  KE93  NN93  OA93  RN93  WP93
+#&gt; m12 3.340000 3.854 2.419 2.783 4.629 5.090 3.281 3.918 2.561</div><div class='input'><span class='fu'>imputation</span>(<span class='no'>dat</span>, <span class='kw'>genotype</span><span class='kw'>=</span><span class='st'>"gen"</span>,<span class='kw'>environment</span><span class='kw'>=</span><span class='st'>"env"</span>, <span class='kw'>response</span><span class='kw'>=</span><span class='st'>"yield"</span>, <span class='kw'>type</span><span class='kw'>=</span><span class='st'>"Gabriel"</span>)</div><div class='output co'>#&gt;         BH93  EA93  HW93  ID93  KE93  NN93  OA93  RN93  WP93
 #&gt; Ann 3.982510 4.150 2.849 3.084 5.940 4.450 4.351 4.039 2.672
 #&gt; Ari 4.462387 4.771 2.912 3.506 5.699 5.152 4.956 4.386 2.938
 #&gt; Aug 4.325113 4.578 3.098 3.460 6.070 5.025 4.730 3.900 2.621
@@ -369,7 +387,7 @@ initial.values), the simplified model can be used to determine a better set of i
 #&gt; Ron 4.940000 4.698 2.950 3.898 6.063 5.326 4.302 4.299 3.031
 #&gt; Rub 3.786000 4.969 3.379 3.353 4.774 5.304 4.322 4.858 3.382
 #&gt; Zav 4.238000 4.654 3.607 3.914 6.641 4.830 5.014 4.363 3.111
-#&gt; m12 3.340000 3.854 2.419 2.783 4.629 5.090 3.281 3.918 2.561</div><div class='input'><span class='fu'><a href='https://rdrr.io/pkg/geneticae/man/imputation.html'>imputation</a></span>(<span class='no'>dat</span>, <span class='kw'>genotype</span><span class='kw'>=</span><span class='st'>"gen"</span>,<span class='kw'>environment</span><span class='kw'>=</span><span class='st'>"env"</span>, <span class='kw'>response</span><span class='kw'>=</span><span class='st'>"yield"</span>, <span class='kw'>type</span><span class='kw'>=</span><span class='st'>"WGabriel"</span>)</div><div class='output co'>#&gt; [1] "  PesoExterno =  0.8"
+#&gt; m12 3.340000 3.854 2.419 2.783 4.629 5.090 3.281 3.918 2.561</div><div class='input'><span class='fu'>imputation</span>(<span class='no'>dat</span>, <span class='kw'>genotype</span><span class='kw'>=</span><span class='st'>"gen"</span>,<span class='kw'>environment</span><span class='kw'>=</span><span class='st'>"env"</span>, <span class='kw'>response</span><span class='kw'>=</span><span class='st'>"yield"</span>, <span class='kw'>type</span><span class='kw'>=</span><span class='st'>"WGabriel"</span>)</div><div class='output co'>#&gt; [1] "  PesoExterno =  0.8"
 #&gt; [1] "  PesoExterno =  0.9"
 #&gt; [1] "  PesoExterno =  1"
 #&gt; [1] "    PesoInterno =  0.8"
@@ -410,7 +428,7 @@ initial.values), the simplified model can be used to determine a better set of i
 #&gt; Ron 4.940000 4.698 2.950 3.898 6.063 5.326 4.302 4.299 3.031
 #&gt; Rub 3.786000 4.969 3.379 3.353 4.774 5.304 4.322 4.858 3.382
 #&gt; Zav 4.238000 4.654 3.607 3.914 6.641 4.830 5.014 4.363 3.111
-#&gt; m12 3.340000 3.854 2.419 2.783 4.629 5.090 3.281 3.918 2.561</div><div class='input'><span class='fu'><a href='https://rdrr.io/pkg/geneticae/man/imputation.html'>imputation</a></span>(<span class='no'>dat</span>, <span class='kw'>genotype</span><span class='kw'>=</span><span class='st'>"gen"</span>,<span class='kw'>environment</span><span class='kw'>=</span><span class='st'>"env"</span>, <span class='kw'>response</span><span class='kw'>=</span><span class='st'>"yield"</span>, <span class='kw'>type</span><span class='kw'>=</span><span class='st'>"EM-PCA"</span>)</div><div class='output co'>#&gt;         BH93  EA93  HW93  ID93  KE93  NN93  OA93  RN93  WP93
+#&gt; m12 3.340000 3.854 2.419 2.783 4.629 5.090 3.281 3.918 2.561</div><div class='input'><span class='fu'>imputation</span>(<span class='no'>dat</span>, <span class='kw'>genotype</span><span class='kw'>=</span><span class='st'>"gen"</span>,<span class='kw'>environment</span><span class='kw'>=</span><span class='st'>"env"</span>, <span class='kw'>response</span><span class='kw'>=</span><span class='st'>"yield"</span>, <span class='kw'>type</span><span class='kw'>=</span><span class='st'>"EM-PCA"</span>)</div><div class='output co'>#&gt;         BH93  EA93  HW93  ID93  KE93  NN93  OA93  RN93  WP93
 #&gt; Ann 3.980317 4.150 2.849 3.084 5.940 4.450 4.351 4.039 2.672
 #&gt; Ari 4.463093 4.771 2.912 3.506 5.699 5.152 4.956 4.386 2.938
 #&gt; Aug 4.327731 4.578 3.098 3.460 6.070 5.025 4.730 3.900 2.621
@@ -435,7 +453,87 @@ initial.values), the simplified model can be used to determine a better set of i
  <span class='no'>dat2</span>[<span class='fl'>1</span>,<span class='fl'>3</span>]<span class='kw'>&lt;-</span><span class='fl'>NA</span>
 <span class='no'>dat2</span>[<span class='fl'>3</span>,<span class='fl'>3</span>]<span class='kw'>&lt;-</span><span class='fl'>NA</span>
 <span class='no'>dat2</span>[<span class='fl'>2</span>,<span class='fl'>3</span>]<span class='kw'>&lt;-</span><span class='fl'>NA</span>
-<span class='fu'><a href='https://rdrr.io/pkg/geneticae/man/imputation.html'>imputation</a></span>(<span class='no'>dat2</span>, <span class='kw'>genotype</span><span class='kw'>=</span><span class='st'>"gen"</span>,<span class='kw'>environment</span><span class='kw'>=</span><span class='st'>"env"</span>, <span class='kw'>response</span><span class='kw'>=</span><span class='st'>"yield"</span>, <span class='kw'>rep</span><span class='kw'>=</span> <span class='st'>"rep"</span>, <span class='kw'>type</span><span class='kw'>=</span><span class='st'>"EM-SVD"</span>)</div><div class='output co'>#&gt; <span class='error'>Error: Column `gen` is unknown</span></div><div class='input'><span class='fu'><a href='https://rdrr.io/pkg/geneticae/man/imputation.html'>imputation</a></span>(<span class='no'>dat2</span>, <span class='kw'>genotype</span><span class='kw'>=</span><span class='st'>"gen"</span>,<span class='kw'>environment</span><span class='kw'>=</span><span class='st'>"env"</span>, <span class='kw'>response</span><span class='kw'>=</span><span class='st'>"yield"</span>, <span class='kw'>rep</span><span class='kw'>=</span> <span class='st'>"rep"</span>, <span class='kw'>type</span><span class='kw'>=</span><span class='st'>"EM-AMMI"</span>)</div><div class='output co'>#&gt; <span class='error'>Error: Column `gen` is unknown</span></div><div class='input'><span class='fu'><a href='https://rdrr.io/pkg/geneticae/man/imputation.html'>imputation</a></span>(<span class='no'>dat2</span>, <span class='kw'>genotype</span><span class='kw'>=</span><span class='st'>"gen"</span>,<span class='kw'>environment</span><span class='kw'>=</span><span class='st'>"env"</span>, <span class='kw'>response</span><span class='kw'>=</span><span class='st'>"yield"</span>, <span class='kw'>rep</span><span class='kw'>=</span> <span class='st'>"rep"</span>, <span class='kw'>type</span><span class='kw'>=</span><span class='st'>"Gabriel"</span>)</div><div class='output co'>#&gt; <span class='error'>Error: Column `gen` is unknown</span></div><div class='input'><span class='fu'><a href='https://rdrr.io/pkg/geneticae/man/imputation.html'>imputation</a></span>(<span class='no'>dat2</span>, <span class='kw'>genotype</span><span class='kw'>=</span><span class='st'>"gen"</span>,<span class='kw'>environment</span><span class='kw'>=</span><span class='st'>"env"</span>, <span class='kw'>response</span><span class='kw'>=</span><span class='st'>"yield"</span>, <span class='kw'>rep</span><span class='kw'>=</span> <span class='st'>"rep"</span>, <span class='kw'>type</span><span class='kw'>=</span><span class='st'>"WGabriel"</span>)</div><div class='output co'>#&gt; <span class='error'>Error: Column `gen` is unknown</span></div><div class='input'><span class='fu'><a href='https://rdrr.io/pkg/geneticae/man/imputation.html'>imputation</a></span>(<span class='no'>dat2</span>, <span class='kw'>genotype</span><span class='kw'>=</span><span class='st'>"gen"</span>,<span class='kw'>environment</span><span class='kw'>=</span><span class='st'>"env"</span>, <span class='kw'>response</span><span class='kw'>=</span><span class='st'>"yield"</span>, <span class='kw'>rep</span><span class='kw'>=</span> <span class='st'>"rep"</span>, <span class='kw'>type</span><span class='kw'>=</span><span class='st'>"EM-PCA"</span>)</div><div class='output co'>#&gt; <span class='error'>Error: Column `gen` is unknown</span></div><div class='input'>
+<span class='fu'>imputation</span>(<span class='no'>dat2</span>, <span class='kw'>genotype</span><span class='kw'>=</span><span class='st'>"Genotype"</span>,<span class='kw'>environment</span><span class='kw'>=</span><span class='st'>"Locality"</span>, <span class='kw'>response</span><span class='kw'>=</span><span class='st'>"Yield"</span>, <span class='kw'>rep</span><span class='kw'>=</span> <span class='st'>"Rep"</span>, <span class='kw'>type</span><span class='kw'>=</span><span class='st'>"EM-SVD"</span>)</div><div class='output co'>#&gt;           [,1]      [,2]     [,3]     [,4]      [,5]      [,6]
+#&gt;  [1,] 24.92504 28.888889 32.03704 46.77778 13.518519 11.769547
+#&gt;  [2,] 21.45062 53.518519 39.19753 50.41838 16.049383  7.098765
+#&gt;  [3,] 23.46022 41.296296 38.39506 63.70370  2.500000 11.255144
+#&gt;  [4,] 31.84401 60.462963 33.95062 77.56790 19.234568 15.477366
+#&gt;  [5,] 19.66980 41.388889 45.16049 76.98553 23.950617 14.555556
+#&gt;  [6,] 17.53792 29.537037 28.88889 32.02949 12.716049  7.795414
+#&gt;  [7,] 15.41358 32.037037 31.02469 43.45267  8.543210  7.437586
+#&gt;  [8,] 24.28326 50.555556 29.19753 47.33333 13.148148  7.481481
+#&gt;  [9,] 29.91358 73.518519 40.37037 56.13580 14.802469 17.067901
+#&gt; [10,] 20.44444 36.018519 35.74074 46.24691 11.086420  8.505291
+#&gt; [11,] 26.06702 47.037037 32.67901 40.79244 19.185185 17.777778
+#&gt; [12,] 17.32510 49.444444 34.50617 57.24588  8.530864  1.987654
+#&gt; [13,] 26.61376 53.425926 42.34568 64.01235 14.814815 10.742455
+#&gt; [14,] 25.77503 56.666667 32.96296 86.80802 21.209877  9.123457
+#&gt; [15,] 30.32922 31.111111 35.28395 43.29012 13.629630  4.444444
+#&gt; [16,] 19.89712 40.740741 27.53086 38.80033 17.592593 11.518519
+#&gt; [17,] 21.57476 32.685185 25.55556 32.03704 18.024691 13.173280
+#&gt; [18,] 31.74897 50.185185 29.25926 72.02407 20.370370 13.106996
+#&gt; [19,] 26.63933 52.407407 37.90123 57.06584 13.518519 16.826132
+#&gt; [20,] 19.29698 42.500000 31.23457 49.76543 12.839506  9.228395
+#&gt; [21,] 28.66735 35.740741 32.34568 43.25926 16.790123 17.116598
+#&gt; [22,] 19.58652 59.814815 37.77778 53.58848 13.827160 11.504605
+#&gt; [23,] 26.08907 55.648148 44.44444 58.33608 21.234568 11.388889
+#&gt; [24,] 28.72428 50.185185 36.88889 72.24198 15.432099 13.703704
+#&gt; [25,] 25.00000 46.759259 45.55556 53.24966 18.148148 10.884774
+#&gt; [26,] 21.32716 47.777778 21.60494 59.24691  9.629630  2.421125
+#&gt; [27,] 18.76543  8.888889 20.37037 27.42747 10.061728 11.420243
+#&gt; [28,] 21.30144 72.222222 47.83951 57.53519 18.246914 17.478738</div><div class='input'><span class='fu'>imputation</span>(<span class='no'>dat2</span>, <span class='kw'>genotype</span><span class='kw'>=</span><span class='st'>"Genotype"</span>,<span class='kw'>environment</span><span class='kw'>=</span><span class='st'>"Locality"</span>, <span class='kw'>response</span><span class='kw'>=</span><span class='st'>"Yield"</span>, <span class='kw'>rep</span><span class='kw'>=</span> <span class='st'>"Rep"</span>, <span class='kw'>type</span><span class='kw'>=</span><span class='st'>"EM-AMMI"</span>)</div><div class='output co'>#&gt; <span class='warning'>Warning: ningun argumento finito para max; retornando -Inf</span></div><div class='output co'>#&gt;             Ayac    Hyo-02    LM-02    LM-03     SR-02     SR-03
+#&gt; 102.18  24.92504 28.888889 32.03704 46.77778 13.518519 11.769547
+#&gt; 104.22  21.45062 53.518519 39.19753 50.41838 16.049383  7.098765
+#&gt; 121.31  23.46022 41.296296 38.39506 63.70370  2.500000 11.255144
+#&gt; 141.28  31.84401 60.462963 33.95062 77.56790 19.234568 15.477366
+#&gt; 157.26  19.66980 41.388889 45.16049 76.98553 23.950617 14.555556
+#&gt; 163.9   17.53792 29.537037 28.88889 32.02949 12.716049  7.795414
+#&gt; 221.19  15.41358 32.037037 31.02469 43.45267  8.543210  7.437586
+#&gt; 233.11  24.28326 50.555556 29.19753 47.33333 13.148148  7.481481
+#&gt; 235.6   29.91358 73.518519 40.37037 56.13580 14.802469 17.067901
+#&gt; 241.2   20.44444 36.018519 35.74074 46.24691 11.086420  8.505291
+#&gt; 255.7   26.06702 47.037037 32.67901 40.79244 19.185185 17.777778
+#&gt; 314.12  17.32510 49.444444 34.50617 57.24588  8.530864  1.987654
+#&gt; 317.6   26.61376 53.425926 42.34568 64.01235 14.814815 10.742455
+#&gt; 319.20  25.77503 56.666667 32.96296 86.80802 21.209877  9.123457
+#&gt; 320.16  30.32922 31.111111 35.28395 43.29012 13.629630  4.444444
+#&gt; 342.15  19.89712 40.740741 27.53086 38.80033 17.592593 11.518519
+#&gt; 346.2   21.57476 32.685185 25.55556 32.03704 18.024691 13.173280
+#&gt; 351.26  31.74897 50.185185 29.25926 72.02407 20.370370 13.106996
+#&gt; 364.21  26.63933 52.407407 37.90123 57.06584 13.518519 16.826132
+#&gt; 402.7   19.29698 42.500000 31.23457 49.76543 12.839506  9.228395
+#&gt; 405.2   28.66735 35.740741 32.34568 43.25926 16.790123 17.116598
+#&gt; 406.12  19.58652 59.814815 37.77778 53.58848 13.827160 11.504605
+#&gt; 427.7   26.08907 55.648148 44.44444 58.33608 21.234568 11.388889
+#&gt; 450.3   28.72428 50.185185 36.88889 72.24198 15.432099 13.703704
+#&gt; 506.2   25.00000 46.759259 45.55556 53.24966 18.148148 10.884774
+#&gt; Canchan 21.32716 47.777778 21.60494 59.24691  9.629630  2.421125
+#&gt; Desiree 18.76543  8.888889 20.37037 27.42747 10.061728 11.420243
+#&gt; Unica   21.30144 72.222222 47.83951 57.53519 18.246914 17.478738</div><div class='input'><span class='fu'>imputation</span>(<span class='no'>dat2</span>, <span class='kw'>genotype</span><span class='kw'>=</span><span class='st'>"Genotype"</span>,<span class='kw'>environment</span><span class='kw'>=</span><span class='st'>"Locality"</span>, <span class='kw'>response</span><span class='kw'>=</span><span class='st'>"Yield"</span>, <span class='kw'>rep</span><span class='kw'>=</span> <span class='st'>"Rep"</span>, <span class='kw'>type</span><span class='kw'>=</span><span class='st'>"Gabriel"</span>)</div><div class='output co'>#&gt; <span class='error'>Error in posicfaltantes[i1, 1]: subíndice fuera de  los límites</span></div><div class='input'><span class='fu'>imputation</span>(<span class='no'>dat2</span>, <span class='kw'>genotype</span><span class='kw'>=</span><span class='st'>"Genotype"</span>,<span class='kw'>environment</span><span class='kw'>=</span><span class='st'>"Locality"</span>, <span class='kw'>response</span><span class='kw'>=</span><span class='st'>"Yield"</span>, <span class='kw'>rep</span><span class='kw'>=</span> <span class='st'>"Rep"</span>, <span class='kw'>type</span><span class='kw'>=</span><span class='st'>"WGabriel"</span>)</div><div class='output co'>#&gt; [1] "  PesoExterno =  0.8"
+#&gt; [1] "  PesoExterno =  0.9"
+#&gt; [1] "  PesoExterno =  1"
+#&gt; [1] "    PesoInterno =  0.8"
+#&gt; [1] "    PesoInterno =  0.81"
+#&gt; [1] "    PesoInterno =  0.82"
+#&gt; [1] "    PesoInterno =  0.83"
+#&gt; [1] "    PesoInterno =  0.84"
+#&gt; [1] "    PesoInterno =  0.85"
+#&gt; [1] "    PesoInterno =  0.86"
+#&gt; [1] "    PesoInterno =  0.87"
+#&gt; [1] "    PesoInterno =  0.88"
+#&gt; [1] "    PesoInterno =  0.89"
+#&gt; [1] "    PesoInterno =  0.9"
+#&gt; [1] "    PesoInterno =  0.91"
+#&gt; [1] "    PesoInterno =  0.92"
+#&gt; [1] "    PesoInterno =  0.93"
+#&gt; [1] "    PesoInterno =  0.94"
+#&gt; [1] "    PesoInterno =  0.95"
+#&gt; [1] "    PesoInterno =  0.96"
+#&gt; [1] "    PesoInterno =  0.97"
+#&gt; [1] "    PesoInterno =  0.98"
+#&gt; [1] "    PesoInterno =  0.99"
+#&gt; [1] "    PesoInterno =  1"</div><div class='output co'>#&gt; <span class='error'>Error in posicfaltantes[i1, 1]: subíndice fuera de  los límites</span></div><div class='input'><span class='fu'>imputation</span>(<span class='no'>dat2</span>, <span class='kw'>genotype</span><span class='kw'>=</span><span class='st'>"Genotype"</span>,<span class='kw'>environment</span><span class='kw'>=</span><span class='st'>"Locality"</span>, <span class='kw'>response</span><span class='kw'>=</span><span class='st'>"Yield"</span>, <span class='kw'>rep</span><span class='kw'>=</span> <span class='st'>"Rep"</span>, <span class='kw'>type</span><span class='kw'>=</span><span class='st'>"EM-PCA"</span>)</div><div class='output co'>#&gt; NULL</div><div class='input'>
+
 </div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
@@ -443,6 +541,7 @@ initial.values), the simplified model can be used to determine a better set of i
     <ul class="nav nav-pills nav-stacked">
       <li><a href="#arguments">Arguments</a></li>
       <li><a href="#value">Value</a></li>
+      <li><a href="#references">References</a></li>
       <li><a href="#examples">Examples</a></li>
     </ul>
 
