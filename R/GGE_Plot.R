@@ -41,7 +41,7 @@
 
 GGEPlot<-function(GGEModel,type="Biplot",d1=1,d2=2, selectedE=NA , selectedG=NA,selectedG1=NA,selectedG2=NA,
                   colGen="gray47",colEnv="darkred",colSegment="gray30",colHull="gray30",sizeGen=4,sizeEnv=4,largeSize=4.5,axis_expand=1.2,
-                  axislabels=TRUE,axes=TRUE,limits=FALSE,titles=TRUE,footnote=TRUE){
+                  axislabels=TRUE,axes=TRUE,limits=TRUE,titles=TRUE,footnote=TRUE){
 
     stopifnot(
     type %in% c("Biplot", "Selected Environment","Selected Genotype","Relationship Among Environments",
