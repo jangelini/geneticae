@@ -8,52 +8,7 @@
 #'  liked by the user. This function is a modification of the
 #'  \code{\link[GGEBiplots]{GGEPlot}} package of the GGEBiplots.
 #'
-#'
-#'@param GGEModel An object of class \code{GGEModel}.
-#'@param type type of biplot to produce. \itemize{ \item \code{Biplot}: Basic
-#'  biplot. \item \code{Selected Environment}: Ranking the cultivars based on
-#'  their performance in any given environment. \item \code{Selected Genotype}:
-#'  Ranking the environments based on the relative performance of any given
-#'  cultivar. \item \code{Relationship Among Environments}. \item
-#'  \code{Comparison of Genotype}. \item \code{Which won where/what}:
-#'  Identifying the ’best’ cultivar in each environment. \item
-#'  \code{Discrimination vs. representativeness}: Evaluating the environments
-#'  based on both discriminating ability and representativeness. \item
-#'  \code{Ranking Environments}: Ranking environments with respect to the ideal
-#'  environment. \item \code{Mean vs. stability}: Evaluating cultivars based on
-#'  both average yield and stability. \item \code{Ranking Gentoypes}: Ranking
-#'  genotypes with respect to the ideal genotype.}
-#'@param d1 PCA component to plot on x axis. Defaults to 1.
-#'@param d2 PCA component to plot on y axis. Defaults to 2.
-#'@param selectedE name of the environment to examine when type="Selected
-#'  Environment". Must be a string which matches an environment label.
-#'@param selectedG name of the genotype to examine when type="Selected
-#'  Genotype". Must be a string which matches a genotype label.
-#'@param selectedG1 name of a genotype to compare when type="Comparison of
-#'  Genotype". Must be a string which matches a genotype labe.
-#'@param selectedG2 name of a genotype to compare when type="Comparison of
-#'  Genotype". Must be a string which matches a genotype label and not equal to
-#'  selectedG1
-#'@param colGen colour for genotype attributes on biplot. Defaults to "gray47"
-#'@param colEnv colour for environment attributes on biplot. Defaults to
-#'  "darkred"
-#'@param colSegment colour for segment or circle lines. Defaults to "gray30"
-#'@param colHull colour for hull when type="Which won where/what". Defaults to
-#'  "gray30"
-#'@param sizeGen text size for genotype labels. Defaults to 4
-#'@param sizeEnv text size for environment labels. Defaults to 4
-#'@param largeSize text size to use for larger labels where type=5, used for the
-#'  two selected genotypes, and where type="Which won where/what", used for the
-#'  outermost genotypes. Defaults to 4.5
-#'@param axis_expand multiplication factor to expand the axis limits by to
-#'  enable fitting of labels. Defaults to 1.2
-#'@param axislabels logical. If TRUE then include automatically generated labels
-#'  for axes
-#'@param axes logical. If TRUE then include x and y axes going through the
-#'  origin
-#'@param limits logical. If TRUE then automatically rescale axes
-#'@param titles logical. If TRUE then include automatically generated titles
-#'@param footnote logical. If TRUE then include automatically generated footbote
+#'@inheritParams GGEBiplots::GGEPlot
 #'@keywords GGE Biplot
 #'@return A biplot of class \code{ggplot}
 #'@references Yan W, Kang M (2003). \emph{GGE Biplot Analysis: A Graphical Tool
@@ -86,7 +41,7 @@
 
 GGEPlot<-function(GGEModel,type="Biplot",d1=1,d2=2, selectedE=NA , selectedG=NA,selectedG1=NA,selectedG2=NA,
                   colGen="gray47",colEnv="darkred",colSegment="gray30",colHull="gray30",sizeGen=4,sizeEnv=4,largeSize=4.5,axis_expand=1.2,
-                  axislabels=TRUE,axes=TRUE,limits=TRUE,titles=TRUE,footnote=TRUE){
+                  axislabels=TRUE,axes=TRUE,limits=FALSE,titles=TRUE,footnote=TRUE){
 
     stopifnot(
     type %in% c("Biplot", "Selected Environment","Selected Genotype","Relationship Among Environments",
@@ -367,8 +322,6 @@ GGEPlot<-function(GGEModel,type="Biplot",d1=1,d2=2, selectedE=NA , selectedG=NA,
     med1 = mean(coordenviroment[, 1])
     med2 = mean(coordenviroment[, 2])
 
-
-
     x1<-NULL
 
     for (i in 1:nrow(Data))
@@ -396,8 +349,6 @@ GGEPlot<-function(GGEModel,type="Biplot",d1=1,d2=2, selectedE=NA , selectedG=NA,
 
 
   if(type=="Ranking Genotypes"){
-
-
 
     med1 = mean(coordenviroment[, 1])
     med2 = mean(coordenviroment[, 2])
@@ -447,7 +398,7 @@ GGEPlot<-function(GGEModel,type="Biplot",d1=1,d2=2, selectedE=NA , selectedG=NA,
     footnotetxt=paste("\nGGE Biplot showing components ",d1," and ",d2," explaining ",sum(varexpl),"% of the total variation\nusing ",
                       SVPtext," and ",centertext," with ",Scalingtext,sep="")
 
-    GGE2<-GGE2+ labs(caption = footnotetxt)+theme(plot.caption = element_text(size=8,hjust=0,face="italic"))
+    GGE2<-GGE2+ labs(caption = footnotetxt)+theme(plot.caption = element_text(size=10,hjust=0,face="italic"))
   }
 
 
