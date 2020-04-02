@@ -20,10 +20,18 @@
 #'@param sizeGen text size for genotype labels. Defaults to 4
 #'@param sizeEnv text size for environment labels. Defaults to 4
 #'@param largeSize text size to use for larger labels where type=5, used for the
+#'  two selected genotypes, and where type="Which won where/what", used for the
+#'  outermost genotypes. Defaults to 4.5
+#'@param axis_expand multiplication factor to expand the axis limits by to
+#'  enable fitting of labels. Defaults to 1.2
 #'@param titles logical. If TRUE then include automatically generated titles
 #'@param footnote logical. If TRUE then include automatically generated footbote
 #'  two selected genotypes, and where type=6, used for the outermost genotypes.
-#'  Defaults to 4.5
+#'@param limits logical. If TRUE then automatically rescale axes
+#'@param axes logical. If TRUE then include x and y axes going through the
+#'  origin
+#'@param axislabels logical. If TRUE then include automatically generated labels
+#'  for axes
 #'
 #'@return A biplot of class  \code{ggplot}
 #'@references Rodrigues PC, Monteiro A and Lourenco VM (2015). \emph{A robust
@@ -56,7 +64,8 @@
 #'
 rAMMI<-function(Data, genotype="gen", environment="env", response="Y", rep=NULL,Ncomp = 2, type = "AMMI",
                 colGen="gray47",colEnv="darkred",colSegment="gray30",colHull="gray30",
-                sizeGen=4,sizeEnv=4,largeSize=4.5, titles=TRUE, footnote=TRUE){
+                sizeGen=4,sizeEnv=4,largeSize=4.5, titles=TRUE, footnote=TRUE, axis_expand=1.2, limits=TRUE,
+                axes=TRUE,axislabels=TRUE){
 
   if (missing(Data)) stop("Need to provide Data data frame or matrix")
   if(any(is.na(Data))){stop("Missing data in input data frame, run the imputation function first to complete the data set")}
@@ -176,10 +185,8 @@ rAMMI<-function(Data, genotype="gen", environment="env", response="Y", rep=NULL,
     theme_classic() +
     theme(plot.caption = element_text(size=12,hjust=0)) +
     scale_color_manual(values=c(colGen,colEnv)) +
-    scale_size_manual(values=c(sizeGen,sizeEnv))+
-    xlab(paste(labelaxes[1],format(varexpl[1],nsmall=2), "%", sep = " "))+
-    ylab(paste(labelaxes[2], format(varexpl[2],nsmall=2),"%", sep = " "))+
-    geom_hline(yintercept=0)+geom_vline(xintercept=0)
+    scale_size_manual(values=c(sizeGen,sizeEnv))
+
 
   AMMI2 <- AMMI1 + geom_segment(xend = 0, yend = 0, col = alpha(colEnv, 0.5),
                                 data = subset(plotdata, type == "environment")) +
@@ -192,7 +199,32 @@ rAMMI<-function(Data, genotype="gen", environment="env", response="Y", rep=NULL,
     AMMI2<-AMMI2+ labs(caption = footnotetxt)+theme(plot.caption = element_text(size=8,hjust=0,face="italic"))
   }
 
+  if(limits==TRUE){
+    xlim<-c(min(plotdata$Component1*axis_expand),max(plotdata$Component1*axis_expand))
+    ylim<-c(min(plotdata$Component2*axis_expand),max(plotdata$Component2*axis_expand))
+    if(which(c(diff(xlim),diff(ylim))==max(c(diff(xlim),diff(ylim))))==1){
+      xlim1<-xlim
+      ylim1<-c(ylim[1]-(diff(xlim)-diff(ylim))/2,ylim[2]+(diff(xlim)-diff(ylim))/2)
+    }
+    if(which(c(diff(xlim),diff(ylim))==max(c(diff(xlim),diff(ylim))))==2){
+      ylim1<-ylim
+      xlim1<-c(xlim[1]-(diff(ylim)-diff(xlim))/2,xlim[2]+(diff(ylim)-diff(xlim))/2)
+    }
 
+    AMMI2<-AMMI2+scale_x_continuous(limits=xlim1,expand=c(0,0))+
+      scale_y_continuous(limits=ylim1,expand=c(0,0))+
+      coord_fixed(1)
+  }
+
+  if(axes==TRUE){
+   AMMI2<-AMMI2+geom_hline(yintercept=0)+geom_vline(xintercept=0)
+  }
+
+  if(axislabels==TRUE){
+    AMMI2<-AMMI2+
+    xlab(paste(labelaxes[1],format(varexpl[1],nsmall=2), "%", sep = " "))+
+    ylab(paste(labelaxes[2], format(varexpl[2],nsmall=2),"%", sep = " "))
+  }
 
   return(AMMI2)
 }
