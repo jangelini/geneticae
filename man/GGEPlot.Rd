@@ -29,64 +29,59 @@ GGEPlot(
 )
 }
 \arguments{
-\item{GGEModel}{An object of class \code{GGEModel}.}
+\item{GGEModel}{An object of class \code{GGEModel} or \code{gge}}
 
-\item{type}{type of biplot to produce. \itemize{ \item \code{Biplot}: Basic
-biplot. \item \code{Selected Environment}: Ranking the cultivars based on
-their performance in any given environment. \item \code{Selected Genotype}:
-Ranking the environments based on the relative performance of any given
-cultivar. \item \code{Relationship Among Environments}. \item
-\code{Comparison of Genotype}. \item \code{Which won where/what}:
-Identifying the ’best’ cultivar in each environment. \item
-\code{Discrimination vs. representativeness}: Evaluating the environments
-based on both discriminating ability and representativeness. \item
-\code{Ranking Environments}: Ranking environments with respect to the ideal
-environment. \item \code{Mean vs. stability}: Evaluating cultivars based on
-both average yield and stability. \item \code{Ranking Gentoypes}: Ranking
-genotypes with respect to the ideal genotype.}}
+\item{type}{type of biplot to produce. \enumerate{\item Basic biplot. \item
+Examine environment. See \code{\link[GGEBiplots]{ExamineEnv}} \item Examine
+genotype. See \code{\link[GGEBiplots]{ExamineGen}} \item Relationship among
+environments. See \code{\link[GGEBiplots]{EnvRelationship}} \item Compare
+two genotypes. See \code{\link[GGEBiplots]{CompareGens}} \item Which won
+where/what. See \code{\link[GGEBiplots]{WhichWon}} \item Discrimination vs.
+representativeness. See \code{\link[GGEBiplots]{DiscRep}} \item Ranking
+environments. See \code{\link[GGEBiplots]{RankEnv}} \item Mean vs.
+stability. See \code{\link[GGEBiplots]{MeanStability}} \item Ranking
+gentoypes See \code{\link[GGEBiplots]{RankGen}}}}
 
-\item{d1}{PCA component to plot on x axis. Defaults to 1.}
+\item{d1}{PCA component to plot on x axis. Defaults to 1}
 
-\item{d2}{PCA component to plot on y axis. Defaults to 2.}
+\item{d2}{PCA component to plot on y axis. Defaults to 2}
 
-\item{selectedE}{name of the environment to examine when type="Selected
-Environment". Must be a string which matches an environment label.}
+\item{selectedE}{name of the environment to examine when type=2. Must be a 
+string which matches an environment label}
 
-\item{selectedG}{name of the genotype to examine when type="Selected
-Genotype". Must be a string which matches a genotype label.}
+\item{selectedG}{name of the genotype to examine when type=3. Must be a string
+which matches a genotype label}
 
-\item{selectedG1}{name of a genotype to compare when type="Comparison of
-Genotype". Must be a string which matches a genotype labe.}
+\item{selectedG1}{name of a genotype to compare when type=5. Must be a string 
+which matches a genotype label}
 
-\item{selectedG2}{name of a genotype to compare when type="Comparison of
-Genotype". Must be a string which matches a genotype label and not equal to
-selectedG1}
+\item{selectedG2}{name of a genotype to compare when type=5. Must be a string 
+which matches a genotype label and not equal to selectedG1}
 
-\item{colGen}{colour for genotype attributes on biplot. Defaults to "gray47"}
+\item{colGen}{colour for genotype attributes on biplot. Defaults to 
+"forestgreen"}
 
-\item{colEnv}{colour for environment attributes on biplot. Defaults to
-"darkred"}
+\item{colEnv}{colour for environment attributes on biplot. Defaults to "blue"}
 
-\item{colSegment}{colour for segment or circle lines. Defaults to "gray30"}
+\item{colSegment}{colour for segment or circle lines. Defaults to "red"}
 
-\item{colHull}{colour for hull when type="Which won where/what". Defaults to
-"gray30"}
+\item{colHull}{colour for hull when type=6. Defaults to "black"}
 
 \item{sizeGen}{text size for genotype labels. Defaults to 4}
 
 \item{sizeEnv}{text size for environment labels. Defaults to 4}
 
 \item{largeSize}{text size to use for larger labels where type=5, used for the
-two selected genotypes, and where type="Which won where/what", used for the
-outermost genotypes. Defaults to 4.5}
+two selected genotypes, and where type=6, used for the outermost genotypes.
+Defaults to 4.5}
 
-\item{axis_expand}{multiplication factor to expand the axis limits by to
+\item{axis_expand}{multiplication factor to expand the axis limits by to 
 enable fitting of labels. Defaults to 1.2}
 
 \item{axislabels}{logical. If TRUE then include automatically generated labels
 for axes}
 
-\item{axes}{logical. If TRUE then include x and y axes going through the
+\item{axes}{logical. If TRUE then include x and y axes going through the 
 origin}
 
 \item{limits}{logical. If TRUE then automatically rescale axes}

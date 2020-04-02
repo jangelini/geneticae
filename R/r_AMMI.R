@@ -172,6 +172,7 @@ rAMMI<-function(Data, genotype="gen", environment="env", response="Y", rep=NULL,
   colnames(plotdata)[1:2]<-c("Component1","Component2")
   plotdata$type<-factor(plotdata$type)
 
+
   AMMI1<-ggplot(data=plotdata,aes(x=Component1,y=Component2,group="type"))+
     theme_classic() +
     theme(plot.caption = element_text(size=12,hjust=0)) +
@@ -189,9 +190,8 @@ rAMMI<-function(Data, genotype="gen", environment="env", response="Y", rep=NULL,
   if(footnote==TRUE){
     footnotetxt=paste("\n", type,"biplot showing components 1 and 2 explaining ",sum(varexpl),"% of the total variation")
 
-    AMMI2<-AMMI2+ labs(caption = footnotetxt)+theme(plot.caption = element_text(size=8,hjust=0,face="italic"))
+    AMMI2<-AMMI2+ labs(caption = footnotetxt)+theme(plot.caption = element_text(size=10,hjust=0,face="italic"))
   }
-
 
 
   return(AMMI2)
