@@ -35,24 +35,31 @@
 #' dat[1,3]<-NA
 #' dat[3,3]<-NA
 #' dat[2,3]<-NA
-#' imputation(dat, genotype="gen",environment="env", response="yield", type="EM-SVD")
-#' imputation(dat, genotype="gen",environment="env", response="yield", type="EM-AMMI")
-#' imputation(dat, genotype="gen",environment="env", response="yield", type="Gabriel")
-#' imputation(dat, genotype="gen",environment="env", response="yield", type="WGabriel")
-#' imputation(dat, genotype="gen",environment="env", response="yield", type="EM-PCA")
-#'
+#' \dontrun{
+#' imputation(dat, genotype="gen",environment="env", response="yield",
+#' type="EM-SVD") imputation(dat, genotype="gen",environment="env",
+#' response="yield", type="EM-AMMI") imputation(dat,
+#' genotype="gen",environment="env", response="yield", type="Gabriel")
+#' imputation(dat, genotype="gen",environment="env", response="yield",
+#' type="WGabriel") imputation(dat, genotype="gen",environment="env",
+#' response="yield", type="EM-PCA")
+#'}
 #'# Data with replication
 #'  data(plrv)
 #'  dat2<-plrv
 #'  dat2[1,3]<-NA
 #' dat2[3,3]<-NA
 #' dat2[2,3]<-NA
-#' imputation(dat2, genotype="Genotype",environment="Locality", response="Yield", rep= "Rep", type="EM-SVD")
-#' imputation(dat2, genotype="Genotype",environment="Locality", response="Yield", rep= "Rep", type="EM-AMMI")
-#' imputation(dat2, genotype="Genotype",environment="Locality", response="Yield", rep= "Rep", type="Gabriel")
-#' imputation(dat2, genotype="Genotype",environment="Locality", response="Yield", rep= "Rep", type="WGabriel")
-#' imputation(dat2, genotype="Genotype",environment="Locality", response="Yield", rep= "Rep", type="EM-PCA")
-#'
+#' \dontrun{
+#' imputation(dat2, genotype="Genotype",environment="Locality",
+#' response="Yield", rep= "Rep", type="EM-SVD") imputation(dat2,
+#' genotype="Genotype",environment="Locality", response="Yield", rep= "Rep",
+#' type="EM-AMMI") imputation(dat2, genotype="Genotype",environment="Locality",
+#' response="Yield", rep= "Rep", type="Gabriel") imputation(dat2,
+#' genotype="Genotype",environment="Locality", response="Yield", rep= "Rep",
+#' type="WGabriel") imputation(dat2, genotype="Genotype",environment="Locality",
+#' response="Yield", rep= "Rep", type="EM-PCA")
+#'}
 #'
 #'@importFrom stats var
 #'@importFrom bcv impute.svd
