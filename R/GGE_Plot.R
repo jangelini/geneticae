@@ -8,7 +8,58 @@
 #'  liked by the user. This function is a modification of the
 #'  \code{\link[GGEBiplots]{GGEPlot}} package of the GGEBiplots.
 #'
-#'@inheritParams GGEBiplots::GGEPlot
+#'@param GGEModel An object of class \code{GGEModel}.
+#'@param type type of biplot to produce. \itemize{ \item \code{Biplot}: Basic
+#'  biplot. \item \code{Selected Environment}: Ranking the cultivars based on
+#'  their performance in any given environment. \item \code{Selected Genotype}:
+#'  Ranking the environments based on the relative performance of any given
+#'  cultivar. \item \code{Relationship Among Environments}. \item
+#'  \code{Comparison of Genotype}. \item \code{Which won where/what}:
+#'  Identifying the 'best' cultivar in each environment. \item
+#'  \code{Discrimination vs. representativeness}: Evaluating the environments
+#'  based on both discriminating ability and representativeness. \item
+#'  \code{Ranking Environments}: Ranking environments with respect to the ideal
+#'  environment. \item \code{Mean vs. stability}: Evaluating cultivars based on
+#'  both average yield and stability. \item \code{Ranking Gentoypes}: Ranking
+#'  genotypes with respect to the ideal genotype.}
+#'
+#'@param Data a data frame
+#'@param genotype name of the column that contains the genotypes
+#'@param environment name of the column that contains the environments
+#'@param response name of the column that contains the response
+#'@param rep name of the column that contains the replications.If this argument
+#'  is NULL, there is no replications in the data.
+#'@param d1 PCA component to plot on x axis. Defaults to 1.
+#'@param d2 PCA component to plot on y axis. Defaults to 2.
+#'@param selectedE name of the environment to examine when type="Selected
+#'  Environment". Must be a string which matches an environment label.
+#'@param selectedG name of the genotype to examine when type="Selected
+#'  Genotype". Must be a string which matches a genotype label.
+#'@param selectedG1 name of a genotype to compare when type="Comparison of
+#'  Genotype". Must be a string which matches a genotype labe.
+#'@param selectedG2 name of a genotype to compare when type="Comparison of
+#'  Genotype". Must be a string which matches a genotype label and not equal to
+#'  selectedG1
+#'@param colGen colour for genotype attributes on biplot. Defaults to "gray47"
+#'@param colEnv colour for environment attributes on biplot. Defaults to
+#'  "darkred"
+#'@param colSegment colour for segment or circle lines. Defaults to "gray30"
+#'@param colHull colour for hull when type="Which won where/what". Defaults to
+#'  "gray30"
+#'@param sizeGen text size for genotype labels. Defaults to 4
+#'@param sizeEnv text size for environment labels. Defaults to 4
+#'@param largeSize text size to use for larger labels where type="Comparison of Genotype", used for the
+#'  two selected genotypes, and where type="Which won where/what", used for the
+#'  outermost genotypes. Defaults to 4.5
+#'@param axis_expand multiplication factor to expand the axis limits by to
+#'  enable fitting of labels. Defaults to 1.2
+#'@param axislabels logical. If TRUE then include automatically generated labels
+#'  for axes
+#'@param axes logical. If TRUE then include x and y axes going through the
+#'  origin
+#'@param limits logical. If TRUE then automatically rescale axes
+#'@param titles logical. If TRUE then include automatically generated titles
+#'@param footnote logical. If TRUE then include automatically generated footbote
 #'@keywords GGE Biplot
 #'@return A biplot of class \code{ggplot}
 #'@references Yan W, Kang M (2003). \emph{GGE Biplot Analysis: A Graphical Tool
@@ -93,7 +144,8 @@ GGEPlot<-function(GGEModel,type="Biplot",d1=1,d2=2, selectedE=NA , selectedG=NA,
 
   if(axislabels==TRUE){
     GGE1<-GGE1+xlab(paste(labelaxes[1],format(varexpl[1],nsmall=2), "%", sep = " "))+ylab(paste(labelaxes[2], format(varexpl[2],nsmall=2),"%", sep = " "))
-  }
+  }else{    GGE1<-GGE1+xlab(" ")+ylab(" ")
+}
   if(axes==TRUE&centering!=0){
     GGE1<-GGE1+geom_hline(yintercept=0)+geom_vline(xintercept=0)
   }

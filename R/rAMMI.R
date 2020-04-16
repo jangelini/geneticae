@@ -15,13 +15,8 @@
 #'@param colGen colour for genotype attributes on biplot. Defaults to "gray"
 #'@param colEnv colour for environment attributes on biplot. Defaults to
 #'  "darkred"
-#'@param colSegment colour for segment or circle lines. Defaults to "gray"
-#'@param colHull colour for hull when type=6. Defaults to "gray"
 #'@param sizeGen text size for genotype labels. Defaults to 4
 #'@param sizeEnv text size for environment labels. Defaults to 4
-#'@param largeSize text size to use for larger labels where type=5, used for the
-#'  two selected genotypes, and where type="Which won where/what", used for the
-#'  outermost genotypes. Defaults to 4.5
 #'@param axis_expand multiplication factor to expand the axis limits by to
 #'  enable fitting of labels. Defaults to 1.2
 #'@param titles logical. If TRUE then include automatically generated titles
@@ -63,8 +58,7 @@
 #'@importFrom dplyr group_by summarise rename pull
 #'
 rAMMI<-function(Data, genotype="gen", environment="env", response="Y", rep=NULL,Ncomp = 2, type = "AMMI",
-                colGen="gray47",colEnv="darkred",colSegment="gray30",colHull="gray30",
-                sizeGen=4,sizeEnv=4,largeSize=4.5, titles=TRUE, footnote=TRUE, axis_expand=1.2, limits=TRUE,
+                colGen="gray47",colEnv="darkred",sizeGen=4,sizeEnv=4,titles=TRUE, footnote=TRUE, axis_expand=1.2, limits=TRUE,
                 axes=TRUE,axislabels=TRUE){
 
   if (missing(Data)) stop("Need to provide Data data frame or matrix")
@@ -76,13 +70,14 @@ rAMMI<-function(Data, genotype="gen", environment="env", response="Y", rep=NULL,
     class(rep)%in% c("character", "NULL"),
     class(colGen) == "character",
     class(colEnv) == "character",
-    class(colSegment) == "character",
-    class(colHull) == "character",
     class(sizeGen) == "numeric",
     class(sizeEnv) == "numeric",
-    class(largeSize) == "numeric",
     class(titles)  == "logical",
-    class(footnote)  == "logical"
+    class(footnote)  == "logical",
+    class(axislabels)  == "logical",
+    class(axes)  == "logical",
+    class(axis_expand) == "numeric",
+    class(limits)  == "logical"
   )
 
   if(!is.null(rep)){
