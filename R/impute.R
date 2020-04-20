@@ -70,7 +70,8 @@
 #'@importFrom dplyr group_by summarise rename
 #'
 imputation <- function(Data, genotype="gen",environment="env", response="yield", rep=NULL,type="EM-AMMI",
-                       PC.nb=1, initial.values=NA, precision=0.01, max.iter=1000, change.factor=1, simplified.model=FALSE, tol = max(nrow(Data), ncol(Data)) * 1e-10, maxiter = 100,
+                       PC.nb=1, initial.values=NA, precision=0.01, max.iter=1000, change.factor=1, simplified.model=FALSE,
+                       tol = max(nrow(Data), ncol(Data)) * 1e-10, maxiter = 100,
                        k = min(nrow(Data), ncol(Data)), Winf=0.8,Wsup=1, ncp = 2, scale = TRUE, method = "Regularized",
                        row.w = NULL, coeff.ridge = 1, threshold = 1e-06, seed = NULL, nb.init = 1) {
 

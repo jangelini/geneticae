@@ -16,15 +16,15 @@ vignette: >
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
 ---
-<style type="text/css">
+<!-- <style type="text/css"> -->
 
-body{
-  text-align: justify}
-  </style>
+<!-- body{ -->
+<!--   text-align: justify} -->
+<!--   </style> -->
   
   
 <!-- devtools::build_vignettes() -->
-##1. Getting started
+## Getting started
 
 __Installing the package.__ To install the _geneticae_ package:
 
@@ -43,7 +43,7 @@ __Help files.__  Detailed information on `geneticae` package functions can be ob
 The help file for a function, for example `imputation`, in a R session can be obtained using `?imputation` or `help(imputation)`.
 
 
-##2. Introduction
+## Introduction
 
 Understanding the relationship between crops performance and environment is a key problem for plant breeders and geneticists. In advanced stages of breeding programs, where few genotypes are evaluated, multi-environmental trials (MET) is one of the most common experiments. They are conducted by testing a number of genotypes across multiple environments, allowing the identification of superior genotypes. Crop performance, the observed phenotype, is a function of genotype (G), environment (E) and genotype x environment (GE) interaction . METs are essential due to the presence of GEI which generates differential genotypic responses in the different environments evaluated (Crossa et al., 1990; Cruz Medina, 1992; Kang and Magari, 1996). This is a particular problem for plant breeders (Giauffret et al., 2000), therefore appropriate statistical methods should be used to obtain an adequate GEI analysis.
 
@@ -51,7 +51,7 @@ The `geneticae` package offers functions for the analysis of data from advanced 
 Unlike the other existing functions that allow adjusting these models, it is less restrictive in terms of the input data set. Also, the biplots created by the package are ggplot objects, which means that after a plot is created it can be further customized using various functions from the ggplot2 package.
 
 
-##3. Data set in geneticae
+## Data set in geneticae
 
 The `geneticae` package provides two datasets to illustrate the methodology included to analize MET data. 
 
@@ -74,9 +74,9 @@ head(dat_rep)
 ```
 
 
-##4. Running geneticae
+## Running geneticae
 
-###4.1 Site regression model
+### Site regression model
 
 #### The model
 The site regression model also named genotype plus genotype-by-environment (GGE) model is a powerful tool for effective analysis and interpretation of MET data structure in breeding programs. GGE explore a matrix of G + GE performing a singular value decomposition (SVD) on the matrix of residuals from a one-way ANOVA with fixed effects for E. 
@@ -177,7 +177,7 @@ GGEPlot(GGE1, type="Ranking Genotypes")
 GGEPlot(GGE1, type="Mean vs. Stability")
 ```
 
-###4.2 AMMI
+### AMMI
 
 #### The classic AMMI model
 The AMMI model (Gauch, 1988, 1992) is another widely used tools to
@@ -225,7 +225,7 @@ rAMMI(dat_yan, genotype="gen",environment="env", response="yield", type = "ppAMM
 
 If repetitions are available in dataset, as _plrv_, the name of the column that contains the replications must be indicated.
 
-###4.3 Imputation methods
+### Imputation methods
 
 One major limitation of the included models is that require a complete two-way data table. Although METs are designed so that all genotypes are evaluated in all environments, the presence of missing values is very common. These occur for example due to the incorporation of new genotypes, measurement errors or natural causes such as, for example, destruction of plants by animals, floods or during harvest.
 
@@ -270,14 +270,14 @@ imputation(dat_yan, genotype="gen",environment="env", response="yield", type="EM
 
 If repetitions are available in dataset, as _plrv_, the name of the column that contains the replications must be indicated.
 
-##5. References
+## References
 
 Giauffret, C., Lothrop, J., Dorvillez, D., Gouesnard, B., Derieux, M., 2000. Genotype x environment interactions in maize hybrids from temperate or highland tropical origin. Crop Sci. 40, 1004-1012. \n
 
 
 
 
-##6. Sesssion Info
+## Sesssion Info
 
 ```{r, echo = FALSE}
 sessionInfo()
