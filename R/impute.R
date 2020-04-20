@@ -4,12 +4,15 @@
 #'are allowed. This function offers several methods to impute the missing cells,
 #'so that the previously mentioned models can be adjusted later.
 #'
-#'@param Data a data frame
-#'@param genotype name of the column that contains the genotypes
-#'@param environment name of the column that contains the environments
-#'@param response name of the column that contains the response
-#'@param rep name of the column that contains the replications.If this argument
-#'  is NULL, there is no replications in the data.
+#'@param Data a dataframe with genotypes, environments, repetitions (if any) and
+#'  the phenotypic trait of interest. There is no restriction on the order in
+#'  which these variables should be presented in the dataframe, and also other
+#'  variables that will not be used in the analysis can be included.
+#'@param genotype column name containing genotypes.
+#'@param environment column name containing environments.
+#'@param response column name containing phenotypic trait.
+#'@param rep column name containing replications. If this argument is NULL,
+#'  there is no replication available on the data.
 #'@param type imputation method. Either "EM-AMMI", "EM-SVD",
 #'  "Gabriel","WGabriel","EM-PCA".
 #'@inheritParams EM.AMMI
@@ -67,36 +70,32 @@
 #'@importFrom dplyr group_by summarise rename
 #'
 imputation <- function(Data, genotype="gen",environment="env", response="yield", rep=NULL,type="EM-AMMI",
-                       PC.nb=1, initial.values=NA, precision=0.01, max.iter=1000, change.factor=1, simplified.model=FALSE,
-                       k = min(nrow(Data), ncol(Data)), tol = max(nrow(Data), ncol(Data)) * 1e-10, maxiter = 100,
-                       Winf=0.8,Wsup=1,
-                       ncp = 2, scale = TRUE, method = c("Regularized","EM"),
+                       PC.nb=1, initial.values=NA, precision=0.01, max.iter=1000, change.factor=1, simplified.model=FALSE, tol = max(nrow(Data), ncol(Data)) * 1e-10, maxiter = 100,
+                       k = min(nrow(Data), ncol(Data)), Winf=0.8,Wsup=1, ncp = 2, scale = TRUE, method = "Regularized",
                        row.w = NULL, coeff.ridge = 1, threshold = 1e-06, seed = NULL, nb.init = 1) {
 
   if (missing(Data)) stop("Need to provide Data data frame")
   if (!any(is.na(Data))) stop("There are not missing data in input data frame")
     stopifnot(
-    class(Data) %in%  c("matrix", "data.frame"),
+    class(Data) %in% c("data.frame"),
+    class(rep)%in% c("character", "NULL"),
+    class(genotype) == "character",
+    class(environment) == "character",
+    class(response) == "character",
     type %in% c("EM-AMMI", "EM-SVD","Gabriel","WGabriel","EM-PCA"),
-    class(rep)%in% c("character", "NULL")
+    class(PC.nb) == "numeric",
+    class(precision) == "numeric",
+    class(max.iter) == "numeric",
+    class(change.factor) == "numeric",
+    class(simplified.model) == "logical",
+    class(tol) == "numeric",
+    class(maxiter) == "numeric",
+    class(ncp) == "numeric",
+    class(scale) == "logical",
+    class(coeff.ridge) == "numeric",
+    class(threshold) == "numeric",
+    class(nb.init) == "numeric"
   )
-
-  # if(!is.null(rep)){
-  #   Data <-
-  #     Data %>%
-  #     group_by({{genotype}}, {{environment}}) %>%
-  #     summarise(mean_resp=mean({{response}}))%>%
-  #     plyr::rename(gen={{genotype}}, env= {{environment}}, mean_resp) %>%
-  #     spread(env, mean_resp) %>%
-  #     as.data.frame()
-  #
-  # } else{
-  #   Data <-
-  #     Data %>%
-  #     spread({{environment}}, {{response}})%>%
-  #     as.data.frame()
-  # }
-  #
 
     if(!is.null(rep)){
       Data <-
@@ -116,8 +115,6 @@ imputation <- function(Data, genotype="gen",environment="env", response="yield",
 
   rownames(Data) <- pull(Data, genotype)
   Data <- dplyr::select(Data, -!!sym(genotype))
-  # Data[,{{genotype}}] <- NULL
-
 
   if(type=="EM-AMMI"){
      matrix<-EM.AMMI(Data, PC.nb=PC.nb, initial.values=initial.values, precision=precision,

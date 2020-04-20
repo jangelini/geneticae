@@ -17,14 +17,14 @@ imputation(
   max.iter = 1000,
   change.factor = 1,
   simplified.model = FALSE,
-  k = min(nrow(Data), ncol(Data)),
   tol = max(nrow(Data), ncol(Data)) * 1e-10,
   maxiter = 100,
+  k = min(nrow(Data), ncol(Data)),
   Winf = 0.8,
   Wsup = 1,
   ncp = 2,
   scale = TRUE,
-  method = c("Regularized", "EM"),
+  method = "Regularized",
   row.w = NULL,
   coeff.ridge = 1,
   threshold = 1e-06,
@@ -33,16 +33,19 @@ imputation(
 )
 }
 \arguments{
-\item{Data}{a data frame}
+\item{Data}{a dataframe with genotypes, environments, repetitions (if any) and
+the phenotypic trait of interest. There is no restriction on the order in
+which these variables should be presented in the dataframe, and also other
+variables that will not be used in the analysis can be included.}
 
-\item{genotype}{name of the column that contains the genotypes}
+\item{genotype}{column name containing genotypes.}
 
-\item{environment}{name of the column that contains the environments}
+\item{environment}{column name containing environments.}
 
-\item{response}{name of the column that contains the response}
+\item{response}{column name containing phenotypic trait.}
 
-\item{rep}{name of the column that contains the replications.If this argument
-is NULL, there is no replications in the data.}
+\item{rep}{column name containing replications. If this argument is NULL,
+there is no replication available on the data.}
 
 \item{type}{imputation method. Either "EM-AMMI", "EM-SVD",
 "Gabriel","WGabriel","EM-PCA".}
@@ -100,11 +103,11 @@ procedure does not converge for the standard initial values (see the
 description of the argument initial.values), the simplified model can be
 used to determine a better set of initial values.}
 
-\item{k}{the rank of the SVD approximation.}
-
 \item{tol}{the convergence tolerance for the EM algorithm.}
 
 \item{maxiter}{the maximum number of EM steps to take.}
+
+\item{k}{the rank of the SVD approximation.}
 
 \item{Winf}{peso inferior}
 

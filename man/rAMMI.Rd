@@ -14,11 +14,8 @@ rAMMI(
   type = "AMMI",
   colGen = "gray47",
   colEnv = "darkred",
-  colSegment = "gray30",
-  colHull = "gray30",
   sizeGen = 4,
   sizeEnv = 4,
-  largeSize = 4.5,
   titles = TRUE,
   footnote = TRUE,
   axis_expand = 1.2,
@@ -28,76 +25,71 @@ rAMMI(
 )
 }
 \arguments{
-\item{Data}{a data frame}
+\item{Data}{a dataframe with genotypes, environments, repetitions (if any) and
+the phenotypic trait of interest. There is no restriction on the order in
+which these variables should be presented in the dataframe, and also other
+variables that will not be used in the analysis can be included.}
 
-\item{genotype}{name of the column that contains the genotypes}
+\item{genotype}{column name containing genotypes.}
 
-\item{environment}{name of the column that contains the environments}
+\item{environment}{column name containing environments.}
 
-\item{response}{name of the column that contains the response}
+\item{response}{column name containing phenotypic trait.}
 
-\item{rep}{name of the column that contains the replications.If this argument
-is NULL, there is no replications in the data.}
+\item{rep}{column name containing replications. If this argument is
+NULL, there is no replication available on the data.}
 
-\item{Ncomp}{number of principal components that will be used in the analysis}
+\item{Ncomp}{number of principal components that will be used in the analysis.}
 
 \item{type}{method. Either "AMMI", "rAMMI", "hAMMI", "gAMMI", "lAMMI" or
 "ppAMMI".}
 
-\item{colGen}{colour for genotype attributes on biplot. Defaults to "gray"}
+\item{colGen}{colour for genotype attributes on biplot. Defaults to "gray".}
 
 \item{colEnv}{colour for environment attributes on biplot. Defaults to
-"darkred"}
+"darkred".}
 
-\item{colSegment}{colour for segment or circle lines. Defaults to "gray"}
+\item{sizeGen}{text size of genotype labels. Defaults to 4.}
 
-\item{colHull}{colour for hull when type=6. Defaults to "gray"}
+\item{sizeEnv}{text size of environment labels. Defaults to 4.}
 
-\item{sizeGen}{text size for genotype labels. Defaults to 4}
+\item{titles}{logical. If TRUE then include automatically generated titles.}
 
-\item{sizeEnv}{text size for environment labels. Defaults to 4}
-
-\item{largeSize}{text size to use for larger labels where type=5, used for the
-two selected genotypes, and where type="Which won where/what", used for the
-outermost genotypes. Defaults to 4.5}
-
-\item{titles}{logical. If TRUE then include automatically generated titles}
-
-\item{footnote}{logical. If TRUE then include automatically generated footbote
-two selected genotypes, and where type=6, used for the outermost genotypes.}
+\item{footnote}{logical. If TRUE then include automatically generated footnote.}
 
 \item{axis_expand}{multiplication factor to expand the axis limits by to
-enable fitting of labels. Defaults to 1.2}
+enable fitting of labels. Defaults to 1.2.}
 
-\item{limits}{logical. If TRUE then automatically rescale axes}
+\item{limits}{logical. If TRUE then automatically rescale axes.}
 
 \item{axes}{logical. If TRUE then include x and y axes going through the
-origin}
+origin.}
 
 \item{axislabels}{logical. If TRUE then include automatically generated labels
-for axes}
+for axes.}
 }
 \value{
 A biplot of class  \code{ggplot}
 }
 \description{
-Produces the AMMI biplot as an object of class 'ggplot'. It is possible to
-customize it so that the stylistic attributes are to the user's liking.
+Produces the clasic or robust version of AMMI biplot as an object of class
+'ggplot'. It is possible to customize it so that the stylistic attributes are
+to the user's liking.
 }
 \examples{
 
 library(geneticae)
 # Data without replication
 data(yan.winterwheat)
-GGE1 <- rAMMI(yan.winterwheat, genotype="gen",environment="env", response="yield",
+BIP_AMMI <- rAMMI(yan.winterwheat, genotype="gen",environment="env", response="yield",
              type = "AMMI")
-GGE1
+BIP_AMMI
 
 # Data with replication
 data(plrv)
-GGE2 <- rAMMI(plrv, genotype="Genotype",environment="Locality", response="Yield",
+BIP_AMMI2 <- rAMMI(plrv, genotype="Genotype",environment="Locality", response="Yield",
              rep="Rep", type = "AMMI")
-GGE2
+BIP_AMMI2
 
 
 }

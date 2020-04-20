@@ -1,32 +1,35 @@
 #'AMMI biplots with \pkg{ggplot2}
 #'
-#'Produces the AMMI biplot as an object of class 'ggplot'. It is possible to
-#'customize it so that the stylistic attributes are to the user's liking.
+#'Produces the clasic or robust version of AMMI biplot as an object of class
+#''ggplot'. It is possible to customize it so that the stylistic attributes are
+#'to the user's liking.
 #'
-#'@param Data a data frame
-#'@param genotype name of the column that contains the genotypes
-#'@param environment name of the column that contains the environments
-#'@param response name of the column that contains the response
-#'@param rep name of the column that contains the replications.If this argument
-#'  is NULL, there is no replications in the data.
-#'@param Ncomp number of principal components that will be used in the analysis
+#'@param Data a dataframe with genotypes, environments, repetitions (if any) and
+#'  the phenotypic trait of interest. There is no restriction on the order in
+#'  which these variables should be presented in the dataframe, and also other
+#'  variables that will not be used in the analysis can be included.
+#'@param genotype column name containing genotypes.
+#'@param environment column name containing environments.
+#'@param response column name containing phenotypic trait.
+#'@param rep column name containing replications. If this argument is
+#'  NULL, there is no replication available on the data.
+#'@param Ncomp number of principal components that will be used in the analysis.
 #'@param type method. Either "AMMI", "rAMMI", "hAMMI", "gAMMI", "lAMMI" or
 #'  "ppAMMI".
-#'@param colGen colour for genotype attributes on biplot. Defaults to "gray"
+#'@param colGen colour for genotype attributes on biplot. Defaults to "gray".
 #'@param colEnv colour for environment attributes on biplot. Defaults to
-#'  "darkred"
-#'@param sizeGen text size for genotype labels. Defaults to 4
-#'@param sizeEnv text size for environment labels. Defaults to 4
+#'  "darkred".
+#'@param sizeGen text size of genotype labels. Defaults to 4.
+#'@param sizeEnv text size of environment labels. Defaults to 4.
 #'@param axis_expand multiplication factor to expand the axis limits by to
-#'  enable fitting of labels. Defaults to 1.2
-#'@param titles logical. If TRUE then include automatically generated titles
-#'@param footnote logical. If TRUE then include automatically generated footbote
-#'  two selected genotypes, and where type=6, used for the outermost genotypes.
-#'@param limits logical. If TRUE then automatically rescale axes
+#'  enable fitting of labels. Defaults to 1.2.
+#'@param titles logical. If TRUE then include automatically generated titles.
+#'@param footnote logical. If TRUE then include automatically generated footnote.
+#'@param limits logical. If TRUE then automatically rescale axes.
 #'@param axes logical. If TRUE then include x and y axes going through the
-#'  origin
+#'  origin.
 #'@param axislabels logical. If TRUE then include automatically generated labels
-#'  for axes
+#'  for axes.
 #'
 #'@return A biplot of class  \code{ggplot}
 #'@references Rodrigues PC, Monteiro A and Lourenco VM (2015). \emph{A robust
@@ -39,15 +42,15 @@
 #'library(geneticae)
 #'# Data without replication
 #'data(yan.winterwheat)
-#'GGE1 <- rAMMI(yan.winterwheat, genotype="gen",environment="env", response="yield",
+#'BIP_AMMI <- rAMMI(yan.winterwheat, genotype="gen",environment="env", response="yield",
 #'              type = "AMMI")
-#'GGE1
+#'BIP_AMMI
 #'
 #'# Data with replication
 #'data(plrv)
-#'GGE2 <- rAMMI(plrv, genotype="Genotype",environment="Locality", response="Yield",
+#'BIP_AMMI2 <- rAMMI(plrv, genotype="Genotype",environment="Locality", response="Yield",
 #'              rep="Rep", type = "AMMI")
-#'GGE2
+#'BIP_AMMI2
 #'
 #'
 #'@import dplyr
@@ -61,10 +64,14 @@ rAMMI<-function(Data, genotype="gen", environment="env", response="Y", rep=NULL,
                 colGen="gray47",colEnv="darkred",sizeGen=4,sizeEnv=4,titles=TRUE, footnote=TRUE, axis_expand=1.2, limits=TRUE,
                 axes=TRUE,axislabels=TRUE){
 
-  if (missing(Data)) stop("Need to provide Data data frame or matrix")
+  if (missing(Data)) stop("Need to provide Data data frame")
   if(any(is.na(Data))){stop("Missing data in input data frame, run the imputation function first to complete the data set")}
   stopifnot(
     class(Data) == "data.frame",
+    class(genotype) == "character",
+    class(environment) == "character",
+    class(response) == "character",
+    class(rep)%in% c("character", "NULL"),
     class(Ncomp) == "numeric",
     type %in% c("AMMI", "rAMMI", "hAMMI", "gAMMI", "lAMMI", "ppAMMI"),
     class(rep)%in% c("character", "NULL"),
@@ -74,10 +81,10 @@ rAMMI<-function(Data, genotype="gen", environment="env", response="Y", rep=NULL,
     class(sizeEnv) == "numeric",
     class(titles)  == "logical",
     class(footnote)  == "logical",
-    class(axislabels)  == "logical",
-    class(axes)  == "logical",
     class(axis_expand) == "numeric",
-    class(limits)  == "logical"
+    class(limits) == "logical",
+    class(axes)  == "logical",
+    class(axislabels)  == "logical"
   )
 
   if(!is.null(rep)){
@@ -92,13 +99,8 @@ rAMMI<-function(Data, genotype="gen", environment="env", response="Y", rep=NULL,
   env <- as.factor(pull(Data, environment))
   y <- pull(Data, response)
 
-  # Asi funciona
-  # gen <- as.factor(Data[, 1])
-  # env <- as.factor(Data[, 2])
-  # y <- as.vector(Data[, 3])
   Ngen <- nlevels(gen)
   Nenv <- nlevels(env)
-  #Nreps <- nlevels(reps)
   labelgen <- unique(gen)
   labelenv <- unique(env)
   Ngen <- nlevels(gen)
@@ -109,8 +111,8 @@ rAMMI<-function(Data, genotype="gen", environment="env", response="Y", rep=NULL,
   rlm.x <- rlm(y ~ gen + env, data=Data)           # Robust AMMi model - stage 1
   rresiduals.x <- matrix(residuals(rlm.x), nrow = Ngen, ncol = Nenv)
 
-  if (type == "AMMI"){              # H-AMMI model
-    svd.x<- svd((residuals.x))               # AMMI model - stage 2
+  if (type == "AMMI"){                   # AMMI model
+    svd.x<- svd((residuals.x))
     eigenvalues<-svd.x$d
     biplot.x.u<- -svd.x$u[,1:2] * matrix(rep(svd.x$d[1:2]^0.5, Ngen), ncol=2, byrow=T)
     biplot.x.v<- -svd.x$v[,1:2] * matrix(rep(svd.x$d[1:2]^0.5, Nenv), ncol=2, byrow=T)
@@ -123,7 +125,7 @@ rAMMI<-function(Data, genotype="gen", environment="env", response="Y", rep=NULL,
     biplot.x.v<- cbind(rsvd.x$v[,1], -rsvd.x$v[,2]) * matrix(rep(rsvd.x$d[1:2]^0.5, Nenv), ncol=2, byrow=T)
   }
 
-  if (type == "hAMMI"){              # H-AMMI model
+  if (type == "hAMMI"){                 # H-AMMI model
     modeloHubert<- PcaHubert(rresiduals.x, mcd=FALSE)
     eigenvalues<- modeloHubert@eigenvalues
     loadings.Hx<- modeloHubert@loadings

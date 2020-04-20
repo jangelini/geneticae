@@ -16,16 +16,19 @@ GGEmodel(
 )
 }
 \arguments{
-\item{Data}{a data frame}
+\item{Data}{a dataframe with genotypes, environments, repetitions (if any) and
+the phenotypic trait of interest. There is no restriction on the order in
+which these variables should be presented in the dataframe, and also other
+variables that will not be used in the analysis can be included.}
 
-\item{genotype}{name of the column that contains the genotypes}
+\item{genotype}{column name containing genotypes.}
 
-\item{environment}{name of the column that contains the environments}
+\item{environment}{column name containing environments.}
 
-\item{response}{name of the column that contains the response}
+\item{response}{column name containing phenotypic trait.}
 
-\item{rep}{name of the column that contains the replications.If this argument
-is NULL, there is no replications in the data.}
+\item{rep}{column name containing replications. If this argument is NULL,
+there is no replication available on the data.}
 
 \item{centering}{centering method. Either "tester" for tester centered (G+GE),
 "global" for global centered (E+G+GE), "double" for double centred (GE) or
@@ -57,9 +60,9 @@ The site regression model also named genotype plus
  programs.This function is a modification of
  \code{\link[GGEBiplots]{GGEModel}} of GGEBiplots package, where the dataset
  contains genotype by environment means with the genotypes in  rows and
- environments in columns. By contrast, in this function a less restrictive
- format of the data set is allowed, such as repetitions or other variables
- that will not be used in the analysis can be included.
+ environments in columns. By contrast, this function allows a less
+ restrictive format of the data set. Repetitions and other variables theat
+ will not be used in the analysis may be present in the dataset.
 }
 \examples{
 

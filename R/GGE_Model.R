@@ -6,16 +6,19 @@
 #'  programs.This function is a modification of
 #'  \code{\link[GGEBiplots]{GGEModel}} of GGEBiplots package, where the dataset
 #'  contains genotype by environment means with the genotypes in  rows and
-#'  environments in columns. By contrast, in this function a less restrictive
-#'  format of the data set is allowed, such as repetitions or other variables
-#'  that will not be used in the analysis can be included.
+#'  environments in columns. By contrast, this function allows a less
+#'  restrictive format of the data set. Repetitions and other variables theat
+#'  will not be used in the analysis may be present in the dataset.
 #'
-#'@param Data a data frame
-#'@param genotype name of the column that contains the genotypes
-#'@param environment name of the column that contains the environments
-#'@param response name of the column that contains the response
-#'@param rep name of the column that contains the replications.If this argument
-#'  is NULL, there is no replications in the data.
+#'@param Data a dataframe with genotypes, environments, repetitions (if any) and
+#'  the phenotypic trait of interest. There is no restriction on the order in
+#'  which these variables should be presented in the dataframe, and also other
+#'  variables that will not be used in the analysis can be included.
+#'@param genotype column name containing genotypes.
+#'@param environment column name containing environments.
+#'@param response column name containing phenotypic trait.
+#'@param rep column name containing replications. If this argument is NULL,
+#'  there is no replication available on the data.
 #'@param centering centering method. Either "tester" for tester centered (G+GE),
 #'  "global" for global centered (E+G+GE), "double" for double centred (GE) or
 #'  "none" for no centering. If a centering method is not used, the

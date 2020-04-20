@@ -5,8 +5,8 @@
 #'  environment. The GGE biplot is an object of class 'ggplot' obtained from an
 #'  object produced by the \code{\link[geneticae]{GGEmodel}} function. It is
 #'  possible to personalize the graphic so that the stylistic attributes are
-#'  liked by the user. This function is a modification of the
-#'  \code{\link[GGEBiplots]{GGEPlot}} package of the GGEBiplots.
+#'  liked by the user. This function is a modification of
+#'  \code{\link[GGEBiplots]{GGEPlot}} from GGEBiplots package.
 #'
 #'@param GGEModel An object of class \code{GGEModel}.
 #'@param type type of biplot to produce. \itemize{ \item \code{Biplot}: Basic
@@ -22,13 +22,6 @@
 #'  environment. \item \code{Mean vs. stability}: Evaluating cultivars based on
 #'  both average yield and stability. \item \code{Ranking Gentoypes}: Ranking
 #'  genotypes with respect to the ideal genotype.}
-#'
-#'@param Data a data frame
-#'@param genotype name of the column that contains the genotypes
-#'@param environment name of the column that contains the environments
-#'@param response name of the column that contains the response
-#'@param rep name of the column that contains the replications.If this argument
-#'  is NULL, there is no replications in the data.
 #'@param d1 PCA component to plot on x axis. Defaults to 1.
 #'@param d2 PCA component to plot on y axis. Defaults to 2.
 #'@param selectedE name of the environment to examine when type="Selected
@@ -36,30 +29,30 @@
 #'@param selectedG name of the genotype to examine when type="Selected
 #'  Genotype". Must be a string which matches a genotype label.
 #'@param selectedG1 name of a genotype to compare when type="Comparison of
-#'  Genotype". Must be a string which matches a genotype labe.
+#'  Genotype". Must be a string which matches a genotype label.
 #'@param selectedG2 name of a genotype to compare when type="Comparison of
 #'  Genotype". Must be a string which matches a genotype label and not equal to
-#'  selectedG1
-#'@param colGen colour for genotype attributes on biplot. Defaults to "gray47"
+#'  selectedG1.
+#'@param colGen colour for genotype attributes on biplot. Defaults to "gray47".
 #'@param colEnv colour for environment attributes on biplot. Defaults to
-#'  "darkred"
-#'@param colSegment colour for segment or circle lines. Defaults to "gray30"
+#'  "darkred".
+#'@param colSegment colour for segment or circle lines. Defaults to "gray30".
 #'@param colHull colour for hull when type="Which won where/what". Defaults to
-#'  "gray30"
-#'@param sizeGen text size for genotype labels. Defaults to 4
-#'@param sizeEnv text size for environment labels. Defaults to 4
+#'  "gray30".
+#'@param sizeGen text size for genotype labels. Defaults to 4.
+#'@param sizeEnv text size for environment labels. Defaults to 4.
 #'@param largeSize text size to use for larger labels where type="Comparison of Genotype", used for the
 #'  two selected genotypes, and where type="Which won where/what", used for the
-#'  outermost genotypes. Defaults to 4.5
+#'  outermost genotypes. Defaults to 4.5.
 #'@param axis_expand multiplication factor to expand the axis limits by to
-#'  enable fitting of labels. Defaults to 1.2
+#'  enable fitting of labels. Defaults to 1.2.
 #'@param axislabels logical. If TRUE then include automatically generated labels
-#'  for axes
+#'  for axes.
 #'@param axes logical. If TRUE then include x and y axes going through the
-#'  origin
-#'@param limits logical. If TRUE then automatically rescale axes
-#'@param titles logical. If TRUE then include automatically generated titles
-#'@param footnote logical. If TRUE then include automatically generated footbote
+#'  origin.
+#'@param limits logical. If TRUE then automatically rescale axes.
+#'@param titles logical. If TRUE then include automatically generated titles.
+#'@param footnote logical. If TRUE then include automatically generated footnote.
 #'@keywords GGE Biplot
 #'@return A biplot of class \code{ggplot}
 #'@references Yan W, Kang M (2003). \emph{GGE Biplot Analysis: A Graphical Tool
