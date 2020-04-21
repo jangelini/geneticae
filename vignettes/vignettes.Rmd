@@ -122,119 +122,116 @@ Using `GGEmodel()` information, `GGEPlot()` function builds the GGE biplots. In 
 
 Biplots that respond to specific objectives can be achieved. The basic biplot, in which the 78% of the total variability of G + GE is explained, can be obtained indicating `type="Biplot"` (Figure 1).
 
-```{r,fig.height=4, fig.width=4, fig.align='center', fig.cap='Figure 1: basic biplot', tidy=TRUE}
-GGEPlot(GGE1, type="Biplot")
+```{r, fig.height=3.5, fig.width=3.5, fig.align='center', fig.cap='Figure 1: basic biplot', tidy=TRUE}
+GGEPlot(GGE1, type="Biplot", footnote = F, titles = F)
 ```
 
 Breeders in general are interested in identifying the most suitable cultivars for their area. To identify the best genotypes in an environment through the GGE biplot, Yan and Hunt (2002) suggest making an axis of the environment, for example OA93, drawing a line that passes through the identifier of the environment and the origin. Such biplot is obtained by indicating `type="Selected Environment"` and the name of the environment to examine `selectedE = "OA93"` (Figure 2).
 
-```{r,fig.height=4, fig.width=4, fig.align='center', fig.cap='Figure 2: comparison of cultivare performance in a selected environment (OA93)', tidy=TRUE}
-GGEPlot(GGE1, type="Selected Environment", selectedE = "OA93")
+```{r,fig.height=3.5, fig.width=3.5, fig.align='center', fig.cap='Figure 2: comparison of cultivare performance in a selected environment (OA93)', tidy=TRUE}
+GGEPlot(GGE1, type="Selected Environment", selectedE = "OA93", footnote = F, titles = F)
 ```
 
 
 Another interest of plant breeders is to determine which is the most suitable environment for a cultivar. Figure 3 illustrates how to visualize the relative adaptation of the cultivar _Luc_ in different environments, `type="Selected Genotype"` and the name of the genotype to examine `selectedG = "Luc"`. Yan and Hunt (2002) suggest plotting a line that passes through the biplot origin and the Luc marker, which we will call the Luc axis.
 
-```{r,fig.height=5.5, fig.width=5.5, fig.align='center', fig.cap='Figure 3: comparison of the performance of cultivar Luc in different environments', tidy=TRUE}
-GGEPlot(GGE1, type="Selected Genotype", selectedG = "Luc")
+```{r,fig.height=3.5, fig.width=3.5, fig.align='center', fig.cap='Figure 3: comparison of the performance of cultivar Luc in different environments', tidy=TRUE}
+GGEPlot(GGE1, type="Selected Genotype", selectedG = "Luc", footnote = F, titles = F)
 ```
 
 
 To compare two cultivars, for example _Kat_ and _Cas_, a connector line that connect the genotypes to be compared and also a perpendicular to the connector line is drawn (Figure 4). 
-```{r,fig.height=5.5, fig.width=5.5, fig.align='center', fig.cap='Figure 4: comparison of two cultivars, Kat and Cas', tidy=TRUE}
-GGEPlot(GGE1, type="Comparison of Genotype", selectedG1 = "Kat", selectedG2 = "Cas")
+```{r,fig.height=3.5, fig.width=3.5, fig.align='center', fig.cap='Figure 4: comparison of two cultivars, Kat and Cas', tidy=TRUE}
+GGEPlot(GGE1, type="Comparison of Genotype", selectedG1 = "Kat", selectedG2 = "Cas", footnote = F, titles = F)
 ```
 
 The polygonal view of the GGE biplot proposed by Yan (1999) provides an effective way to visualize the which-won-where  pattern of an EMA dataset (Figure 5). Vertex cultivars are those with the longest vectors, in their respective directions, which is a measure of the ability to respond to environments. The perpendicular lines on the sides of the polygon divide the biplot into megaenvironments, each of which has a vertex cultivar, the one with the highest yield in all the environments found in it.
 
-```{r,fig.height=5.5, fig.width=5.5, fig.align='center', fig.cap='Figure 5: polygon view of the GGE biplot, showing which cultivar yielded best in which environments', tidy=TRUE}
-GGEPlot(GGE1, type="Which Won Where/What")
+```{r,fig.height=3.5, fig.width=3.5, fig.align='center', fig.cap='Figure 5: polygon view of the GGE biplot, showing which cultivar yielded best in which environments', tidy=TRUE}
+GGEPlot(GGE1, type="Which Won Where/What", footnote = F, titles = F)
+```
+
+Another interest among plant breeders is to select cultivars within each mega-environments. According to figure 5, zav is the best cultivar for environments in one of the mega-environments and fun in the other. However, breeders will not select a single cultivar in each mega-environment, so it is necessary to look in more detail at each mega-environment and evaluate all cultivars in order to get an idea of their performance (yield and stability). The GGE biplot based on genotype-focused scaling allow visualizing both genotype mean performance and stability. Visualization of mean yield and stability of genotypes is achieved drawing an environment coordinate (AEC) in the biplot centered on the genotype. Figure 6 shows the AEC for the mega-environment consisting of the environments "BH93", "EA93", "HW93", "ID93", "NN93", "RN93", "WP93". The abscissa represents the effect of G and the ordinate the IGA associated with each genotype, which is a measure of the variability or instability of the genotypes. A greater projection on the ordered AEC, regardless of direction, means greater instability.
+
+```{r,fig.height=3.5, fig.width=3.5, fig.align='center', fig.cap='Figure 6: average environement view of the GGE biplot based on genotype-focused scaling, showing mean yield and stability of genotypes', tidy=TRUE}
+data<-yan.winterwheat
+data<-data[data$env %in% c("BH93", "EA93","HW93", "ID93","NN93","RN93", "WP93"),]
+GGE2 <- GGEmodel(data, genotype="gen", environment="env", response="yield", SVP="row")
+GGEPlot(GGE2, type="Mean vs. Stability", footnote = F, titles = F)
+
+```
+
+The GGE biplot allows to visualize both the mean yield and the stability of the genotypes in the yield unit per se. This allows the two measurements to be combined and displayed in a single measurement (Figure 7). The small circle in Figure 7 represents the ideal cultivar since it is the highest yield of the data set and is absolutely stable, being located on the abscissa axis of the AEC. Such an ideal genotype is used as a reference for the evaluation of cultivars since it rarely exists. The distance between cultivars from the ideal can be used as a measure of convenience. Concentric circles, taking the ideal cultivar as the center, help to visualize the distance between all cultivars and the ideal. _Fun_ cultivar is the closest to the ideal, and therefore the most desirable of all the cultivars tested, followed by _cas_ and _hay_, which in turn are followed by _rum_, _ham_, _rub_, _zav_, _del_ and _reb_, etc.
+
+```{r,fig.height=3.5, fig.width=3.5, fig.align='center', fig.cap='Figure 7: Classification of genotypes with respect to the ideal genotype', tidy=TRUE}
+GGEPlot(GGE1, type="Ranking Genotypes", footnote = F, titles = F)
+```
+
+
+Although METs are performed to evaluate cultivars, they are equally useful in evaluating the studied environments. This includes several aspects: (i) evaluating whether the target region belongs to one or more megaenvironments; (ii) identify better test environments; (iii) identify redundant environments that do not provide additional information on cultivars; (iv) identify environments that can be used for indirect selection.
+
+
+In figure 8 the environments are connected to biplot origin through vectors, allowing us to understand the interrelationships between the different environments. The cosine of the angle between the vectors of two environments approximates the correlation coefficient between them. For example, NN93 and WP93 have an angle of about 10$º$ between their vectors; therefore, they are closely related; while RN93 and OA93 present slight and negative correlations since the angle exceeds 90$º$. The cosine of the angles does not translate precisely into correlation coefficients, since the biplot does not explain all the variation in the data set. However, the angles are informative enough to understand the interrelationship between the test environment.
+
+
+```{r,fig.height=3.5, fig.width=3.5, fig.align='center', fig.cap='Figure 8: Relationship between environments', tidy=TRUE}
+GGE3 <- GGEmodel(data, genotype="gen", environment="env", response="yield", SVP="column")
+GGEPlot(GGE3, type="Relationship Among Environments", footnote = F, titles = F)
+```
+
+
+On the other hand, Figure 9 helps to identify redundant environments. If some environments have small angles and are therefore highly correlated, the information on the genotypes obtained from these environments should be similar. If this similarity is repeatable through the years, these environments are redundant and therefore, only one should be enough. Obtaining the same or better information using fewer environments would reduce cost and increase production efficiency.
+
+```{r,fig.height=3.5, fig.width=3.5, fig.align='center', fig.cap='Figure 9: Classification of environments with respect to the ideal environment', tidy=TRUE}
+GGEPlot(GGE1, type="Ranking Environments", footnote = F, titles = F)
+```
+__FALTA DESCRIPCION__
+
+```{r,fig.height=3.5, fig.width=3.5, fig.align='center', tidy=TRUE}
+
+GGEPlot(GGE1, type="Discrimination vs. representativeness", footnote = F, titles = F)
+
 ```
 
 
 
+### AMMI model
 
-* Relationship Among Environments, is obtained by indicating `type="Relationship Among Environments"`.
-```{r,fig.height=5.5, fig.width=5.5, fig.align='center', tidy=TRUE}
-GGEPlot(GGE1, type="Relationship Among Environments")
-```
-
-
-
-* Evaluating of environments based on both discriminating ability and representativeness, indicating `type="Discrimination vs. representativeness"`.
-```{r,fig.height=5.5, fig.width=5.5, fig.align='center', tidy=TRUE}
-GGEPlot(GGE1, type="Discrimination vs. representativeness")
-```
-
-* Ranking of environments with respect to the ideal environment, indicating `type="Ranking Environments"`.
-```{r,fig.height=5.5, fig.width=5.5, fig.align='center', tidy=TRUE}
-GGEPlot(GGE1, type="Ranking Environments")
-```
-
-* Ranking of genotypes with respect to the ideal genotype, indicating `type="Ranking Genotypes"`.
-```{r,fig.height=5.5, fig.width=5.5, fig.align='center', tidy=TRUE}
-GGEPlot(GGE1, type="Ranking Genotypes")
-```
-
-* Evaluating of cultivars based on both average yield and stability, indicating `type="Mean vs. Stability"`.
-
-```{r,fig.height=5.5, fig.width=5.5, fig.align='center', tidy=TRUE}
-GGEPlot(GGE1, type="Mean vs. Stability")
-```
-
-### AMMI
-
-#### The classic AMMI model
 The AMMI model (Gauch, 1988, 1992) is another widely used tools to
-analyse and structure GE. This model is fit in two stages: first, the main effects (G and E) are estimated using ANOVA by least squares; second, the SVD is applied to the residuals from the ANOVA, i.e. to the interaction, to obtain the estimates for the multiplicative terms of the AMMI model. In order to visualize the interaction patterns, the Genotipe-Environment (GE) biplots are constructed.
+analyse GEI. This model is fit in two stages: first, the main effects (G and E) are estimated using ANOVA by least squares; second, the SVD is applied to the residuals from the ANOVA. 
 
-To run `rAMMI` function, as in the `GGEmodel` function, a dataset with genotype, environment, repetitions (if there is), and the response variable must be provided. The name of the columns that contains genotype, environment, repetitions and the response must be indicated. The output is a biplot.
+To visualize only the effect of IGA, the GE (Genotipe-Environment) biplots obtained from the AMMI model are used. 
+As in the case of GGEmodel() function, the long format is required by rammi(), and also the function internally calculates the phenotypic mean if each genotype has been evaluated more than once in every environment.Other variables that will not be used in the model may be present in the dataset since the phenotypic trait of interest must be indicated in one of the arguments of the function. Missing values are not allowed, if there is an error message in R console will be appeared.
 
-The biplots from classic AMMI model, using `type="AMMI"`, that can be produced using _yan.winterwheat_ dataset is shown below.
+This function is not currently available in R, it is modified from the publication by Rodrigues et al. (2015). This version of the function allows other variables to be included in the data set because, as in GGEmodel (), the names of the variables to be used must be indicated and it also allows the presence of repetitions since the function automatically calculates the average phenotypic value for each combination of genotype and environment and then fit the model. Missing values are not allowed, if any, an error message will appear in the R console.
 
-```{r,fig.height=5.5, fig.width=5.5, fig.align='center', tidy=TRUE}
-rAMMI(yan.winterwheat,genotype="gen",environment="env", response="yield", type = "AMMI")
+The classic GE biplot for _yan.winterwheat_ dataset is shown in figure 11.
+
+```{r,fig.height=3.5, fig.width=3.5, fig.align='center', tidy=TRUE}
+rAMMI(yan.winterwheat,genotype="gen",environment="env", response="yield", type = "AMMI", footnote = F, titles = F)
 ```
 
-#### Robust AMMI model
-The AMMI model, in its standard form, implicitly assumes equal weights for all entries of the two-way dataset and that no outliers are present in the data.
-To overcome the problem of data contamination with outlying observations, Rodrigues et al. (2015) propose five robust AMMI models, which can be obtained in two stages as follows: (i) use the robust regression based on the M-Huber estimator (Huber, 1981) to replace the ANOVA model; and (ii) use a robust SVD/PCA procedure to replace the
+
+The AMMI model, in its standard form, implicitly assumes equal weights for all entries of the two-way dataset and that no outliers are present in the data. To overcome the problem of data contamination with outlying observations, Rodrigues et al. (2015) propose five robust AMMI models, which can be obtained in two stages as follows: (i) use the robust regression based on the M-Huber estimator (Huber, 1981) to replace the ANOVA model; and (ii) use a robust SVD/PCA procedure to replace the
 standard SVD.
 
-The biplots of the five robust AMMI model proposed, using _yan.winterwheat_ dataset are shown below.
+The yan.winterwheat data set does not present outliers, so according to Rodrigues, et al. (2015) the conclusions obtained with the robust biplots will not differ from those made with the classic biplot. Thus, there is no point in interpreting robust biplots in this example. 
 
-* `type = "rAMMI"`
-```{r,fig.height=5.5, fig.width=5.5, fig.align='center', tidy=TRUE}
-rAMMI(yan.winterwheat, genotype="gen",environment="env", response="yield", type = "rAMMI")
+The robusts biplots proposed by Rodrigues et al. (2015) can be obtained using the rAMMI() function, indicating in the type which one you want to obtain: "rAMMI", "hAMMI", "gAMMI", "lAMMI", "ppAMMI". For example, "rAMMI" biplot is shown in Figure 12.
+
+
+```{r,fig.height=3.5, fig.width=3.5, fig.align='center', tidy=TRUE}
+rAMMI(yan.winterwheat, genotype="gen",environment="env", response="yield", type = "rAMMI", footnote = F, titles = F)
 ```
 
-* `type = "hAMMI"`
-```{r,fig.height=5.5, fig.width=5.5, fig.align='center', tidy=TRUE}
-rAMMI(yan.winterwheat, genotype="gen",environment="env", response="yield", type = "hAMMI")
-```
-
-* `type = "gAMMI"`
-```{r,fig.height=5.5, fig.width=5.5, fig.align='center', tidy=TRUE}
-rAMMI(yan.winterwheat, genotype="gen",environment="env", response="yield", type = "gAMMI")
-```
-
-* `type = "lAMMI"`
-```{r,fig.height=5.5, fig.width=5.5, fig.align='center', tidy=TRUE}
-rAMMI(yan.winterwheat, genotype="gen",environment="env", response="yield", type = "lAMMI")
-```
-
-* `type = "ppAMMI"`
-```{r,fig.height=5.5, fig.width=5.5, fig.align='center', tidy=TRUE}
-rAMMI(yan.winterwheat, genotype="gen",environment="env", response="yield", type = "ppAMMI")
-```
-
-If repetitions are available in dataset, as _plrv_, the name of the column that contains the replications must be indicated.
 
 ### Imputation methods
 
 One major limitation of the included models is that require a complete two-way data table. Although METs are designed so that all genotypes are evaluated in all environments, the presence of missing values is very common. These occur for example due to the incorporation of new genotypes, measurement errors or natural causes such as, for example, destruction of plants by animals, floods or during harvest.
 
-Numerous methodologies have been proposed in order to overcome the lack of balance problem. The _yan.winterwheat_ dataset was used as example. Since the dataset was complete, some observations are eliminated in order to show the imputation methodologies.
+Numerous methodologies have been proposed in order to overcome the lack of balance problem. The package includes severals methods, some of which are not available in R, to overcome the problem of missing observations.
+
+Since the _yan.winterwheat_ dataset was complete, some observations are deleted in order to show how to obtained an imputed dataset with "EM-AMMI" method. In addition to the method used, the following are also available: "EM-SVD", "Gabriel", "WGabriel" and "EM-PCA", which must be indicated in the type argument of the imputation() function.
 
 ```{r, tidy=TRUE}
 # generates missing data
@@ -243,37 +240,10 @@ yan.winterwheat[3,3]<-NA
 yan.winterwheat[2,3]<-NA
 ```
 
-* __GabrielEigein__ proposed by Arciniegas-Alarcón S., et al. (2010).
 
 ```{r, tidy=TRUE}
 imputation(yan.winterwheat, PC.nb=2, genotype="gen",environment="env", response="yield", type="EM-AMMI")
 ```
-
-* __EM-AMMI__ proposed by Gauch and Zobel (1990).
-
-```{r, tidy=TRUE}
-imputation(yan.winterwheat, PC.nb=1, genotype="gen",environment="env", response="yield", type="EM-AMMI")
-```
-
-* __EM-SVD__ proposed by Perry (2009)
-
-```{r, tidy=TRUE}
-imputation(yan.winterwheat, genotype="gen",environment="env", response="yield", type="EM-SVD")
-```
-
-* __WGabriel__ proposed by Alarcon.....
-
-```{r, tidy=TRUE}
-imputation(yan.winterwheat, genotype="gen",environment="env", response="yield", type="WGabriel")
-```
-
-* __EM-PCA__ proposed by 
-
-```{r, tidy=TRUE}
-imputation(yan.winterwheat, genotype="gen",environment="env", response="yield", type="EM-PCA")
-```
-
-If repetitions are available in dataset, as _plrv_, the name of the column that contains the replications must be indicated.
 
 ## References
 
