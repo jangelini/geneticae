@@ -11,29 +11,25 @@ imputation(
   response = "yield",
   rep = NULL,
   type = "EM-AMMI",
-  PC.nb = 1,
+  nPC = 2,
   initial.values = NA,
   precision = 0.01,
-  max.iter = 1000,
+  maxiter = 1000,
   change.factor = 1,
   simplified.model = FALSE,
-  tol = max(nrow(Data), ncol(Data)) * 1e-10,
-  maxiter = 100,
   k = min(nrow(Data), ncol(Data)),
-  Winf = 0.8,
-  Wsup = 1,
-  ncp = 2,
   scale = TRUE,
-  method = "Regularized",
+  method = "EM",
   row.w = NULL,
   coeff.ridge = 1,
-  threshold = 1e-06,
   seed = NULL,
-  nb.init = 1
+  nb.init = 1,
+  Winf = 0.8,
+  Wsup = 1
 )
 }
 \arguments{
-\item{Data}{a dataframe with genotypes, environments, repetitions (if any) and
+\item{Data}{dataframe with genotypes, environments, repetitions (if any) and
 the phenotypic trait of interest. There is no restriction on the order in
 which these variables should be presented in the dataframe, and also other
 variables that will not be used in the analysis can be included.}
@@ -50,39 +46,28 @@ there is no replication available on the data.}
 \item{type}{imputation method. Either "EM-AMMI", "EM-SVD",
 "Gabriel","WGabriel","EM-PCA".}
 
-\item{PC.nb}{the number of principal components in the AMMI model that will be
-used; the default value is 1. For PC.nb=0 only main effects are used to
-estimate cells in the data table (the interaction is ignored). The number of
-principal components must not be greater than min(number of rows in the X
-table, number of columns in the X table)–2.}
+\item{nPC}{integer corresponding to the number of components used to to
+predict the missing values}
 
-\item{initial.values}{(optional) the initial values of the missing cells. It
-can be a single value, which then will be used for all empty cells, or a
-vector of length equal to the number of missing cells (starting from the
-missing values in the first column). If omitted, the initial values will be
-obtained by the main effects from the corresponding model, that is, by the
-grand mean of the observed data increased (or decreased) by row and column
-main effects.}
+\item{initial.values}{initial values of the missing cells. It can be a single
+value or a vector of length equal to the number of missing cells (starting
+from the missing values in the first column). If omitted, the initial values
+will be obtained by the main effects from the corresponding model, that is,
+by the grand mean of the observed data increased (or decreased) by row and
+column main effects.}
 
-\item{precision}{(optional) the algorithm converges if the maximal change in
-the values of the missing cells in two subsequent steps is not greater than
-this value (the default is 0.01);}
+\item{precision}{the threshold for assessing convergence.}
 
-\item{max.iter}{(optional) a maximum permissible number of iterations (that
-is, number of repeats of the algorithm’s steps 2 through 5); the default
-value is 1000;}
+\item{maxiter}{maximum number of iteration for the algorithm.}
 
-\item{change.factor}{(optional) introduced by analogy to step size in gradient
-descent method, this parameter that can shorten the time of executing the
-algorithm by decreasing the number of iterations. The change.factor=1
-(default) defines that the previous approximation is changed with the new
-values of missing cells (standard EM-AMMI algorithm). However, when
-change.factor<1, then the new approximations are computed and the values of
-missing cells are changed in the direction of this new approximation but the
-change is smaller. It could be useful if the changes are cyclic and thus
-convergence could not be reached. Usually, this argument should not affect
-the final outcome (that is, the imputed values) as compared to the default
-value of change.factor=1.}
+\item{change.factor}{The change.factor=1 defines that the previous
+approximation is changed with the new values of missing cells (standard
+EM-AMMI algorithm). However, when change.factor<1, then the new
+approximations are computed and the values of missing cells are changed in
+the direction of this new approximation but the change is smaller. It could
+be useful if the changes are cyclic and thus convergence could not be
+reached. Usually, this argument should not affect the final outcome (that
+is, the imputed values) as compared to the default value of change.factor=1}
 
 \item{simplified.model}{the AMMI model contains the general mean, effects of
 rows, columns and interaction terms. So the EM-AMMI algorithm in step 2
@@ -99,35 +84,33 @@ affect the outcome (whilst EM-AMMI results usually do not depend on initial
 values). For the simplified procedure the number of iterations to
 convergence is usually smaller and, furthermore, convergence will be reached
 even in some cases where the regular procedure fails. If the regular
-procedure does not converge for the standard initial values (see the
-description of the argument initial.values), the simplified model can be
-used to determine a better set of initial values.}
-
-\item{tol}{the convergence tolerance for the EM algorithm.}
-
-\item{maxiter}{the maximum number of EM steps to take.}
+procedure does not converge for the standard initial values, the simplified
+model can be used to determine a better set of initial values.}
 
 \item{k}{the rank of the SVD approximation.}
+
+\item{scale}{boolean. By default TRUE leading to a same weight for each
+variable}
+
+\item{method}{"Regularized" by default or "EM"}
+
+\item{row.w}{row weights (by default, a vector of 1 for uniform row weights)}
+
+\item{coeff.ridge}{1 by default to perform the regularized imputePCA
+algorithm; useful only if method="Regularized". Other regularization terms
+can be implemented by setting the value to less than 1 in order to
+regularized less (to get closer to the results of the EM method}
+
+\item{seed}{integer, by default seed = NULL implies that missing values are
+initially imputed by the mean of each variable. Other values leads to a
+random initialization}
+
+\item{nb.init}{integer corresponding to the number of random initializations;
+the first initialization is the initialization with the mean imputation}
 
 \item{Winf}{peso inferior}
 
 \item{Wsup}{peso superior}
-
-\item{ncp}{integer corresponding to the number of components used to  to predict the missing entries}
-
-\item{scale}{boolean. By default TRUE leading to a same weight for each variable}
-
-\item{method}{"Regularized" by default or "EM"}
-
-\item{row.w}{row weights  (by default, a vector of 1 for uniform row weights)}
-
-\item{coeff.ridge}{1 by default to perform the regularized imputePCA algorithm; useful only if method="Regularized". Other regularization terms can be implemented by setting the value to less than 1 in order to regularized less (to get closer to the results of the EM method) or more than 1 to regularized more (to get closer to the results of the mean imputation)}
-
-\item{threshold}{the threshold for assessing convergence}
-
-\item{seed}{integer, by default seed = NULL implies that missing values are initially imputed by the mean of each variable. Other values leads to a random initialization}
-
-\item{nb.init}{integer corresponding to the number of random initializations; the first initialization is the initialization with the mean imputation}
 }
 \value{
 matrix with imputed data
@@ -147,13 +130,7 @@ dat[1,3]<-NA
 dat[3,3]<-NA
 dat[2,3]<-NA
 \dontrun{
-imputation(dat, genotype="gen",environment="env", response="yield",
-type="EM-SVD") imputation(dat, genotype="gen",environment="env",
-response="yield", type="EM-AMMI") imputation(dat,
-genotype="gen",environment="env", response="yield", type="Gabriel")
-imputation(dat, genotype="gen",environment="env", response="yield",
-type="WGabriel") imputation(dat, genotype="gen",environment="env",
-response="yield", type="EM-PCA")
+imputation(dat, genotype="gen",environment="env", response="yield", type="EM-AMMI")
 }
 # Data with replication
  data(plrv)
@@ -163,13 +140,7 @@ dat2[3,3]<-NA
 dat2[2,3]<-NA
 \dontrun{
 imputation(dat2, genotype="Genotype",environment="Locality",
-response="Yield", rep= "Rep", type="EM-SVD") imputation(dat2,
-genotype="Genotype",environment="Locality", response="Yield", rep= "Rep",
-type="EM-AMMI") imputation(dat2, genotype="Genotype",environment="Locality",
-response="Yield", rep= "Rep", type="Gabriel") imputation(dat2,
-genotype="Genotype",environment="Locality", response="Yield", rep= "Rep",
-type="WGabriel") imputation(dat2, genotype="Genotype",environment="Locality",
-response="Yield", rep= "Rep", type="EM-PCA")
+response="Yield", rep= "Rep", type="EM-SVD")
 }
 
 }
@@ -178,5 +149,9 @@ Paderewski, J. (2013). An R function for imputation of missing
  cells in two-way data sets by EM-AMMI algorithm. Communications in Biometry
  and Crop Science 8 (2), 60–69.
 
-FALTAN CITAS....GABRIEL EMPCA...
+Troyanskaya, O., Cantor, M., Sherlock, G., Brown, P., Hastie, T.,
+ Tibshirani, R., Botstein, D. and Altman, R.B. (2001). Missing value
+ estimation methods for DNA microarrays. Bioinformatics 17(6), 520--525.
+
+
 }

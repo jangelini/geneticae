@@ -242,7 +242,7 @@ yan.winterwheat[2,3]<-NA
 
 
 ```{r, tidy=TRUE}
-imputation(yan.winterwheat, PC.nb=2, genotype="gen",environment="env", response="yield", type="EM-AMMI")
+imputation(yan.winterwheat,nPC = 2, genotype="gen",environment="env", response="yield", type="EM-AMMI")
 ```
 
 ## References
