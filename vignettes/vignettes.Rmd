@@ -113,9 +113,9 @@ standard SVD.
 All robusts biplots proposed by Rodrigues et al. (2015) can be obtained using `rAMMI()` function, indicating in `type` which one you want to obtain: `"rAMMI"`, `"hAMMI"`, `"gAMMI"`, `"lAMMI"` or `"ppAMMI"`. For example, `"rAMMI"` biplot is shown in Figure 2.
 
 
-```{r,  fig.align='center', fig.cap='Figure 2: rAMMI GE biplot', tidy=TRUE}
-rAMMI(yan.winterwheat, genotype="gen",environment="env", response="yield", type = "rAMMI", footnote = F, titles = F)
-```
+# ```{r, fig.align='center', fig.cap='Figure 2: rAMMI GE biplot', tidy=TRUE}
+# rAMMI(yan.winterwheat,genotype="gen",environment="env", response="yield", type = "rAMMI", footnote = F, titles = F)
+# ```
 
 
 ### Site regression model

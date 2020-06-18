@@ -4,7 +4,8 @@
 \name{plrv}
 \alias{plrv}
 \title{Clones from the PLRV population}
-\format{A data frame with 504 observations on the following 6 variables
+\format{
+A data frame with 504 observations on the following 6 variables
 
  Genotype a factor with levels 102.18 104.22 121.31 141.28 157.26 163.9
  221.19 233.11 235.6 241.2 255.7 314.12 317.6 319.20 320.16 342.15 346.2
@@ -16,7 +17,8 @@
 
  Rep a numeric vector
 
- WeightPlant, WeightPlot and Yield are numeric vectors}
+ WeightPlant, WeightPlot and Yield are numeric vectors
+}
 \usage{
 data(plrv)
 }

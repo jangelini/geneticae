@@ -4,13 +4,15 @@
 \name{yan.winterwheat}
 \alias{yan.winterwheat}
 \title{Winter wheat varieties from Ontario}
-\format{A data frame with 162 observations on the following 3 variables.
+\format{
+A data frame with 162 observations on the following 3 variables.
 
   gen genotype
 
   env environment
 
-  yield yield in metric tons per hectare}
+  yield yield in metric tons per hectare
+}
 \usage{
 data(yan.winterwheat)
 }
