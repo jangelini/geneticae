@@ -1,32 +1,31 @@
 #'Site regression model
 #'
 #'@description The site regression model also named genotype plus
-#'  genotype-by-environment (GGE) model is powerful a tools for effective
+#'  genotype-by-environment (GGE) model is a powerful tool for effective
 #'  analysis and interpretation of multienvironment data structure in breeding
 #'  programs.This function is a modification of
-#'  \code{\link[GGEBiplots]{GGEModel}} of GGEBiplots package, where the dataset
-#'  contains genotype by environment means with the genotypes in  rows and
-#'  environments in columns. By contrast, this function allows a less
-#'  restrictive format of the data set. Repetitions and other variables theat
-#'  will not be used in the analysis may be present in the dataset.
+#'  \code{\link[GGEBiplots]{GGEModel}} of GGEBiplots package, where the input
+#'  dataset contains genotype by environment means with the genotypes in rows
+#'  and environments in columns. By contrast, this function allows a less
+#'  restrictive format of dataset. Repetitions and other variables that will not
+#'  be used in the analysis may be present in the dataset.
 #'
-#'@param Data a dataframe with genotypes, environments, repetitions (if any) and
-#'  the phenotypic trait of interest. There is no restriction on the order in
-#'  which these variables should be presented in the dataframe, and also other
-#'  variables that will not be used in the analysis can be included.
+#'@param Data dataframe with genotypes, environments, repetitions (if any) and
+#'  the phenotypic trait of interest. The order of the variables is indistinct,
+#'  even additional variables that will not be used in the model may be present
+#'  in the data.
 #'@param genotype column name containing genotypes.
 #'@param environment column name containing environments.
 #'@param response column name containing phenotypic trait.
-#'@param rep column name containing replications. If this argument is NULL,
-#'  there is no replication available on the data.
+#'@param rep column name containing replications,if this argument is NULL, there
+#'  is no replication available on the data. Defaults to NULL.
 #'@param centering centering method. Either "tester" for tester centered (G+GE),
 #'  "global" for global centered (E+G+GE), "double" for double centred (GE) or
-#'  "none" for no centering. If a centering method is not used, the
-#'  \code{\link[geneticae]{GGEPlot}} function can not be used.
+#'  "none" for no centering. Default to "tester".
 #'@param scaling scaling method. Either "sd" for standard deviation or "none"
-#'  for no scaling.
+#'  for no scaling. Default to "none".
 #'@param SVP method for singular value partitioning. Either "row","column",
-#'  "dual" or "symmetrical".
+#'  "dual" or "symmetrical". Default to "column".
 #'@return A list of class \code{GGE_Model} containing:
 #'  \item{coordgenotype}{plotting coordinates for genotypes from all components}
 #'  \item{coordenviroment}{plotting coordinates for environments from all
@@ -37,6 +36,8 @@
 #'  \item{Data}{scaled and centered input data} \item{centering}{name of
 #'  centering method} \item{scaling}{name of scaling method} \item{SVP}{name of
 #'  SVP method}
+#'@references Sam Dumble (2017). GGEBiplots: GGE Biplots with 'ggplot2'. R
+#'  package version 0.1.1. \url{https://CRAN.R-project.org/package=GGEBiplots}
 #'@references Yan W, Kang M (2003). \emph{GGE Biplot Analysis: A Graphical Tool
 #'  for Breeders, Geneticists, and Agronomists}. CRC Press.
 #'@references Yan W, Kang M (2002). \emph{Singular-Value Partitioning in Biplot
@@ -47,6 +48,7 @@
 #'
 #'  library(geneticae)
 #'  # Data without replication
+#'  data(yan.winterwheat)
 #'  GGE1 <- GGEmodel(yan.winterwheat, genotype="gen",environment="env", response="yield",
 #'  centering = "tester")
 #'

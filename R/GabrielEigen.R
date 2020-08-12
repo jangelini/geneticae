@@ -1,13 +1,19 @@
-#' Gabriel Eigen imputation
+#' GabrielEigen imputation method
 #'
 #' @param X a data frame or matrix that contains the genotypes in the rows and
 #'   the environments in the columns when there are no replications of the
 #'   experiment.
 #' @references Arciniegas-Alarcón S., García-Peña M., Dias C.T.S., Krzanowski
-#'   W.J.. (2010). \emph{An alternative methodology for imputing missing data in
-#'   trials with genotype-by-environment interaction}. Biometrical Letters, 47,
+#'   W.J. (2010). \emph{An alternative methodology for imputing missing data in
+#'   trials with genotype-by-environment interaction}. Biometrical Letters 47,
 #'   1–14.
-#' @return Imputed data with Gabriel Eigein method
+#' @return A list containing: \itemize{ \item
+#'   NumeroIterGabriel: the final number of iterations; \item
+#'   CritConvergGabriel: the maximum change of the estimated values for missing
+#'   cells in the last step of iteration (the precision of convergence); \item
+#'   GabrielImput: the imputed matrix (filled in with the missing values
+#'   estimated by the GabrielEigein procedure).}
+#'
 #' @keywords internal
 #' @importFrom MASS ginv
 #'

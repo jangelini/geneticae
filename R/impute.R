@@ -1,22 +1,22 @@
 #'Imputation of missing cells in two-way data sets
 #'
-#'AMMI or GGE methods require the data to be complete, that is, no missing cells
-#'are allowed. This function offers several methods to impute the missing cells,
-#'so that the previously mentioned models can be adjusted later.
+#'AMMI or GGE methods require a complete dataset, that is, missing values are
+#'not allowed. This function provides several methods to impute missing cells
+#'and subsequently adjust the mentioned methods.
 #'
-#'@param Data dataframe with genotypes, environments, repetitions (if any) and
-#'  the phenotypic trait of interest. There is no restriction on the order in
-#'  which these variables should be presented in the dataframe, and also other
-#'  variables that will not be used in the analysis can be included.
+#'@param Data dataframe containing genotypes, environments, repetitions (if any)
+#'  and the phenotypic trait of interest. There is no restriction on the order
+#'  in which these variables should be presented in the dataframe, and also
+#'  other variables that will not be used in the analysis can be included.
 #'@param genotype column name containing genotypes.
 #'@param environment column name containing environments.
 #'@param response column name containing phenotypic trait.
 #'@param rep column name containing replications. If this argument is NULL,
-#'  there is no replication available on the data.
+#'  there is no replication available on the data. Default to NULL.
 #'@param type imputation method. Either "EM-AMMI", "EM-SVD",
-#'  "Gabriel","WGabriel","EM-PCA".
+#'  "Gabriel","WGabriel","EM-PCA". Default to "EM-AMMI".
 #'@param nPC integer corresponding to the number of components used to to
-#'  predict the missing values
+#'  predict the missing values. Default to 2.
 #'@param initial.values initial values of the missing cells. It can be a single
 #'  value or a vector of length equal to the number of missing cells (starting
 #'  from the missing values in the first column). If omitted, the initial values
@@ -67,15 +67,23 @@
 #'@param Winf peso inferior
 #'@param Wsup peso superior
 #'
-#'@return matrix with imputed data
+#'@return imputed data matrix
 #'@references Paderewski, J. (2013). An R function for imputation of missing
 #'  cells in two-way data sets by EM-AMMI algorithm. Communications in Biometry
-#'  and Crop Science 8 (2), 60–69.
-#'@references
-#'  Troyanskaya, O., Cantor, M., Sherlock, G., Brown, P., Hastie, T.,
-#'  Tibshirani, R., Botstein, D. and Altman, R.B. (2001). Missing value
-#'  estimation methods for DNA microarrays. Bioinformatics 17(6), 520--525.
-#'@references
+#'  and Crop Science 8, 60–69.
+#'@references Julie Josse, Francois Husson (2016). missMDA: A Package for
+#'  Handling Missing Values in Multivariate Data Analysis. Journal of
+#'  Statistical Software 70, 1-31.
+#'@references Arciniegas-Alarcón S., García-Peña M., Dias C.T.S., Krzanowski
+#'  W.J. (2010). \emph{An alternative methodology for imputing missing data in
+#'  trials with genotype-by-environment interaction}. Biometrical Letters 47,
+#'  1–14.
+#'@references  Perry P.O. (2015). bcv: Cross-Validation for the SVD
+#'  (Bi-Cross-Validation). R package version 1.0.1.
+#'@references Arciniegas-Alarcón S., García-Peña M., Krzanowski W.J., Dias
+#'  C.T.S. (2014). An alternative methodology for imputing missing data in
+#'  trials with genotype-byenvironment interaction: some new aspects.
+#'  Biometrical Letters 51, 75-88.
 #'
 #'@export
 #'

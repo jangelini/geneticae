@@ -18,31 +18,30 @@ coverage](https://codecov.io/gh/r-lib/geneticae/branch/master/graphs/badge.svg)]
 
 Understanding the relationship between crops performance and environment
 is a key problem for plant breeders and geneticists. In advanced stages
-of breeding programs, where few genotypes are evaluated,
-multi-environmental trials (MET) is one of the most common experiments.
-They are conducted by testing a number of genotypes across multiple
-environments, allowing the identification of superior genotypes. Crop
-performance, the observed phenotype, is a function of genotype (G),
-environment (E) and genotype x environment interaction (GEI). METs are
-essential due to the presence of GEI which generates differential
-genotypic responses in the different environments evaluated (Crossa et
-al., 1990; Cruz Medina, 1992; Kang and Magari, 1996). This is a
-particular problem for plant breeders (Giauffret et al., 2000),
-therefore appropriate statistical methods should be used to obtain an
-adequate GEI analysis.
+of breeding programs, where few genotypes are evaluated through
+environments, multi-environmental trials (MET) is one of the most common
+experiments. They are conducted by testing a number of genotypes across
+multiple environments, allowing the identification of superior
+genotypes. Crop performance, is a function of genotype (G), environment
+(E) and genotype x environment interaction (GEI). METs are essential due
+to the presence of GEI which generates differential genotypic responses
+across environments (Crossa et al., 1990; Cruz Medina, 1992; Kang and
+Magari, 1996). This is a particular problem for plant breeders
+(Giauffret et al., 2000), therefore appropriate statistical methods
+should be used to obtain an adequate GEI analysis.
 
 geneticae package provides tools to analize data from advanced stages of
-breeding programs, where few genotypes are evaluated. Among the
-functions available in the package are the AMMI model and the SREG
-model, and the biplots that are obtained from them. In addition,
-functions are included that allow to overcome the fragility of the
-methods between atypical observations, robust AMMI and imputation
-techniques since the methods do not work in the presence of atypical
-observations. Unlike the other existing functions that allow adjusting
-these models, it is less restrictive in terms of the input data set.
-Also, the biplots created by the package are ggplot objects, which means
-that after a plot is created it can be further customized using various
-functions from the ggplot2 package.
+breeding programs, where few genotypes are evaluated across
+environments. The AMMI and SREG model, and the biplots that are obtained
+from them are the main functions included in the package. In addition to
+the classic version of the AMMI model, alternatives are included that
+allow overcoming its fragility in the presence of atypical observations.
+Finally, since the mentioned models require complete data, imputation
+techniques are included. Unlike the existing functions that allow to fit
+these models, the package is more flexible in the format allowed for the
+input data set. Furthermore, the biplots created are ggplot objects,
+which means that after creating a graph, it can be further customized
+using several options of ggplot2 package.
 
 ## Getting Started
 
@@ -76,8 +75,8 @@ Some quick examples obtained from the geneticae package.
 library(geneticae)
 
 data(yan.winterwheat)
-GGE1 <- GGEmodel(yan.winterwheat, centering = "tester")
-GGEPlot(GGE1)
+GGE1 <- GGEmodel(yan.winterwheat)
+GGEPlot(GGE1, sizeGen = 5, sizeEnv = 5, footnote = FALSE, title = FALSE)
 ```
 
-<img src="man/figures/README-unnamed-chunk-4-1.png" width="100%" />
+<img src="man/figures/README-unnamed-chunk-4-1.png" width="45%" style="display: block; margin: auto;" />

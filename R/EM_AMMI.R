@@ -1,4 +1,4 @@
-#'EM-AMMI imputation
+#'EM-AMMI imputation method
 #'
 #'@param X a data frame or matrix that contains the genotypes in the rows and
 #'  the environments in the columns when there are no replications of the
@@ -53,8 +53,8 @@
 #'@references Paderewski, J. (2013). \emph{An R function for imputation of
 #'  missing cells in two-way initial.values), the simplified model can be used
 #'  to determine a better set of initial values. data sets by EM-AMMI
-#'  algorithm.}. Communications in Biometry and Crop Science 8 (2), 60–69.
-#'@return A list of class \code{EM_AMMI} containing: \itemize{ \item  X: the
+#'  algorithm.}. Communications in Biometry and Crop Science 8, 60–69.
+#'@return A list containing: \itemize{ \item  X: the
 #'  imputed matrix (filled in with the missing values estimated by the EM-AMMI
 #'  procedure); \item PC.SS: the sum of squares representing variation explained
 #'  by the principal components (the squares of eigenvalues of singular value
@@ -80,7 +80,7 @@ EM.AMMI<-function(X, PC.nb=1, initial.values=NA, precision=0.01,
     class(X) %in% c("matrix", "data.frame"),
     class(PC.nb)=="numeric",
     class(initial.values) == "matrix" | is.na(initial.values),
-    # class(initial.values) %in% c("matrix", "NA"),
+    class(initial.values) %in% c("matrix", "logical"),
     class(precision)=="numeric",
     class(max.iter)=="numeric",
     class(change.factor)=="numeric",

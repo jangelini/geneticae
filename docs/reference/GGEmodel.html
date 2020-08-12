@@ -17,23 +17,27 @@
 <link rel="apple-touch-icon" type="image/png" sizes="60x60" href="../apple-touch-icon-60x60.png" />
 
 <!-- jquery -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
 <!-- Bootstrap -->
-<link href="https://cdnjs.cloudflare.com/ajax/libs/bootswatch/3.3.7/cosmo/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous" />
+<link href="https://cdnjs.cloudflare.com/ajax/libs/bootswatch/3.4.0/cosmo/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous" />
 
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha256-U5ZEeKfGNOja007MMD3YBI0A3OSZOQbeG6z2f2Y0hu8=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.4.1/js/bootstrap.min.js" integrity="sha256-nuL8/2cJ5NDSSwnKD8VqreErSWHtnEP9E7AySL+1ev4=" crossorigin="anonymous"></script>
+
+<!-- bootstrap-toc -->
+<link rel="stylesheet" href="../bootstrap-toc.css">
+<script src="../bootstrap-toc.js"></script>
 
 <!-- Font Awesome icons -->
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.7.1/css/all.min.css" integrity="sha256-nAmazAk6vS34Xqo0BSrTb+abbtFlgsFK7NKSi6o7Y78=" crossorigin="anonymous" />
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.7.1/css/v4-shims.min.css" integrity="sha256-6qHlizsOWFskGlwVOKuns+D1nB6ssZrHQrNj1wGplHc=" crossorigin="anonymous" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css" integrity="sha256-mmgLkCYLUQbXn0B1SRqzHar6dCnv9oZFPEC1g1cwlkk=" crossorigin="anonymous" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/v4-shims.min.css" integrity="sha256-wZjR52fzng1pJHwx4aV2AO3yyTOXrcDW7jBpJtTwVxw=" crossorigin="anonymous" />
 
 <!-- clipboard.js -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.4/clipboard.min.js" integrity="sha256-FiZwavyI2V6+EXO1U+xzLG3IKldpiTFf3153ea9zikQ=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script>
 
 <!-- headroom.js -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.9.4/headroom.min.js" integrity="sha256-DJFC1kqIhelURkuza0AvYal5RxMtpzLjFhsnVIeuk+U=" crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.9.4/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/headroom.min.js" integrity="sha256-AsUX4SJE1+yuDu5+mAVzJbuYNPHj/WroHuZ8Ir/CkE0=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script>
 
 <!-- pkgdown -->
 <link href="../pkgdown.css" rel="stylesheet">
@@ -44,15 +48,14 @@
 
 <meta property="og:title" content="Site regression model — GGEmodel" />
 <meta property="og:description" content="The site regression model also named genotype plus
- genotype-by-environment (GGE) model is powerful a tools for effective
+ genotype-by-environment (GGE) model is a powerful tool for effective
  analysis and interpretation of multienvironment data structure in breeding
  programs.This function is a modification of
- GGEModel of GGEBiplots package, where the dataset
- contains genotype by environment means with the genotypes in  rows and
- environments in columns. By contrast, in this function a less restrictive
- format of the data set is allowed, such as repetitions or other variables
- that will not be used in the analysis can be included." />
-<meta name="twitter:card" content="summary" />
+ GGEModel of GGEBiplots package, where the input
+ dataset contains genotype by environment means with the genotypes in rows
+ and environments in columns. By contrast, this function allows a less
+ restrictive format of dataset. Repetitions and other variables that will not
+ be used in the analysis may be present in the dataset." />
 
 
 
@@ -80,7 +83,7 @@
 
   </head>
 
-  <body>
+  <body data-spy="scroll" data-target="#toc">
     <div class="container template-reference-topic">
       <header>
       <div class="navbar navbar-default navbar-fixed-top" role="navigation">
@@ -140,14 +143,14 @@
 
     <div class="ref-description">
     <p>The site regression model also named genotype plus
- genotype-by-environment (GGE) model is powerful a tools for effective
+ genotype-by-environment (GGE) model is a powerful tool for effective
  analysis and interpretation of multienvironment data structure in breeding
  programs.This function is a modification of
- <code><a href='https://rdrr.io/pkg/GGEBiplots/man/GGEModel.html'>GGEModel</a></code> of GGEBiplots package, where the dataset
- contains genotype by environment means with the genotypes in  rows and
- environments in columns. By contrast, in this function a less restrictive
- format of the data set is allowed, such as repetitions or other variables
- that will not be used in the analysis can be included.</p>
+ <code><a href='https://rdrr.io/pkg/GGEBiplots/man/GGEModel.html'>GGEModel</a></code> of GGEBiplots package, where the input
+ dataset contains genotype by environment means with the genotypes in rows
+ and environments in columns. By contrast, this function allows a less
+ restrictive format of dataset. Repetitions and other variables that will not
+ be used in the analysis may be present in the dataset.</p>
     </div>
 
     <pre class="usage"><span class='fu'>GGEmodel</span>(
@@ -166,41 +169,43 @@
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
       <th>Data</th>
-      <td><p>a data frame</p></td>
+      <td><p>dataframe with genotypes, environments, repetitions (if any) and
+the phenotypic trait of interest. The order of the variables is indistinct,
+even additional variables that will not be used in the model may be present
+in the data.</p></td>
     </tr>
     <tr>
       <th>genotype</th>
-      <td><p>name of the column that contains the genotypes</p></td>
+      <td><p>column name containing genotypes.</p></td>
     </tr>
     <tr>
       <th>environment</th>
-      <td><p>name of the column that contains the environments</p></td>
+      <td><p>column name containing environments.</p></td>
     </tr>
     <tr>
       <th>response</th>
-      <td><p>name of the column that contains the response</p></td>
+      <td><p>column name containing phenotypic trait.</p></td>
     </tr>
     <tr>
       <th>rep</th>
-      <td><p>name of the column that contains the replications.If this argument
-is NULL, there is no replications in the data.</p></td>
+      <td><p>column name containing replications,if this argument is NULL, there
+is no replication available on the data. Defaults to NULL.</p></td>
     </tr>
     <tr>
       <th>centering</th>
       <td><p>centering method. Either "tester" for tester centered (G+GE),
 "global" for global centered (E+G+GE), "double" for double centred (GE) or
-"none" for no centering. If a centering method is not used, the
-<code><a href='GGEPlot.html'>GGEPlot</a></code> function can not be used.</p></td>
+"none" for no centering. Default to "tester".</p></td>
     </tr>
     <tr>
       <th>scaling</th>
       <td><p>scaling method. Either "sd" for standard deviation or "none"
-for no scaling.</p></td>
+for no scaling. Default to "none".</p></td>
     </tr>
     <tr>
       <th>SVP</th>
       <td><p>method for singular value partitioning. Either "row","column",
-"dual" or "symmetrical".</p></td>
+"dual" or "symmetrical". Default to "column".</p></td>
     </tr>
     </table>
 
@@ -219,7 +224,9 @@ for no scaling.</p></td>
 
     <h2 class="hasAnchor" id="references"><a class="anchor" href="#references"></a>References</h2>
 
-    <p>Yan W, Kang M (2003). <em>GGE Biplot Analysis: A Graphical Tool
+    <p>Sam Dumble (2017). GGEBiplots: GGE Biplots with 'ggplot2'. R
+ package version 0.1.1. <a href='https://CRAN.R-project.org/package=GGEBiplots'>https://CRAN.R-project.org/package=GGEBiplots</a></p>
+<p>Yan W, Kang M (2003). <em>GGE Biplot Analysis: A Graphical Tool
  for Breeders, Geneticists, and Agronomists</em>. CRC Press.</p>
 <p>Yan W, Kang M (2002). <em>Singular-Value Partitioning in Biplot
  Analysis of Multienvironment Trial Data</em>. Agronomy Journal, 94, 990-996.
@@ -229,6 +236,7 @@ for no scaling.</p></td>
     <pre class="examples"><div class='input'>
  <span class='fu'><a href='https://rdrr.io/r/base/library.html'>library</a></span>(<span class='no'>geneticae</span>)
  <span class='co'># Data without replication</span>
+ <span class='fu'><a href='https://rdrr.io/r/utils/data.html'>data</a></span>(<span class='no'>yan.winterwheat</span>)
  <span class='no'>GGE1</span> <span class='kw'>&lt;-</span> <span class='fu'>GGEmodel</span>(<span class='no'>yan.winterwheat</span>, <span class='kw'>genotype</span><span class='kw'>=</span><span class='st'>"gen"</span>,<span class='kw'>environment</span><span class='kw'>=</span><span class='st'>"env"</span>, <span class='kw'>response</span><span class='kw'>=</span><span class='st'>"yield"</span>,
  <span class='kw'>centering</span> <span class='kw'>=</span> <span class='st'>"tester"</span>)
 
@@ -237,15 +245,10 @@ for no scaling.</p></td>
  <span class='no'>GGE2</span> <span class='kw'>&lt;-</span> <span class='fu'>GGEmodel</span>(<span class='no'>plrv</span>, <span class='kw'>genotype</span><span class='kw'>=</span><span class='st'>"Genotype"</span>,<span class='kw'>environment</span><span class='kw'>=</span><span class='st'>"Locality"</span>,
  <span class='kw'>response</span><span class='kw'>=</span><span class='st'>"Yield"</span>, <span class='kw'>rep</span><span class='kw'>=</span><span class='st'>"Rep"</span>, <span class='kw'>centering</span> <span class='kw'>=</span> <span class='st'>"tester"</span>)</div></pre>
   </div>
-  <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
-    <h2>Contents</h2>
-    <ul class="nav nav-pills nav-stacked">
-      <li><a href="#arguments">Arguments</a></li>
-      <li><a href="#value">Value</a></li>
-      <li><a href="#references">References</a></li>
-      <li><a href="#examples">Examples</a></li>
-    </ul>
-
+  <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
+    <nav id="toc" data-toggle="toc" class="sticky-top">
+      <h2 data-toc-skip>Contents</h2>
+    </nav>
   </div>
 </div>
 
@@ -256,7 +259,7 @@ for no scaling.</p></td>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.4.1.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.</p>
 </div>
 
       </footer>

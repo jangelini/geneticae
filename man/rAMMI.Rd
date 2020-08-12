@@ -36,45 +36,47 @@ variables that will not be used in the analysis can be included.}
 
 \item{response}{column name containing phenotypic trait.}
 
-\item{rep}{column name containing replications. If this argument is
-NULL, there is no replication available on the data.}
+\item{rep}{column name containing replications. If this argument is NULL,
+there is no replication available on the data.}
 
 \item{Ncomp}{number of principal components that will be used in the analysis.}
 
 \item{type}{method. Either "AMMI", "rAMMI", "hAMMI", "gAMMI", "lAMMI" or
-"ppAMMI".}
+"ppAMMI". Default to "AMMI".}
 
-\item{colGen}{colour for genotype attributes on biplot. Defaults to "gray".}
+\item{colGen}{genotype attributes colour. Defaults to "gray".}
 
-\item{colEnv}{colour for environment attributes on biplot. Defaults to
-"darkred".}
+\item{colEnv}{environment attributes colour. Defaults to "darkred".}
 
-\item{sizeGen}{text size of genotype labels. Defaults to 4.}
+\item{sizeGen}{genotype labels text size. Defaults to 4.}
 
-\item{sizeEnv}{text size of environment labels. Defaults to 4.}
+\item{sizeEnv}{environment labels text size. Defaults to 4.}
 
-\item{titles}{logical. If TRUE then include automatically generated titles.}
+\item{titles}{logical, if this argument is TRUE a plot title is generated.
+Defaults to TRUE.}
 
-\item{footnote}{logical. If TRUE then include automatically generated footnote.}
+\item{footnote}{logical, if this argument is TRUE a footnote is generated.
+Defaults to TRUE.}
 
 \item{axis_expand}{multiplication factor to expand the axis limits by to
 enable fitting of labels. Defaults to 1.2.}
 
-\item{limits}{logical. If TRUE then automatically rescale axes.}
+\item{limits}{logical. If TRUE then automatically rescale axes. Defaults to
+TRUE.}
 
-\item{axes}{logical. If TRUE then include x and y axes going through the
-origin.}
+\item{axes}{logical, if this argument is TRUE x and y axes going through the
+origin. Defaults to TRUE.}
 
-\item{axislabels}{logical. If TRUE then include automatically generated labels
-for axes.}
+\item{axislabels}{logical, if this argument is TRUE labels axes are included.
+Defaults to TRUE.}
 }
 \value{
 A biplot of class  \code{ggplot}
 }
 \description{
-Produces the clasic or robust version of AMMI biplot as an object of class
-'ggplot'. It is possible to customize it so that the stylistic attributes are
-to the user's liking.
+Produces clasic or robust AMMI biplot as an object of class 'ggplot'. It is
+possible to customize it so that the stylistic attributes are to the user's
+preferences.
 }
 \examples{
 
@@ -94,7 +96,7 @@ BIP_AMMI2
 
 }
 \references{
-Rodrigues PC, Monteiro A and Lourenco VM (2015). \emph{A robust
- AMMI model for the analysis of genotype-by-environment data}.
- Bioinformatics, 32, 58–66.
+Rodrigues P.C., Monteiro A., Lourenco V.M. (2015). \emph{A robust
+ AMMI model for the analysis of genotype-by-environment data}. Bioinformatics
+ 32, 58–66.
 }

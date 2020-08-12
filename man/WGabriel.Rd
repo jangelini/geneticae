@@ -2,7 +2,7 @@
 % Please edit documentation in R/W_GabrielEigen.R
 \name{WGabriel}
 \alias{WGabriel}
-\title{Weighted Gabriel Eigen imputation}
+\title{Weighted GabrielEigen imputation method}
 \usage{
 WGabriel(DBmiss, Winf, Wsup)
 }
@@ -11,17 +11,25 @@ WGabriel(DBmiss, Winf, Wsup)
 and the environments in the columns when there are no replications of the
 experiment.}
 
-\item{Winf}{peso inferior}
+\item{Winf}{inferior weight}
 
-\item{Wsup}{peso superior}
+\item{Wsup}{superior weight}
 }
 \value{
-Imputed data with Weighted Gabriel Eigein method
+A list containing: \itemize{\item Peso: weight that provides the best
+ predictive difference; \item NumeroIterWGabriel: the final number of
+ iterations; \item CritConvergWGabriel: the maximum change of the estimated
+ values for missing cells in the last step of iteration (the precision of
+ convergence);\item GabrielWImput: the imputed matrix (filled in with the
+ missing values estimated by the Weighted GabrielEigen procedure).}
 }
 \description{
-Weighted Gabriel Eigen imputation
+Weighted GabrielEigen imputation method
 }
 \references{
-FALTA
+Arciniegas-Alarcón S., García-Peña M., Krzanowski W.J., Dias
+ C.T.S. (2014). An alternative methodology for imputing missing data in
+ trials with genotype-byenvironment interaction: some new aspects.
+ Biometrical Letters 51, 75-88.
 }
 \keyword{internal}

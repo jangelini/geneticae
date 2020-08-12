@@ -17,23 +17,27 @@
 <link rel="apple-touch-icon" type="image/png" sizes="60x60" href="../apple-touch-icon-60x60.png" />
 
 <!-- jquery -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
 <!-- Bootstrap -->
-<link href="https://cdnjs.cloudflare.com/ajax/libs/bootswatch/3.3.7/cosmo/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous" />
+<link href="https://cdnjs.cloudflare.com/ajax/libs/bootswatch/3.4.0/cosmo/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous" />
 
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha256-U5ZEeKfGNOja007MMD3YBI0A3OSZOQbeG6z2f2Y0hu8=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.4.1/js/bootstrap.min.js" integrity="sha256-nuL8/2cJ5NDSSwnKD8VqreErSWHtnEP9E7AySL+1ev4=" crossorigin="anonymous"></script>
+
+<!-- bootstrap-toc -->
+<link rel="stylesheet" href="../bootstrap-toc.css">
+<script src="../bootstrap-toc.js"></script>
 
 <!-- Font Awesome icons -->
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.7.1/css/all.min.css" integrity="sha256-nAmazAk6vS34Xqo0BSrTb+abbtFlgsFK7NKSi6o7Y78=" crossorigin="anonymous" />
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.7.1/css/v4-shims.min.css" integrity="sha256-6qHlizsOWFskGlwVOKuns+D1nB6ssZrHQrNj1wGplHc=" crossorigin="anonymous" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css" integrity="sha256-mmgLkCYLUQbXn0B1SRqzHar6dCnv9oZFPEC1g1cwlkk=" crossorigin="anonymous" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/v4-shims.min.css" integrity="sha256-wZjR52fzng1pJHwx4aV2AO3yyTOXrcDW7jBpJtTwVxw=" crossorigin="anonymous" />
 
 <!-- clipboard.js -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.4/clipboard.min.js" integrity="sha256-FiZwavyI2V6+EXO1U+xzLG3IKldpiTFf3153ea9zikQ=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script>
 
 <!-- headroom.js -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.9.4/headroom.min.js" integrity="sha256-DJFC1kqIhelURkuza0AvYal5RxMtpzLjFhsnVIeuk+U=" crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.9.4/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/headroom.min.js" integrity="sha256-AsUX4SJE1+yuDu5+mAVzJbuYNPHj/WroHuZ8Ir/CkE0=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script>
 
 <!-- pkgdown -->
 <link href="../pkgdown.css" rel="stylesheet">
@@ -43,9 +47,9 @@
 
 
 <meta property="og:title" content="AMMI biplots with <span class="pkg">ggplot2</span> — rAMMI" />
-<meta property="og:description" content="Produces the AMMI biplot as an object of class 'ggplot'. It is possible to
-customize it so that the stylistic attributes are to the user's liking." />
-<meta name="twitter:card" content="summary" />
+<meta property="og:description" content="Produces clasic or robust AMMI biplot as an object of class 'ggplot'. It is
+possible to customize it so that the stylistic attributes are to the user's
+preferences." />
 
 
 
@@ -73,7 +77,7 @@ customize it so that the stylistic attributes are to the user's liking." />
 
   </head>
 
-  <body>
+  <body data-spy="scroll" data-target="#toc">
     <div class="container template-reference-topic">
       <header>
       <div class="navbar navbar-default navbar-fixed-top" role="navigation">
@@ -132,8 +136,9 @@ customize it so that the stylistic attributes are to the user's liking." />
     </div>
 
     <div class="ref-description">
-    <p>Produces the AMMI biplot as an object of class 'ggplot'. It is possible to
-customize it so that the stylistic attributes are to the user's liking.</p>
+    <p>Produces clasic or robust AMMI biplot as an object of class 'ggplot'. It is
+possible to customize it so that the stylistic attributes are to the user's
+preferences.</p>
     </div>
 
     <pre class="usage"><span class='fu'>rAMMI</span>(
@@ -146,13 +151,14 @@ customize it so that the stylistic attributes are to the user's liking.</p>
   <span class='kw'>type</span> <span class='kw'>=</span> <span class='st'>"AMMI"</span>,
   <span class='kw'>colGen</span> <span class='kw'>=</span> <span class='st'>"gray47"</span>,
   <span class='kw'>colEnv</span> <span class='kw'>=</span> <span class='st'>"darkred"</span>,
-  <span class='kw'>colSegment</span> <span class='kw'>=</span> <span class='st'>"gray30"</span>,
-  <span class='kw'>colHull</span> <span class='kw'>=</span> <span class='st'>"gray30"</span>,
   <span class='kw'>sizeGen</span> <span class='kw'>=</span> <span class='fl'>4</span>,
   <span class='kw'>sizeEnv</span> <span class='kw'>=</span> <span class='fl'>4</span>,
-  <span class='kw'>largeSize</span> <span class='kw'>=</span> <span class='fl'>4.5</span>,
   <span class='kw'>titles</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
-  <span class='kw'>footnote</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>
+  <span class='kw'>footnote</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
+  <span class='kw'>axis_expand</span> <span class='kw'>=</span> <span class='fl'>1.2</span>,
+  <span class='kw'>limits</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
+  <span class='kw'>axes</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
+  <span class='kw'>axislabels</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>
 )</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
@@ -160,72 +166,82 @@ customize it so that the stylistic attributes are to the user's liking.</p>
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
       <th>Data</th>
-      <td><p>a data frame</p></td>
+      <td><p>a dataframe with genotypes, environments, repetitions (if any) and
+the phenotypic trait of interest. There is no restriction on the order in
+which these variables should be presented in the dataframe, and also other
+variables that will not be used in the analysis can be included.</p></td>
     </tr>
     <tr>
       <th>genotype</th>
-      <td><p>name of the column that contains the genotypes</p></td>
+      <td><p>column name containing genotypes.</p></td>
     </tr>
     <tr>
       <th>environment</th>
-      <td><p>name of the column that contains the environments</p></td>
+      <td><p>column name containing environments.</p></td>
     </tr>
     <tr>
       <th>response</th>
-      <td><p>name of the column that contains the response</p></td>
+      <td><p>column name containing phenotypic trait.</p></td>
     </tr>
     <tr>
       <th>rep</th>
-      <td><p>name of the column that contains the replications.If this argument
-is NULL, there is no replications in the data.</p></td>
+      <td><p>column name containing replications. If this argument is NULL,
+there is no replication available on the data.</p></td>
     </tr>
     <tr>
       <th>Ncomp</th>
-      <td><p>number of principal components that will be used in the analysis</p></td>
+      <td><p>number of principal components that will be used in the analysis.</p></td>
     </tr>
     <tr>
       <th>type</th>
       <td><p>method. Either "AMMI", "rAMMI", "hAMMI", "gAMMI", "lAMMI" or
-"ppAMMI".</p></td>
+"ppAMMI". Default to "AMMI".</p></td>
     </tr>
     <tr>
       <th>colGen</th>
-      <td><p>colour for genotype attributes on biplot. Defaults to "gray"</p></td>
+      <td><p>genotype attributes colour. Defaults to "gray".</p></td>
     </tr>
     <tr>
       <th>colEnv</th>
-      <td><p>colour for environment attributes on biplot. Defaults to
-"darkred"</p></td>
-    </tr>
-    <tr>
-      <th>colSegment</th>
-      <td><p>colour for segment or circle lines. Defaults to "gray"</p></td>
-    </tr>
-    <tr>
-      <th>colHull</th>
-      <td><p>colour for hull when type=6. Defaults to "gray"</p></td>
+      <td><p>environment attributes colour. Defaults to "darkred".</p></td>
     </tr>
     <tr>
       <th>sizeGen</th>
-      <td><p>text size for genotype labels. Defaults to 4</p></td>
+      <td><p>genotype labels text size. Defaults to 4.</p></td>
     </tr>
     <tr>
       <th>sizeEnv</th>
-      <td><p>text size for environment labels. Defaults to 4</p></td>
-    </tr>
-    <tr>
-      <th>largeSize</th>
-      <td><p>text size to use for larger labels where type=5, used for the</p></td>
+      <td><p>environment labels text size. Defaults to 4.</p></td>
     </tr>
     <tr>
       <th>titles</th>
-      <td><p>logical. If TRUE then include automatically generated titles</p></td>
+      <td><p>logical, if this argument is TRUE a plot title is generated.
+Defaults to TRUE.</p></td>
     </tr>
     <tr>
       <th>footnote</th>
-      <td><p>logical. If TRUE then include automatically generated footbote
-two selected genotypes, and where type=6, used for the outermost genotypes.
-Defaults to 4.5</p></td>
+      <td><p>logical, if this argument is TRUE a footnote is generated.
+Defaults to TRUE.</p></td>
+    </tr>
+    <tr>
+      <th>axis_expand</th>
+      <td><p>multiplication factor to expand the axis limits by to
+enable fitting of labels. Defaults to 1.2.</p></td>
+    </tr>
+    <tr>
+      <th>limits</th>
+      <td><p>logical. If TRUE then automatically rescale axes. Defaults to
+TRUE.</p></td>
+    </tr>
+    <tr>
+      <th>axes</th>
+      <td><p>logical, if this argument is TRUE x and y axes going through the
+origin. Defaults to TRUE.</p></td>
+    </tr>
+    <tr>
+      <th>axislabels</th>
+      <td><p>logical, if this argument is TRUE labels axes are included.
+Defaults to TRUE.</p></td>
     </tr>
     </table>
 
@@ -234,35 +250,30 @@ Defaults to 4.5</p></td>
     <p>A biplot of class  <code>ggplot</code></p>
     <h2 class="hasAnchor" id="references"><a class="anchor" href="#references"></a>References</h2>
 
-    <p>Rodrigues PC, Monteiro A and Lourenco VM (2015). <em>A robust
- AMMI model for the analysis of genotype-by-environment data</em>.
- Bioinformatics, 32, 58–66.</p>
+    <p>Rodrigues P.C., Monteiro A., Lourenco V.M. (2015). <em>A robust
+ AMMI model for the analysis of genotype-by-environment data</em>. Bioinformatics
+ 32, 58–66.</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'>
 <span class='fu'><a href='https://rdrr.io/r/base/library.html'>library</a></span>(<span class='no'>geneticae</span>)
 <span class='co'># Data without replication</span>
 <span class='fu'><a href='https://rdrr.io/r/utils/data.html'>data</a></span>(<span class='no'>yan.winterwheat</span>)
-<span class='no'>GGE1</span> <span class='kw'>&lt;-</span> <span class='fu'>rAMMI</span>(<span class='no'>yan.winterwheat</span>, <span class='kw'>genotype</span><span class='kw'>=</span><span class='st'>"gen"</span>,<span class='kw'>environment</span><span class='kw'>=</span><span class='st'>"env"</span>, <span class='kw'>response</span><span class='kw'>=</span><span class='st'>"yield"</span>,
+<span class='no'>BIP_AMMI</span> <span class='kw'>&lt;-</span> <span class='fu'>rAMMI</span>(<span class='no'>yan.winterwheat</span>, <span class='kw'>genotype</span><span class='kw'>=</span><span class='st'>"gen"</span>,<span class='kw'>environment</span><span class='kw'>=</span><span class='st'>"env"</span>, <span class='kw'>response</span><span class='kw'>=</span><span class='st'>"yield"</span>,
              <span class='kw'>type</span> <span class='kw'>=</span> <span class='st'>"AMMI"</span>)
-<span class='no'>GGE1</span></div><div class='img'><img src='rAMMI-1.png' alt='' width='700' height='433' /></div><div class='input'>
+<span class='no'>BIP_AMMI</span></div><div class='img'><img src='rAMMI-1.png' alt='' width='700' height='433' /></div><div class='input'>
 <span class='co'># Data with replication</span>
 <span class='fu'><a href='https://rdrr.io/r/utils/data.html'>data</a></span>(<span class='no'>plrv</span>)
-<span class='no'>GGE2</span> <span class='kw'>&lt;-</span> <span class='fu'>rAMMI</span>(<span class='no'>plrv</span>, <span class='kw'>genotype</span><span class='kw'>=</span><span class='st'>"Genotype"</span>,<span class='kw'>environment</span><span class='kw'>=</span><span class='st'>"Locality"</span>, <span class='kw'>response</span><span class='kw'>=</span><span class='st'>"Yield"</span>,
+<span class='no'>BIP_AMMI2</span> <span class='kw'>&lt;-</span> <span class='fu'>rAMMI</span>(<span class='no'>plrv</span>, <span class='kw'>genotype</span><span class='kw'>=</span><span class='st'>"Genotype"</span>,<span class='kw'>environment</span><span class='kw'>=</span><span class='st'>"Locality"</span>, <span class='kw'>response</span><span class='kw'>=</span><span class='st'>"Yield"</span>,
              <span class='kw'>rep</span><span class='kw'>=</span><span class='st'>"Rep"</span>, <span class='kw'>type</span> <span class='kw'>=</span> <span class='st'>"AMMI"</span>)
-<span class='no'>GGE2</span></div><div class='img'><img src='rAMMI-2.png' alt='' width='700' height='433' /></div><div class='input'>
+<span class='no'>BIP_AMMI2</span></div><div class='img'><img src='rAMMI-2.png' alt='' width='700' height='433' /></div><div class='input'>
 
 </div></pre>
   </div>
-  <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
-    <h2>Contents</h2>
-    <ul class="nav nav-pills nav-stacked">
-      <li><a href="#arguments">Arguments</a></li>
-      <li><a href="#value">Value</a></li>
-      <li><a href="#references">References</a></li>
-      <li><a href="#examples">Examples</a></li>
-    </ul>
-
+  <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
+    <nav id="toc" data-toggle="toc" class="sticky-top">
+      <h2 data-toc-skip>Contents</h2>
+    </nav>
   </div>
 </div>
 
@@ -273,7 +284,7 @@ Defaults to 4.5</p></td>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.4.1.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.</p>
 </div>
 
       </footer>

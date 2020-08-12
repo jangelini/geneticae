@@ -5,20 +5,15 @@
 \alias{yan.winterwheat}
 \title{Winter wheat varieties from Ontario}
 \format{
-A data frame with 162 observations on the following 3 variables.
-
-  gen genotype
-
-  env environment
-
-  yield yield in metric tons per hectare
+A data frame with 162 observations and 3 variables (genotype,
+  environment and yield)
 }
 \usage{
 data(yan.winterwheat)
 }
 \description{
-Yield of 18 winter wheat varieties grown at 9 environments in
-  Ontario in 1993. This dataset was obtained from agridat Package.
+Yield (t/ha) of 18 winter wheat varieties grown at 9 environments in
+  Ontario in 1993.
 }
 \examples{
 library(geneticae)

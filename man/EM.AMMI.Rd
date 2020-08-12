@@ -2,7 +2,7 @@
 % Please edit documentation in R/EM_AMMI.R
 \name{EM.AMMI}
 \alias{EM.AMMI}
-\title{EM-AMMI imputation}
+\title{EM-AMMI imputation method}
 \usage{
 EM.AMMI(
   X,
@@ -73,7 +73,7 @@ description of the argument initial.values), the simplified model can be
 used to determine a better set of initial values.}
 }
 \value{
-A list of class \code{EM_AMMI} containing: \itemize{ \item  X: the
+A list containing: \itemize{ \item  X: the
  imputed matrix (filled in with the missing values estimated by the EM-AMMI
  procedure); \item PC.SS: the sum of squares representing variation explained
  by the principal components (the squares of eigenvalues of singular value
@@ -90,12 +90,12 @@ A list of class \code{EM_AMMI} containing: \itemize{ \item  X: the
  that the algorithm converged in the last iteration. }
 }
 \description{
-EM-AMMI imputation
+EM-AMMI imputation method
 }
 \references{
 Paderewski, J. (2013). \emph{An R function for imputation of
  missing cells in two-way initial.values), the simplified model can be used
  to determine a better set of initial values. data sets by EM-AMMI
- algorithm.}. Communications in Biometry and Crop Science 8 (2), 60–69.
+ algorithm.}. Communications in Biometry and Crop Science 8, 60–69.
 }
 \keyword{internal}

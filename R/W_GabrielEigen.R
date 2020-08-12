@@ -1,15 +1,25 @@
-#' Weighted Gabriel Eigen imputation
+#'Weighted GabrielEigen imputation method
 #'
-#' @param DBmiss a data frame or matrix that contains the genotypes in the rows
-#'   and the environments in the columns when there are no replications of the
-#'   experiment.
-#' @param Winf peso inferior
-#' @param Wsup peso superior
+#'@param DBmiss a data frame or matrix that contains the genotypes in the rows
+#'  and the environments in the columns when there are no replications of the
+#'  experiment.
+#'@param Winf inferior weight
+#'@param Wsup superior weight
 #'
-#' @references FALTA
-#' @return Imputed data with Weighted Gabriel Eigein method
-#' @keywords internal
-#' @importFrom MASS ginv
+#'@references Arciniegas-Alarcón S., García-Peña M., Krzanowski W.J., Dias
+#'  C.T.S. (2014). An alternative methodology for imputing missing data in
+#'  trials with genotype-byenvironment interaction: some new aspects.
+#'  Biometrical Letters 51, 75-88.
+#'
+#'@return A list containing: \itemize{\item Peso: weight that provides the best
+#'  predictive difference; \item NumeroIterWGabriel: the final number of
+#'  iterations; \item CritConvergWGabriel: the maximum change of the estimated
+#'  values for missing cells in the last step of iteration (the precision of
+#'  convergence);\item GabrielWImput: the imputed matrix (filled in with the
+#'  missing values estimated by the Weighted GabrielEigen procedure).}
+#'
+#'@keywords internal
+#'@importFrom MASS ginv
 #'
 
 WGabriel<-function(DBmiss,Winf,Wsup){
