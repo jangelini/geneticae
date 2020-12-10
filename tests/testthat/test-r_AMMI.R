@@ -4,9 +4,8 @@
 library(geneticae)
 # Data without replication
 data(yan.winterwheat)
-dat <- yan.winterwheat
 
-dat2 <- dat
+dat2 <- yan.winterwheat
 dat2[1,3]<-NA
 dat2[3,3]<-NA
 dat2[2,3]<-NA
@@ -23,6 +22,6 @@ test_that("Several tests for r_AMMI function", {
                "Need to provide Data data frame")
 
   # data types correct
-  expect_that(dat, is_a('data.frame'))
+  expect_that(yan.winterwheat, is_a('data.frame'))
 
 })

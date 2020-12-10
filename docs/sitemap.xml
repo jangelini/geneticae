@@ -4,13 +4,10 @@
     <loc>https://github.com/jangelini/index.html</loc>
   </url>
   <url>
-    <loc>https://github.com/jangelini/reference/plrv.html</loc>
-  </url>
-  <url>
-    <loc>https://github.com/jangelini/reference/yan.winterwheat.html</loc>
-  </url>
-  <url>
     <loc>https://github.com/jangelini/reference/EM.AMMI.html</loc>
+  </url>
+  <url>
+    <loc>https://github.com/jangelini/reference/GGEPlot.html</loc>
   </url>
   <url>
     <loc>https://github.com/jangelini/reference/GGEmodel.html</loc>
@@ -25,10 +22,13 @@
     <loc>https://github.com/jangelini/reference/imputation.html</loc>
   </url>
   <url>
+    <loc>https://github.com/jangelini/reference/plrv.html</loc>
+  </url>
+  <url>
     <loc>https://github.com/jangelini/reference/rAMMI.html</loc>
   </url>
   <url>
-    <loc>https://github.com/jangelini/reference/GGEPlot.html</loc>
+    <loc>https://github.com/jangelini/reference/yan.winterwheat.html</loc>
   </url>
   <url>
     <loc>https://github.com/jangelini/articles/vignettes.html</loc>
