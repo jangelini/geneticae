@@ -55,7 +55,6 @@
 #'BIP_AMMI2
 #'
 #'
-#'@import dplyr
 #'@importFrom MASS rlm
 #'@importFrom pcaMethods robustSvd
 #'@importFrom rrcov PcaHubert PcaGrid PcaLocantore PcaProj
@@ -115,57 +114,61 @@ rAMMI<-function(Data, genotype="gen", environment="env", response="Y", rep=NULL,
 
   if (type == "AMMI"){                   # AMMI model
     svd.x<- svd((residuals.x))
-    eigenvalues<-svd.x$d
-    biplot.x.u<- -svd.x$u[,1:2] * matrix(rep(svd.x$d[1:2]^0.5, Ngen), ncol=2, byrow=T)
-    biplot.x.v<- -svd.x$v[,1:2] * matrix(rep(svd.x$d[1:2]^0.5, Nenv), ncol=2, byrow=T)
+    singlevalue<-svd.x$d
+    loading<-(svd.x$v)
+    score<-(svd.x$u%*%diag(svd.x$d))
   }
 
   if (type == "rAMMI"){
     rsvd.x<-robustSvd(rresiduals.x)      # r-AMMI model
-    eigenvalues<- rsvd.x$d
-    biplot.x.u<- cbind(rsvd.x$u[,1], -rsvd.x$u[,2]) * matrix(rep(rsvd.x$d[1:2]^0.5, Ngen), ncol=2, byrow=T)
-    biplot.x.v<- cbind(rsvd.x$v[,1], -rsvd.x$v[,2]) * matrix(rep(rsvd.x$d[1:2]^0.5, Nenv), ncol=2, byrow=T)
+    singlevalue<- rsvd.x$d
+    loading<-(rsvd.x$v)
+    score<-(rsvd.x$u%*%diag(rsvd.x$d))
   }
 
   if (type == "hAMMI"){                 # H-AMMI model
     modeloHubert<- PcaHubert(rresiduals.x, mcd=FALSE)
-    eigenvalues<- modeloHubert@eigenvalues
-    loadings.Hx<- modeloHubert@loadings
-    scores.Hx<- modeloHubert@scores
-    biplot.x.u<- matrix(c(scores.Hx[,1], -scores.Hx[,2]), ncol=2, byrow=F) * matrix(rep(eigenvalues[1:2]^0.5, Ngen), ncol=2, byrow=T)
-    biplot.x.v<- matrix(c(loadings.Hx[,1], -loadings.Hx[,2]), ncol=2, byrow=F) * matrix(rep(eigenvalues[1:2]^0.5, Nenv), ncol=2, byrow=T)
+    singlevalue<- sqrt(modeloHubert@eigenvalues)
+    loading<- modeloHubert@loadings
+    score<- modeloHubert@scores
+    n <- NROW(score)
+    singlevalue <- singlevalue * sqrt(n)
   }
 
   if (type == "gAMMI"){             # G-AMMI model
     modeloGrid<- PcaGrid(rresiduals.x)
-    eigenvalues<- modeloGrid@eigenvalues
-    loadings.gx<- modeloGrid@loadings
-    scores.gx<- modeloGrid@scores
-    biplot.x.u<- scores.gx[,1:2] * matrix(rep(eigenvalues[1:2]^0.5, Ngen), ncol=2, byrow=T)
-    biplot.x.v<- loadings.gx[,1:2] * matrix(rep(eigenvalues[1:2]^0.5, Nenv), ncol=2, byrow=T)
+    singlevalue<- sqrt(modeloGrid@eigenvalues)
+    loading<- modeloGrid@loadings
+    score<- modeloGrid@scores
+    n <- NROW(score)
+    singlevalue <- singlevalue * sqrt(n)
   }
 
   if (type == "lAMMI"){             # L-AMMI model
     modeloLocantore<- PcaLocantore(rresiduals.x)
-    eigenvalues<- modeloLocantore@eigenvalues
-    loadings.lx<- modeloLocantore@loadings
-    scores.lx<- modeloLocantore@scores
-    biplot.x.u<- matrix(c(-scores.lx[,1], scores.lx[,2]), ncol=2, byrow=F) * matrix(rep(eigenvalues[1:2]^0.5, Ngen), ncol=2, byrow=T)
-    biplot.x.v<- matrix(c(-loadings.lx[,1], loadings.lx[,2]), ncol=2, byrow=F) * matrix(rep(eigenvalues[1:2]^0.5, Nenv), ncol=2, byrow=T)
+    singlevalue<- modeloLocantore@eigenvalues
+    loading<- modeloLocantore@loadings
+    score<- modeloLocantore@scores
+    n <- NROW(score)
+    singlevalue <- singlevalue * sqrt(n)
   }
 
   if (type == "ppAMMI"){             # PP-AMMI model
     modeloProj<- PcaProj(rresiduals.x)
-    eigenvalues<- modeloProj@eigenvalues
-    loadings.px<- modeloProj@loadings
-    scores.px<- modeloProj@scores
-    biplot.x.u<- matrix(c(-scores.px[,1], -scores.px[,2]), ncol=2, byrow=F) * matrix(rep(eigenvalues[1:2]^0.5, Ngen), ncol=2, byrow=T)
-    biplot.x.v<- matrix(c(-loadings.px[,1], -loadings.px[,2]), ncol=2, byrow=F) * matrix(rep(eigenvalues[1:2]^0.5, Nenv), ncol=2, byrow=T)
+    singlevalue<- sqrt(modeloProj@eigenvalues)
+    loading<- modeloProj@loadings
+    score<- modeloProj@scores
+    n <- NROW(score)
+    singlevalue <- singlevalue * sqrt(n)
   }
 
+  scaling=0.5
+  lambda_scaling <- singlevalue^scaling
+  scores_scaling <- t(t(score) / lambda_scaling)
+  loading_scaling <- t(t(loading) * lambda_scaling)
 
-  coordgenotype=biplot.x.u
-  coordenviroment=biplot.x.v
+  coordgenotype <- scores_scaling
+  coordenviroment <- loading_scaling
 
 
   labelaxes <- paste("Component ",1:ncol(diag(eigenvalues)), sep = "")

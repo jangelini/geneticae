@@ -1,25 +1,25 @@
 #'EM-AMMI imputation method
 #'
-#'@param X a data frame or matrix that contains the genotypes in the rows and
-#'  the environments in the columns when there are no replications of the
+#'@param X a data frame or matrix that contains genotypes in rows and
+#'  environments in columns when there are no replications of the
 #'  experiment.
 #'@param PC.nb the number of principal components in the AMMI model that will be
-#'  used; the default value is 1. For PC.nb=0 only main effects are used to
+#'  used; default value is 1. For PC.nb=0 only main effects are used to
 #'  estimate cells in the data table (the interaction is ignored). The number of
 #'  principal components must not be greater than min(number of rows in the X
 #'  table, number of columns in the X table)–2.
-#'@param initial.values (optional) the initial values of the missing cells. It
+#'@param initial.values (optional) initial values of missing cells. It
 #'  can be a single value, which then will be used for all empty cells, or a
 #'  vector of length equal to the number of missing cells (starting from the
-#'  missing values in the first column). If omitted, the initial values will be
-#'  obtained by the main effects from the corresponding model, that is, by the
-#'  grand mean of the observed data increased (or decreased) by row and column
+#'  missing values in the first column). If omitted, initial values will be
+#'  obtained by the main effects from the corresponding model, that is, by
+#'  grand mean of observed data increased (or decreased) by row and column
 #'  main effects.
-#'@param precision (optional) the algorithm converges if the maximal change in
+#'@param precision (optional) algorithm converges if the maximal change in
 #'  the values of the missing cells in two subsequent steps is not greater than
 #'  this value (the default is 0.01);
 #'@param max.iter (optional) a maximum permissible number of iterations (that
-#'  is, number of repeats of the algorithm’s steps 2 through 5); the default
+#'  is, number of repeats of the algorithm’s steps 2 through 5); default
 #'  value is 1000;
 #'@param change.factor (optional) introduced by analogy to step size in gradient
 #'  descent method, this parameter that can shorten the time of executing the

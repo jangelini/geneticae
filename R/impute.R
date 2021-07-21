@@ -2,11 +2,11 @@
 #'
 #'AMMI or GGE methods require a complete dataset, that is, missing values are
 #'not allowed. This function provides several methods to impute missing cells
-#'and subsequently adjust the mentioned methods.
+#'to subsequently adjust the mentioned methods.
 #'
 #'@param Data dataframe containing genotypes, environments, repetitions (if any)
-#'  and the phenotypic trait of interest. There is no restriction on the order
-#'  in which these variables should be presented in the dataframe, and also
+#'  and phenotypic trait of interest. There is no restriction on the order
+#'  in which these variables should be presented in dataframe, and also
 #'  other variables that will not be used in the analysis can be included.
 #'@param genotype column name containing genotypes.
 #'@param environment column name containing environments.
@@ -23,7 +23,7 @@
 #'  will be obtained by the main effects from the corresponding model, that is,
 #'  by the grand mean of the observed data increased (or decreased) by row and
 #'  column main effects.
-#'@param precision the threshold for assessing convergence.
+#'@param precision threshold for assessing convergence.
 #'@param maxiter maximum number of iteration for the algorithm.
 #'@param change.factor  The change.factor=1 defines that the previous
 #'  approximation is changed with the new values of missing cells (standard
@@ -50,7 +50,7 @@
 #'  even in some cases where the regular procedure fails. If the regular
 #'  procedure does not converge for the standard initial values, the simplified
 #'  model can be used to determine a better set of initial values.
-#'@param k the rank of the SVD approximation.
+#'@param k rank of the SVD approximation.
 #'@param scale boolean. By default TRUE leading to a same weight for each
 #'  variable
 #'@param method "Regularized" by default or "EM"

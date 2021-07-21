@@ -1,24 +1,24 @@
 #'Site regression model
 #'
-#'@description The site regression model also named genotype plus
+#'@description Site regression model also named genotype plus
 #'  genotype-by-environment (GGE) model is a powerful tool for effective
 #'  analysis and interpretation of multienvironment data structure in breeding
 #'  programs.This function is a modification of
 #'  \code{\link[GGEBiplots]{GGEModel}} of GGEBiplots package, where the input
-#'  dataset contains genotype by environment means with the genotypes in rows
+#'  dataset contains genotype by environment means with genotypes in rows
 #'  and environments in columns. By contrast, this function allows a less
 #'  restrictive format of dataset. Repetitions and other variables that will not
 #'  be used in the analysis may be present in the dataset.
 #'
 #'@param Data dataframe with genotypes, environments, repetitions (if any) and
-#'  the phenotypic trait of interest. The order of the variables is indistinct,
+#'  phenotypic trait of interest. Variables order is indistinct,
 #'  even additional variables that will not be used in the model may be present
 #'  in the data.
 #'@param genotype column name containing genotypes.
 #'@param environment column name containing environments.
 #'@param response column name containing phenotypic trait.
-#'@param rep column name containing replications,if this argument is NULL, there
-#'  is no replication available on the data. Defaults to NULL.
+#'@param rep column name containing replications, if this argument is NULL, there
+#'  is no replication available on the data. Default to NULL.
 #'@param centering centering method. Either "tester" for tester centered (G+GE),
 #'  "global" for global centered (E+G+GE), "double" for double centred (GE) or
 #'  "none" for no centering. Default to "tester".

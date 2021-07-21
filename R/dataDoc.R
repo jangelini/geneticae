@@ -7,7 +7,7 @@
 #'@docType data
 #'@usage data(plrv)
 #'
-#'@format A data frame with 504 observations and 6 variables (genotype,
+#'@format Data frame with 504 observations and 6 variables (genotype,
 #'   locality, repetition, weightPlant, weightPlot and yield)
 #'
 #'@keywords datasets
@@ -32,7 +32,7 @@ NULL
 #' @docType data
 #' @usage data(yan.winterwheat)
 #'
-#' @format A data frame with 162 observations and 3 variables (genotype,
+#' @format Data frame with 162 observations and 3 variables (genotype,
 #'   environment and yield)
 #'
 #' @keywords datasets
