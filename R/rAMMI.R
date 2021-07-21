@@ -171,12 +171,12 @@ rAMMI<-function(Data, genotype="gen", environment="env", response="Y", rep=NULL,
   coordenviroment <- loading_scaling
 
 
-  labelaxes <- paste("Component ",1:ncol(diag(eigenvalues)), sep = "")
+  labelaxes <- paste("Component ",1:ncol(diag(singlevalue)), sep = "")
   labelaxes=labelaxes[1:2]
 
-  vartotal = round(as.numeric(sum(eigenvalues^2)),5)
-  varexpl = c(round(as.numeric((eigenvalues[1]^2/vartotal) *100), 2),
-              round(as.numeric((eigenvalues[2]^2/vartotal) *100), 2))
+  vartotal = round(as.numeric(sum(singlevalue^2)),5)
+  varexpl = c(round(as.numeric((singlevalue[1]^2/vartotal) *100), 2),
+              round(as.numeric((singlevalue[2]^2/vartotal) *100), 2))
 
   plotdata<-data.frame(rbind(data.frame(coordgenotype,type="genotype",label=labelgen),
                              data.frame(coordenviroment,type="environment",label=labelenv)))
