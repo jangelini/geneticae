@@ -47,12 +47,12 @@
 
 
 <meta property="og:title" content="Site regression model — GGEmodel" />
-<meta property="og:description" content="The site regression model also named genotype plus
+<meta property="og:description" content="Site regression model also named genotype plus
  genotype-by-environment (GGE) model is a powerful tool for effective
  analysis and interpretation of multienvironment data structure in breeding
  programs.This function is a modification of
  GGEModel of GGEBiplots package, where the input
- dataset contains genotype by environment means with the genotypes in rows
+ dataset contains genotype by environment means with genotypes in rows
  and environments in columns. By contrast, this function allows a less
  restrictive format of dataset. Repetitions and other variables that will not
  be used in the analysis may be present in the dataset." />
@@ -119,7 +119,7 @@
       <ul class="nav navbar-nav navbar-right">
         <li>
   <a href="https://github.com/jangelini/geneticae">
-    <span class="fa fa-github"></span>
+    <span class="fas fa-github"></span>
      
   </a>
 </li>
@@ -142,12 +142,12 @@
     </div>
 
     <div class="ref-description">
-    <p>The site regression model also named genotype plus
+    <p>Site regression model also named genotype plus
  genotype-by-environment (GGE) model is a powerful tool for effective
  analysis and interpretation of multienvironment data structure in breeding
  programs.This function is a modification of
  <code><a href='https://rdrr.io/pkg/GGEBiplots/man/GGEModel.html'>GGEModel</a></code> of GGEBiplots package, where the input
- dataset contains genotype by environment means with the genotypes in rows
+ dataset contains genotype by environment means with genotypes in rows
  and environments in columns. By contrast, this function allows a less
  restrictive format of dataset. Repetitions and other variables that will not
  be used in the analysis may be present in the dataset.</p>
@@ -170,7 +170,7 @@
     <tr>
       <th>Data</th>
       <td><p>dataframe with genotypes, environments, repetitions (if any) and
-the phenotypic trait of interest. The order of the variables is indistinct,
+phenotypic trait of interest. Variables order is indistinct,
 even additional variables that will not be used in the model may be present
 in the data.</p></td>
     </tr>
@@ -188,8 +188,8 @@ in the data.</p></td>
     </tr>
     <tr>
       <th>rep</th>
-      <td><p>column name containing replications,if this argument is NULL, there
-is no replication available on the data. Defaults to NULL.</p></td>
+      <td><p>column name containing replications, if this argument is NULL, there
+is no replication available on the data. Default to NULL.</p></td>
     </tr>
     <tr>
       <th>centering</th>

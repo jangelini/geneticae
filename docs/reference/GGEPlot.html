@@ -47,13 +47,13 @@
 
 
 <meta property="og:title" content="GGE biplots with ggplot2 — GGEPlot" />
-<meta property="og:description" content="The GGE biplot allows a visual examination of the relationships
- between test environments, genotypes, and genotype interactions by
- environment. The GGE biplot is an object of class 'ggplot' obtained from an
- object produced by the GGEmodel function. It is
- possible to personalize the graphic so that the stylistic attributes are
- liked by the user. This function is a modification of
- GGEPlot from GGEBiplots package." />
+<meta property="og:description" content="GGE biplot allows a visual examination of the relationships
+ between test environments, genotypes, and genotype by environment
+ interactions. GGEPlot produces this biplot as an object of class 'ggplot' by
+ a call to GGEmodel function. It is possible to
+ personalize the graphic so that the stylistic attributes are choosen by the
+ user. This function is a modification of GGEPlot
+ from GGEBiplots package." />
 
 
 
@@ -117,7 +117,7 @@
       <ul class="nav navbar-nav navbar-right">
         <li>
   <a href="https://github.com/jangelini/geneticae">
-    <span class="fa fa-github"></span>
+    <span class="fas fa-github"></span>
      
   </a>
 </li>
@@ -140,13 +140,13 @@
     </div>
 
     <div class="ref-description">
-    <p>The GGE biplot allows a visual examination of the relationships
- between test environments, genotypes, and genotype interactions by
- environment. The GGE biplot is an object of class 'ggplot' obtained from an
- object produced by the <code><a href='GGEmodel.html'>GGEmodel</a></code> function. It is
- possible to personalize the graphic so that the stylistic attributes are
- liked by the user. This function is a modification of
- <code><a href='https://rdrr.io/pkg/GGEBiplots/man/GGEPlot.html'>GGEPlot</a></code> from GGEBiplots package.</p>
+    <p>GGE biplot allows a visual examination of the relationships
+ between test environments, genotypes, and genotype by environment
+ interactions. GGEPlot produces this biplot as an object of class 'ggplot' by
+ a call to <code><a href='GGEmodel.html'>GGEmodel</a></code> function. It is possible to
+ personalize the graphic so that the stylistic attributes are choosen by the
+ user. This function is a modification of <code><a href='https://rdrr.io/pkg/GGEBiplots/man/GGEPlot.html'>GGEPlot</a></code>
+ from GGEBiplots package.</p>
     </div>
 
     <pre class="usage"><span class='fu'>GGEPlot</span><span class='op'>(</span>
@@ -188,20 +188,21 @@ biplot.</p></li>
 <li><p><code>Selected Environment</code>: Ranking of cultivars based on
 their performance in any given environment.</p></li>
 <li><p><code>Selected Genotype</code>:
-Ranking of environments based on the performance of any given
-cultivar.</p></li>
+Ranking of environments based on the performance of any given cultivar.</p></li>
 <li><p><code>Relationship Among Environments</code>.</p></li>
-<li><p><code>Comparison of Genotype</code>.</p></li>
-<li><p><code>Which Won Where/What</code>:
-Identifying the 'best' cultivar in each environment.</p></li>
-<li><p><code>Discrimination vs. representativeness</code>: Evaluating the environments
-based on both discriminating ability and representativeness.</p></li>
-<li><p><code>Ranking Environments</code>: Ranking environments with respect to the ideal
-environment.</p></li>
-<li><p><code>Mean vs. stability</code>: Evaluating cultivars based on
-both average yield and stability.</p></li>
-<li><p><code>Ranking Genotypes</code>: Ranking
-genotypes with respect to the ideal genotype.</p></li>
+<li><p><code>Comparison of
+Genotype</code>.</p></li>
+<li><p><code>Which Won Where/What</code>: Identifying the 'best'
+cultivar in each environment.</p></li>
+<li><p><code>Discrimination vs.
+representativeness</code>: Evaluating the environments based on both
+discriminating ability and representativeness.</p></li>
+<li><p><code>Ranking
+Environments</code>: Ranking environments with respect to the ideal environment.</p></li>
+<li><p><code>Mean vs. stability</code>: Evaluating cultivars based on both average
+yield and stability.</p></li>
+<li><p><code>Ranking Genotypes</code>: Ranking genotypes with
+respect to the ideal genotype.</p></li>
 </ul></td>
     </tr>
     <tr>
@@ -229,8 +230,8 @@ Genotype".</p></td>
     </tr>
     <tr>
       <th>selectedG2</th>
-      <td><p>name of a genotype to compare with selectedG1 when type="Comparison of
-Genotype".</p></td>
+      <td><p>name of a genotype to compare with selectedG1 when
+type="Comparison of Genotype".</p></td>
     </tr>
     <tr>
       <th>colGen</th>
@@ -259,8 +260,9 @@ Genotype".</p></td>
     </tr>
     <tr>
       <th>largeSize</th>
-      <td><p>larger labels text size to use for two selected genotypes in type="Comparison of Genotype", and
-for the outermost genotypes in type="Which Won Where/What". Defaults to 4.5.</p></td>
+      <td><p>larger labels text size to use for two selected genotypes in
+type="Comparison of Genotype", and for the outermost genotypes in
+type="Which Won Where/What". Defaults to 4.5.</p></td>
     </tr>
     <tr>
       <th>axis_expand</th>
@@ -269,23 +271,28 @@ enable fitting of labels. Defaults to 1.2.</p></td>
     </tr>
     <tr>
       <th>axislabels</th>
-      <td><p>logical, if this argument is TRUE labels for axes are included. Defaults to TRUE.</p></td>
+      <td><p>logical, if this argument is TRUE labels for axes are
+included. Defaults to TRUE.</p></td>
     </tr>
     <tr>
       <th>axes</th>
-      <td><p>logical, if this argument is TRUE x and y axes going through the origin. Defaults to TRUE.</p></td>
+      <td><p>logical, if this argument is TRUE x and y axes going through the
+origin. Defaults to TRUE.</p></td>
     </tr>
     <tr>
       <th>limits</th>
-      <td><p>logical, if this argument is TRUE the axes are rescaled. Defaults to TRUE.</p></td>
+      <td><p>logical, if this argument is TRUE the axes are rescaled.
+Defaults to TRUE.</p></td>
     </tr>
     <tr>
       <th>titles</th>
-      <td><p>logical, if this argument is TRUE a plot title is included. Defaults to TRUE.</p></td>
+      <td><p>logical, if this argument is TRUE a plot title is included.
+Defaults to TRUE.</p></td>
     </tr>
     <tr>
       <th>footnote</th>
-      <td><p>logical, if this argument is TRUE a footnote is included. Defaults to TRUE.</p></td>
+      <td><p>logical, if this argument is TRUE a footnote is included.
+Defaults to TRUE.</p></td>
     </tr>
     </table>
 

@@ -32,7 +32,7 @@ Unlike the existing functions that allow to fit these models, the package is mor
 
 ## Getting Started
 
-If you are just getting started with geneticae we recommend starting with the tutorial [_vignettes_](file:///F:/Especializacion%20en%20bioinformatica/Para%20proyecto%20final/Geneticae%20Package/geneticae/docs/articles/vignettes.html), and the examples throughout the package [_documentation_](file:///F:/Especializacion%20en%20bioinformatica/Para%20proyecto%20final/Geneticae%20Package/geneticae/docs/reference/index.html).
+If you are just getting started with geneticae we recommend starting with the tutorial [_vignettes_](file:///run/media/julia-fedora/TESIS/Especializacion en bioinformatica/Trabajo final Especializacion en bioinformatica/Geneticae Package/geneticae/vignettes/vignettes.html), and the examples throughout the package [_documentation_](file:///run/media/julia-fedora/TESIS/Especializacion en bioinformatica/Trabajo final Especializacion en bioinformatica/Geneticae Package/geneticae/docs/reference/index.html).
 
 ## Installation
 

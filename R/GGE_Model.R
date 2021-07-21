@@ -57,6 +57,7 @@
 #'  GGE2 <- GGEmodel(plrv, genotype="Genotype",environment="Locality",
 #'  response="Yield", rep="Rep", centering = "tester")
 #'
+#'@import dplyr
 #'@importFrom stats var
 #'@importFrom GGEBiplots GGEModel
 #'@importFrom tidyr spread

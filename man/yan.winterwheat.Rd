@@ -5,7 +5,7 @@
 \alias{yan.winterwheat}
 \title{Winter wheat varieties from Ontario}
 \format{
-A data frame with 162 observations and 3 variables (genotype,
+Data frame with 162 observations and 3 variables (genotype,
   environment and yield)
 }
 \usage{

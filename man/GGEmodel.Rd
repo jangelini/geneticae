@@ -17,7 +17,7 @@ GGEmodel(
 }
 \arguments{
 \item{Data}{dataframe with genotypes, environments, repetitions (if any) and
-the phenotypic trait of interest. The order of the variables is indistinct,
+phenotypic trait of interest. Variables order is indistinct,
 even additional variables that will not be used in the model may be present
 in the data.}
 
@@ -27,8 +27,8 @@ in the data.}
 
 \item{response}{column name containing phenotypic trait.}
 
-\item{rep}{column name containing replications,if this argument is NULL, there
-is no replication available on the data. Defaults to NULL.}
+\item{rep}{column name containing replications, if this argument is NULL, there
+is no replication available on the data. Default to NULL.}
 
 \item{centering}{centering method. Either "tester" for tester centered (G+GE),
 "global" for global centered (E+G+GE), "double" for double centred (GE) or
@@ -53,12 +53,12 @@ A list of class \code{GGE_Model} containing:
  SVP method}
 }
 \description{
-The site regression model also named genotype plus
+Site regression model also named genotype plus
  genotype-by-environment (GGE) model is a powerful tool for effective
  analysis and interpretation of multienvironment data structure in breeding
  programs.This function is a modification of
  \code{\link[GGEBiplots]{GGEModel}} of GGEBiplots package, where the input
- dataset contains genotype by environment means with the genotypes in rows
+ dataset contains genotype by environment means with genotypes in rows
  and environments in columns. By contrast, this function allows a less
  restrictive format of dataset. Repetitions and other variables that will not
  be used in the analysis may be present in the dataset.

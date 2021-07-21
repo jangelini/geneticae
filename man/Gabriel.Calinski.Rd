@@ -7,16 +7,16 @@
 Gabriel.Calinski(X)
 }
 \arguments{
-\item{X}{a data frame or matrix that contains the genotypes in the rows and
-the environments in the columns when there are no replications of the
+\item{X}{a data frame or matrix that contains genotypes in rows and
+environments in columns when there are no replications of the
 experiment.}
 }
 \value{
 A list containing: \itemize{ \item
-  NumeroIterGabriel: the final number of iterations; \item
-  CritConvergGabriel: the maximum change of the estimated values for missing
-  cells in the last step of iteration (the precision of convergence); \item
-  GabrielImput: the imputed matrix (filled in with the missing values
+  NumeroIterGabriel: final number of iterations; \item
+  CritConvergGabriel: maximum change of the estimated values for missing
+  cells in the last step of iteration (precision of convergence); \item
+  GabrielImput: imputed matrix (filled in with missing values
   estimated by the GabrielEigein procedure).}
 }
 \description{

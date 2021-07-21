@@ -45,7 +45,6 @@ devtools::install_github("jangelini/geneticae")
 __Loading the package.__ Once `geneticae` package is installed, it needs to be made accessible to the current R session by `library(geneticae)`.
 
 
-
 __Help files.__  Detailed information on `geneticae` package functions can be obtained from the help files using `help(package="geneticae")`.
 The help file for a function, for example `imputation`, in a R session can be obtained using `?imputation` or `help(imputation)`.
 

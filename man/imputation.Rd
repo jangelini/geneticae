@@ -30,8 +30,8 @@ imputation(
 }
 \arguments{
 \item{Data}{dataframe containing genotypes, environments, repetitions (if any)
-and the phenotypic trait of interest. There is no restriction on the order
-in which these variables should be presented in the dataframe, and also
+and phenotypic trait of interest. There is no restriction on the order
+in which these variables should be presented in dataframe, and also
 other variables that will not be used in the analysis can be included.}
 
 \item{genotype}{column name containing genotypes.}
@@ -56,7 +56,7 @@ will be obtained by the main effects from the corresponding model, that is,
 by the grand mean of the observed data increased (or decreased) by row and
 column main effects.}
 
-\item{precision}{the threshold for assessing convergence.}
+\item{precision}{threshold for assessing convergence.}
 
 \item{maxiter}{maximum number of iteration for the algorithm.}
 
@@ -87,7 +87,7 @@ even in some cases where the regular procedure fails. If the regular
 procedure does not converge for the standard initial values, the simplified
 model can be used to determine a better set of initial values.}
 
-\item{k}{the rank of the SVD approximation.}
+\item{k}{rank of the SVD approximation.}
 
 \item{scale}{boolean. By default TRUE leading to a same weight for each
 variable}
@@ -118,7 +118,7 @@ imputed data matrix
 \description{
 AMMI or GGE methods require a complete dataset, that is, missing values are
 not allowed. This function provides several methods to impute missing cells
-and subsequently adjust the mentioned methods.
+to subsequently adjust the mentioned methods.
 }
 \examples{
 library(geneticae)

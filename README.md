@@ -47,9 +47,9 @@ using several options of ggplot2 package.
 
 If you are just getting started with geneticae we recommend starting
 with the tutorial
-[*vignettes*](file:///F:/Especializacion%20en%20bioinformatica/Para%20proyecto%20final/Geneticae%20Package/geneticae/docs/articles/vignettes.html),
+[*vignettes*](file:///run/media/julia-fedora/TESIS/Especializacion%20en%20bioinformatica/Trabajo%20final%20Especializacion%20en%20bioinformatica/Geneticae%20Package/geneticae/vignettes/vignettes.html),
 and the examples throughout the package
-[*documentation*](file:///F:/Especializacion%20en%20bioinformatica/Para%20proyecto%20final/Geneticae%20Package/geneticae/docs/reference/index.html).
+[*documentation*](file:///run/media/julia-fedora/TESIS/Especializacion%20en%20bioinformatica/Trabajo%20final%20Especializacion%20en%20bioinformatica/Geneticae%20Package/geneticae/docs/reference/index.html).
 
 ## Installation
 

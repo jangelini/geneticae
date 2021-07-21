@@ -5,7 +5,7 @@
 \alias{plrv}
 \title{Clones from the PLRV population}
 \format{
-A data frame with 504 observations and 6 variables (genotype,
+Data frame with 504 observations and 6 variables (genotype,
   locality, repetition, weightPlant, weightPlot and yield)
 }
 \usage{
