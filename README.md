@@ -18,30 +18,47 @@ coverage](https://codecov.io/gh/r-lib/geneticae/branch/master/graphs/badge.svg)]
 
 Understanding the relationship between crops performance and environment
 is a key problem for plant breeders and geneticists. In advanced stages
-of breeding programs, where few genotypes are evaluated through
-environments, multi-environmental trials (MET) is one of the most common
-experiments. They are conducted by testing a number of genotypes across
-multiple environments, allowing the identification of superior
-genotypes. Crop performance, is a function of genotype (G), environment
-(E) and genotype x environment interaction (GEI). METs are essential due
-to the presence of GEI which generates differential genotypic responses
-across environments (Crossa et al., 1990; Cruz Medina, 1992; Kang and
+of breeding programs, where few genotypes are evaluated,
+multi-environmental trials (MET) is one of the most common experiments.
+They are conducted by testing a number of genotypes across multiple
+environments, allowing the identification of superior genotypes. Crop
+performance is a function of genotype (G), environment (E) and genotype
+x environment interaction (GEI). METs are essential due to the presence
+of GEI which generates differential genotypic responses in the different
+environments evaluated (Crossa et al., 1990; Cruz Medina, 1992; Kang and
 Magari, 1996). This is a particular problem for plant breeders
 (Giauffret et al., 2000), therefore appropriate statistical methods
 should be used to obtain an adequate GEI analysis.
 
-geneticae package provides tools to analize data from advanced stages of
-breeding programs, where few genotypes are evaluated across
-environments. The AMMI and SREG model, and the biplots that are obtained
-from them are the main functions included in the package. In addition to
-the classic version of the AMMI model, alternatives are included that
-allow overcoming its fragility in the presence of atypical observations.
-Finally, since the mentioned models require complete data, imputation
-techniques are included. Unlike the existing functions that allow to fit
-these models, the package is more flexible in the format allowed for the
-input data set. Furthermore, the biplots created are ggplot objects,
-which means that after creating a graph, it can be further customized
-using several options of ggplot2 package.
+A proper analysis of MET data is essential for the success of a breeding
+program. The average performance of genotypes in environments only can
+be considered in absence of IGA (Yan and Kang, 2003). However, IGA is
+inevitable and genotypes means comparison is not enough, therefore a
+more appropriate statistical methodology must be used. The most widely
+used to analyze MET data are based on regression models, analysis of
+variance (ANOVA) and multivariate analysis techniques. Two
+multiplicative models have increased their popularity among plant
+breeders as graphic analysis tools for the study of IGA and the analyzes
+derived from it: Additive Main effects and Multiplicative Interaction
+model (AMMI) (Kempton, 1984; Gauch, 1988) and site regression model
+(SREG) (Cornelius et al., 1996; Gauch and Zobel, 1997). However, these
+models are not always efficient enough to analyze MET data structure of
+plant breeding programs. It has serious limitations in presence of
+atypical observations, as well as in front of missing information. Both
+phenomena are more a rule rather than an exception when considering real
+data. To reduce this handicap, several imputation alternatives and also
+an AMMI robust model were proposed recently in literature.
+
+There are numerous packages to analyze MET data but they must be
+correctly identified and combined. `geneticae` package is created to
+gathers the most useful functions and also offers new ones recently
+available in literature. In addition, `geneticae` package is less
+restrictive regarding the input dataset format so so there is no need to
+preprocess the data to apply the functions. Genotypes, environments,
+repetitions (if any) and phenotypic trait of interest can be present in
+any order and there is no restriction on columns names. Also, extra
+information that will not be used in the analysis may be present in the
+dataset. Finally, the biplots created can be customized by the user.
 
 ## Getting Started
 
