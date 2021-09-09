@@ -1,19 +1,25 @@
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
 
-# geneticae
+# geneticae <img src="man/figures/baseplot.png" align="right" alt="" width="160"/>
 
-# <img src="man/figures/baseplot.png" align="right">
+## Statistical Tools for the Analysis of Multi Environment Agronomic Trials
 
+<!-- cuando este la web poner acá -->
+<!-- --- -->
+<!-- Web: <https://mpru.github.io/karel/> -->
+<!-- CRAN: <https://CRAN.R-project.org/package=karel> -->
+<!-- --- -->
 <!-- badges: start -->
+<!-- dejo esto porque todavia hay links que no estan disponibles: -->
 
-[![CRAN
-status](https://www.r-pkg.org/badges/version/geneticae)](https://CRAN.R-project.org/package=geneticae)
 [![Lifecycle:
-experimental](https://img.shields.io/badge/lifecycle-experimental-orange.svg)](https://www.tidyverse.org/lifecycle/#experimental)
-[![Downloads](https://cranlogs.r-pkg.org/badges/geneticae?color=blue)](https://cran.rstudio.com/package=geneticae)
-[![Codecov test
-coverage](https://codecov.io/gh/r-lib/geneticae/branch/master/graphs/badge.svg)](https://codecov.io/gh/r-lib/geneticae?branch=master)
+experimental](https://img.shields.io/badge/lifecycle-experimental-orange.svg)](https://lifecycle.r-lib.org/articles/stages.html)
+
+<!-- cuando este en cran agregar estas -->
+<!-- [![CRAN status](https://www.r-pkg.org/badges/version/geneticae)](https://CRAN.R-project.org/package=geneticae) -->
+<!-- [![Downloads](https://cranlogs.r-pkg.org/badges/geneticae?color=blue)](https://cran.rstudio.com/package=geneticae) -->
+<!-- [![Codecov test coverage](https://codecov.io/gh/r-lib/geneticae/branch/master/graphs/badge.svg)](https://codecov.io/gh/r-lib/geneticae?branch=master) -->
 <!-- badges: end -->
 
 Understanding the relationship between crops performance and environment
@@ -62,15 +68,13 @@ dataset. Finally, the biplots created can be customized by the user.
 
 ## Getting Started
 
-If you are just getting started with geneticae we recommend starting
-with the tutorial
-[*vignettes*](file:///run/media/julia-fedora/TESIS/Especializacion%20en%20bioinformatica/Trabajo%20final%20Especializacion%20en%20bioinformatica/Geneticae%20Package/geneticae/vignettes/vignettes.html),
-and the examples throughout the package
-[*documentation*](file:///run/media/julia-fedora/TESIS/Especializacion%20en%20bioinformatica/Trabajo%20final%20Especializacion%20en%20bioinformatica/Geneticae%20Package/geneticae/docs/reference/index.html).
+If you are just getting started with `geneticae` we recommend starting
+with the vignettes and exploring the examples throughout the package
+*documentation*.
 
 ## Installation
 
-You can install the released version of geneticae from
+You can install the released version of `geneticae` from
 [CRAN](https://CRAN.R-project.org) with:
 
 ``` r
@@ -80,20 +84,20 @@ install.packages("geneticae")
 And the development version from [GitHub](https://github.com/) with:
 
 ``` r
-# install.packages('devtools')
+# install.packages("devtools")
 devtools::install_github("jangelini/geneticae")
 ```
 
 ## Example
 
-Some quick examples obtained from the geneticae package.
+Some quick examples obtained from the `geneticae` package.
 
 ``` r
 library(geneticae)
 
 data(yan.winterwheat)
 GGE1 <- GGEmodel(yan.winterwheat)
-GGEPlot(GGE1, sizeGen = 5, sizeEnv = 5, footnote = FALSE, title = FALSE)
+GGEPlot(GGE1, sizeGen = 5, sizeEnv = 5, footnote=FALSE, title=FALSE)
 ```
 
 <img src="man/figures/README-unnamed-chunk-4-1.png" width="45%" style="display: block; margin: auto;" />

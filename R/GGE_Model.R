@@ -42,7 +42,7 @@
 #'  for Breeders, Geneticists, and Agronomists}. CRC Press.
 #'@references Yan W, Kang M (2002). \emph{Singular-Value Partitioning in Biplot
 #'  Analysis of Multienvironment Trial Data}. Agronomy Journal, 94, 990-996.
-#'  \url{http://dx.doi.org/10.2134/agronj2002.0990}
+#'  \doi{10.2134/agronj2002.0990}
 #'@export
 #' @examples
 #'

@@ -1,6 +1,6 @@
 ---
-title: "Geneticae"
-subtitle: "An R package to analyze data from agricultural research"
+title: "geneticae"
+subtitle: "Statistical Tools for the Analysis of Multi Environment Agronomic Trials"
 author: |
     | Julia Angelini
     | Marcos Prunello
@@ -8,7 +8,6 @@ author: |
     |
     | Centro de Estudios Fotosintéticos y Bioquímicos
     | Universidad Nacional de Rosario
-    | Suipacha 501
 date: "`r Sys.Date()`"
 output: rmarkdown::html_vignette
 vignette: >
@@ -26,14 +25,14 @@ text-align: justify}
 <!-- devtools::build_vignettes() -->
 ## Getting started
 
-__Installing the package.__ To install the released version of `geneticae` from
-[CRAN](https://CRAN.R-project.org):
+<!-- __Installing the package.__ To install the released version of `geneticae` from -->
+<!-- [CRAN](https://CRAN.R-project.org): -->
 
-``` {r, eval=F, tidy=TRUE}
-install.packages("geneticae")
-```
+<!-- ``` {r, eval=F, tidy=TRUE} -->
+<!-- install.packages("geneticae") -->
+<!-- ``` -->
 
-And the development version from [GitHub](https://github.com/):
+You can install the development version from [GitHub](https://github.com/):
 
 ``` {r, eval=F, tidy=TRUE}
 # install.packages("devtools")
@@ -42,7 +41,7 @@ devtools::install_github("jangelini/geneticae")
 
 
 
-__Loading the package.__ Once `geneticae` package is installed, it needs to be made accessible to the current R session by `library(geneticae)`.
+__Loading the package.__ Once the `geneticae` package is installed, it needs to be loaded by `library(geneticae)`.
 
 
 __Help files.__  Detailed information on `geneticae` package functions can be obtained from  help files using `help(package="geneticae")`.
@@ -64,7 +63,7 @@ There are numerous packages to analyze MET data but they must be correctly ident
 The `geneticae` package provides two datasets to illustrate the methodology included to analize MET data. 
 
 * `yan.winterwheat` dataset: yield of 18 winter wheat varieties grown in nine environments in Ontario at 1993. Although four blocks or replicas in each environment were performed in the experiment, only yield mean for each variety and environment combination was available in the dataset obtained from 
-[agridat](https://cran.r-project.org/web/packages/agridat/agridat.pdf) package (Wright, 2018).
+[agridat](https://CRAN.R-project.org/package=agridat) package (Wright, 2018).
 
 
 ```{r, tidy=TRUE}
@@ -73,7 +72,7 @@ data(yan.winterwheat)
 head(yan.winterwheat)
 ```
 
-* `plrv` dataset: resistance study to PLRV (Patato Leaf Roll Virus) causing leaf curl. 28 genotypes were experimented at 6 locations in Peru. Each clone was evaluated three times in each environment, and yield, plant weight and plot were registered. This dataset was obtained from [agricolae](https://cran.r-project.org/web/packages/agricolae/agricolae.pdf) package (de Mendiburu, 2020).
+* `plrv` dataset: resistance study to PLRV (Patato Leaf Roll Virus) causing leaf curl. 28 genotypes were experimented at 6 locations in Peru. Each clone was evaluated three times in each environment, and yield, plant weight and plot were registered. This dataset was obtained from [agricolae](https://CRAN.R-project.org/package=agricolae) package (de Mendiburu, 2020).
 
 
 ```{r, tidy=TRUE}
@@ -106,7 +105,7 @@ standard SVD. Robust AMMI models there are no available in an R package. All rob
 
 Site regression model also named genotype plus genotype-by-environment (GGE) model is another powerful tool for effective analysis and interpretation of MET data structure in breeding programs. GGE explore genotype (G) and IGA effect performing a SVD on the residuals matrix obtained from a one-way ANOVA with fixed effects for environments. To select cultivars the effect of G and IGA must be considered simultaneously so SREG model is superior to AMMI for visualizing patterns in MET data. 
 
-`GGEmodel()` function it is a modification of `GGEModel()` function of  [GGEBiplots](https://cran.r-project.org/web/packages/GGEBiplots/GGEBiplots.pdf) package (Dumble, 2017). As `rAMMI()` data in long format is required, repetitions and extra variables that will not be used in the analysis may be present in the dataset are allowed, and all combination of genotypes and environments must be evaluated.
+`GGEmodel()` function it is a modification of `GGEModel()` function of  [GGEBiplots](https://CRAN.R-project.org/package=GGEBiplots) package (Dumble, 2017). As `rAMMI()` data in long format is required, repetitions and extra variables that will not be used in the analysis may be present in the dataset are allowed, and all combination of genotypes and environments must be evaluated.
 
 ```{r, tidy=TRUE}
 GGE1 <- GGEmodel(yan.winterwheat, genotype="gen",environment="env", response="yield", centering = "tester")
@@ -202,9 +201,7 @@ GGEPlot(GGE1, type="Ranking Environments", footnote = F, titles = F)
 __FALTA DESCRIPCION__
 
 ```{r,  fig.align='center', tidy=TRUE}
-
 GGEPlot(GGE1, type="Discrimination vs. representativeness", footnote = F, titles = F)
-
 ```
 
 
@@ -217,24 +214,25 @@ Numerous methodologies have been proposed in order to overcome the lack of balan
 Since the `yan.winterwheat` dataset was complete, some observations are deleted in order to show how to obtained an imputed dataset with `"EM-AMMI"` method. To perform the remaining methods available: `"EM-SVD"`, `"Gabriel"`, `"WGabriel"` and `"EM-PCA"`, it must be indicated in the type argument of `imputation()` function.
 
 ```{r, tidy=TRUE}
-# generates missing data
-yan.winterwheat[1,3]<-NA
-yan.winterwheat[3,3]<-NA
-yan.winterwheat[2,3]<-NA
+# Generating missing data
+yan.winterwheat[1,3] <- NA
+yan.winterwheat[3,3] <- NA
+yan.winterwheat[2,3] <- NA
 ```
 
 
 ```{r, tidy=TRUE}
-imputation(yan.winterwheat,nPC = 2, genotype="gen",environment="env", response="yield", type="EM-AMMI")
+imputation(yan.winterwheat, nPC = 2, genotype = "gen", environment = "env", 
+           response = "yield", type = "EM-AMMI")
 ```
 
 ## References
 
 Giauffret, C., Lothrop, J., Dorvillez, D., Gouesnard, B., Derieux, M., 2000. Genotype x environment interactions in maize hybrids from temperate or highland tropical origin. Crop Sci. 40, 1004-1012. \n
 
- Sam Dumble (2017). GGEBiplots: GGE Biplots with 'ggplot2'. R package version 0.1.1. https://CRAN.R-project.org/package=GGEBiplots \n
+Sam Dumble (2017). GGEBiplots: GGE Biplots with 'ggplot2'. R package version 0.1.1. <https://CRAN.R-project.org/package=GGEBiplots> \n
 
-Felipe de Mendiburu (2020). agricolae: Statistical Procedures for Agricultural Research. R package version 1.3-2. https://CRAN.R-project.org/package=agricolae
+Felipe de Mendiburu (2020). agricolae: Statistical Procedures for Agricultural Research. R package version 1.3-2. <https://CRAN.R-project.org/package=agricolae>
 
 ## Sesssion Info
 

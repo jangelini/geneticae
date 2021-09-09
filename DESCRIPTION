@@ -1,39 +1,59 @@
 Package: geneticae
-Type: Package
-Title: Statistical analysis tool for agricultural research
-Version: 0.0.9000
-Date: 13-04-2019
-Author: Julia Angelini - Marcos Prunello - Gerardo Cervigni
-Maintainer: Julia Angelini <jangelini_93@hotmail.com>
-Description: Original idea was presented in the thesis to obtain the degree of Bioinformatics, National University Rosario (UNR), Rosario Argentina. Some experimental data for the examples come from INTA San Pedro and others research. Geneticae offers extensive statistical analysis tool for agricultural and plant breeding experiments, which can also be useful for other purposes.
-License: GPL-3
+Title: Statistical Tools for the Analysis of Multi Environment Agronomic Trials
+Version: 0.1.0
+Authors@R: c(
+  person(given = "Julia",
+         family = "Angelini",
+         role = c("aut", "cre"),
+         email = "jangelini@gmail.com",
+         comment = c(ORCID = "0000-0002-9611-527X")
+         ),
+  person(given = "Marcos",
+         family = "Prunello",
+         role = c("aut"),
+         email = "marcosprunello@gmail.com",
+         comment = c(ORCID = "0000-0002-9611-527X")
+         ),
+  person(given = "Gerardo",
+         family = "Cervigni",
+         role = c("aut")
+         )
+  )
+Description: Data from multi environment agronomic trials, which are often 
+  carried out by plant breeders, can be analyzed with the tools offered by this
+  package such as the 'AMMI' model (Additive Main effects and Multiplicative 
+  Interaction model) and the 'SREG' model (Site Regression model). Since these 
+  methods present a poor performance under the presence of outliers and missing 
+  values, this package includes robust versions of the 'AMMI' and 'SREG' 
+  models, and also imputation techniques specifically developed for this kind 
+  of data.
+License: GPL-2
 Encoding: UTF-8
 LazyData: true
-NeedsCompilation: no
-Repository: CRAN
-RoxygenNote: 7.1.1
-Imports: stats,
-         GGEBiplots,
-         ggforce,
-         ggplot2,
-         scales,
-         MASS,
-         pcaMethods,
-         rrcov,
-         dplyr,
-         bcv,
-         missMDA,
-         calibrate,
-         graphics,
-         agridat,
-         reshape2,
-         matrixStats,
-         tidyr,
-         prettydoc
+RoxygenNote: 7.1.2
+Imports: 
+    stats,
+    GGEBiplots,
+    ggforce,
+    ggplot2,
+    scales,
+    MASS,
+    pcaMethods,
+    rrcov,
+    dplyr,
+    bcv,
+    missMDA,
+    calibrate,
+    graphics,
+    agridat,
+    reshape2,
+    matrixStats,
+    tidyr,
+    prettydoc
 Suggests: 
     knitr,
     rmarkdown,
-    testthat (>= 2.1.0)
+    testthat
 VignetteBuilder: knitr
 Depends: R (>= 2.12.0)
 URL: https://github.com/jangelini/geneticae
