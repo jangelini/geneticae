@@ -57,8 +57,10 @@ the analysis of MET data, there aren’t any packages capable of
 performing all the steps that need to be considered. The `geneticae`
 package was created to gather in one place the most useful functions for
 this type of analysis and it also implements new methodology which can
-be found in recent literature. In addition, there is no need to
-preprocess the data to use the `geneticae` package, as it can handle
+be found in recent literature. More importantly, `geneticae` **is the
+first package to implement the robust AMMI model and implements new
+imputation methods not available before**. In addition, there is no need
+to preprocess the data to use the `geneticae` package, as it can handle
 different dataset formats. Genotypes, environments, repetitions (if any)
 and phenotypic traits of interest can be presented in any order and
 there is no restriction on columns names, as it is the case with
