@@ -81,8 +81,8 @@ only for R programmers. PONER LINK.
 <!-- install.packages("geneticae") -->
 <!-- ``` -->
 
-You can install the development version of `geneticae` from
-[GitHub](https://github.com/) with:
+You can install the development version from our [GitHub
+repo](https://github.com/jangelini/geneticae) with:
 
 ``` r
 # install.packages("devtools")

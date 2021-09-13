@@ -8,14 +8,14 @@ template:
 navbar:
   title: "geneticae"
   left:
-    - text: "Get started"
-      href: articles/index.html
-    - text: "Functions and data"
+    - text: "Getting started"
+      href: articles/a-tutorial.html
+    - text: "Functions and datasets reference"
       href: reference/index.html
     - text: "News"
       href: news/index.html
     - text: "Shiny APP"
-      href: https://github.com/jangelini/Geneticae_shinnyAPP
+      href: articles/b-shiny.html
   right:
    - icon: fa-github
      href: https://github.com/jangelini/geneticae
@@ -23,12 +23,3 @@ navbar:
 authors:
     Julia Angelini:
     href: https://www.linkedin.com/in/julia-angelini-609a67a7
-
-home:
-  links:
-  - text: Browse source code
-    href: https://github.com/jangelini/geneticae
-  - text: Report a bug
-    href: https://github.com/jangelini/geneticae/issues
-
-

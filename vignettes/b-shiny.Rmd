@@ -1,0 +1,35 @@
+---
+title: "The geneticae Shiny App"
+subtitle: "A web application for the Analysis of Multi Environment Agronomic Trials"
+author: |
+    | Julia Angelini
+    | Marcos Prunello
+    | Gerardo Cervigni
+    |
+    | Centro de Estudios Fotosintéticos y Bioquímicos
+    | Universidad Nacional de Rosario
+    | Rosario, Argentina
+date: "`r Sys.Date()`"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{How to use the geneticae Shiny App}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(warning = F, message = F, out.width = "60%")
+```
+
+<style type="text/css">
+
+body{
+text-align: justify}
+</style>
+  
+The `geneticae` can be used through a Shiny app, making it available not only for R
+programmers. 
+
+---
+SITE IN CONSTRUCTION
+---
