@@ -14,7 +14,7 @@
 #'  (default), replications are not considered for the analysis.
 #'@param Ncomp number of principal components that will be used in the analysis.
 #'@param type method for fitting the AMMI model: "AMMI", "rAMMI", "hAMMI",
-#'  "gAMMI", "lAMMI" or "ppAMMI" (see Details). Defaults to "AMMI".
+#'  "gAMMI", "lAMMI" or "ppAMMI" (see References). Defaults to "AMMI".
 #'@param colGen genotype attributes colour. Defaults to "gray".
 #'@param colEnv environment attributes colour. Defaults to "darkred".
 #'@param sizeGen genotype labels text size. Defaults to 4.

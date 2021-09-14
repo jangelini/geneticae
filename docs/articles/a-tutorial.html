@@ -65,7 +65,7 @@
 <ul class="nav navbar-nav navbar-right">
 <li>
   <a href="https://github.com/jangelini/geneticae">
-    <span class="fa fa-github"></span>
+    <span class="fas fa-github"></span>
      
   </a>
 </li>
@@ -79,11 +79,11 @@
 
       
 
-      </header><script src="a-tutorial_files/header-attrs-2.10/header-attrs.js"></script><div class="row">
+      </header><script src="a-tutorial_files/header-attrs-2.7/header-attrs.js"></script><script src="a-tutorial_files/accessible-code-block-0.0.1/empty-anchor.js"></script><div class="row">
   <div class="col-md-9 contents">
     <div class="page-header toc-ignore">
       <h1 data-toc-skip>How to use the geneticae package</h1>
-            <h3 class="subtitle">Statistical Tools for the Analysis of Multi Environment Agronomic Trials</h3>
+            <h3 class="subtitle">Statistical Tools for the Analysis of Multi-Environment Agronomic Trials</h3>
                         <h4 class="author"><div class="line-block">Julia Angelini<br>
 Marcos Prunello<br>
 Gerardo Cervigni<br><br>
@@ -114,20 +114,20 @@ text-align: justify}
 <!-- install.packages("geneticae") -->
 <!-- ``` -->
 <p>You can install the development version from our <a href="https://github.com/jangelini/geneticae">GitHub repo</a> with:</p>
-<div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="co"># install.packages("devtools")</span>
-<span class="fu">devtools</span><span class="fu">::</span><span class="fu"><a href="https://devtools.r-lib.org//reference/remote-reexports.html">install_github</a></span><span class="op">(</span><span class="st">"jangelini/geneticae"</span><span class="op">)</span></code></pre></div>
+<div class="sourceCode" id="cb1"><pre class="downlit">
+<span class="co"># install.packages("devtools")</span>
+<span class="fu">devtools</span><span class="fu">::</span><span class="fu"><a href="https://devtools.r-lib.org//reference/remote-reexports.html">install_github</a></span><span class="op">(</span><span class="st">"jangelini/geneticae"</span><span class="op">)</span></pre></div>
 <p><strong>Loading the package.</strong> Once the <code>geneticae</code> package is installed, it needs to be loaded by:</p>
-<div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/jangelini/geneticae">geneticae</a></span><span class="op">)</span></code></pre></div>
+<div class="sourceCode" id="cb2"><pre class="downlit">
+<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/jangelini/geneticae">geneticae</a></span><span class="op">)</span></pre></div>
 <p><strong>Help files.</strong> Detailed information on <code>geneticae</code> package functions can be obtained from help files using <code><a href="https://rdrr.io/pkg/geneticae/man">help(package="geneticae")</a></code>. The help file for a function, for example <code>imputation</code> can be obtained using <code><a href="../reference/imputation.html">?imputation</a></code> or <code><a href="../reference/imputation.html">help(imputation)</a></code>.</p>
 </div>
 <div id="introduction" class="section level1">
 <h1 class="hasAnchor">
 <a href="#introduction" class="anchor"></a>Introduction</h1>
-<p>Understanding the relationship between crops performance and environment is a key problem for plant breeders and geneticists. In advanced stages of breeding programs, in which few genotypes are evaluated, multi-environmental trials (MET) are one of the most used experiments. Such studies test a number of genotypes in multiple environments in order to identify the superior genotypes according to their performance. In these experimentes, crop performance is modeled as a function of genotype (G), environment (E) and genotype-environment interaction (GEI). The presence of GEI generates differential genotypic responses in the different environments (Crossa et al., 1990; Cruz Medina, 1992; Kang and Magari, 1996). Therefore appropriate statistical methods should be used to obtain an adequate GEI analysis, which is essential for plant breeders (Giauffret et al., 2000).</p>
+<p>Understanding the relationship between crops performance and environment is a key problem for plant breeders and geneticists. In advanced stages of breeding programs, in which few genotypes are evaluated, multi-environment trials (MET) are one of the most used experiments. Such studies test a number of genotypes in multiple environments in order to identify the superior genotypes according to their performance. In these experiments, crop performance is modeled as a function of genotype (G), environment (E) and genotype-environment interaction (GEI). The presence of GEI generates differential genotypic responses in the different environments (Crossa et al., 1990; Cruz Medina, 1992; Kang and Magari, 1996). Therefore appropriate statistical methods should be used to obtain an adequate GEI analysis, which is essential for plant breeders (Giauffret et al., 2000).</p>
 <p>The average performance of genotypes through different environments can only be considered in the absence of GEI (Yan and Kang, 2003). However, GEI is almost always present and the comparison of the mean performance between genotypes is not enough. The most widely used methods to analyze MET data are based on regression models, analysis of variance (ANOVA) and multivariate techniques. In particular, two statistical models are widely used among plant breeders as they provide useful graphical tools for the study of GEI: the Additive Main effects and Multiplicative Interaction model (AMMI) (Kempton, 1984; Gauch, 1988) and the Site Regression Model (SREG) (Cornelius et al., 1996; Gauch and Zobel, 1997). However, these models are not always efficient enough to analyze MET data structure of plant breeding programs. They present serious limitations in the presence of atypical observations and missing values, which occur very frequently. To overcome this, several imputation alternatives and a robust AMMI were recently proposed in literature.</p>
-<p>Although there are a few R packages which tackle different aspects of the analysis of MET data, there aren’t any packages capable of performing all the steps that need to be considered. The <code>geneticae</code> package was created to gather in one place the most useful functions for this type of analysis and it also implements new methodology which can be found in recent literature. More importantly, <code>geneticae</code> <strong>is the first package to implement the robust AMMI model and implements new imputation methods not available before</strong>. In addition, there is no need to preprocess the data to use the <code>geneticae</code> package, as it can handle different dataset formats. Genotypes, environments, repetitions (if any) and phenotypic traits of interest can be presented in any order and there is no restriction on columns names, as it is the case with previous published packages. Also, extra information that will not be used in the analysis may be present in the datasets. Finally, <code>geneticae</code> offers a wide variety of options to customize the biplots, which are part of the graphical output of these methods.</p>
+<p>Although there are R packages which tackle different aspects of the analysis of MET data, there aren’t any packages capable of performing all the steps that need to be considered. The <code>geneticae</code> package was created to gather in one place the most useful functions for this type of analysis and it also implements new methodology which can be found in recent literature. More importantly, <code>geneticae</code> is the first package to implement the robust AMMI model and implements new imputation methods not available before. In addition, there is no need to preprocess the data to use the <code>geneticae</code> package, as it the case of some previous packages with require a data frame or matrix containing genotype by environment means with the genotypes in rows and the environments in columns. In this package, data in long format is required where genotypes, environments, repetitions (if any) and phenotypic traits of interest can be presented in any order and there is no restriction on columns names. Also, extra information that will not be used in the analysis may be present in the datasets. Finally, <code>geneticae</code> offers a wide variety of options to customize the biplots, which are part of the graphical output of these methods.</p>
 </div>
 <div id="datasets" class="section level1">
 <h1 class="hasAnchor">
@@ -136,9 +136,9 @@ text-align: justify}
 <ul>
 <li>
 <p><code>yan.winterwheat</code> dataset: yield of 18 winter wheat varieties grown in nine environments in Ontario at 1993. Although four blocks or replicas in each environment were performed in the experiment, only yield mean for each variety and environment combination was available in the dataset obtained from the <a href="https://CRAN.R-project.org/package=agridat">agridat</a> package (Wright, 2018).</p>
-<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/utils/data.html">data</a></span><span class="op">(</span><span class="va">yan.winterwheat</span><span class="op">)</span>
-<span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="va">yan.winterwheat</span><span class="op">)</span></code></pre></div>
+<div class="sourceCode" id="cb3"><pre class="downlit">
+<span class="fu"><a href="https://rdrr.io/r/utils/data.html">data</a></span><span class="op">(</span><span class="va">yan.winterwheat</span><span class="op">)</span>
+<span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="va">yan.winterwheat</span><span class="op">)</span></pre></div>
 <pre><code>##   gen  env yield
 ## 1 Ann BH93 4.460
 ## 2 Ari BH93 4.417
@@ -149,9 +149,9 @@ text-align: justify}
 </li>
 <li>
 <p><code>plrv</code> dataset: resistance study to PLRV (Patato Leaf Roll Virus) causing leaf curl. 28 genotypes were experimented at 6 locations in Peru. Each clone was evaluated three times in each environment, and yield, plant weight and plot were registered. This dataset was also obtained from the <a href="https://CRAN.R-project.org/package=agricolae">agricolae</a> package (de Mendiburu, 2020).</p>
-<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/utils/data.html">data</a></span><span class="op">(</span><span class="va">plrv</span><span class="op">)</span>
-<span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="va">plrv</span><span class="op">)</span></code></pre></div>
+<div class="sourceCode" id="cb5"><pre class="downlit">
+<span class="fu"><a href="https://rdrr.io/r/utils/data.html">data</a></span><span class="op">(</span><span class="va">plrv</span><span class="op">)</span>
+<span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="va">plrv</span><span class="op">)</span></pre></div>
 <pre><code>##   Genotype Locality Rep WeightPlant WeightPlot    Yield
 ## 1   102.18     Ayac   1   0.5100000       5.10 18.88889
 ## 2   104.22     Ayac   1   0.3450000       2.76 12.77778
@@ -162,34 +162,33 @@ text-align: justify}
 </li>
 </ul>
 </div>
-<div id="statistical-models-for-multi-environmental-trials" class="section level1">
+<div id="statistical-models-for-multi-environment-trials" class="section level1">
 <h1 class="hasAnchor">
-<a href="#statistical-models-for-multi-environmental-trials" class="anchor"></a>Statistical models for multi-environmental trials</h1>
+<a href="#statistical-models-for-multi-environment-trials" class="anchor"></a>Statistical models for multi-environment trials</h1>
 <div id="ammi-model" class="section level2">
 <h2 class="hasAnchor">
 <a href="#ammi-model" class="anchor"></a>AMMI model</h2>
-<p>The <em>AMMI model</em> (Gauch, 1988, 1992) is widely used to analyse the effect of the GEI. This model explores a matrix of GEI by performing a singular value decomposition (SVD) on the residuals matrix from a one-way ANOVA with fixed effects for environments and genotypes. The result of the first two multiplicative terms of SVD is often presented in a biplot called GE and represents a two-rank approximation of GE effects.</p>
+<p>The <em>AMMI model</em> (Gauch, 1988, 1992) is widely used to analyse the effect of GEI. This model includes two stages. First, an ANOVA is performed to obtain estimates for the additive main effects of environments and genotypes. Secondly, the residuals from the ANOVA are arranged in a matrix with genotypes in the rows and environments in the columns and a singular value decomposition (SVD) is applied in order to explore patterns related to GEI, still present in the residuals. The result of the first two multiplicative terms of the SVD is often presented in a biplot called GE and represents a two-rank approximation of GEI effects.</p>
 <p>The <code><a href="../reference/rAMMI.html">rAMMI()</a></code> function returns the GE biplot. Data in long format is required by this function, i.e. each row corresponds to one observation and each column to one variable (genotype, environment, repetition (if any) and the observed phenotype). If each genotype has been evaluated more than once at each environment, the phenotypic mean for each combination of genotype and environment is internally calculated and then the model is estimated. Extra variables that will not be used in the analysis may be present in the dataset. Missing values are not allowed (but can be imputated, see below).</p>
-<p>The GE biplot for <code>yan.winterwheat</code> dataset is shown in Figure 1.</p>
-<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="../reference/rAMMI.html">rAMMI</a></span><span class="op">(</span><span class="va">yan.winterwheat</span>, genotype <span class="op">=</span> <span class="st">"gen"</span>, environment <span class="op">=</span> <span class="st">"env"</span>, 
-      response <span class="op">=</span> <span class="st">"yield"</span>, type <span class="op">=</span> <span class="st">"AMMI"</span>, footnote <span class="op">=</span> <span class="cn">F</span>, titles <span class="op">=</span> <span class="cn">F</span><span class="op">)</span></code></pre></div>
+<p>The GE biplot for <code>yan.winterwheat</code> dataset is shown in Figure 1. ** agregar descripcion de figure 1 **</p>
+<div class="sourceCode" id="cb7"><pre class="downlit">
+<span class="fu"><a href="../reference/rAMMI.html">rAMMI</a></span><span class="op">(</span><span class="va">yan.winterwheat</span>, genotype <span class="op">=</span> <span class="st">"gen"</span>, environment <span class="op">=</span> <span class="st">"env"</span>, 
+      response <span class="op">=</span> <span class="st">"yield"</span>, type <span class="op">=</span> <span class="st">"AMMI"</span>, footnote <span class="op">=</span> <span class="cn">F</span>, titles <span class="op">=</span> <span class="cn">F</span><span class="op">)</span></pre></div>
 <div class="figure" style="text-align: center">
 <img src="a-tutorial_files/figure-html/unnamed-chunk-6-1.png" alt="Figure 1: GE biplot." width="60%"><p class="caption">
 Figure 1: GE biplot.
 </p>
 </div>
-<p>The AMMI model, in its standard form, assumes equal weights for all the entries of two-way dataset and that no outliers are present in the data. To overcome the problem of data contamination with outlying observations, Rodrigues et al. (2015) proposed five robust AMMI models, which can be obtained in two stages: (i) fitting a robust regression model with an M-Huber estimator (Huber, 1981) to replace the ANOVA model; and (ii) using a robust SVD or principal components analysis (PCA) procedure to replace the standard SVD. Until now, robust AMMI models were not available in any R package. All robust biplots proposed by Rodrigues et al. (2015) can be obtained using <code><a href="../reference/rAMMI.html">rAMMI()</a></code> function. The argument <code>type</code> can be used to specify the type of modelo to be fitted (<code>"rAMMI"</code>, <code>"hAMMI"</code>, <code>"gAMMI"</code>, <code>"lAMMI"</code> or <code>"ppAMMI"</code>). Since the sample <code>yan.winterwheat</code> dataset does not present outliers, the conclusions obtained with robust biplots will not differ from those made with the classical biplot (Rodrigues, et al. 2015). Thus, no interpretation of the robust biplots is presented in this tutorial.</p>
+<p>The AMMI model, in its standard form, assumes that no outliers are present in the data. To overcome the problem of data contamination with outlying observations, Rodrigues et al. (2015) proposed five robust AMMI models, which can be obtained in two stages: (i) fitting a robust regression model with an M-Huber estimator (Huber, 1981) to replace the ANOVA model; and (ii) using a robust SVD or principal components analysis (PCA) procedure to replace the standard SVD. Until now, robust AMMI models were not available in any R package. All robust biplots proposed by Rodrigues et al. (2015) can be obtained using <code><a href="../reference/rAMMI.html">rAMMI()</a></code>. The argument <code>type</code> can be used to specify the type of model to be fitted (<code>"rAMMI"</code>, <code>"hAMMI"</code>, <code>"gAMMI"</code>, <code>"lAMMI"</code> or <code>"ppAMMI"</code>). Since the sample <code>yan.winterwheat</code> dataset does not present outliers, the conclusions obtained with robust biplots will not differ from those made with the classical biplot (Rodrigues, et al. 2015). Thus, no interpretation of the robust biplots is presented in this tutorial.</p>
 </div>
 <div id="site-regression-model" class="section level2">
 <h2 class="hasAnchor">
 <a href="#site-regression-model" class="anchor"></a>Site Regression model</h2>
-<p>The <em>Site Regression model</em> (SREG, also called <em>genotype plus genotype-by-environment model</em> or <em>GGE model</em>) is another powerful tool for the analysis and interpretation of MET data in breeding programs. GGE explores genotype (G) and EGI effects performing a SVD on the residuals matrix from the one-way ANOVA model with fixed effects for environments. To select cultivars the effect of G and GEI must be considered simultaneously so SREG model is superior to AMMI for the visualization of patterns in MET data.</p>
-<p>The <code><a href="../reference/GGEmodel.html">GGEmodel()</a></code> function is a wrapper for the <code>GGEModel()</code> function of the <a href="https://CRAN.R-project.org/package=GGEBiplots">GGEBiplots</a> package (Dumble, 2017) which allows for the presence of repetitions or extra variables in the dataset. All the combinations between genotypes and environments must be present.</p>
-<!-- Since `rAMMI()` requires data in long format, repetitions and extra variables not used in the analysis may be present in the dataset are allowed, and all combination of genotypes and environments must be evaluated. -->
-<div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">GGE1</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/GGEmodel.html">GGEmodel</a></span><span class="op">(</span><span class="va">yan.winterwheat</span>, genotype <span class="op">=</span> <span class="st">"gen"</span>, environment <span class="op">=</span> <span class="st">"env"</span>, 
-                 response <span class="op">=</span> <span class="st">"yield"</span>, centering <span class="op">=</span> <span class="st">"tester"</span><span class="op">)</span></code></pre></div>
+<p>The <em>Site Regression model</em> (SREG, also called <em>genotype plus genotype-by-environment model</em> or <em>GGE model</em>) is another powerful tool for the analysis and interpretation of MET data in breeding programs. In this case, an ANOVA is performed to obtain estimates for the additive main effects of environments and a SVD is performed on the residuals matrix in order to explore patterns related to genotype (G) and GEI.</p>
+<p>The <code><a href="../reference/GGEmodel.html">GGEmodel()</a></code> function is a wrapper for the <code>GGEModel()</code> function of the <a href="https://CRAN.R-project.org/package=GGEBiplots">GGEBiplots</a> package (Dumble, 2017). As for the <code><a href="../reference/rAMMI.html">rAMMI()</a></code> function, data needs to be presented in a long format and repetitions or extra variables in the dataset are allowed. All the combinations between genotypes and environments must be present.</p>
+<div class="sourceCode" id="cb8"><pre class="downlit">
+<span class="va">GGE1</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/GGEmodel.html">GGEmodel</a></span><span class="op">(</span><span class="va">yan.winterwheat</span>, genotype <span class="op">=</span> <span class="st">"gen"</span>, environment <span class="op">=</span> <span class="st">"env"</span>, 
+                 response <span class="op">=</span> <span class="st">"yield"</span>, centering <span class="op">=</span> <span class="st">"tester"</span><span class="op">)</span></pre></div>
 <p>The output from <code><a href="../reference/GGEmodel.html">GGEmodel()</a></code> is a list with the following elements:</p>
 <ul>
 <li>
@@ -197,7 +196,7 @@ Figure 1: GE biplot.
 <li>
 <code>coordenviroment</code>: plot coordinates for all environments in each component.</li>
 <li>
-<code>eigenvalues</code>: vector of eigenvalues from each component.</li>
+<code>eigenvalues</code>: vector of eigenvalues for each component.</li>
 <li>
 <code>vartotal</code>: overall variance.</li>
 <li>
@@ -218,65 +217,68 @@ Figure 1: GE biplot.
 <code>SVP</code>: SVP method.</li>
 </ul>
 <p>The result of the first two multiplicative terms of the SVD is often presented in a GGE biplot (Yan et al., 2000), which represents a rank-two approximation of the G + GEI effects. Plant breeders have found GGE biplots to be useful tools for the analysis of mega environment experiments (Yan et al., 2001; Yan and Rajcan, 2002) and genotype and environment evaluation (Bhan et al., 2005; Kang et al., 2006; Yan et al., 2007). The GGE biplot addresses many issues relative to genotype and test environment evaluation. Considering the average performance of each genotype, this plot can be used to evaluate specific and general adaptation. In addition, environments can be visually grouped according to their ability to discriminate among genotypes and their representativeness of other test environments. GGE biplot reveals the <em>which-won-where</em> pattern and allows to recommend specific genotypes for each environment (Yan and Tinker, 2005).</p>
-<p>Using the output from <code><a href="../reference/GGEmodel.html">GGEmodel()</a></code>, <code><a href="../reference/GGEPlot.html">GGEPlot()</a></code> builds several GGE biplots, in which cultivars are shown in lower case and environments in upper case. The plot also displays the methods used for centering, scaling and SVD. Optionally, the percentage of G + GEI explained by the two axes can be added as a footnote with <code>footnote = T</code>, as well as a tittle with <code>titles = T</code>. A basic biplot is produced with the option <code>type="Biplot"</code> (Figure 2).</p>
-<div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="../reference/GGEPlot.html">GGEPlot</a></span><span class="op">(</span><span class="va">GGE1</span>, type<span class="op">=</span><span class="st">"Biplot"</span>, footnote <span class="op">=</span> <span class="cn">F</span>, titles <span class="op">=</span> <span class="cn">F</span><span class="op">)</span></code></pre></div>
+<p>Using the output from <code><a href="../reference/GGEmodel.html">GGEmodel()</a></code>, <code><a href="../reference/GGEPlot.html">GGEPlot()</a></code> builds several GGE biplots, in which cultivars are shown in lower case and environments in upper case. The plot also displays the methods used for centering, scaling and SVD. Optionally, the percentage of G + GEI explained by the two axes can be added as a footnote with <code>footnote = T</code>, as well as a tittle with <code>titles = T</code>.</p>
+<p>A basic biplot is produced with the option <code>type="Biplot"</code> (Figure 2). In this example the 78% of G + GE variability is explained by the fist two multiplicative terms. The angles between the vectors of the genotypes and the environments are considered to understand this plot. Thus, for example, <em>Kat</em> performs below the average in all environments, as it has an angle greater than 90<span class="math inline">\(°\)</span> with all environments. On the other hand, <em>Fun</em> presents an above-average performance in all locations except OA93 and KE93, since the acute angles. Environmental vectors length gives a measure of the environment’s ability to discriminate between crops.</p>
+<div class="sourceCode" id="cb9"><pre class="downlit">
+<span class="fu"><a href="../reference/GGEPlot.html">GGEPlot</a></span><span class="op">(</span><span class="va">GGE1</span>, type <span class="op">=</span> <span class="st">"Biplot"</span>, footnote <span class="op">=</span> <span class="cn">F</span>, titles <span class="op">=</span> <span class="cn">F</span><span class="op">)</span></pre></div>
 <div class="figure" style="text-align: center">
 <img src="a-tutorial_files/figure-html/unnamed-chunk-8-1.png" alt="Figure 2: basic biplot. 78% of the total variability of G + GE is explained." width="60%"><p class="caption">
 Figure 2: basic biplot. 78% of the total variability of G + GE is explained.
 </p>
 </div>
-<p>Breeders usually want to identify the most suitable cultivars for a particular environment of interest. To do this with GGE biplots, Yan and Hunt (2002) suggest making an axis of that environment, drawing a line that passes through environment marker and biplot origin. This can be done setting <code>type="Selected Environment"</code> and providing the name of the environment in <code>selectedE</code> (Figure 3).</p>
-<div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="../reference/GGEPlot.html">GGEPlot</a></span><span class="op">(</span><span class="va">GGE1</span>, type<span class="op">=</span><span class="st">"Selected Environment"</span>, selectedE <span class="op">=</span> <span class="st">"OA93"</span>, 
-        footnote <span class="op">=</span> <span class="cn">F</span>, titles <span class="op">=</span> <span class="cn">F</span><span class="op">)</span></code></pre></div>
+<p>Breeders usually want to identify the most suitable cultivars for a particular environment of interest, i.e., OA93. To do this with GGE biplots, Yan and Hunt (2002) suggest drawing a line that passes through the environment marker and the biplot origin, which may be referred to as the OA93 axis. The performance of the cultivars in this particular environment can be ranked projecting them onto this axis.</p>
+<p>For example, the performance of different genotypes in OA93 can be done setting <code>type = "Selected Environment"</code> and providing the name of the environment (OA93) in <code>selectedE</code> (Figure 3). Thus, at OA93, the highest-yielding cultivar was <em>Zav</em>, and the lowest-yielding cultivar was <em>Luc</em>. The line that passes through the biplot origin and is perpendicular to the OA93 axis separates genotypes that yielded above the mean from those that yielded below the mean in this environment.</p>
+<div class="sourceCode" id="cb10"><pre class="downlit">
+<span class="fu"><a href="../reference/GGEPlot.html">GGEPlot</a></span><span class="op">(</span><span class="va">GGE1</span>, type <span class="op">=</span> <span class="st">"Selected Environment"</span>, selectedE <span class="op">=</span> <span class="st">"OA93"</span>, 
+        footnote <span class="op">=</span> <span class="cn">F</span>, titles <span class="op">=</span> <span class="cn">F</span><span class="op">)</span></pre></div>
 <div class="figure" style="text-align: center">
 <img src="a-tutorial_files/figure-html/unnamed-chunk-9-1.png" alt="Figure 3: comparison of cultivare performance in a selected environment (OA93)." width="60%"><p class="caption">
 Figure 3: comparison of cultivare performance in a selected environment (OA93).
 </p>
 </div>
-<p>Another goal of plant breeders is to determine which is the most suitable environment for a genotype Yan and Hunt (2002) suggest plotting a line that passes through the origin and a cultivar of interest. Figure 4 illustrates how to visualize the relative adaptation of that cultivar in different environments. The argument <code>type</code> produces this plot when set to <code>"Selected Genotype"</code>, while <code>selectedG</code> can be used to select the genotype.</p>
-<div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="../reference/GGEPlot.html">GGEPlot</a></span><span class="op">(</span><span class="va">GGE1</span>, type<span class="op">=</span><span class="st">"Selected Genotype"</span>, selectedG <span class="op">=</span> <span class="st">"Luc"</span>, 
-        footnote <span class="op">=</span> <span class="cn">F</span>, titles <span class="op">=</span> <span class="cn">F</span><span class="op">)</span></code></pre></div>
+<p>Another goal of plant breeders is to determine which is the most suitable environment for a genotype. Yan and Hunt (2002) suggest plotting a line that passes through the origin and a cultivar marker, i.e., <em>Kat</em>. To obtain this GGE biplot view the argument <code>type = "Selected Genotype"</code> and <code>selectedG = "Kat"</code> must be indicated (Figure 4). Environments are classified along the genotype axis in the direction indicated by the arrow. The perpendicular axis separates the environments in which the cultivar presented a performance below or above the average. In this example, <em>Kat</em> presented a performance below the average in all the environments studied.</p>
+<div class="sourceCode" id="cb11"><pre class="downlit">
+<span class="fu"><a href="../reference/GGEPlot.html">GGEPlot</a></span><span class="op">(</span><span class="va">GGE1</span>, type <span class="op">=</span> <span class="st">"Selected Genotype"</span>, selectedG <span class="op">=</span> <span class="st">"Kat"</span>, 
+        footnote <span class="op">=</span> <span class="cn">F</span>, titles <span class="op">=</span> <span class="cn">F</span><span class="op">)</span></pre></div>
 <div class="figure" style="text-align: center">
 <img src="a-tutorial_files/figure-html/unnamed-chunk-10-1.png" alt="Figure 4: comparison of the performance of cultivar Luc in different environments." width="60%"><p class="caption">
 Figure 4: comparison of the performance of cultivar Luc in different environments.
 </p>
 </div>
-<p>It is also possible to compare two cultivars linking them with a line and a segment perpendicular to it (Figure 5).</p>
-<div class="sourceCode" id="cb12"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="../reference/GGEPlot.html">GGEPlot</a></span><span class="op">(</span><span class="va">GGE1</span>, type <span class="op">=</span> <span class="st">"Comparison of Genotype"</span>, 
+<p>It is also possible to compare two cultivars, i.e. <em>Kat</em> and <em>Cas</em>, linking them with a line and a segment perpendicular to it. To obtain this GGE biplot view the argument <code>type = "Comparison of Genotype"</code> and the genotypes to be compared <code>selectedG1 = "Kat"</code> and <code>selectedG2 = "Cas"</code> must be indicated (Figure 5). <em>Cas</em> it was more yielding than <em>Kat</em> in all environments as all the environments are on the same side of the perpendicular line que <em>Cas</em>.</p>
+<div class="sourceCode" id="cb12"><pre class="downlit">
+<span class="fu"><a href="../reference/GGEPlot.html">GGEPlot</a></span><span class="op">(</span><span class="va">GGE1</span>, type <span class="op">=</span> <span class="st">"Comparison of Genotype"</span>, 
         selectedG1 <span class="op">=</span> <span class="st">"Kat"</span>, selectedG2 <span class="op">=</span> <span class="st">"Cas"</span>, 
-        footnote <span class="op">=</span> <span class="cn">F</span>, titles <span class="op">=</span> <span class="cn">F</span>, axis_expand <span class="op">=</span> <span class="fl">1.5</span><span class="op">)</span></code></pre></div>
+        footnote <span class="op">=</span> <span class="cn">F</span>, titles <span class="op">=</span> <span class="cn">F</span>, axis_expand <span class="op">=</span> <span class="fl">1.5</span><span class="op">)</span></pre></div>
 <div class="figure" style="text-align: center">
 <img src="a-tutorial_files/figure-html/unnamed-chunk-11-1.png" alt="Figure 5: comparison of the cultivars Kat and Cas." width="60%"><p class="caption">
 Figure 5: comparison of the cultivars Kat and Cas.
 </p>
 </div>
-<p>The polygonal view of the GGE biplot proposed by Yan (1999) provides an effective way to visualize the <em>which-won-where</em> pattern of a MET dataset (Figure 6). Cultivars in the vertices are those with the longest vectors, in their respective directions, which is a measure of the ability to respond to environments. The dotted lines perpendicular to the polygon sides divide the biplot into mega environments, each of which has a vertex cultivar, which is the one with the highest yield (phenotype) in all environments found in it.</p>
-<div class="sourceCode" id="cb13"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="../reference/GGEPlot.html">GGEPlot</a></span><span class="op">(</span><span class="va">GGE1</span>, type<span class="op">=</span><span class="st">"Which Won Where/What"</span>, footnote <span class="op">=</span> <span class="cn">F</span>, titles <span class="op">=</span> <span class="cn">F</span>, axis_expand <span class="op">=</span> <span class="fl">1.5</span><span class="op">)</span></code></pre></div>
+<p>The polygonal view of the GGE biplot proposed by Yan (1999) provides an effective way to visualize the <em>which-won-where</em> pattern of a MET dataset (Figure 6). Cultivars in the vertices are those with the longest vectors, in their respective directions, which is a measure of the ability to respond to environments. The dotted lines perpendicular to the polygon sides divide the biplot into mega environments, each of which has a vertex cultivar, which is the one with the highest yield (phenotype) in all environments found in it. According to Figure 6, <em>Zav</em> is the best cultivar for environments in one of the megaenvironments and <em>Fun</em> in the other.</p>
+<div class="sourceCode" id="cb13"><pre class="downlit">
+<span class="fu"><a href="../reference/GGEPlot.html">GGEPlot</a></span><span class="op">(</span><span class="va">GGE1</span>, type <span class="op">=</span> <span class="st">"Which Won Where/What"</span>, footnote <span class="op">=</span> <span class="cn">F</span>,
+        titles <span class="op">=</span> <span class="cn">F</span>, axis_expand <span class="op">=</span> <span class="fl">1.5</span><span class="op">)</span></pre></div>
 <div class="figure" style="text-align: center">
 <img src="a-tutorial_files/figure-html/unnamed-chunk-12-1.png" alt="Figure 6: polygon view of the GGE biplot, showing which cultivars presented highest yiel in each environment." width="60%"><p class="caption">
 Figure 6: polygon view of the GGE biplot, showing which cultivars presented highest yiel in each environment.
 </p>
 </div>
-<p>Selecting cultivars within each megaenvironments will be an issues among plant breeders. According to Figure 6, <strong>zav</strong> is the best cultivar for environments in one of the megaenvironments and <strong>fun</strong> in the other. However, breeders do not select a single cultivar in each megaenvironment. Instead, they evaluate all cultivars in order to get an idea of their performance (yield and stability). The GGE biplot based on <em>genotype-focused scaling</em> can be used to visualize both genotype mean performance and stability. This visualization is achieved drawing an environment coordinate (AEC). For example, Figure 7 shows the AEC for the megaenvironment composed of he environments “BH93”, “EA93”, “HW93”, “ID93”, “NN93”, “RN93”, “WP93”. The abscissa represents the G effect and the ordinate GEI associated with each genotype, which is a measure of the variability or instability of the genotype. A greater projection on AEC, regardless of direction, means greater instability.</p>
-<div class="sourceCode" id="cb14"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">data</span> <span class="op">&lt;-</span> <span class="va">yan.winterwheat</span><span class="op">[</span><span class="va">yan.winterwheat</span><span class="op">$</span><span class="va">env</span> <span class="op">%in%</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"BH93"</span>, <span class="st">"EA93"</span>,<span class="st">"HW93"</span>, <span class="st">"ID93"</span>,
+<p>Selecting cultivars within each megaenvironments will be an issue among plant breeders. . However, breeders do not select a single cultivar in each megaenvironment. Instead, they evaluate all cultivars in order to get an idea of their performance (yield and stability). The GGE biplot based on <em>genotype-focused scaling</em> can be used to visualize both genotype mean performance and stability. This visualization is achieved drawing an average environment coordinate (AEC). For example, Figure 7 shows the AEC for the megaenvironment composed of he environments “BH93”, “EA93”, “HW93”, “ID93”, “NN93”, “RN93”, “WP93”. The abscissa represents the G effect and the ordinate GEI associated with each genotype, which is a measure of the variability or instability of the genotype. A greater projection on AEC, regardless of direction, means greater instability.</p>
+<div class="sourceCode" id="cb14"><pre class="downlit">
+<span class="va">data</span> <span class="op">&lt;-</span> <span class="va">yan.winterwheat</span><span class="op">[</span><span class="va">yan.winterwheat</span><span class="op">$</span><span class="va">env</span> <span class="op">%in%</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"BH93"</span>, <span class="st">"EA93"</span>,<span class="st">"HW93"</span>, <span class="st">"ID93"</span>,
                                                    <span class="st">"NN93"</span>, <span class="st">"RN93"</span>, <span class="st">"WP93"</span><span class="op">)</span>, <span class="op">]</span>
 <span class="va">GGE2</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/GGEmodel.html">GGEmodel</a></span><span class="op">(</span><span class="va">data</span>, genotype <span class="op">=</span> <span class="st">"gen"</span>, environment <span class="op">=</span> <span class="st">"env"</span>, 
                  response <span class="op">=</span> <span class="st">"yield"</span>, SVP <span class="op">=</span> <span class="st">"row"</span><span class="op">)</span>
-<span class="fu"><a href="../reference/GGEPlot.html">GGEPlot</a></span><span class="op">(</span><span class="va">GGE2</span>, type <span class="op">=</span> <span class="st">"Mean vs. Stability"</span>, footnote <span class="op">=</span> <span class="cn">F</span>, titles <span class="op">=</span> <span class="cn">F</span><span class="op">)</span></code></pre></div>
+<span class="fu"><a href="../reference/GGEPlot.html">GGEPlot</a></span><span class="op">(</span><span class="va">GGE2</span>, type <span class="op">=</span> <span class="st">"Mean vs. Stability"</span>, footnote <span class="op">=</span> <span class="cn">F</span>, titles <span class="op">=</span> <span class="cn">F</span><span class="op">)</span></pre></div>
 <div class="figure" style="text-align: center">
 <img src="a-tutorial_files/figure-html/unnamed-chunk-13-1.png" alt="Figure 7: average environment view of the GGE biplot based on genotype-focused scaling, showing mean yield and stability of genotypes." width="60%"><p class="caption">
 Figure 7: average environment view of the GGE biplot based on genotype-focused scaling, showing mean yield and stability of genotypes.
 </p>
 </div>
-<p>In the GGE biplot it is also possible to visualize mean yield and stability of genotypes in yield units <strong>per se</strong> (Figure 8). The ideal cultivar, with the highest yield and absolute stability, is represented by a small circle. This ideal genotype is used as a reference, as it rarely exists. The distance between cultivars and the ideal one can be used as a measure of convenience. Concentric circles help to visualize these distances. In the example, <em>Fun</em> is the closest one to the ideal crop, and therefore the most desirable one, followed by <em>cas</em> and <em>hay</em>, which in turn are followed by <em>rum</em>, <em>ham</em>, <em>rub</em>, <em>zav</em>, <em>del</em> and <em>reb</em>, etc.</p>
-<div class="sourceCode" id="cb15"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="../reference/GGEPlot.html">GGEPlot</a></span><span class="op">(</span><span class="va">GGE1</span>, type <span class="op">=</span> <span class="st">"Ranking Genotypes"</span>, footnote <span class="op">=</span> <span class="cn">F</span>, titles <span class="op">=</span> <span class="cn">F</span><span class="op">)</span></code></pre></div>
+<p>In the GGE biplot it is also possible to visualize mean yield and stability of genotypes in yield units <strong>per se</strong> (Figure 8). The ideal cultivar, with the highest yield and absolute stability, is represented by a small circle. This ideal genotype is used as a reference, as it rarely exists. The distance between cultivars and the ideal one can be used as a measure of convenience. Concentric circles help to visualize these distances. In the example, <em>Fun</em> is the closest one to the ideal crop, and therefore the most desirable one, followed by <em>Cas</em> and <em>Hay</em>, which in turn are followed by <em>Rum</em>, <em>Ham</em>, <em>Rub</em>, <em>Zav</em>, <em>Del</em> and <em>Reb</em>, etc.</p>
+<div class="sourceCode" id="cb15"><pre class="downlit">
+<span class="fu"><a href="../reference/GGEPlot.html">GGEPlot</a></span><span class="op">(</span><span class="va">GGE2</span>, type <span class="op">=</span> <span class="st">"Ranking Genotypes"</span>, footnote <span class="op">=</span> <span class="cn">F</span>, titles <span class="op">=</span> <span class="cn">F</span><span class="op">)</span></pre></div>
 <div class="figure" style="text-align: center">
 <img src="a-tutorial_files/figure-html/unnamed-chunk-14-1.png" alt="Figure 8: Classification of genotypes with respect to the ideal genotype." width="60%"><p class="caption">
 Figure 8: Classification of genotypes with respect to the ideal genotype.
@@ -284,27 +286,23 @@ Figure 8: Classification of genotypes with respect to the ideal genotype.
 </div>
 <p>Although METs are performed to study cultivars, they are equally useful for the analysis of the environments. This includes several aspects: (i) evaluating whether the target region belongs to one or more megaenvironments; (ii) identifying better test environments; (iii) detecting redundant environments that do not provide additional information on cultivars; and (iv) determining environments that can be used for indirect selection.</p>
 <p>In Figure 9 environments are connected to the origin through vectors, allowing us to understand the interrelationships between them. The coefficient of correlation between two environments it is approximated by the cosine of the angle formed by the respective vectors. For example, the angle between the vectors for the environments NN93 and WP93 is approximately 10<span class="math inline">\(º\)</span>; therefore, they are closely related; while RN93 and OA93 present a weak negative correlation since the angle is slightly greater than 90<span class="math inline">\(º\)</span>. The cosine of the angles does not translate precisely into coefficients of correlation, since the biplot does not explain all the variability in the dataset. However, they are informative enough to understand the interrelationship between test environments.</p>
-<div class="sourceCode" id="cb16"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">GGE3</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/GGEmodel.html">GGEmodel</a></span><span class="op">(</span><span class="va">data</span>, genotype <span class="op">=</span> <span class="st">"gen"</span>, environment <span class="op">=</span> <span class="st">"env"</span>, 
+<div class="sourceCode" id="cb16"><pre class="downlit">
+<span class="va">GGE3</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/GGEmodel.html">GGEmodel</a></span><span class="op">(</span><span class="va">data</span>, genotype <span class="op">=</span> <span class="st">"gen"</span>, environment <span class="op">=</span> <span class="st">"env"</span>, 
                  response <span class="op">=</span> <span class="st">"yield"</span>, SVP <span class="op">=</span> <span class="st">"column"</span><span class="op">)</span>
-<span class="fu"><a href="../reference/GGEPlot.html">GGEPlot</a></span><span class="op">(</span><span class="va">GGE3</span>, type <span class="op">=</span> <span class="st">"Relationship Among Environments"</span>, footnote <span class="op">=</span> <span class="cn">F</span>, titles <span class="op">=</span> <span class="cn">F</span><span class="op">)</span></code></pre></div>
+<span class="fu"><a href="../reference/GGEPlot.html">GGEPlot</a></span><span class="op">(</span><span class="va">GGE3</span>, type <span class="op">=</span> <span class="st">"Relationship Among Environments"</span>, footnote <span class="op">=</span> <span class="cn">F</span>, titles <span class="op">=</span> <span class="cn">F</span><span class="op">)</span></pre></div>
 <div class="figure" style="text-align: center">
 <img src="a-tutorial_files/figure-html/unnamed-chunk-15-1.png" alt="Figure 9: Relationship between environments." width="60%"><p class="caption">
 Figure 9: Relationship between environments.
 </p>
 </div>
 <p>The biplot shown in Figure 10 helps to identify redundant environments. If some environments have small angles, genotype information obtained from these environments should be similar. If this similarity is always present through the years, these environments are redundant and therefore it should be enough to keeo only one of the in the experimentation. Obtaining the same or better information using fewer environments would reduce cost and increase production efficiency.</p>
-<div class="sourceCode" id="cb17"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="../reference/GGEPlot.html">GGEPlot</a></span><span class="op">(</span><span class="va">GGE1</span>, type <span class="op">=</span> <span class="st">"Ranking Environments"</span>, footnote <span class="op">=</span> <span class="cn">F</span>, titles <span class="op">=</span> <span class="cn">F</span><span class="op">)</span></code></pre></div>
+<div class="sourceCode" id="cb17"><pre class="downlit">
+<span class="fu"><a href="../reference/GGEPlot.html">GGEPlot</a></span><span class="op">(</span><span class="va">GGE1</span>, type <span class="op">=</span> <span class="st">"Ranking Environments"</span>, footnote <span class="op">=</span> <span class="cn">F</span>, titles <span class="op">=</span> <span class="cn">F</span><span class="op">)</span></pre></div>
 <div class="figure" style="text-align: center">
 <img src="a-tutorial_files/figure-html/unnamed-chunk-16-1.png" alt="Figure 10: classification of environments with respect to the ideal environment." width="60%"><p class="caption">
 Figure 10: classification of environments with respect to the ideal environment.
 </p>
 </div>
-<p><strong>FALTA DESCRIPCION AGREGAR!!!</strong></p>
-<div class="sourceCode" id="cb18"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="../reference/GGEPlot.html">GGEPlot</a></span><span class="op">(</span><span class="va">GGE1</span>, type<span class="op">=</span><span class="st">"Discrimination vs. representativeness"</span>, footnote <span class="op">=</span> <span class="cn">F</span>, titles <span class="op">=</span> <span class="cn">F</span><span class="op">)</span></code></pre></div>
-<p><img src="a-tutorial_files/figure-html/unnamed-chunk-17-1.png" width="60%" style="display: block; margin: auto;"></p>
 </div>
 </div>
 <div id="imputation-methods" class="section level1">
@@ -312,15 +310,15 @@ Figure 10: classification of environments with respect to the ideal environment.
 <a href="#imputation-methods" class="anchor"></a>Imputation methods</h1>
 <p>One major limitation of the AMMI and SREG models is that they require a complete two-way data table. Although METs are designed so that all genotypes are evaluated in all environments, missing values are very common due to measurement errors or destruction of plants by animals, floods or harvest problems. In addition, genotypes might be incorporated or discarded during the study because of their promising or poor performance. The <code><a href="../reference/imputation.html">imputation()</a></code> function includes several methods to overcome the problem of missing data, some of which have been recently published and were not available in any R package until now.</p>
 <p>To present an example, some observations from the complete <code>yan.winterwheat</code> are deleted:</p>
-<div class="sourceCode" id="cb19"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="co"># Generating missing data</span>
+<div class="sourceCode" id="cb18"><pre class="downlit">
+<span class="co"># Generating missing data</span>
 <span class="va">yan.winterwheat</span><span class="op">[</span><span class="fl">1</span>,<span class="fl">3</span><span class="op">]</span> <span class="op">&lt;-</span> <span class="cn">NA</span>
 <span class="va">yan.winterwheat</span><span class="op">[</span><span class="fl">3</span>,<span class="fl">3</span><span class="op">]</span> <span class="op">&lt;-</span> <span class="cn">NA</span>
-<span class="va">yan.winterwheat</span><span class="op">[</span><span class="fl">2</span>,<span class="fl">3</span><span class="op">]</span> <span class="op">&lt;-</span> <span class="cn">NA</span></code></pre></div>
+<span class="va">yan.winterwheat</span><span class="op">[</span><span class="fl">2</span>,<span class="fl">3</span><span class="op">]</span> <span class="op">&lt;-</span> <span class="cn">NA</span></pre></div>
 <p>Imputation of missing values with the <code>"EM-AMMI"</code> method can be performed as follows:</p>
-<div class="sourceCode" id="cb20"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="../reference/imputation.html">imputation</a></span><span class="op">(</span><span class="va">yan.winterwheat</span>, nPC <span class="op">=</span> <span class="fl">2</span>, genotype <span class="op">=</span> <span class="st">"gen"</span>, environment <span class="op">=</span> <span class="st">"env"</span>, 
-           response <span class="op">=</span> <span class="st">"yield"</span>, type <span class="op">=</span> <span class="st">"EM-AMMI"</span><span class="op">)</span></code></pre></div>
+<div class="sourceCode" id="cb19"><pre class="downlit">
+<span class="fu"><a href="../reference/imputation.html">imputation</a></span><span class="op">(</span><span class="va">yan.winterwheat</span>, nPC <span class="op">=</span> <span class="fl">2</span>, genotype <span class="op">=</span> <span class="st">"gen"</span>, environment <span class="op">=</span> <span class="st">"env"</span>, 
+           response <span class="op">=</span> <span class="st">"yield"</span>, type <span class="op">=</span> <span class="st">"EM-AMMI"</span><span class="op">)</span></pre></div>
 <pre><code>##         BH93  EA93  HW93  ID93  KE93  NN93  OA93  RN93  WP93
 ## Ann 4.150120 4.150 2.849 3.084 5.940 4.450 4.351 4.039 2.672
 ## Ari 4.035814 4.771 2.912 3.506 5.699 5.152 4.956 4.386 2.938
@@ -341,31 +339,51 @@ Figure 10: classification of environments with respect to the ideal environment.
 ## Zav 4.238000 4.654 3.607 3.914 6.641 4.830 5.014 4.363 3.111
 ## m12 3.340000 3.854 2.419 2.783 4.629 5.090 3.281 3.918 2.561</code></pre>
 <p>The other methods available in <code>geneticae</code> are: <code>"EM-SVD"</code>, <code>"Gabriel"</code>, <code>"WGabriel"</code> and <code>"EM-PCA"</code>.</p>
-<div id="references" class="section level2">
-<h2 class="hasAnchor">
-<a href="#references" class="anchor"></a>References</h2>
+</div>
+<div id="references" class="section level1">
+<h1 class="hasAnchor">
+<a href="#references" class="anchor"></a>References</h1>
+<p>Crossa et al., 1990</p>
+<p>Cruz Medina, 1992</p>
 <p>Giauffret, C., Lothrop, J., Dorvillez, D., Gouesnard, B., Derieux, M., 2000. Genotype x environment interactions in maize hybrids from temperate or highland tropical origin. Crop Sci. 40, 1004-1012. </p>
+<p>Kang and Magari, 1996</p>
 <p>Sam Dumble (2017). GGEBiplots: GGE Biplots with ‘ggplot2’. R package version 0.1.1. <a href="https://CRAN.R-project.org/package=GGEBiplots" class="uri">https://CRAN.R-project.org/package=GGEBiplots</a> </p>
 <p>Felipe de Mendiburu (2020). agricolae: Statistical Procedures for Agricultural Research. R package version 1.3-2. <a href="https://CRAN.R-project.org/package=agricolae" class="uri">https://CRAN.R-project.org/package=agricolae</a></p>
+<p>Yan and Kang, 2003</p>
+<p>Kempton, 1984</p>
+<p>Gauch, 1988, 1992</p>
+<p>Cornelius et al., 1996</p>
+<p>Gauch and Zobel, 1997</p>
+<p>Wright, 2018</p>
+<p>Rodrigues et al. (2015)</p>
+<p>Huber, 1981</p>
+<p>Dumble, 2017</p>
+<p>Yan et al., 2001</p>
+<p>Yan and Rajcan, 2002</p>
+<p>Bhan et al., 2005</p>
+<p>Kang et al., 2006</p>
+<p>Yan et al., 2007</p>
+<p>Yan and Tinker, 2005</p>
+<p>Yan and Hunt (2002)</p>
+<p>Yan (1999)</p>
 </div>
-<div id="sesssion-info" class="section level2">
-<h2 class="hasAnchor">
-<a href="#sesssion-info" class="anchor"></a>Sesssion Info</h2>
-<pre><code>## R version 4.1.1 (2021-08-10)
-## Platform: x86_64-pc-linux-gnu (64-bit)
-## Running under: Ubuntu 20.04.3 LTS
+<div id="session-info" class="section level1">
+<h1 class="hasAnchor">
+<a href="#session-info" class="anchor"></a>Session Info</h1>
+<pre><code>## R version 4.0.5 (2021-03-31)
+## Platform: x86_64-redhat-linux-gnu (64-bit)
+## Running under: Fedora 33 (Workstation Edition)
 ## 
 ## Matrix products: default
-## BLAS:   /usr/lib/x86_64-linux-gnu/blas/libblas.so.3.9.0
-## LAPACK: /usr/lib/x86_64-linux-gnu/lapack/liblapack.so.3.9.0
+## BLAS/LAPACK: /usr/lib64/libflexiblas.so.3.0
 ## 
 ## locale:
-##  [1] LC_CTYPE=en_US.UTF-8       LC_NUMERIC=C              
-##  [3] LC_TIME=es_ES.UTF-8        LC_COLLATE=en_US.UTF-8    
-##  [5] LC_MONETARY=es_ES.UTF-8    LC_MESSAGES=en_US.UTF-8   
-##  [7] LC_PAPER=es_ES.UTF-8       LC_NAME=C                 
+##  [1] LC_CTYPE=es_AR.UTF-8       LC_NUMERIC=C              
+##  [3] LC_TIME=es_AR.UTF-8        LC_COLLATE=es_AR.UTF-8    
+##  [5] LC_MONETARY=es_AR.UTF-8    LC_MESSAGES=es_AR.UTF-8   
+##  [7] LC_PAPER=es_AR.UTF-8       LC_NAME=C                 
 ##  [9] LC_ADDRESS=C               LC_TELEPHONE=C            
-## [11] LC_MEASUREMENT=es_ES.UTF-8 LC_IDENTIFICATION=C       
+## [11] LC_MEASUREMENT=es_AR.UTF-8 LC_IDENTIFICATION=C       
 ## 
 ## attached base packages:
 ## [1] stats     graphics  grDevices utils     datasets  methods   base     
@@ -374,37 +392,34 @@ Figure 10: classification of environments with respect to the ideal environment.
 ## [1] geneticae_0.1.0
 ## 
 ## loaded via a namespace (and not attached):
-##  [1] Biobase_2.52.0       sass_0.4.0           tidyr_1.1.3         
-##  [4] jsonlite_1.7.2       foreach_1.5.1        missMDA_1.18        
-##  [7] bslib_0.3.0          assertthat_0.2.1     highr_0.9           
-## [10] stats4_4.1.1         yaml_2.2.1           robustbase_0.93-8   
-## [13] ggrepel_0.9.1        pillar_1.6.2         backports_1.2.1     
-## [16] lattice_0.20-44      glue_1.4.2           digest_0.6.27       
-## [19] polyclip_1.10-0      colorspace_2.0-2     htmltools_0.5.2     
-## [22] pcaPP_1.9-74         FactoMineR_2.4       pkgconfig_2.0.3     
-## [25] broom_0.7.9          purrr_0.3.4          mvtnorm_1.1-2       
-## [28] scales_1.1.1         tweenr_1.0.2         ggforce_0.3.3       
-## [31] tibble_3.1.4         generics_0.1.0       farver_2.1.0        
-## [34] ggplot2_3.3.5        ellipsis_0.3.2       DT_0.19             
-## [37] cachem_1.0.6         BiocGenerics_0.38.0  magrittr_2.0.1      
-## [40] crayon_1.4.1         memoise_2.0.0        evaluate_0.14       
-## [43] mice_3.13.0          GGEBiplots_0.1.1     fs_1.5.0            
-## [46] fansi_0.5.0          doParallel_1.0.16    MASS_7.3-54         
-## [49] textshaping_0.3.5    tools_4.1.1          lifecycle_1.0.0     
-## [52] stringr_1.4.0        munsell_0.5.0        cluster_2.1.2       
-## [55] flashClust_1.01-2    pcaMethods_1.84.0    compiler_4.1.1      
-## [58] pkgdown_1.6.1        jquerylib_0.1.4      bcv_1.0.1.4         
-## [61] systemfonts_1.0.2    rlang_0.4.11         grid_4.1.1          
-## [64] iterators_1.0.13     htmlwidgets_1.5.4    leaps_3.1           
-## [67] labeling_0.4.2       rmarkdown_2.10       gtable_0.3.0        
-## [70] codetools_0.2-18     DBI_1.1.1            rrcov_1.5-5         
-## [73] R6_2.5.1             knitr_1.34           dplyr_1.0.7         
-## [76] fastmap_1.1.0        utf8_1.2.2           rprojroot_2.0.2     
-## [79] ragg_1.1.3           desc_1.3.0           stringi_1.7.4       
-## [82] parallel_4.1.1       Rcpp_1.0.7           vctrs_0.3.8         
-## [85] DEoptimR_1.0-9       scatterplot3d_0.3-41 tidyselect_1.1.1    
-## [88] xfun_0.25</code></pre>
-</div>
+##  [1] Biobase_2.48.0       sass_0.4.0           tidyr_1.1.2         
+##  [4] jsonlite_1.7.1       foreach_1.5.0        missMDA_1.17        
+##  [7] bslib_0.2.5.1        highr_0.9            stats4_4.0.5        
+## [10] yaml_2.2.1           robustbase_0.93-6    ggrepel_0.8.2       
+## [13] pillar_1.4.6         backports_1.1.10     lattice_0.20-41     
+## [16] glue_1.4.2           digest_0.6.25        polyclip_1.10-0     
+## [19] colorspace_1.4-1     htmltools_0.5.1.1    pcaPP_1.9-73        
+## [22] FactoMineR_2.4       pkgconfig_2.0.3      broom_0.7.0         
+## [25] purrr_0.3.4          mvtnorm_1.1-1        scales_1.1.1        
+## [28] tweenr_1.0.1         ggforce_0.3.2        tibble_3.0.3        
+## [31] generics_0.0.2       farver_2.0.3         ggplot2_3.3.5       
+## [34] ellipsis_0.3.1       DT_0.15              cachem_1.0.5        
+## [37] BiocGenerics_0.34.0  magrittr_2.0.1       crayon_1.3.4        
+## [40] memoise_2.0.0        evaluate_0.14        mice_3.11.0         
+## [43] GGEBiplots_0.1.1     fs_1.5.0             doParallel_1.0.15   
+## [46] MASS_7.3-53.1        tools_4.0.5          lifecycle_1.0.0     
+## [49] stringr_1.4.0        munsell_0.5.0        cluster_2.1.1       
+## [52] flashClust_1.01-2    pcaMethods_1.80.0    compiler_4.0.5      
+## [55] pkgdown_1.6.1        jquerylib_0.1.4      bcv_1.0.1           
+## [58] systemfonts_0.3.2    rlang_0.4.11         grid_4.0.5          
+## [61] iterators_1.0.12     rstudioapi_0.13      htmlwidgets_1.5.1   
+## [64] leaps_3.1            labeling_0.3         rmarkdown_2.7       
+## [67] gtable_0.3.0         codetools_0.2-18     rrcov_1.5-5         
+## [70] R6_2.4.1             knitr_1.33           dplyr_1.0.2         
+## [73] fastmap_1.0.1        rprojroot_1.3-2      ragg_0.3.1          
+## [76] desc_1.3.0           stringi_1.5.3        parallel_4.0.5      
+## [79] Rcpp_1.0.5           vctrs_0.3.4          DEoptimR_1.0-8      
+## [82] scatterplot3d_0.3-41 tidyselect_1.1.0     xfun_0.22</code></pre>
 </div>
   </div>
 

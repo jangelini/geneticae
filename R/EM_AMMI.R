@@ -1,6 +1,7 @@
 #'EM-AMMI imputation method
 #'
-#'@description Agregar descripcion.
+#'@description This function was writted by Paderewski (2013) and allow imputing
+#'  missing values by the EM-AMMI algorithm
 #'
 #'@param X a data frame or matrix with genotypes in rows and
 #'  environments in columns when there are no replications of the

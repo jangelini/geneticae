@@ -1,6 +1,9 @@
 #'Clones from the PLRV population
 #'
-#'@description  Yield, plant weight and plot of 28 genotypes in Peru.
+#'@description  resistance study to PLRV (Patato Leaf Roll Virus) causing leaf
+#'curl. 28 genotypes were experimented at 6 locations in Peru. Each clone was
+#'evaluated three times in each environment, and yield, plant weight and plot were
+#'registered.
 #'
 #'@name plrv
 #'@docType data
