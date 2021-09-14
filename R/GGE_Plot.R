@@ -1,59 +1,66 @@
 #'GGE biplots with \pkg{ggplot2}
 #'
-#'@description GGE biplot allows a visual examination of the relationships
-#'  between test environments, genotypes, and genotype by environment
-#'  interactions. GGEPlot produces this biplot as an object of class 'ggplot' by
-#'  a call to \code{\link[geneticae]{GGEmodel}} function. It is possible to
-#'  personalize the graphic so that the stylistic attributes are choosen by the
-#'  user. This function is a modification of \code{\link[GGEBiplots]{GGEPlot}}
-#'  from GGEBiplots package.
+#'@description GGE biplots are used for visual examination of the relationships
+#'  between test environments, genotypes, and genotype-by-environment
+#'  interactions. `GGEPlot()` produces a biplot as an object of class 'ggplot',
+#'  using the output of  the \code{\link[geneticae]{GGEmodel}} function.
+#'  Several types of biplots are offered which focus on different aspects of the
+#'  analysis. Customization options are also included. This function is a
+#'  modification of \code{\link[GGEBiplots]{GGEPlot}} from the
+#'  href{https://CRAN.R-project.org/package=GGEBiplots}{GGEBiplots package}.
 #'
 #'@param GGEModel An object of class \code{GGEModel}.
-#'@param type type of biplot to produce. \itemize{ \item \code{Biplot}: Basic
-#'  biplot. \item \code{Selected Environment}: Ranking of cultivars based on
-#'  their performance in any given environment. \item \code{Selected Genotype}:
-#'  Ranking of environments based on the performance of any given cultivar.
-#'  \item \code{Relationship Among Environments}. \item \code{Comparison of
-#'  Genotype}. \item \code{Which Won Where/What}: Identifying the 'best'
-#'  cultivar in each environment. \item \code{Discrimination vs.
-#'  representativeness}: Evaluating the environments based on both
-#'  discriminating ability and representativeness. \item \code{Ranking
-#'  Environments}: Ranking environments with respect to the ideal environment.
-#'  \item \code{Mean vs. stability}: Evaluating cultivars based on both average
-#'  yield and stability. \item \code{Ranking Genotypes}: Ranking genotypes with
-#'  respect to the ideal genotype.}
+#'@param type type of biplot to produce.
+#'\itemize{
+#'  \item \code{"Biplot"}: Basic biplot.
+#'  \item \code{"Selected Environmen"t}: Ranking of cultivars based on
+#'  their performance in any given environment.
+#'  \item \code{"Selected Genotype"}: Ranking of environments based on the
+#'  performance of any given cultivar.
+#'  \item \code{"Relationship Among Environments"}.
+#'  \item \code{"Comparison of Genotype"}.
+#'  \item \code{"Which Won Where/What"}: Identifying the 'best'
+#'  cultivar in each environment.
+#'  \item \code{"Discrimination vs. representativeness"}: Evaluating the
+#'  environments based on both discriminating ability and representativeness.
+#'  \item \code{"Ranking Environments"}: Ranking environments with respect to
+#'  the ideal environment.
+#'  \item \code{"Mean vs. stability"}: Evaluating cultivars based on both average
+#'  yield and stability.
+#'  \item \code{"Ranking Genotypes"}: Ranking genotypes with respect to the
+#'  ideal genotype.}
 #'@param d1 PCA component to plot on x axis. Defaults to 1.
 #'@param d2 PCA component to plot on y axis. Defaults to 2.
-#'@param selectedE name of the environment to evaluate when type="Selected
-#'  Environment".
-#'@param selectedG name of the genotype to evaluate when type="Selected
-#'  Genotype".
-#'@param selectedG1 name of a genotype to compare when type="Comparison of
-#'  Genotype".
-#'@param selectedG2 name of a genotype to compare with selectedG1 when
-#'  type="Comparison of Genotype".
-#'@param colGen genotype attributes colour. Defaults to "gray47".
-#'@param colEnv environment attributes colour. Defaults to "darkred".
-#'@param colSegment segment or circle lines colour. Defaults to "gray30".
-#'@param colHull hull colour when type="Which Won Where/What". Defaults to
+#'@param selectedE name of the environment to evaluate when `type="Selected
+#'  Environment"`.
+#'@param selectedG name of the genotype to evaluate when `type="Selected
+#'  Genotype"`.
+#'@param selectedG1, name of the genotype to compare to `selectedG2`  when
+#'  `type="Comparison of Genotype"`.
+#'@param selectedG2, name of the genotype to compare to `selectedG1`  when
+#'  `type="Comparison of Genotype"`.
+#'@param colGen genotype attributes colour. Defaults to `"gray47"`.
+#'@param colEnv environment attributes colour. Defaults to `"darkred"`.
+#'@param colSegment segment or circle lines colour. Defaults to `"gray30"`.
+#'@param colHull hull colour when `type="Which Won Where/What"`. Defaults to
 #'  "gray30".
 #'@param sizeGen genotype labels text size. Defaults to 4.
 #'@param sizeEnv environment labels text size. Defaults to 4.
 #'@param largeSize larger labels text size to use for two selected genotypes in
-#'  type="Comparison of Genotype", and for the outermost genotypes in
-#'  type="Which Won Where/What". Defaults to 4.5.
+#'  `type="Comparison of Genotype"`, and for the outermost genotypes in
+#'  `type="Which Won Where/What"`. Defaults to 4.5.
 #'@param axis_expand multiplication factor to expand the axis limits by to
 #'  enable fitting of labels. Defaults to 1.2.
-#'@param axislabels logical, if this argument is TRUE labels for axes are
-#'  included. Defaults to TRUE.
-#'@param axes logical, if this argument is TRUE x and y axes going through the
-#'  origin. Defaults to TRUE.
-#'@param limits logical, if this argument is TRUE the axes are rescaled.
-#'  Defaults to TRUE.
-#'@param titles logical, if this argument is TRUE a plot title is included.
-#'  Defaults to TRUE.
-#'@param footnote logical, if this argument is TRUE a footnote is included.
-#'  Defaults to TRUE.
+#'@param axislabels logical, if this argument is `TRUE` labels for axes are
+#'  included. Defaults to `TRUE`.
+#'@param axes logical, if this argument is `TRUE` x and y axes going through the
+#'  origin are drawn. Defaults to `TRUE`.
+#'@param limits logical, if this argument is `TRUE` the axes are re-scaled.
+#'  Defaults to `TRUE`.
+#'@param titles logical, if this argument is `TRUE` a plot title is included.
+#'  Defaults to `TRUE`.
+#'@param footnote logical, if this argument is `TRUE` a footnote is included.
+#'  Defaults to `TRUE`.
 #'@keywords GGE Biplot
 #'@return A biplot of class \code{ggplot}
 #'@references Yan W, Kang M (2003). \emph{GGE Biplot Analysis: A Graphical Tool
@@ -71,8 +78,8 @@
 #'
 #'  # Data with replication
 #'  data(plrv)
-#'  GGE2 <- GGEmodel(plrv,genotype="Genotype",environment="Locality",
-#'  response="Yield", rep="Rep", centering = "tester")
+#'  GGE2 <- GGEmodel(plrv, genotype = "Genotype", environment = "Locality",
+#'                   response = "Yield", rep = "Rep", centering = "tester")
 #'  GGEPlot(GGE2)
 #'
 #'@importFrom ggplot2 aes arrow coord_fixed element_text geom_abline geom_hline

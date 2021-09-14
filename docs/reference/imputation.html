@@ -47,9 +47,9 @@
 
 
 <meta property="og:title" content="Imputation of missing cells in two-way data sets — imputation" />
-<meta property="og:description" content="AMMI or GGE methods require a complete dataset, that is, missing values are
-not allowed. This function provides several methods to impute missing cells
-to subsequently adjust the mentioned methods." />
+<meta property="og:description" content="Missing values are not allowed by the AMMI or GGE methods. This function
+provides several methods to impute missing observations in data from
+multi-environment trials and to subsequently adjust the mentioned methods." />
 
 
 
@@ -136,9 +136,9 @@ to subsequently adjust the mentioned methods." />
     </div>
 
     <div class="ref-description">
-    <p>AMMI or GGE methods require a complete dataset, that is, missing values are
-not allowed. This function provides several methods to impute missing cells
-to subsequently adjust the mentioned methods.</p>
+    <p>Missing values are not allowed by the AMMI or GGE methods. This function
+provides several methods to impute missing observations in data from
+multi-environment trials and to subsequently adjust the mentioned methods.</p>
     </div>
 
     <pre class="usage"><span class='fu'>imputation</span><span class='op'>(</span>
@@ -171,9 +171,9 @@ to subsequently adjust the mentioned methods.</p>
     <tr>
       <th>Data</th>
       <td><p>dataframe containing genotypes, environments, repetitions (if any)
-and phenotypic trait of interest. There is no restriction on the order
-in which these variables should be presented in dataframe, and also
-other variables that will not be used in the analysis can be included.</p></td>
+and the phenotypic trait of interest. Columns can be in any order in the
+dataset and other variables that will not be used in the analysis can be
+present.</p></td>
     </tr>
     <tr>
       <th>genotype</th>
@@ -185,22 +185,22 @@ other variables that will not be used in the analysis can be included.</p></td>
     </tr>
     <tr>
       <th>response</th>
-      <td><p>column name containing phenotypic trait.</p></td>
+      <td><p>column name containing the phenotypic trait.</p></td>
     </tr>
     <tr>
       <th>rep</th>
       <td><p>column name containing replications. If this argument is NULL,
-there is no replication available on the data. Default to NULL.</p></td>
+there are no replications available in the data. Defaults to NULL.</p></td>
     </tr>
     <tr>
       <th>type</th>
       <td><p>imputation method. Either "EM-AMMI", "EM-SVD",
-"Gabriel","WGabriel","EM-PCA". Default to "EM-AMMI".</p></td>
+"Gabriel","WGabriel","EM-PCA". Defaults to "EM-AMMI".</p></td>
     </tr>
     <tr>
       <th>nPC</th>
-      <td><p>integer corresponding to the number of components used to to
-predict the missing values. Default to 2.</p></td>
+      <td><p>number of components used to predict the missing values.
+Default to 2.</p></td>
     </tr>
     <tr>
       <th>initial.values</th>
@@ -221,14 +221,15 @@ column main effects.</p></td>
     </tr>
     <tr>
       <th>change.factor</th>
-      <td><p>The change.factor=1 defines that the previous
+      <td><p>When `change.factor` is equal to 1, the previous
 approximation is changed with the new values of missing cells (standard
-EM-AMMI algorithm). However, when change.factor&lt;1, then the new
+EM-AMMI algorithm). However, when `change.factor` less than 1, then the new
 approximations are computed and the values of missing cells are changed in
 the direction of this new approximation but the change is smaller. It could
 be useful if the changes are cyclic and thus convergence could not be
 reached. Usually, this argument should not affect the final outcome (that
-is, the imputed values) as compared to the default value of change.factor=1</p></td>
+is, the imputed values) as compared to the default value of `change.factor`
+= 1.</p></td>
     </tr>
     <tr>
       <th>simplified.model</th>
@@ -319,25 +320,26 @@ the first initialization is the initialization with the mean imputation</p></td>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://github.com/jangelini/geneticae'>geneticae</a></span><span class='op'>)</span>
-<span class='co'># Data without replication</span>
+<span class='co'># Data without replications</span>
 <span class='fu'><a href='https://rdrr.io/r/utils/data.html'>data</a></span><span class='op'>(</span><span class='va'>yan.winterwheat</span><span class='op'>)</span>
-<span class='va'>dat</span> <span class='op'>&lt;-</span> <span class='va'>yan.winterwheat</span>
-<span class='co'># generates missing data</span>
-<span class='va'>dat</span><span class='op'>[</span><span class='fl'>1</span>,<span class='fl'>3</span><span class='op'>]</span><span class='op'>&lt;-</span><span class='cn'>NA</span>
-<span class='va'>dat</span><span class='op'>[</span><span class='fl'>3</span>,<span class='fl'>3</span><span class='op'>]</span><span class='op'>&lt;-</span><span class='cn'>NA</span>
-<span class='va'>dat</span><span class='op'>[</span><span class='fl'>2</span>,<span class='fl'>3</span><span class='op'>]</span><span class='op'>&lt;-</span><span class='cn'>NA</span>
+
+<span class='co'># generating missing values</span>
+<span class='va'>yan.winterwheat</span><span class='op'>[</span><span class='fl'>1</span>,<span class='fl'>3</span><span class='op'>]</span><span class='op'>&lt;-</span><span class='cn'>NA</span>
+<span class='va'>yan.winterwheat</span><span class='op'>[</span><span class='fl'>3</span>,<span class='fl'>3</span><span class='op'>]</span><span class='op'>&lt;-</span><span class='cn'>NA</span>
+<span class='va'>yan.winterwheat</span><span class='op'>[</span><span class='fl'>2</span>,<span class='fl'>3</span><span class='op'>]</span><span class='op'>&lt;-</span><span class='cn'>NA</span>
+
 <span class='kw'>if</span> <span class='op'>(</span><span class='cn'>FALSE</span><span class='op'>)</span> <span class='op'>{</span>
-<span class='fu'>imputation</span><span class='op'>(</span><span class='va'>dat</span>, genotype<span class='op'>=</span><span class='st'>"gen"</span>,environment<span class='op'>=</span><span class='st'>"env"</span>, response<span class='op'>=</span><span class='st'>"yield"</span>, type<span class='op'>=</span><span class='st'>"EM-AMMI"</span><span class='op'>)</span>
+<span class='fu'>imputation</span><span class='op'>(</span><span class='va'>yan.winterwheat</span>, genotype <span class='op'>=</span> <span class='st'>"gen"</span>, environment <span class='op'>=</span> <span class='st'>"env"</span>,
+           response <span class='op'>=</span> <span class='st'>"yield"</span>, type <span class='op'>=</span> <span class='st'>"EM-AMMI"</span><span class='op'>)</span>
 <span class='op'>}</span>
-<span class='co'># Data with replication</span>
- <span class='fu'><a href='https://rdrr.io/r/utils/data.html'>data</a></span><span class='op'>(</span><span class='va'>plrv</span><span class='op'>)</span>
- <span class='va'>dat2</span><span class='op'>&lt;-</span><span class='va'>plrv</span>
- <span class='va'>dat2</span><span class='op'>[</span><span class='fl'>1</span>,<span class='fl'>3</span><span class='op'>]</span><span class='op'>&lt;-</span><span class='cn'>NA</span>
-<span class='va'>dat2</span><span class='op'>[</span><span class='fl'>3</span>,<span class='fl'>3</span><span class='op'>]</span><span class='op'>&lt;-</span><span class='cn'>NA</span>
-<span class='va'>dat2</span><span class='op'>[</span><span class='fl'>2</span>,<span class='fl'>3</span><span class='op'>]</span><span class='op'>&lt;-</span><span class='cn'>NA</span>
+<span class='co'># Data with replications</span>
+<span class='fu'><a href='https://rdrr.io/r/utils/data.html'>data</a></span><span class='op'>(</span><span class='va'>plrv</span><span class='op'>)</span>
+<span class='va'>plrv</span><span class='op'>[</span><span class='fl'>1</span>,<span class='fl'>3</span><span class='op'>]</span> <span class='op'>&lt;-</span> <span class='cn'>NA</span>
+<span class='va'>plrv</span><span class='op'>[</span><span class='fl'>3</span>,<span class='fl'>3</span><span class='op'>]</span> <span class='op'>&lt;-</span> <span class='cn'>NA</span>
+<span class='va'>plrv</span><span class='op'>[</span><span class='fl'>2</span>,<span class='fl'>3</span><span class='op'>]</span> <span class='op'>&lt;-</span> <span class='cn'>NA</span>
 <span class='kw'>if</span> <span class='op'>(</span><span class='cn'>FALSE</span><span class='op'>)</span> <span class='op'>{</span>
-<span class='fu'>imputation</span><span class='op'>(</span><span class='va'>dat2</span>, genotype<span class='op'>=</span><span class='st'>"Genotype"</span>,environment<span class='op'>=</span><span class='st'>"Locality"</span>,
-response<span class='op'>=</span><span class='st'>"Yield"</span>, rep<span class='op'>=</span> <span class='st'>"Rep"</span>, type<span class='op'>=</span><span class='st'>"EM-SVD"</span><span class='op'>)</span>
+<span class='fu'>imputation</span><span class='op'>(</span><span class='va'>plrv</span>, genotype <span class='op'>=</span> <span class='st'>"Genotype"</span>, environment <span class='op'>=</span> <span class='st'>"Locality"</span>,
+           response <span class='op'>=</span> <span class='st'>"Yield"</span>, rep <span class='op'>=</span> <span class='st'>"Rep"</span>, type <span class='op'>=</span> <span class='st'>"EM-SVD"</span><span class='op'>)</span>
 <span class='op'>}</span>
 
 </div></pre>

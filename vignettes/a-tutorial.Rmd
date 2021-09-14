@@ -1,5 +1,5 @@
 ---
-title: "The geneticae package"
+title: "How to use the geneticae package"
 subtitle: "Statistical Tools for the Analysis of Multi Environment Agronomic Trials"
 author: |
     | Julia Angelini

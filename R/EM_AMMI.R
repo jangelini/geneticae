@@ -1,6 +1,8 @@
 #'EM-AMMI imputation method
 #'
-#'@param X a data frame or matrix that contains genotypes in rows and
+#'@description Agregar descripcion.
+#'
+#'@param X a data frame or matrix with genotypes in rows and
 #'  environments in columns when there are no replications of the
 #'  experiment.
 #'@param PC.nb the number of principal components in the AMMI model that will be
@@ -17,10 +19,10 @@
 #'  main effects.
 #'@param precision (optional) algorithm converges if the maximal change in
 #'  the values of the missing cells in two subsequent steps is not greater than
-#'  this value (the default is 0.01);
+#'  this value (the default is 0.01).
 #'@param max.iter (optional) a maximum permissible number of iterations (that
 #'  is, number of repeats of the algorithm’s steps 2 through 5); default
-#'  value is 1000;
+#'  value is 1000.
 #'@param change.factor (optional) introduced by analogy to step size in gradient
 #'  descent method, this parameter that can shorten the time of executing the
 #'  algorithm by decreasing the number of iterations. The change.factor=1
@@ -54,21 +56,27 @@
 #'  missing cells in two-way initial.values), the simplified model can be used
 #'  to determine a better set of initial values. data sets by EM-AMMI
 #'  algorithm.}. Communications in Biometry and Crop Science 8, 60–69.
-#'@return A list containing: \itemize{ \item  X: the
-#'  imputed matrix (filled in with the missing values estimated by the EM-AMMI
-#'  procedure); \item PC.SS: the sum of squares representing variation explained
-#'  by the principal components (the squares of eigenvalues of singular value
-#'  decomposition); \item iteration: the final number of iterations; \item
-#'  precision.final: the maximum change of the estimated values for missing
-#'  cells in the last step of iteration (the precision of convergence). If the
-#'  algorithm converged, this value is slightly smaller than the argument
-#'  precision; \item PC.nb.final: a number of principal components that were
-#'  eventually used by the EM.AMMI() function. The function checks if there are
-#'  too many missing cells to unambiguously compute the parameters by the SVD
-#'  decomposition (Gauch and Zobel, 1990). In that case the final number of
-#'  principal components used is smaller than that which was passed on to the
-#'  function through the argument PC.nb; \item convergence: the value TRUE means
-#'  that the algorithm converged in the last iteration. }
+#'@return A list containing:
+#'  \itemize{
+#'    \item  X: the imputed matrix (filled in with the missing values estimated
+#'    by the EM-AMMI procedure);
+#'    \item PC.SS: the sum of squares representing variation explained
+#'    by the principal components (the squares of eigenvalues of singular value
+#'    decomposition);
+#'    \item iteration: the final number of iterations;
+#'    \item precision.final: the maximum change of the estimated values for
+#'    missing cells in the last step of iteration (the precision of convergence)
+#'    . If the algorithm converged, this value is slightly smaller than the
+#'    argument precision;
+#'    \item PC.nb.final: a number of principal components that were eventually
+#'    used by the EM.AMMI() function. The function checks if there are too many
+#'    missing cells to unambiguously compute the parameters by the SVD
+#'    decomposition (Gauch and Zobel, 1990). In that case the final number of
+#'    principal components used is smaller than that which was passed on to the
+#'    function through the argument PC.nb;
+#'    \item convergence: the value TRUE means that the algorithm converged in
+#'    the last iteration.
+#'  }
 #'@keywords internal
 #'
 

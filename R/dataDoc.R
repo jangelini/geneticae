@@ -2,13 +2,12 @@
 #'
 #'@description  Yield, plant weight and plot of 28 genotypes in Peru.
 #'
-#'
 #'@name plrv
 #'@docType data
 #'@usage data(plrv)
 #'
 #'@format Data frame with 504 observations and 6 variables (genotype,
-#'   locality, repetition, weightPlant, weightPlot and yield)
+#'   locality, repetition, weightPlant, weightPlot and yield).
 #'
 #'@keywords datasets
 #'
@@ -25,8 +24,8 @@ NULL
 
 #' Winter wheat varieties from Ontario
 #'
-#' @description Yield (t/ha) of 18 winter wheat varieties grown at 9 environments in
-#'   Ontario in 1993.
+#' @description Yield (t/ha) of 18 winter wheat varieties grown at 9
+#'   environments in Ontario in 1993.
 #'
 #' @name yan.winterwheat
 #' @docType data

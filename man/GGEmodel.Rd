@@ -2,7 +2,7 @@
 % Please edit documentation in R/GGE_Model.R
 \name{GGEmodel}
 \alias{GGEmodel}
-\title{Site regression model}
+\title{Site Regression model}
 \usage{
 GGEmodel(
   Data,
@@ -17,64 +17,73 @@ GGEmodel(
 }
 \arguments{
 \item{Data}{dataframe with genotypes, environments, repetitions (if any) and
-phenotypic trait of interest. Variables order is indistinct,
+the phenotypic trait of interest. Variables can be in any order,
 even additional variables that will not be used in the model may be present
 in the data.}
 
-\item{genotype}{column name containing genotypes.}
+\item{genotype}{column name for genotypes.}
 
-\item{environment}{column name containing environments.}
+\item{environment}{column name for environments.}
 
-\item{response}{column name containing phenotypic trait.}
+\item{response}{column name for the phenotypic trait.}
 
-\item{rep}{column name containing replications, if this argument is NULL, there
-is no replication available on the data. Default to NULL.}
+\item{rep}{column name for replications. If this argument is NULL, there are
+no replications in the data. Defaults to NULL.}
 
-\item{centering}{centering method. Either "tester" for tester centered (G+GE),
-"global" for global centered (E+G+GE), "double" for double centred (GE) or
-"none" for no centering. Default to "tester".}
+\item{centering}{centering method. Either `"tester"` for tester centered
+(G+GE), `"global"` for global centered (E+G+GE), `"double"` for double
+centered (GE) or `"none"` for no centering. Defaults to `"tester"`.}
 
-\item{scaling}{scaling method. Either "sd" for standard deviation or "none"
-for no scaling. Default to "none".}
+\item{scaling}{scaling method. Either `"sd"` for standard deviation or
+`"none"` for no scaling. Defaults to `"none"`.}
 
-\item{SVP}{method for singular value partitioning. Either "row","column",
-"dual" or "symmetrical". Default to "column".}
+\item{SVP}{method for singular value partitioning. Either `"row"`, `"column"`,
+`"dual"` or `"symmetrical"`. Defaults to `"column"`.}
 }
 \value{
 A list of class \code{GGE_Model} containing:
- \item{coordgenotype}{plotting coordinates for genotypes from all components}
- \item{coordenviroment}{plotting coordinates for environments from all
- components} \item{eigenvalues}{vector of eigenvalues from each component}
- \item{vartotal}{overall variance} \item{varexpl}{percentage of variance
- explained by each component} \item{labelgen}{genotype names}
- \item{labelenv}{environment names} \item{axes}{axis labels}
- \item{Data}{scaled and centered input data} \item{centering}{name of
- centering method} \item{scaling}{name of scaling method} \item{SVP}{name of
- SVP method}
+ \item{coordgenotype}{plotting coordinates for each genotype in every component.}
+ \item{coordenviroment}{plotting coordinates for each environment in every
+ component.}
+ \item{eigenvalues}{vector of eigenvalues for each component.}
+ \item{vartotal}{overall variance.}
+ \item{varexpl}{percentage of variance explained by each component.}
+ \item{labelgen}{genotype names.}
+ \item{labelenv}{environment names.}
+ \item{axes}{axis labels.}
+ \item{Data}{scaled and centered input data.}
+ \item{centering}{name of centering method.}
+ \item{scaling}{name of scaling method.}
+ \item{SVP}{name of SVP method.}
 }
 \description{
-Site regression model also named genotype plus
- genotype-by-environment (GGE) model is a powerful tool for effective
- analysis and interpretation of multienvironment data structure in breeding
- programs.This function is a modification of
- \code{\link[GGEBiplots]{GGEModel}} of GGEBiplots package, where the input
- dataset contains genotype by environment means with genotypes in rows
- and environments in columns. By contrast, this function allows a less
- restrictive format of dataset. Repetitions and other variables that will not
- be used in the analysis may be present in the dataset.
+The Site Regression model (also called *genotype +
+ genotype-by-environment (GGE) model* is a powerful tool for effective
+ analysis and interpretation of data from multi-environment trials in
+ breeding programs. This function is a wrapper for
+ \code{\link[GGEBiplots]{GGEModel}} from the
+ \href{https://CRAN.R-project.org/package=GGEBiplots}{GGEBiplots package},
+ with the following enhacements:
+ \itemize{
+   \item It can be used for data from trials with repetitions (there is no
+   need to calculate means beforehand)
+   \item Other variables not used in the analysis can be present in the
+   dataset.
+   \item Variables can be in any order in the dataset.
+ }
 }
 \examples{
 
  library(geneticae)
  # Data without replication
  data(yan.winterwheat)
- GGE1 <- GGEmodel(yan.winterwheat, genotype="gen",environment="env", response="yield",
- centering = "tester")
+ GGE1 <- GGEmodel(yan.winterwheat, genotype = "gen", environment = "env",
+                  response = "yield", centering = "tester")
 
  # Data with replication
  data(plrv)
- GGE2 <- GGEmodel(plrv, genotype="Genotype",environment="Locality",
- response="Yield", rep="Rep", centering = "tester")
+ GGE2 <- GGEmodel(plrv, genotype = "Genotype", environment = "Locality",
+                  response = "Yield", rep = "Rep", centering = "tester")
 
 }
 \references{

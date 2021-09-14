@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Site regression model — GGEmodel • geneticae</title>
+<title>Site Regression model — GGEmodel • geneticae</title>
 
 <!-- favicons -->
 <link rel="icon" type="image/png" sizes="16x16" href="../favicon-16x16.png">
@@ -46,16 +46,21 @@
 
 
 
-<meta property="og:title" content="Site regression model — GGEmodel" />
-<meta property="og:description" content="Site regression model also named genotype plus
- genotype-by-environment (GGE) model is a powerful tool for effective
- analysis and interpretation of multienvironment data structure in breeding
- programs.This function is a modification of
- GGEModel of GGEBiplots package, where the input
- dataset contains genotype by environment means with genotypes in rows
- and environments in columns. By contrast, this function allows a less
- restrictive format of dataset. Repetitions and other variables that will not
- be used in the analysis may be present in the dataset." />
+<meta property="og:title" content="Site Regression model — GGEmodel" />
+<meta property="og:description" content="The Site Regression model (also called *genotype +
+ genotype-by-environment (GGE) model* is a powerful tool for effective
+ analysis and interpretation of data from multi-environment trials in
+ breeding programs. This function is a wrapper for
+ GGEModel from the
+ GGEBiplots package,
+ with the following enhacements:
+It can be used for data from trials with repetitions (there is no
+   need to calculate means beforehand)
+Other variables not used in the analysis can be present in the
+   dataset.
+Variables can be in any order in the dataset.
+
+" />
 
 
 
@@ -136,21 +141,26 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Site regression model</h1>
+    <h1>Site Regression model</h1>
     <small class="dont-index">Source: <a href='https://github.com/jangelini/geneticae/blob/master/R/GGE_Model.R'><code>R/GGE_Model.R</code></a></small>
     <div class="hidden name"><code>GGEmodel.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p>Site regression model also named genotype plus
- genotype-by-environment (GGE) model is a powerful tool for effective
- analysis and interpretation of multienvironment data structure in breeding
- programs.This function is a modification of
- <code><a href='https://rdrr.io/pkg/GGEBiplots/man/GGEModel.html'>GGEModel</a></code> of GGEBiplots package, where the input
- dataset contains genotype by environment means with genotypes in rows
- and environments in columns. By contrast, this function allows a less
- restrictive format of dataset. Repetitions and other variables that will not
- be used in the analysis may be present in the dataset.</p>
+    <p>The Site Regression model (also called *genotype +
+ genotype-by-environment (GGE) model* is a powerful tool for effective
+ analysis and interpretation of data from multi-environment trials in
+ breeding programs. This function is a wrapper for
+ <code><a href='https://rdrr.io/pkg/GGEBiplots/man/GGEModel.html'>GGEModel</a></code> from the
+ <a href='https://CRAN.R-project.org/package=GGEBiplots'>GGEBiplots package</a>,
+ with the following enhacements:</p><ul>
+<li><p>It can be used for data from trials with repetitions (there is no
+   need to calculate means beforehand)</p></li>
+<li><p>Other variables not used in the analysis can be present in the
+   dataset.</p></li>
+<li><p>Variables can be in any order in the dataset.</p></li>
+</ul>
+
     </div>
 
     <pre class="usage"><span class='fu'>GGEmodel</span><span class='op'>(</span>
@@ -170,57 +180,61 @@
     <tr>
       <th>Data</th>
       <td><p>dataframe with genotypes, environments, repetitions (if any) and
-phenotypic trait of interest. Variables order is indistinct,
+the phenotypic trait of interest. Variables can be in any order,
 even additional variables that will not be used in the model may be present
 in the data.</p></td>
     </tr>
     <tr>
       <th>genotype</th>
-      <td><p>column name containing genotypes.</p></td>
+      <td><p>column name for genotypes.</p></td>
     </tr>
     <tr>
       <th>environment</th>
-      <td><p>column name containing environments.</p></td>
+      <td><p>column name for environments.</p></td>
     </tr>
     <tr>
       <th>response</th>
-      <td><p>column name containing phenotypic trait.</p></td>
+      <td><p>column name for the phenotypic trait.</p></td>
     </tr>
     <tr>
       <th>rep</th>
-      <td><p>column name containing replications, if this argument is NULL, there
-is no replication available on the data. Default to NULL.</p></td>
+      <td><p>column name for replications. If this argument is NULL, there are
+no replications in the data. Defaults to NULL.</p></td>
     </tr>
     <tr>
       <th>centering</th>
-      <td><p>centering method. Either "tester" for tester centered (G+GE),
-"global" for global centered (E+G+GE), "double" for double centred (GE) or
-"none" for no centering. Default to "tester".</p></td>
+      <td><p>centering method. Either `"tester"` for tester centered
+(G+GE), `"global"` for global centered (E+G+GE), `"double"` for double
+centered (GE) or `"none"` for no centering. Defaults to `"tester"`.</p></td>
     </tr>
     <tr>
       <th>scaling</th>
-      <td><p>scaling method. Either "sd" for standard deviation or "none"
-for no scaling. Default to "none".</p></td>
+      <td><p>scaling method. Either `"sd"` for standard deviation or
+`"none"` for no scaling. Defaults to `"none"`.</p></td>
     </tr>
     <tr>
       <th>SVP</th>
-      <td><p>method for singular value partitioning. Either "row","column",
-"dual" or "symmetrical". Default to "column".</p></td>
+      <td><p>method for singular value partitioning. Either `"row"`, `"column"`,
+`"dual"` or `"symmetrical"`. Defaults to `"column"`.</p></td>
     </tr>
     </table>
 
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
     <p>A list of class <code>GGE_Model</code> containing:</p>
-<dt>coordgenotype</dt><dd><p>plotting coordinates for genotypes from all components</p></dd>
- <dt>coordenviroment</dt><dd><p>plotting coordinates for environments from all
- components</p></dd> <dt>eigenvalues</dt><dd><p>vector of eigenvalues from each component</p></dd>
- <dt>vartotal</dt><dd><p>overall variance</p></dd> <dt>varexpl</dt><dd><p>percentage of variance
- explained by each component</p></dd> <dt>labelgen</dt><dd><p>genotype names</p></dd>
- <dt>labelenv</dt><dd><p>environment names</p></dd> <dt>axes</dt><dd><p>axis labels</p></dd>
- <dt>Data</dt><dd><p>scaled and centered input data</p></dd> <dt>centering</dt><dd><p>name of
- centering method</p></dd> <dt>scaling</dt><dd><p>name of scaling method</p></dd> <dt>SVP</dt><dd><p>name of
- SVP method</p></dd>
+<dt>coordgenotype</dt><dd><p>plotting coordinates for each genotype in every component.</p></dd>
+ <dt>coordenviroment</dt><dd><p>plotting coordinates for each environment in every
+ component.</p></dd>
+ <dt>eigenvalues</dt><dd><p>vector of eigenvalues for each component.</p></dd>
+ <dt>vartotal</dt><dd><p>overall variance.</p></dd>
+ <dt>varexpl</dt><dd><p>percentage of variance explained by each component.</p></dd>
+ <dt>labelgen</dt><dd><p>genotype names.</p></dd>
+ <dt>labelenv</dt><dd><p>environment names.</p></dd>
+ <dt>axes</dt><dd><p>axis labels.</p></dd>
+ <dt>Data</dt><dd><p>scaled and centered input data.</p></dd>
+ <dt>centering</dt><dd><p>name of centering method.</p></dd>
+ <dt>scaling</dt><dd><p>name of scaling method.</p></dd>
+ <dt>SVP</dt><dd><p>name of SVP method.</p></dd>
 
     <h2 class="hasAnchor" id="references"><a class="anchor" href="#references"></a>References</h2>
 
@@ -237,13 +251,13 @@ for no scaling. Default to "none".</p></td>
  <span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://github.com/jangelini/geneticae'>geneticae</a></span><span class='op'>)</span>
  <span class='co'># Data without replication</span>
  <span class='fu'><a href='https://rdrr.io/r/utils/data.html'>data</a></span><span class='op'>(</span><span class='va'>yan.winterwheat</span><span class='op'>)</span>
- <span class='va'>GGE1</span> <span class='op'>&lt;-</span> <span class='fu'>GGEmodel</span><span class='op'>(</span><span class='va'>yan.winterwheat</span>, genotype<span class='op'>=</span><span class='st'>"gen"</span>,environment<span class='op'>=</span><span class='st'>"env"</span>, response<span class='op'>=</span><span class='st'>"yield"</span>,
- centering <span class='op'>=</span> <span class='st'>"tester"</span><span class='op'>)</span>
+ <span class='va'>GGE1</span> <span class='op'>&lt;-</span> <span class='fu'>GGEmodel</span><span class='op'>(</span><span class='va'>yan.winterwheat</span>, genotype <span class='op'>=</span> <span class='st'>"gen"</span>, environment <span class='op'>=</span> <span class='st'>"env"</span>,
+                  response <span class='op'>=</span> <span class='st'>"yield"</span>, centering <span class='op'>=</span> <span class='st'>"tester"</span><span class='op'>)</span>
 
  <span class='co'># Data with replication</span>
  <span class='fu'><a href='https://rdrr.io/r/utils/data.html'>data</a></span><span class='op'>(</span><span class='va'>plrv</span><span class='op'>)</span>
- <span class='va'>GGE2</span> <span class='op'>&lt;-</span> <span class='fu'>GGEmodel</span><span class='op'>(</span><span class='va'>plrv</span>, genotype<span class='op'>=</span><span class='st'>"Genotype"</span>,environment<span class='op'>=</span><span class='st'>"Locality"</span>,
- response<span class='op'>=</span><span class='st'>"Yield"</span>, rep<span class='op'>=</span><span class='st'>"Rep"</span>, centering <span class='op'>=</span> <span class='st'>"tester"</span><span class='op'>)</span>
+ <span class='va'>GGE2</span> <span class='op'>&lt;-</span> <span class='fu'>GGEmodel</span><span class='op'>(</span><span class='va'>plrv</span>, genotype <span class='op'>=</span> <span class='st'>"Genotype"</span>, environment <span class='op'>=</span> <span class='st'>"Locality"</span>,
+                  response <span class='op'>=</span> <span class='st'>"Yield"</span>, rep <span class='op'>=</span> <span class='st'>"Rep"</span>, centering <span class='op'>=</span> <span class='st'>"tester"</span><span class='op'>)</span>
 
 </div></pre>
   </div>

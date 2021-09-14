@@ -52,23 +52,23 @@ variables that will not be used in the analysis can be included.}
 
 \item{sizeEnv}{environment labels text size. Defaults to 4.}
 
-\item{titles}{logical, if this argument is TRUE a plot title is generated.
-Defaults to TRUE.}
+\item{titles}{logical, if this argument is `TRUE` a plot title is generated.
+Defaults to `TRUE`.}
 
-\item{footnote}{logical, if this argument is TRUE a footnote is generated.
-Defaults to TRUE.}
+\item{footnote}{logical, if this argument is `TRUE` a footnote is generated.
+Defaults to `TRUE`.}
 
 \item{axis_expand}{multiplication factor to expand the axis limits by to
 enable fitting of labels. Defaults to 1.2.}
 
-\item{limits}{logical. If TRUE axes are automatically rescaled. Defaults to
-TRUE.}
+\item{limits}{logical. If `TRUE` axes are automatically rescaled. Defaults to
+`TRUE`.}
 
-\item{axes}{logical, if this argument is TRUE axes passing through the
-origin are drawn. Defaults to TRUE.}
+\item{axes}{logical, if this argument is `TRUE` axes passing through the
+origin are drawn. Defaults to `TRUE`.}
 
-\item{axislabels}{logical, if this argument is TRUE labels axes are included.
-Defaults to TRUE.}
+\item{axislabels}{logical, if this argument is `TRUE` labels axes are included.
+Defaults to `TRUE`.}
 }
 \value{
 A biplot of class  \code{ggplot}
@@ -86,15 +86,14 @@ library(geneticae)
 # Data without replication
 data(yan.winterwheat)
 BIP_AMMI <- rAMMI(yan.winterwheat, genotype = "gen", environment = "env",
-                 response = "yield", type = "AMMI")
+                  response = "yield", type = "AMMI")
 BIP_AMMI
 
 # Data with replication
 data(plrv)
 BIP_AMMI2 <- rAMMI(plrv, genotype = "Genotype", environment = "Locality",
-                  response="Yield", rep = "Rep", type = "AMMI")
+                   response="Yield", rep = "Rep", type = "AMMI")
 BIP_AMMI2
-
 
 }
 \references{

@@ -6,7 +6,7 @@
 \title{Clones from the PLRV population}
 \format{
 Data frame with 504 observations and 6 variables (genotype,
-  locality, repetition, weightPlant, weightPlot and yield)
+  locality, repetition, weightPlant, weightPlot and yield).
 }
 \usage{
 data(plrv)

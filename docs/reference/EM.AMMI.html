@@ -47,7 +47,7 @@
 
 
 <meta property="og:title" content="EM-AMMI imputation method — EM.AMMI" />
-<meta property="og:description" content="EM-AMMI imputation method" />
+<meta property="og:description" content="Agregar descripcion." />
 
 
 
@@ -134,7 +134,7 @@
     </div>
 
     <div class="ref-description">
-    <p>EM-AMMI imputation method</p>
+    <p>Agregar descripcion.</p>
     </div>
 
     <pre class="usage"><span class='fu'>EM.AMMI</span><span class='op'>(</span>
@@ -152,7 +152,7 @@
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
       <th>X</th>
-      <td><p>a data frame or matrix that contains genotypes in rows and
+      <td><p>a data frame or matrix with genotypes in rows and
 environments in columns when there are no replications of the
 experiment.</p></td>
     </tr>
@@ -178,13 +178,13 @@ main effects.</p></td>
       <th>precision</th>
       <td><p>(optional) algorithm converges if the maximal change in
 the values of the missing cells in two subsequent steps is not greater than
-this value (the default is 0.01);</p></td>
+this value (the default is 0.01).</p></td>
     </tr>
     <tr>
       <th>max.iter</th>
       <td><p>(optional) a maximum permissible number of iterations (that
 is, number of repeats of the algorithm’s steps 2 through 5); default
-value is 1000;</p></td>
+value is 1000.</p></td>
     </tr>
     <tr>
       <th>change.factor</th>
@@ -226,25 +226,24 @@ used to determine a better set of initial values.</p></td>
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
     <p>A list containing:</p><ul>
-<li><p>X: the
- imputed matrix (filled in with the missing values estimated by the EM-AMMI
- procedure);</p></li>
+<li><p>X: the imputed matrix (filled in with the missing values estimated
+   by the EM-AMMI procedure);</p></li>
 <li><p>PC.SS: the sum of squares representing variation explained
- by the principal components (the squares of eigenvalues of singular value
- decomposition);</p></li>
+   by the principal components (the squares of eigenvalues of singular value
+   decomposition);</p></li>
 <li><p>iteration: the final number of iterations;</p></li>
-<li><p>precision.final: the maximum change of the estimated values for missing
- cells in the last step of iteration (the precision of convergence). If the
- algorithm converged, this value is slightly smaller than the argument
- precision;</p></li>
-<li><p>PC.nb.final: a number of principal components that were
- eventually used by the EM.AMMI() function. The function checks if there are
- too many missing cells to unambiguously compute the parameters by the SVD
- decomposition (Gauch and Zobel, 1990). In that case the final number of
- principal components used is smaller than that which was passed on to the
- function through the argument PC.nb;</p></li>
-<li><p>convergence: the value TRUE means
- that the algorithm converged in the last iteration.</p></li>
+<li><p>precision.final: the maximum change of the estimated values for
+   missing cells in the last step of iteration (the precision of convergence)
+   . If the algorithm converged, this value is slightly smaller than the
+   argument precision;</p></li>
+<li><p>PC.nb.final: a number of principal components that were eventually
+   used by the EM.AMMI() function. The function checks if there are too many
+   missing cells to unambiguously compute the parameters by the SVD
+   decomposition (Gauch and Zobel, 1990). In that case the final number of
+   principal components used is smaller than that which was passed on to the
+   function through the argument PC.nb;</p></li>
+<li><p>convergence: the value TRUE means that the algorithm converged in
+   the last iteration.</p></li>
 </ul>
 
     <h2 class="hasAnchor" id="references"><a class="anchor" href="#references"></a>References</h2>

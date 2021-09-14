@@ -1,5 +1,5 @@
 ---
-title: "The geneticae Shiny App"
+title: "How to use the geneticae Shiny App"
 subtitle: "A web application for the Analysis of Multi Environment Agronomic Trials"
 author: |
     | Julia Angelini

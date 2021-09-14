@@ -30,24 +30,24 @@ imputation(
 }
 \arguments{
 \item{Data}{dataframe containing genotypes, environments, repetitions (if any)
-and phenotypic trait of interest. There is no restriction on the order
-in which these variables should be presented in dataframe, and also
-other variables that will not be used in the analysis can be included.}
+and the phenotypic trait of interest. Columns can be in any order in the
+dataset and other variables that will not be used in the analysis can be
+present.}
 
 \item{genotype}{column name containing genotypes.}
 
 \item{environment}{column name containing environments.}
 
-\item{response}{column name containing phenotypic trait.}
+\item{response}{column name containing the phenotypic trait.}
 
 \item{rep}{column name containing replications. If this argument is NULL,
-there is no replication available on the data. Default to NULL.}
+there are no replications available in the data. Defaults to NULL.}
 
 \item{type}{imputation method. Either "EM-AMMI", "EM-SVD",
-"Gabriel","WGabriel","EM-PCA". Default to "EM-AMMI".}
+"Gabriel","WGabriel","EM-PCA". Defaults to "EM-AMMI".}
 
-\item{nPC}{integer corresponding to the number of components used to to
-predict the missing values. Default to 2.}
+\item{nPC}{number of components used to predict the missing values.
+Default to 2.}
 
 \item{initial.values}{initial values of the missing cells. It can be a single
 value or a vector of length equal to the number of missing cells (starting
@@ -60,14 +60,15 @@ column main effects.}
 
 \item{maxiter}{maximum number of iteration for the algorithm.}
 
-\item{change.factor}{The change.factor=1 defines that the previous
+\item{change.factor}{When `change.factor` is equal to 1, the previous
 approximation is changed with the new values of missing cells (standard
-EM-AMMI algorithm). However, when change.factor<1, then the new
+EM-AMMI algorithm). However, when `change.factor` less than 1, then the new
 approximations are computed and the values of missing cells are changed in
 the direction of this new approximation but the change is smaller. It could
 be useful if the changes are cyclic and thus convergence could not be
 reached. Usually, this argument should not affect the final outcome (that
-is, the imputed values) as compared to the default value of change.factor=1}
+is, the imputed values) as compared to the default value of `change.factor`
+= 1.}
 
 \item{simplified.model}{the AMMI model contains the general mean, effects of
 rows, columns and interaction terms. So the EM-AMMI algorithm in step 2
@@ -116,31 +117,32 @@ the first initialization is the initialization with the mean imputation}
 imputed data matrix
 }
 \description{
-AMMI or GGE methods require a complete dataset, that is, missing values are
-not allowed. This function provides several methods to impute missing cells
-to subsequently adjust the mentioned methods.
+Missing values are not allowed by the AMMI or GGE methods. This function
+provides several methods to impute missing observations in data from
+multi-environment trials and to subsequently adjust the mentioned methods.
 }
 \examples{
 library(geneticae)
-# Data without replication
+# Data without replications
 data(yan.winterwheat)
-dat <- yan.winterwheat
-# generates missing data
-dat[1,3]<-NA
-dat[3,3]<-NA
-dat[2,3]<-NA
+
+# generating missing values
+yan.winterwheat[1,3]<-NA
+yan.winterwheat[3,3]<-NA
+yan.winterwheat[2,3]<-NA
+
 \dontrun{
-imputation(dat, genotype="gen",environment="env", response="yield", type="EM-AMMI")
+imputation(yan.winterwheat, genotype = "gen", environment = "env",
+           response = "yield", type = "EM-AMMI")
 }
-# Data with replication
- data(plrv)
- dat2<-plrv
- dat2[1,3]<-NA
-dat2[3,3]<-NA
-dat2[2,3]<-NA
+# Data with replications
+data(plrv)
+plrv[1,3] <- NA
+plrv[3,3] <- NA
+plrv[2,3] <- NA
 \dontrun{
-imputation(dat2, genotype="Genotype",environment="Locality",
-response="Yield", rep= "Rep", type="EM-SVD")
+imputation(plrv, genotype = "Genotype", environment = "Locality",
+           response = "Yield", rep = "Rep", type = "EM-SVD")
 }
 
 }

@@ -21,16 +21,16 @@
 #'@param sizeEnv environment labels text size. Defaults to 4.
 #'@param axis_expand multiplication factor to expand the axis limits by to
 #'  enable fitting of labels. Defaults to 1.2.
-#'@param titles logical, if this argument is TRUE a plot title is generated.
-#'  Defaults to TRUE.
-#'@param footnote logical, if this argument is TRUE a footnote is generated.
-#'  Defaults to TRUE.
-#'@param limits logical. If TRUE axes are automatically rescaled. Defaults to
-#'  TRUE.
-#'@param axes logical, if this argument is TRUE axes passing through the
-#'  origin are drawn. Defaults to TRUE.
-#'@param axislabels logical, if this argument is TRUE labels axes are included.
-#'  Defaults to TRUE.
+#'@param titles logical, if this argument is `TRUE` a plot title is generated.
+#'  Defaults to `TRUE`.
+#'@param footnote logical, if this argument is `TRUE` a footnote is generated.
+#'  Defaults to `TRUE`.
+#'@param limits logical. If `TRUE` axes are automatically rescaled. Defaults to
+#'  `TRUE`.
+#'@param axes logical, if this argument is `TRUE` axes passing through the
+#'  origin are drawn. Defaults to `TRUE`.
+#'@param axislabels logical, if this argument is `TRUE` labels axes are included.
+#'  Defaults to `TRUE`.
 #'
 #'@return A biplot of class  \code{ggplot}
 #'
@@ -43,19 +43,18 @@
 #'
 #'@examples
 #'
-#'library(geneticae)
-#'# Data without replication
-#'data(yan.winterwheat)
-#'BIP_AMMI <- rAMMI(yan.winterwheat, genotype = "gen", environment = "env",
-#'                  response = "yield", type = "AMMI")
-#'BIP_AMMI
+#' library(geneticae)
+#' # Data without replication
+#' data(yan.winterwheat)
+#' BIP_AMMI <- rAMMI(yan.winterwheat, genotype = "gen", environment = "env",
+#'                   response = "yield", type = "AMMI")
+#' BIP_AMMI
 #'
-#'# Data with replication
-#'data(plrv)
-#'BIP_AMMI2 <- rAMMI(plrv, genotype = "Genotype", environment = "Locality",
-#'                   response="Yield", rep = "Rep", type = "AMMI")
-#'BIP_AMMI2
-#'
+#' # Data with replication
+#' data(plrv)
+#' BIP_AMMI2 <- rAMMI(plrv, genotype = "Genotype", environment = "Locality",
+#'                    response="Yield", rep = "Rep", type = "AMMI")
+#' BIP_AMMI2
 #'
 #'@importFrom MASS rlm
 #'@importFrom pcaMethods robustSvd

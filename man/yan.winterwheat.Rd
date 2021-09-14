@@ -12,8 +12,8 @@ Data frame with 162 observations and 3 variables (genotype,
 data(yan.winterwheat)
 }
 \description{
-Yield (t/ha) of 18 winter wheat varieties grown at 9 environments in
-  Ontario in 1993.
+Yield (t/ha) of 18 winter wheat varieties grown at 9
+  environments in Ontario in 1993.
 }
 \examples{
 library(geneticae)

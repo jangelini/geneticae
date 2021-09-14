@@ -47,13 +47,14 @@
 
 
 <meta property="og:title" content="GGE biplots with ggplot2 — GGEPlot" />
-<meta property="og:description" content="GGE biplot allows a visual examination of the relationships
- between test environments, genotypes, and genotype by environment
- interactions. GGEPlot produces this biplot as an object of class 'ggplot' by
- a call to GGEmodel function. It is possible to
- personalize the graphic so that the stylistic attributes are choosen by the
- user. This function is a modification of GGEPlot
- from GGEBiplots package." />
+<meta property="og:description" content="GGE biplots are used for visual examination of the relationships
+ between test environments, genotypes, and genotype-by-environment
+ interactions. `GGEPlot()` produces a biplot as an object of class 'ggplot',
+ using the output of  the GGEmodel function.
+ Several types of biplots are offered which focus on different aspects of the
+ analysis. Customization options are also included. This function is a
+ modification of GGEPlot from the
+ hrefhttps://CRAN.R-project.org/package=GGEBiplotsGGEBiplots package." />
 
 
 
@@ -140,13 +141,14 @@
     </div>
 
     <div class="ref-description">
-    <p>GGE biplot allows a visual examination of the relationships
- between test environments, genotypes, and genotype by environment
- interactions. GGEPlot produces this biplot as an object of class 'ggplot' by
- a call to <code><a href='GGEmodel.html'>GGEmodel</a></code> function. It is possible to
- personalize the graphic so that the stylistic attributes are choosen by the
- user. This function is a modification of <code><a href='https://rdrr.io/pkg/GGEBiplots/man/GGEPlot.html'>GGEPlot</a></code>
- from GGEBiplots package.</p>
+    <p>GGE biplots are used for visual examination of the relationships
+ between test environments, genotypes, and genotype-by-environment
+ interactions. `GGEPlot()` produces a biplot as an object of class 'ggplot',
+ using the output of  the <code><a href='GGEmodel.html'>GGEmodel</a></code> function.
+ Several types of biplots are offered which focus on different aspects of the
+ analysis. Customization options are also included. This function is a
+ modification of <code><a href='https://rdrr.io/pkg/GGEBiplots/man/GGEPlot.html'>GGEPlot</a></code> from the
+ hrefhttps://CRAN.R-project.org/package=GGEBiplotsGGEBiplots package.</p>
     </div>
 
     <pre class="usage"><span class='fu'>GGEPlot</span><span class='op'>(</span>
@@ -183,26 +185,23 @@
     <tr>
       <th>type</th>
       <td><p>type of biplot to produce.</p><ul>
-<li><p><code>Biplot</code>: Basic
-biplot.</p></li>
-<li><p><code>Selected Environment</code>: Ranking of cultivars based on
-their performance in any given environment.</p></li>
-<li><p><code>Selected Genotype</code>:
-Ranking of environments based on the performance of any given cultivar.</p></li>
-<li><p><code>Relationship Among Environments</code>.</p></li>
-<li><p><code>Comparison of
-Genotype</code>.</p></li>
-<li><p><code>Which Won Where/What</code>: Identifying the 'best'
-cultivar in each environment.</p></li>
-<li><p><code>Discrimination vs.
-representativeness</code>: Evaluating the environments based on both
-discriminating ability and representativeness.</p></li>
-<li><p><code>Ranking
-Environments</code>: Ranking environments with respect to the ideal environment.</p></li>
-<li><p><code>Mean vs. stability</code>: Evaluating cultivars based on both average
-yield and stability.</p></li>
-<li><p><code>Ranking Genotypes</code>: Ranking genotypes with
-respect to the ideal genotype.</p></li>
+<li><p><code>"Biplot"</code>: Basic biplot.</p></li>
+<li><p><code>"Selected Environmen"t</code>: Ranking of cultivars based on
+ their performance in any given environment.</p></li>
+<li><p><code>"Selected Genotype"</code>: Ranking of environments based on the
+ performance of any given cultivar.</p></li>
+<li><p><code>"Relationship Among Environments"</code>.</p></li>
+<li><p><code>"Comparison of Genotype"</code>.</p></li>
+<li><p><code>"Which Won Where/What"</code>: Identifying the 'best'
+ cultivar in each environment.</p></li>
+<li><p><code>"Discrimination vs. representativeness"</code>: Evaluating the
+ environments based on both discriminating ability and representativeness.</p></li>
+<li><p><code>"Ranking Environments"</code>: Ranking environments with respect to
+ the ideal environment.</p></li>
+<li><p><code>"Mean vs. stability"</code>: Evaluating cultivars based on both average
+ yield and stability.</p></li>
+<li><p><code>"Ranking Genotypes"</code>: Ranking genotypes with respect to the
+ ideal genotype.</p></li>
 </ul></td>
     </tr>
     <tr>
@@ -215,39 +214,39 @@ respect to the ideal genotype.</p></li>
     </tr>
     <tr>
       <th>selectedE</th>
-      <td><p>name of the environment to evaluate when type="Selected
-Environment".</p></td>
+      <td><p>name of the environment to evaluate when `type="Selected
+Environment"`.</p></td>
     </tr>
     <tr>
       <th>selectedG</th>
-      <td><p>name of the genotype to evaluate when type="Selected
-Genotype".</p></td>
+      <td><p>name of the genotype to evaluate when `type="Selected
+Genotype"`.</p></td>
     </tr>
     <tr>
-      <th>selectedG1</th>
-      <td><p>name of a genotype to compare when type="Comparison of
-Genotype".</p></td>
+      <th>selectedG1, </th>
+      <td><p>name of the genotype to compare to `selectedG2`  when
+`type="Comparison of Genotype"`.</p></td>
     </tr>
     <tr>
-      <th>selectedG2</th>
-      <td><p>name of a genotype to compare with selectedG1 when
-type="Comparison of Genotype".</p></td>
+      <th>selectedG2, </th>
+      <td><p>name of the genotype to compare to `selectedG1`  when
+`type="Comparison of Genotype"`.</p></td>
     </tr>
     <tr>
       <th>colGen</th>
-      <td><p>genotype attributes colour. Defaults to "gray47".</p></td>
+      <td><p>genotype attributes colour. Defaults to `"gray47"`.</p></td>
     </tr>
     <tr>
       <th>colEnv</th>
-      <td><p>environment attributes colour. Defaults to "darkred".</p></td>
+      <td><p>environment attributes colour. Defaults to `"darkred"`.</p></td>
     </tr>
     <tr>
       <th>colSegment</th>
-      <td><p>segment or circle lines colour. Defaults to "gray30".</p></td>
+      <td><p>segment or circle lines colour. Defaults to `"gray30"`.</p></td>
     </tr>
     <tr>
       <th>colHull</th>
-      <td><p>hull colour when type="Which Won Where/What". Defaults to
+      <td><p>hull colour when `type="Which Won Where/What"`. Defaults to
 "gray30".</p></td>
     </tr>
     <tr>
@@ -261,8 +260,8 @@ type="Comparison of Genotype".</p></td>
     <tr>
       <th>largeSize</th>
       <td><p>larger labels text size to use for two selected genotypes in
-type="Comparison of Genotype", and for the outermost genotypes in
-type="Which Won Where/What". Defaults to 4.5.</p></td>
+`type="Comparison of Genotype"`, and for the outermost genotypes in
+`type="Which Won Where/What"`. Defaults to 4.5.</p></td>
     </tr>
     <tr>
       <th>axis_expand</th>
@@ -271,28 +270,28 @@ enable fitting of labels. Defaults to 1.2.</p></td>
     </tr>
     <tr>
       <th>axislabels</th>
-      <td><p>logical, if this argument is TRUE labels for axes are
-included. Defaults to TRUE.</p></td>
+      <td><p>logical, if this argument is `TRUE` labels for axes are
+included. Defaults to `TRUE`.</p></td>
     </tr>
     <tr>
       <th>axes</th>
-      <td><p>logical, if this argument is TRUE x and y axes going through the
-origin. Defaults to TRUE.</p></td>
+      <td><p>logical, if this argument is `TRUE` x and y axes going through the
+origin are drawn. Defaults to `TRUE`.</p></td>
     </tr>
     <tr>
       <th>limits</th>
-      <td><p>logical, if this argument is TRUE the axes are rescaled.
-Defaults to TRUE.</p></td>
+      <td><p>logical, if this argument is `TRUE` the axes are re-scaled.
+Defaults to `TRUE`.</p></td>
     </tr>
     <tr>
       <th>titles</th>
-      <td><p>logical, if this argument is TRUE a plot title is included.
-Defaults to TRUE.</p></td>
+      <td><p>logical, if this argument is `TRUE` a plot title is included.
+Defaults to `TRUE`.</p></td>
     </tr>
     <tr>
       <th>footnote</th>
-      <td><p>logical, if this argument is TRUE a footnote is included.
-Defaults to TRUE.</p></td>
+      <td><p>logical, if this argument is `TRUE` a footnote is included.
+Defaults to `TRUE`.</p></td>
     </tr>
     </table>
 
@@ -316,8 +315,8 @@ Defaults to TRUE.</p></td>
 </div><div class='img'><img src='GGEPlot-1.png' alt='' width='700' height='433' /></div><div class='input'>
  <span class='co'># Data with replication</span>
  <span class='fu'><a href='https://rdrr.io/r/utils/data.html'>data</a></span><span class='op'>(</span><span class='va'>plrv</span><span class='op'>)</span>
- <span class='va'>GGE2</span> <span class='op'>&lt;-</span> <span class='fu'><a href='GGEmodel.html'>GGEmodel</a></span><span class='op'>(</span><span class='va'>plrv</span>,genotype<span class='op'>=</span><span class='st'>"Genotype"</span>,environment<span class='op'>=</span><span class='st'>"Locality"</span>,
- response<span class='op'>=</span><span class='st'>"Yield"</span>, rep<span class='op'>=</span><span class='st'>"Rep"</span>, centering <span class='op'>=</span> <span class='st'>"tester"</span><span class='op'>)</span>
+ <span class='va'>GGE2</span> <span class='op'>&lt;-</span> <span class='fu'><a href='GGEmodel.html'>GGEmodel</a></span><span class='op'>(</span><span class='va'>plrv</span>, genotype <span class='op'>=</span> <span class='st'>"Genotype"</span>, environment <span class='op'>=</span> <span class='st'>"Locality"</span>,
+                  response <span class='op'>=</span> <span class='st'>"Yield"</span>, rep <span class='op'>=</span> <span class='st'>"Rep"</span>, centering <span class='op'>=</span> <span class='st'>"tester"</span><span class='op'>)</span>
  <span class='fu'>GGEPlot</span><span class='op'>(</span><span class='va'>GGE2</span><span class='op'>)</span>
 </div><div class='img'><img src='GGEPlot-2.png' alt='' width='700' height='433' /></div><div class='input'>
 </div></pre>

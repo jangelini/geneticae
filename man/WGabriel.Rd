@@ -16,15 +16,19 @@ experiment.}
 \item{Wsup}{superior weight}
 }
 \value{
-A list containing: \itemize{\item Peso: weight that provides the best
- predictive difference; \item NumeroIterWGabriel: the final number of
- iterations; \item CritConvergWGabriel: the maximum change of the estimated
- values for missing cells in the last step of iteration (the precision of
- convergence);\item GabrielWImput: the imputed matrix (filled in with the
- missing values estimated by the Weighted GabrielEigen procedure).}
+A list containing:
+ \itemize{
+   \item Peso: weight that provides the best predictive difference;
+   \item NumeroIterWGabriel: the final number of iterations;
+   \item CritConvergWGabriel: the maximum change of the estimated
+   values for missing cells in the last step of iteration (the precision of
+   convergence);
+   \item GabrielWImput: the imputed matrix (filled in with the
+   missing values estimated by the Weighted GabrielEigen procedure).
+ }
 }
 \description{
-Weighted GabrielEigen imputation method
+agregar descripcion.
 }
 \references{
 Arciniegas-Alarcón S., García-Peña M., Krzanowski W.J., Dias

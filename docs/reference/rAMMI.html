@@ -213,13 +213,13 @@ variables that will not be used in the analysis can be included.</p></td>
     </tr>
     <tr>
       <th>titles</th>
-      <td><p>logical, if this argument is TRUE a plot title is generated.
-Defaults to TRUE.</p></td>
+      <td><p>logical, if this argument is `TRUE` a plot title is generated.
+Defaults to `TRUE`.</p></td>
     </tr>
     <tr>
       <th>footnote</th>
-      <td><p>logical, if this argument is TRUE a footnote is generated.
-Defaults to TRUE.</p></td>
+      <td><p>logical, if this argument is `TRUE` a footnote is generated.
+Defaults to `TRUE`.</p></td>
     </tr>
     <tr>
       <th>axis_expand</th>
@@ -228,18 +228,18 @@ enable fitting of labels. Defaults to 1.2.</p></td>
     </tr>
     <tr>
       <th>limits</th>
-      <td><p>logical. If TRUE axes are automatically rescaled. Defaults to
-TRUE.</p></td>
+      <td><p>logical. If `TRUE` axes are automatically rescaled. Defaults to
+`TRUE`.</p></td>
     </tr>
     <tr>
       <th>axes</th>
-      <td><p>logical, if this argument is TRUE axes passing through the
-origin are drawn. Defaults to TRUE.</p></td>
+      <td><p>logical, if this argument is `TRUE` axes passing through the
+origin are drawn. Defaults to `TRUE`.</p></td>
     </tr>
     <tr>
       <th>axislabels</th>
-      <td><p>logical, if this argument is TRUE labels axes are included.
-Defaults to TRUE.</p></td>
+      <td><p>logical, if this argument is `TRUE` labels axes are included.
+Defaults to `TRUE`.</p></td>
     </tr>
     </table>
 
@@ -261,16 +261,15 @@ Defaults to TRUE.</p></td>
 <span class='co'># Data without replication</span>
 <span class='fu'><a href='https://rdrr.io/r/utils/data.html'>data</a></span><span class='op'>(</span><span class='va'>yan.winterwheat</span><span class='op'>)</span>
 <span class='va'>BIP_AMMI</span> <span class='op'>&lt;-</span> <span class='fu'>rAMMI</span><span class='op'>(</span><span class='va'>yan.winterwheat</span>, genotype <span class='op'>=</span> <span class='st'>"gen"</span>, environment <span class='op'>=</span> <span class='st'>"env"</span>,
-                 response <span class='op'>=</span> <span class='st'>"yield"</span>, type <span class='op'>=</span> <span class='st'>"AMMI"</span><span class='op'>)</span>
+                  response <span class='op'>=</span> <span class='st'>"yield"</span>, type <span class='op'>=</span> <span class='st'>"AMMI"</span><span class='op'>)</span>
 <span class='va'>BIP_AMMI</span>
 </div><div class='img'><img src='rAMMI-1.png' alt='' width='700' height='433' /></div><div class='input'>
 <span class='co'># Data with replication</span>
 <span class='fu'><a href='https://rdrr.io/r/utils/data.html'>data</a></span><span class='op'>(</span><span class='va'>plrv</span><span class='op'>)</span>
 <span class='va'>BIP_AMMI2</span> <span class='op'>&lt;-</span> <span class='fu'>rAMMI</span><span class='op'>(</span><span class='va'>plrv</span>, genotype <span class='op'>=</span> <span class='st'>"Genotype"</span>, environment <span class='op'>=</span> <span class='st'>"Locality"</span>,
-                  response<span class='op'>=</span><span class='st'>"Yield"</span>, rep <span class='op'>=</span> <span class='st'>"Rep"</span>, type <span class='op'>=</span> <span class='st'>"AMMI"</span><span class='op'>)</span>
+                   response<span class='op'>=</span><span class='st'>"Yield"</span>, rep <span class='op'>=</span> <span class='st'>"Rep"</span>, type <span class='op'>=</span> <span class='st'>"AMMI"</span><span class='op'>)</span>
 <span class='va'>BIP_AMMI2</span>
 </div><div class='img'><img src='rAMMI-2.png' alt='' width='700' height='433' /></div><div class='input'>
-
 </div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
