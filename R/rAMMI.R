@@ -1,8 +1,7 @@
 #'AMMI biplots with \pkg{ggplot2}
 #'
-#'Produces clasic or robust AMMI biplot as an object of class 'ggplot'. It is
-#'possible to customize it so that the stylistic attributes are to the user's
-#'preferences.
+#'Produces classical or robust AMMI biplot as an object of class 'ggplot', with
+#'options for customization.
 #'
 #'@param Data a dataframe with genotypes, environments, repetitions (if any) and
 #'  the phenotypic trait of interest. There is no restriction on the order in
@@ -10,12 +9,12 @@
 #'  variables that will not be used in the analysis can be included.
 #'@param genotype column name containing genotypes.
 #'@param environment column name containing environments.
-#'@param response column name containing phenotypic trait.
-#'@param rep column name containing replications. If this argument is NULL,
-#'  there is no replication available on the data.
+#'@param response column name containing the phenotypic trait of interest.
+#'@param rep column name containing replications. If this argument is `NULL`
+#'  (default), replications are not considered for the analysis.
 #'@param Ncomp number of principal components that will be used in the analysis.
-#'@param type method. Either "AMMI", "rAMMI", "hAMMI", "gAMMI", "lAMMI" or
-#'  "ppAMMI". Default to "AMMI".
+#'@param type method for fitting the AMMI model: "AMMI", "rAMMI", "hAMMI",
+#'  "gAMMI", "lAMMI" or "ppAMMI" (see Details). Defaults to "AMMI".
 #'@param colGen genotype attributes colour. Defaults to "gray".
 #'@param colEnv environment attributes colour. Defaults to "darkred".
 #'@param sizeGen genotype labels text size. Defaults to 4.
@@ -26,14 +25,17 @@
 #'  Defaults to TRUE.
 #'@param footnote logical, if this argument is TRUE a footnote is generated.
 #'  Defaults to TRUE.
-#'@param limits logical. If TRUE then automatically rescale axes. Defaults to
+#'@param limits logical. If TRUE axes are automatically rescaled. Defaults to
 #'  TRUE.
-#'@param axes logical, if this argument is TRUE x and y axes going through the
-#'  origin. Defaults to TRUE.
+#'@param axes logical, if this argument is TRUE axes passing through the
+#'  origin are drawn. Defaults to TRUE.
 #'@param axislabels logical, if this argument is TRUE labels axes are included.
 #'  Defaults to TRUE.
 #'
 #'@return A biplot of class  \code{ggplot}
+#'
+#'@details Comentar cuál es cada método.
+#'
 #'@references Rodrigues P.C., Monteiro A., Lourenco V.M. (2015). \emph{A robust
 #'  AMMI model for the analysis of genotype-by-environment data}. Bioinformatics
 #'  32, 58–66.
@@ -44,14 +46,14 @@
 #'library(geneticae)
 #'# Data without replication
 #'data(yan.winterwheat)
-#'BIP_AMMI <- rAMMI(yan.winterwheat, genotype="gen",environment="env", response="yield",
-#'              type = "AMMI")
+#'BIP_AMMI <- rAMMI(yan.winterwheat, genotype = "gen", environment = "env",
+#'                  response = "yield", type = "AMMI")
 #'BIP_AMMI
 #'
 #'# Data with replication
 #'data(plrv)
-#'BIP_AMMI2 <- rAMMI(plrv, genotype="Genotype",environment="Locality", response="Yield",
-#'              rep="Rep", type = "AMMI")
+#'BIP_AMMI2 <- rAMMI(plrv, genotype = "Genotype", environment = "Locality",
+#'                   response="Yield", rep = "Rep", type = "AMMI")
 #'BIP_AMMI2
 #'
 #'

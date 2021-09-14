@@ -23,3 +23,23 @@ navbar:
 authors:
     Julia Angelini:
     href: https://www.linkedin.com/in/julia-angelini-609a67a7
+
+reference:
+  - title: "Models and biplots for multi-environment trials"
+    desc: >
+      Functions to fit the AMMI and SREG models and their biplots.
+    contents:
+      - rAMMI
+      - GGEmodel
+      - GGEPlot
+  - title: "Missing data imputation"
+    desc: >
+      Methods for the imputation of missing data in multi-environment trials.
+    contents:
+      - imputation
+  - title: "Datasets"
+    desc: >
+      Sample datasets (see the [agricolae](https://CRAN.R-project.org/package=agricolae) package).
+    contents:
+      - yan.winterwheat
+      - plrv

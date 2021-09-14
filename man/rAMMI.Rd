@@ -34,15 +34,15 @@ variables that will not be used in the analysis can be included.}
 
 \item{environment}{column name containing environments.}
 
-\item{response}{column name containing phenotypic trait.}
+\item{response}{column name containing the phenotypic trait of interest.}
 
-\item{rep}{column name containing replications. If this argument is NULL,
-there is no replication available on the data.}
+\item{rep}{column name containing replications. If this argument is `NULL`
+(default), replications are not considered for the analysis.}
 
 \item{Ncomp}{number of principal components that will be used in the analysis.}
 
-\item{type}{method. Either "AMMI", "rAMMI", "hAMMI", "gAMMI", "lAMMI" or
-"ppAMMI". Default to "AMMI".}
+\item{type}{method for fitting the AMMI model: "AMMI", "rAMMI", "hAMMI",
+"gAMMI", "lAMMI" or "ppAMMI" (see Details). Defaults to "AMMI".}
 
 \item{colGen}{genotype attributes colour. Defaults to "gray".}
 
@@ -61,11 +61,11 @@ Defaults to TRUE.}
 \item{axis_expand}{multiplication factor to expand the axis limits by to
 enable fitting of labels. Defaults to 1.2.}
 
-\item{limits}{logical. If TRUE then automatically rescale axes. Defaults to
+\item{limits}{logical. If TRUE axes are automatically rescaled. Defaults to
 TRUE.}
 
-\item{axes}{logical, if this argument is TRUE x and y axes going through the
-origin. Defaults to TRUE.}
+\item{axes}{logical, if this argument is TRUE axes passing through the
+origin are drawn. Defaults to TRUE.}
 
 \item{axislabels}{logical, if this argument is TRUE labels axes are included.
 Defaults to TRUE.}
@@ -74,23 +74,25 @@ Defaults to TRUE.}
 A biplot of class  \code{ggplot}
 }
 \description{
-Produces clasic or robust AMMI biplot as an object of class 'ggplot'. It is
-possible to customize it so that the stylistic attributes are to the user's
-preferences.
+Produces classical or robust AMMI biplot as an object of class 'ggplot', with
+options for customization.
+}
+\details{
+Comentar cuál es cada método.
 }
 \examples{
 
 library(geneticae)
 # Data without replication
 data(yan.winterwheat)
-BIP_AMMI <- rAMMI(yan.winterwheat, genotype="gen",environment="env", response="yield",
-             type = "AMMI")
+BIP_AMMI <- rAMMI(yan.winterwheat, genotype = "gen", environment = "env",
+                 response = "yield", type = "AMMI")
 BIP_AMMI
 
 # Data with replication
 data(plrv)
-BIP_AMMI2 <- rAMMI(plrv, genotype="Genotype",environment="Locality", response="Yield",
-             rep="Rep", type = "AMMI")
+BIP_AMMI2 <- rAMMI(plrv, genotype = "Genotype", environment = "Locality",
+                  response="Yield", rep = "Rep", type = "AMMI")
 BIP_AMMI2
 
 

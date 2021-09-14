@@ -47,9 +47,8 @@
 
 
 <meta property="og:title" content="AMMI biplots with ggplot2 — rAMMI" />
-<meta property="og:description" content="Produces clasic or robust AMMI biplot as an object of class 'ggplot'. It is
-possible to customize it so that the stylistic attributes are to the user's
-preferences." />
+<meta property="og:description" content="Produces classical or robust AMMI biplot as an object of class 'ggplot', with
+options for customization." />
 
 
 
@@ -136,9 +135,8 @@ preferences." />
     </div>
 
     <div class="ref-description">
-    <p>Produces clasic or robust AMMI biplot as an object of class 'ggplot'. It is
-possible to customize it so that the stylistic attributes are to the user's
-preferences.</p>
+    <p>Produces classical or robust AMMI biplot as an object of class 'ggplot', with
+options for customization.</p>
     </div>
 
     <pre class="usage"><span class='fu'>rAMMI</span><span class='op'>(</span>
@@ -181,12 +179,12 @@ variables that will not be used in the analysis can be included.</p></td>
     </tr>
     <tr>
       <th>response</th>
-      <td><p>column name containing phenotypic trait.</p></td>
+      <td><p>column name containing the phenotypic trait of interest.</p></td>
     </tr>
     <tr>
       <th>rep</th>
-      <td><p>column name containing replications. If this argument is NULL,
-there is no replication available on the data.</p></td>
+      <td><p>column name containing replications. If this argument is `NULL`
+(default), replications are not considered for the analysis.</p></td>
     </tr>
     <tr>
       <th>Ncomp</th>
@@ -194,8 +192,8 @@ there is no replication available on the data.</p></td>
     </tr>
     <tr>
       <th>type</th>
-      <td><p>method. Either "AMMI", "rAMMI", "hAMMI", "gAMMI", "lAMMI" or
-"ppAMMI". Default to "AMMI".</p></td>
+      <td><p>method for fitting the AMMI model: "AMMI", "rAMMI", "hAMMI",
+"gAMMI", "lAMMI" or "ppAMMI" (see Details). Defaults to "AMMI".</p></td>
     </tr>
     <tr>
       <th>colGen</th>
@@ -230,13 +228,13 @@ enable fitting of labels. Defaults to 1.2.</p></td>
     </tr>
     <tr>
       <th>limits</th>
-      <td><p>logical. If TRUE then automatically rescale axes. Defaults to
+      <td><p>logical. If TRUE axes are automatically rescaled. Defaults to
 TRUE.</p></td>
     </tr>
     <tr>
       <th>axes</th>
-      <td><p>logical, if this argument is TRUE x and y axes going through the
-origin. Defaults to TRUE.</p></td>
+      <td><p>logical, if this argument is TRUE axes passing through the
+origin are drawn. Defaults to TRUE.</p></td>
     </tr>
     <tr>
       <th>axislabels</th>
@@ -248,6 +246,9 @@ Defaults to TRUE.</p></td>
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
     <p>A biplot of class  <code>ggplot</code></p>
+    <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
+
+    <p>Comentar cuál es cada método.</p>
     <h2 class="hasAnchor" id="references"><a class="anchor" href="#references"></a>References</h2>
 
     <p>Rodrigues P.C., Monteiro A., Lourenco V.M. (2015). <em>A robust
@@ -259,14 +260,14 @@ Defaults to TRUE.</p></td>
 <span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://github.com/jangelini/geneticae'>geneticae</a></span><span class='op'>)</span>
 <span class='co'># Data without replication</span>
 <span class='fu'><a href='https://rdrr.io/r/utils/data.html'>data</a></span><span class='op'>(</span><span class='va'>yan.winterwheat</span><span class='op'>)</span>
-<span class='va'>BIP_AMMI</span> <span class='op'>&lt;-</span> <span class='fu'>rAMMI</span><span class='op'>(</span><span class='va'>yan.winterwheat</span>, genotype<span class='op'>=</span><span class='st'>"gen"</span>,environment<span class='op'>=</span><span class='st'>"env"</span>, response<span class='op'>=</span><span class='st'>"yield"</span>,
-             type <span class='op'>=</span> <span class='st'>"AMMI"</span><span class='op'>)</span>
+<span class='va'>BIP_AMMI</span> <span class='op'>&lt;-</span> <span class='fu'>rAMMI</span><span class='op'>(</span><span class='va'>yan.winterwheat</span>, genotype <span class='op'>=</span> <span class='st'>"gen"</span>, environment <span class='op'>=</span> <span class='st'>"env"</span>,
+                 response <span class='op'>=</span> <span class='st'>"yield"</span>, type <span class='op'>=</span> <span class='st'>"AMMI"</span><span class='op'>)</span>
 <span class='va'>BIP_AMMI</span>
 </div><div class='img'><img src='rAMMI-1.png' alt='' width='700' height='433' /></div><div class='input'>
 <span class='co'># Data with replication</span>
 <span class='fu'><a href='https://rdrr.io/r/utils/data.html'>data</a></span><span class='op'>(</span><span class='va'>plrv</span><span class='op'>)</span>
-<span class='va'>BIP_AMMI2</span> <span class='op'>&lt;-</span> <span class='fu'>rAMMI</span><span class='op'>(</span><span class='va'>plrv</span>, genotype<span class='op'>=</span><span class='st'>"Genotype"</span>,environment<span class='op'>=</span><span class='st'>"Locality"</span>, response<span class='op'>=</span><span class='st'>"Yield"</span>,
-             rep<span class='op'>=</span><span class='st'>"Rep"</span>, type <span class='op'>=</span> <span class='st'>"AMMI"</span><span class='op'>)</span>
+<span class='va'>BIP_AMMI2</span> <span class='op'>&lt;-</span> <span class='fu'>rAMMI</span><span class='op'>(</span><span class='va'>plrv</span>, genotype <span class='op'>=</span> <span class='st'>"Genotype"</span>, environment <span class='op'>=</span> <span class='st'>"Locality"</span>,
+                  response<span class='op'>=</span><span class='st'>"Yield"</span>, rep <span class='op'>=</span> <span class='st'>"Rep"</span>, type <span class='op'>=</span> <span class='st'>"AMMI"</span><span class='op'>)</span>
 <span class='va'>BIP_AMMI2</span>
 </div><div class='img'><img src='rAMMI-2.png' alt='' width='700' height='433' /></div><div class='input'>
 
