@@ -1,10 +1,10 @@
-pandoc: 2.11.4
+pandoc: 2.9.2.1
 pkgdown: 1.6.1
 pkgdown_sha: ~
 articles:
   a-tutorial: a-tutorial.html
   b-shiny: b-shiny.html
-last_built: 2021-09-15T19:54Z
+last_built: 2021-09-15T21:37Z
 urls:
   reference: https://github.com/jangelini/reference
   article: https://github.com/jangelini/articles
