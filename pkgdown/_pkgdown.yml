@@ -8,7 +8,7 @@ template:
 navbar:
   title: "geneticae"
   left:
-    - text: "Getting started"
+    - text: "Tutorial"
       href: articles/a-tutorial.html
     - text: "Functions and datasets reference"
       href: reference/index.html

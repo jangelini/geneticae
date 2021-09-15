@@ -27,8 +27,9 @@ body{
 text-align: justify}
 </style>
   
-The `geneticae` can be used through a Shiny app, making it available not only for R
+The `geneticae` can be used through [this](https://github.com/jangelini/Geneticae-Shiny-Web-APP)  Shiny app, making it available not only for R
 programmers. 
+
 
 ---
 SITE IN CONSTRUCTION
