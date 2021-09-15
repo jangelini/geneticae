@@ -72,7 +72,7 @@
 <ul class="nav navbar-nav navbar-right">
 <li>
   <a href="https://github.com/jangelini/geneticae">
-    <span class="fas fa-github"></span>
+    <span class="fa fa-github"></span>
      
   </a>
 </li>
@@ -123,9 +123,9 @@
 <!-- install.packages("geneticae") -->
 <!-- ``` -->
 <p>You can install the development version from our <a href="https://github.com/jangelini/geneticae">GitHub repo</a> with:</p>
-<div class="sourceCode" id="cb1"><pre class="downlit">
-<span class="co"># install.packages("devtools")</span>
-<span class="fu">devtools</span><span class="fu">::</span><span class="fu"><a href="https://devtools.r-lib.org//reference/remote-reexports.html">install_github</a></span><span class="op">(</span><span class="st">"jangelini/geneticae"</span><span class="op">)</span></pre></div>
+<div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co"># install.packages("devtools")</span>
+<span class="fu">devtools</span><span class="fu">::</span><span class="fu"><a href="https://devtools.r-lib.org//reference/remote-reexports.html">install_github</a></span><span class="op">(</span><span class="st">"jangelini/geneticae"</span><span class="op">)</span></code></pre></div>
 </div>
 <div id="shiny-app" class="section level2">
 <h2 class="hasAnchor">
@@ -138,15 +138,15 @@
 <p>If you are just getting started with <code>geneticae</code> we recommend visiting the vignettes and exploring the examples throughout the package documentation.</p>
 <p>Here we present a small example.</p>
 <p>The dataset <code>yan.winterwheat</code> has information about the yield of 18 winter wheat varieties grown in nine environments in Ontario at 1993. The function <code><a href="reference/GGEPlot.html">GGEPlot()</a></code> builds several GGE biplots views. The basic biplot is produced with the argument <code>type="Biplot"</code>. If the function is used with the argument <code>type = "Selected Environment"</code> and the name of one environment in <code>selectedE</code> a line that passes through the environment marker , i.e. OA93, and the biplot origin is added, and the most suitable cultivars for that particular environment can be identify looking at the proyection of them onto this axis. Thus, at OA93, the highest-yielding cultivar was <em>Zav</em>, and the lowest-yielding cultivar was <em>Luc</em>. The perpendicular line to the OA93 axis separates genotypes that yielded above and below the mean in this environment.</p>
-<div class="sourceCode" id="cb2"><pre class="downlit">
-<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/jangelini/geneticae">geneticae</a></span><span class="op">)</span>
+<div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/jangelini/geneticae">geneticae</a></span><span class="op">)</span>
 
 <span class="va">GGE1</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/GGEmodel.html">GGEmodel</a></span><span class="op">(</span><span class="va">yan.winterwheat</span>, genotype <span class="op">=</span> <span class="st">"gen"</span>, environment <span class="op">=</span> <span class="st">"env"</span>, 
                  response <span class="op">=</span> <span class="st">"yield"</span>, centering <span class="op">=</span> <span class="st">"tester"</span><span class="op">)</span>
 
 
 <span class="fu"><a href="reference/GGEPlot.html">GGEPlot</a></span><span class="op">(</span><span class="va">GGE1</span>, type <span class="op">=</span> <span class="st">"Selected Environment"</span>, selectedE <span class="op">=</span> <span class="st">"OA93"</span>, 
-        footnote <span class="op">=</span> <span class="cn">F</span>, titles <span class="op">=</span> <span class="cn">F</span><span class="op">)</span></pre></div>
+        footnote <span class="op">=</span> <span class="cn">F</span>, titles <span class="op">=</span> <span class="cn">F</span><span class="op">)</span></code></pre></div>
 <div class="figure" style="text-align: center">
 <p><img src="reference/figures/README-unnamed-chunk-3-1.png" alt="Figure: comparison of cultivar performance in a selected environment." width="45%"></p>
 <p class="caption">

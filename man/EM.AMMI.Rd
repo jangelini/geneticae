@@ -96,7 +96,8 @@ A list containing:
  }
 }
 \description{
-Agregar descripcion.
+This function was writted by Paderewski (2013) and allow imputing
+ missing values by the EM-AMMI algorithm
 }
 \references{
 Paderewski, J. (2013). \emph{An R function for imputation of

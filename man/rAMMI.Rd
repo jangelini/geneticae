@@ -42,7 +42,7 @@ variables that will not be used in the analysis can be included.}
 \item{Ncomp}{number of principal components that will be used in the analysis.}
 
 \item{type}{method for fitting the AMMI model: "AMMI", "rAMMI", "hAMMI",
-"gAMMI", "lAMMI" or "ppAMMI" (see Details). Defaults to "AMMI".}
+"gAMMI", "lAMMI" or "ppAMMI" (see References). Defaults to "AMMI".}
 
 \item{colGen}{genotype attributes colour. Defaults to "gray".}
 

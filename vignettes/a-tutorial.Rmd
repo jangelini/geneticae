@@ -165,10 +165,11 @@ is found and also the model to be obtained are indicated.  Optionally, the
 percentage of GEI explained by the GE biplot can be added as a footnote with
 `footnote = T`, as well as a tittle with `titles = T`. In this example, BH93,
 KE93 and OA93 are the environments that contribute the most to the interaction
-as have the vectors with greater length. The cultivars _m12_ and _Kat_ present
-similar interaction patterns because of their closeness and very different from
-_Ann_ and _Aug_. The closeness between _Dia_  and BH93 indicates strong positive
-association between the cultivar and the environment, that is to say, it is a
+as their vectors are the longest ones. The cultivars _m12_ and _Kat_ present
+similar interaction patterns (their markers are close to each other in the biplot)
+and they are very different from _Ann_ and _Aug_, for example. 
+The closeness between the cultivar _Dia_  and the environment BH93 indicates a 
+strong positive association between them, which means that BH93 is a 
 extremely favorable environment for that genotype. As OA93 and _Luc_ markers are
 opposite, this environment is considerably unfavorable for that genotype.
 Finally, _Cas_ and _Reb_ are close to the origin, which means that they adapt
@@ -255,8 +256,8 @@ multiplicative terms. The angles between genotypes markers and environments
 vectors are considered to understand this plot. Thus, for example, _Kat_
 performs below the average in all environments, as it has an angle greater than
 90$°$ with all environments. On the other hand, _Fun_ presents an above-average
-performance in all locations except OA93 and KE93, since the acute angles.
-Environmental vectors length gives a measure of the environment's ability to
+performance in all locations except OA93 and KE93, as indicated by the acute angles.
+The length of the environment vectors is a measure of the environment's ability to
 discriminate between crops.
 
 ```{r, fig.align='center', fig.cap='Figure 2: GGE biplot based on yield data of 1993 Ontario winter wheat performance trials. The scaling method used is symmetrical singular value partitioning (by default). The 78% of G + GE variability is explained by the first two multiplicative terms. Cultivars are shown in lowercase and environments in uppercase.'}
@@ -269,8 +270,8 @@ environment of interest, i.e., OA93. To do this with GGE biplots, Yan and Hunt
 biplot origin, which may be referred to as the OA93 axis. The performance of the
 cultivars in this particular environment can be ranked projecting them onto this
 axis.
-The performance of different genotypes in OA93 can be done setting `type =
-"Selected Environment"` and providing the name of the environment (OA93) in
+This can be done by setting `type = "Selected Environment"` and providing 
+the name of the environment (OA93) in
 `selectedE` (Figure 3). Thus, at OA93, the highest-yielding cultivar was _Zav_,
 and the lowest-yielding cultivar was _Luc_. The line that passes through the
 biplot origin and is perpendicular to the OA93 axis separates genotypes that
@@ -300,8 +301,8 @@ It is also possible to compare two cultivars, i.e. _Kat_ and _Cas_, linking them
 with a line and a segment perpendicular to it. To obtain this GGE biplots view
 the argument  `type = "Comparison of Genotype"` and the genotypes to be compared
 `selectedG1 = "Kat"` and `selectedG2 = "Cas"` must be indicated (Figure 5).
-_Cas_ it was more yielding than _Kat_ in all environments as all the
-environments are on the same side of the perpendicular line as _Cas_.
+_Cas_ was more yielding than _Kat_ in all environments as they all are in the 
+same side of the perpendicular line as _Cas_.
 
 ```{r,  fig.align='center', fig.cap='Figure 5: comparison of the cultivars _Kat_ and _Cas_. The scaling method used is symmetrical singular value partitioning (by default). The 78% of G + GE variability is explained by the first two multiplicative terms. Cultivars are shown in lowercase and environments in uppercase.'}
 GGEPlot(GGE1, type = "Comparison of Genotype", 
@@ -335,17 +336,17 @@ GGEPlot(GGE1, type = "Which Won Where/What", footnote = F,
 
 ```
 
-Selecting cultivars within each mega-environments will be an issue among plant
-breeders. Figure 6, clearly suggests that _Zav_ was the best cultivar for OA93
-and KE93, and _Fun_ was the best cultivar for the other locations. However,
+Selecting cultivars within each mega-environments is an issue among plant
+breeders. Figure 6 clearly suggests that _Zav_ is the best cultivar for OA93
+and KE93, and _Fun_ is the best cultivar for the other locations. However,
 breeders do not select a single cultivar in each megaenvironment. Instead, they
 evaluate all cultivars in order to get an idea of their performance (yield and
 stability). 
 
 In the GGE biplot it is also possible to visualize mean yield and stability of
 genotypes in yield units _per se_ (Figure 7 and 8). The GGE biplot based on
-*genotype-focused scaling*, obtained indicatig `SVP = "row"` in `GGEmodel()`,
-provides a superior means for visualizing both mean performance and stability of
+*genotype-focused scaling*, obtained indicating `SVP = "row"` in `GGEmodel()`,
+provides an useful way to visualize both mean performance and stability of
 the tested genotypes. This is because the unit of both axes for the genotypes is
 the original unit of the data.
 
@@ -372,7 +373,7 @@ GGEPlot(GGE2, type = "Mean vs. Stability", footnote = F, titles = F)
 ```
 
 
-Figure 8 allow comparing the cultivars with the "ideal" one, with the highest
+Figure 8 compares the cultivars to the "ideal" one with the highest
 yield and absolute stability. This ideal cultivar is represented by a small
 circle and is used as a reference, as it rarely exists. The distance between
 cultivars and the ideal one can be used as a measure of convenience. Concentric

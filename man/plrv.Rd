@@ -12,7 +12,10 @@ Data frame with 504 observations and 6 variables (genotype,
 data(plrv)
 }
 \description{
-Yield, plant weight and plot of 28 genotypes in Peru.
+resistance study to PLRV (Patato Leaf Roll Virus) causing leaf
+curl. 28 genotypes were experimented at 6 locations in Peru. Each clone was
+evaluated three times in each environment, and yield, plant weight and plot were
+registered.
 }
 \examples{
 library(geneticae)
