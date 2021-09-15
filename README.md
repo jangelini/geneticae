@@ -6,30 +6,20 @@
 ## Statistical Tools for the Analysis of Multi Environment Agronomic Trials
 
 <!-- cuando este la web poner acá -->
-
 <!-- --- -->
-
 <!-- Web: <https://mpru.github.io/karel/> -->
-
 <!-- CRAN: <https://CRAN.R-project.org/package=karel> -->
-
 <!-- --- -->
-
 <!-- badges: start -->
-
 <!-- dejo esto porque todavia hay links que no estan disponibles: -->
 
 [![Lifecycle:
 experimental](https://img.shields.io/badge/lifecycle-experimental-orange.svg)](https://lifecycle.r-lib.org/articles/stages.html)
 
 <!-- cuando este en cran agregar estas -->
-
 <!-- [![CRAN status](https://www.r-pkg.org/badges/version/geneticae)](https://CRAN.R-project.org/package=geneticae) -->
-
 <!-- [![Downloads](https://cranlogs.r-pkg.org/badges/geneticae?color=blue)](https://cran.rstudio.com/package=geneticae) -->
-
 <!-- [![Codecov test coverage](https://codecov.io/gh/r-lib/geneticae/branch/master/graphs/badge.svg)](https://codecov.io/gh/r-lib/geneticae?branch=master) -->
-
 <!-- badges: end -->
 
 Understanding the relationship between crops performance and environment
@@ -86,15 +76,10 @@ making it available not only for R programmers.
 ## Installation
 
 <!-- poner esto cuando esté en cran -->
-
 <!-- You can install the released version of `geneticae` from -->
-
 <!-- [CRAN](https://CRAN.R-project.org) with: -->
-
 <!-- ``` {r, eval=F} -->
-
 <!-- install.packages("geneticae") -->
-
 <!-- ``` -->
 
 You can install the development version from our [GitHub
@@ -123,13 +108,14 @@ winter wheat varieties grown in nine environments in Ontario at 1993.
 The function `GGEPlot()` builds several GGE biplots views. The basic
 biplot is produced with the argument `type="Biplot"`. If the function is
 used with the argument `type = "Selected Environment"` and the name of
-one environment in `selectedE` a line that passes through the
-environment marker , i.e. OA93, and the biplot origin is added, and the
-most suitable cultivars for that particular environment can be identify
-looking at the proyection of them onto this axis. Thus, at OA93, the
-highest-yielding cultivar was *Zav*, and the lowest-yielding cultivar
-was *Luc*. The perpendicular line to the OA93 axis separates genotypes
-that yielded above and below the mean in this environment.
+one environment is provided in `selectedE`, a line that passes through
+the environment marker (i.e. OA93), and the biplot origin is added. The
+most suitable cultivars for that particular environment can be
+identified looking at their projection onto this axis. Thus, at the
+environment OA93, the highest-yielding cultivar was *Zav*, and the
+lowest-yielding cultivar was *Luc*. The perpendicular line to the OA93
+axis separates genotypes that yielded above and below the mean in this
+environment.
 
 ``` r
 library(geneticae)
@@ -145,11 +131,8 @@ GGEPlot(GGE1, type = "Selected Environment", selectedE = "OA93",
 <div class="figure" style="text-align: center">
 
 <img src="man/figures/README-unnamed-chunk-3-1.png" alt="Figure: comparison of cultivar performance in a selected environment." width="45%" />
-
 <p class="caption">
-
 Figure: comparison of cultivar performance in a selected environment.
-
 </p>
 
 </div>

@@ -118,13 +118,13 @@ The dataset `yan.winterwheat` has information about the yield of 18 winter wheat
 varieties grown in nine environments in Ontario at 1993. The function
 `GGEPlot()` builds several GGE biplots views. The basic biplot is produced with
 the argument `type="Biplot"`. If the function is used with the argument `type =
-"Selected Environment"` and the name of one environment in `selectedE` a line
-that passes through the environment marker , i.e. OA93, and the biplot origin is
-added, and the most suitable cultivars for that particular environment can be
-identify looking at the proyection of them onto this axis. Thus, at OA93, the
-highest-yielding cultivar was _Zav_, and the lowest-yielding cultivar was _Luc_.
-The perpendicular line to the OA93 axis separates genotypes that yielded above
-and below the mean in this environment.
+"Selected Environment"` and the name of one environment is provided in 
+`selectedE`, a line that passes through the environment marker (i.e. OA93), and 
+the biplot origin is added. The most suitable cultivars for that particular 
+environment can be identified looking at their projection onto this axis. Thus, 
+at the environment OA93, the highest-yielding cultivar was _Zav_, and the 
+lowest-yielding cultivar was _Luc_. The perpendicular line to the OA93 axis 
+separates genotypes that yielded above and below the mean in this environment.
 
 ```{r, fig.align='center', fig.cap='Figure: comparison of cultivar performance in a selected environment.'}
 library(geneticae)
