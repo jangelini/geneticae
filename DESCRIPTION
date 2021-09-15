@@ -22,8 +22,7 @@ Authors@R: c(
 Description: Data from multi environment agronomic trials, which are often 
   carried out by plant breeders, can be analyzed with the tools offered by this 
   package such as the Additive Main effects and Multiplicative Interaction model 
-  or 'AMMI' ('Gauch' 1988, 
-  <[https://www.jstor.org/stable/i343418]https://www.jstor.org/stable/i343418>) 
+  or 'AMMI' ('Gauch' 1992, ISBN:9780444892409) 
   and the Site Regression model or 'SREG' ('Cornelius' 1996, 
   <doi:10.1201/9780367802226>). Since these methods present a poor performance 
   under the presence of outliers and missing values, this package includes 
