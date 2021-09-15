@@ -131,19 +131,15 @@ yan.winterwheat[1,3]<-NA
 yan.winterwheat[3,3]<-NA
 yan.winterwheat[2,3]<-NA
 
-\dontrun{
 imputation(yan.winterwheat, genotype = "gen", environment = "env",
            response = "yield", type = "EM-AMMI")
-}
 # Data with replications
 data(plrv)
 plrv[1,3] <- NA
 plrv[3,3] <- NA
 plrv[2,3] <- NA
-\dontrun{
 imputation(plrv, genotype = "Genotype", environment = "Locality",
            response = "Yield", rep = "Rep", type = "EM-SVD")
-}
 
 }
 \references{
