@@ -112,12 +112,28 @@ You can use `geneticae` through
 If you are just getting started with `geneticae` we recommend visiting the
 vignettes and exploring the examples throughout the package documentation.
 
-Here we present a small example: PONDRÍA ALGO MÁS
+Here we present a small example. 
 
-```{r, fig.height=5, fig.width=5, fig.align='center'}
+The dataset `yan.winterwheat` has information about the yield of 18 winter wheat
+varieties grown in nine environments in Ontario at 1993. The function
+`GGEPlot()` builds several GGE biplots views. The basic biplot is produced with
+the argument `type="Biplot"`. If the function is used with the argument `type =
+"Selected Environment"` and the name of one environment in `selectedE` a line
+that passes through the environment marker , i.e. OA93, and the biplot origin is
+added, and the most suitable cultivars for that particular environment can be
+identify looking at the proyection of them onto this axis. Thus, at OA93, the
+highest-yielding cultivar was _Zav_, and the lowest-yielding cultivar was _Luc_.
+The perpendicular line to the OA93 axis separates genotypes that yielded above
+and below the mean in this environment.
+
+```{r, fig.align='center', fig.cap='Figure: comparison of cultivar performance in a selected environment.'}
 library(geneticae)
 
-data(yan.winterwheat)
-GGE1 <- GGEmodel(yan.winterwheat)
-GGEPlot(GGE1, sizeGen = 5, sizeEnv = 5, footnote=FALSE, title=FALSE)
+GGE1 <- GGEmodel(yan.winterwheat, genotype = "gen", environment = "env", 
+                 response = "yield", centering = "tester")
+
+
+GGEPlot(GGE1, type = "Selected Environment", selectedE = "OA93", 
+        footnote = F, titles = F)
 ```
+
