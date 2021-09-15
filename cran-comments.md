@@ -2,7 +2,7 @@
 This is a new release to CRAN, and my first re-submission, having fixed these two things mentioned by CRAN's team in their email:
 
 * Added references in the description field of the DESCRIPTION file.
-* Unwrapped examples from \donrun{} blocks.
+* Unwrapped examples from unnecessary \donrun{} blocks.
 
 ## Test environments
 * local ubuntu 20.04, R 4.1.0
