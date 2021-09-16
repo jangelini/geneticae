@@ -6,19 +6,29 @@
 ## Statistical Tools for the Analysis of Multi Environment Agronomic Trials
 
 <!-- cuando este la web poner acá -->
+
 <!-- --- -->
+
 <!-- Web: <https://mpru.github.io/karel/> -->
+
 <!-- CRAN: <https://CRAN.R-project.org/package=karel> -->
+
 <!-- --- -->
+
 <!-- badges: start -->
+
 <!-- dejo esto porque todavia hay links que no estan disponibles: -->
 
 [![Lifecycle:
 experimental](https://img.shields.io/badge/lifecycle-experimental-orange.svg)](https://lifecycle.r-lib.org/articles/stages.html)
 
 <!-- cuando este en cran agregar estas -->
-<!-- [![CRAN status](https://www.r-pkg.org/badges/version/geneticae)](https://CRAN.R-project.org/package=geneticae) -->
-<!-- [![Downloads](https://cranlogs.r-pkg.org/badges/geneticae?color=blue)](https://cran.rstudio.com/package=geneticae) -->
+
+[![CRAN
+status](https://www.r-pkg.org/badges/version/geneticae)](https://CRAN.R-project.org/package=geneticae)
+[![Downloads](https://cranlogs.r-pkg.org/badges/geneticae?color=blue)](https://cran.rstudio.com/package=geneticae)
+[![CRAN
+status](https://www.r-pkg.org/badges/version/geneticae)](https://CRAN.R-project.org/package=geneticae)
 <!-- [![Codecov test coverage](https://codecov.io/gh/r-lib/geneticae/branch/master/graphs/badge.svg)](https://codecov.io/gh/r-lib/geneticae?branch=master) -->
 <!-- badges: end -->
 
@@ -76,10 +86,15 @@ making it available not only for R programmers.
 ## Installation
 
 <!-- poner esto cuando esté en cran -->
+
 <!-- You can install the released version of `geneticae` from -->
+
 <!-- [CRAN](https://CRAN.R-project.org) with: -->
+
 <!-- ``` {r, eval=F} -->
+
 <!-- install.packages("geneticae") -->
+
 <!-- ``` -->
 
 You can install the development version from our [GitHub
@@ -131,8 +146,11 @@ GGEPlot(GGE1, type = "Selected Environment", selectedE = "OA93",
 <div class="figure" style="text-align: center">
 
 <img src="man/figures/README-unnamed-chunk-3-1.png" alt="Figure: comparison of cultivar performance in a selected environment." width="45%" />
+
 <p class="caption">
+
 Figure: comparison of cultivar performance in a selected environment.
+
 </p>
 
 </div>
