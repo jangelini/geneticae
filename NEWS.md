@@ -4,7 +4,7 @@ This is a development version
 
 # geneticae 0.1.0
 
-Fist submission to CRAN.
+First submission to CRAN.
 
 # geneticae 0.0.9000
 
