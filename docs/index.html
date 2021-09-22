@@ -53,7 +53,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="index.html">geneticae</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.1.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.1.9000</span>
       </span>
     </div>
 
@@ -107,10 +107,7 @@
 <!-- dejo esto porque todavia hay links que no estan disponibles: -->
 
 <!-- cuando este en cran agregar estas -->
-<!-- [![CRAN status](https://www.r-pkg.org/badges/version/geneticae)](https://CRAN.R-project.org/package=geneticae) -->
-<!-- [![Downloads](https://cranlogs.r-pkg.org/badges/geneticae?color=blue)](https://cran.rstudio.com/package=geneticae) -->
-<!-- [![Codecov test coverage](https://codecov.io/gh/r-lib/geneticae/branch/master/graphs/badge.svg)](https://codecov.io/gh/r-lib/geneticae?branch=master) -->
-<!-- badges: end -->
+<p><a href="https://CRAN.R-project.org/package=geneticae"><img src="https://www.r-pkg.org/badges/version/geneticae" alt="CRAN status"></a> <a href="https://CRAN.R-project.org/package=geneticae"><img src="https://cranlogs.r-pkg.org/badges/geneticae?color=blue" alt="Downloads"></a> <!-- [![Codecov test coverage](https://codecov.io/gh/r-lib/geneticae/branch/master/graphs/badge.svg)](https://codecov.io/gh/r-lib/geneticae?branch=master) --> <!-- badges: end --></p>
 <p>Understanding the relationship between crops performance and environment is a key problem for plant breeders and geneticists. In advanced stages of breeding programs, in which few genotypes are evaluated, multi-environmental trials (MET) are one of the most used experiments. Such studies test a number of genotypes in multiple environments in order to identify the superior genotypes according to their performance. In these experimentes, crop performance is modeled as a function of genotype (G), environment (E) and genotype-environment interaction (GEI). The presence of GEI generates differential genotypic responses in the different environments. Therefore appropriate statistical methods should be used to obtain an adequate GEI analysis, which is essential for plant breeders.</p>
 <p>The average performance of genotypes through different environments can only be considered in the absence of GEI. However, GEI is almost always present and the comparison of the mean performance between genotypes is not enough. The most widely used methods to analyze MET data are based on regression models, analysis of variance (ANOVA) and multivariate techniques. In particular, two statistical models are widely used among plant breeders as they provide useful graphical tools for the study of GEI: the Additive Main effects and Multiplicative Interaction model (AMMI) and the Site Regression Model (SREG). However, these models are not always efficient enough to analyze MET data structure of plant breeding programs. They present serious limitations in the presence of atypical observations and missing values, which occur very frequently. To overcome this, several imputation alternatives and a robust AMMI were recently proposed in literature.</p>
 <p>Although there are R packages which tackle different aspects of MET data analysis, there aren’t any packages capable of performing all the steps that need to be considered. The <code>geneticae</code> package was created to gather in one place the most useful functions for this type of analysis and it also implements new methodology which can be found in recent literature. More importantly, <code>geneticae</code> is the first package to implement the robust AMMI model and new imputation methods not available before. In addition, there is no need to preprocess the data to use the <code>geneticae</code> package, as it the case of some previous packages which require a data frame or matrix containing genotype by environment means with the genotypes in rows and the environments in columns. In this package, data in long format is required. Genotypes, environments, repetitions (if any) and phenotypic traits of interest can be presented in any order and there is no restriction on columns names. Also, extra information that will not be used in the analysis may be present in the dataset. Finally, <code>geneticae</code> offers a wide variety of options to customize the biplots, which are part of the graphical output of these methods.</p>
@@ -151,9 +148,11 @@
 <span class="fu"><a href="reference/GGEPlot.html">GGEPlot</a></span><span class="op">(</span><span class="va">GGE1</span>, type <span class="op">=</span> <span class="st">"Selected Environment"</span>, selectedE <span class="op">=</span> <span class="st">"OA93"</span>, 
         footnote <span class="op">=</span> <span class="cn">F</span>, titles <span class="op">=</span> <span class="cn">F</span><span class="op">)</span></pre></div>
 <div class="figure" style="text-align: center">
-<img src="reference/figures/README-unnamed-chunk-3-1.png" alt="Figure: comparison of cultivar performance in a selected environment." width="45%"><p class="caption">
-Figure: comparison of cultivar performance in a selected environment.
+<p><img src="reference/figures/README-unnamed-chunk-3-1.png" alt="Figure: comparison of cultivar performance in a selected environment." width="45%"></p>
+<p class="caption">
 </p>
+<p>Figure: comparison of cultivar performance in a selected environment.</p>
+
 </div>
 </div>
 </div>
@@ -163,6 +162,8 @@ Figure: comparison of cultivar performance in a selected environment.
     <div class="links">
 <h2>Links</h2>
 <ul class="list-unstyled">
+<li>Download from CRAN at <br><a href="https://cloud.r-project.org/package=geneticae">https://​cloud.r-project.org/​package=geneticae</a>
+</li>
 <li>Browse source code at <br><a href="https://github.com/jangelini/geneticae/">https://​github.com/​jangelini/​geneticae/​</a>
 </li>
 <li>Report a bug at <br><a href="https://github.com/jangelini/geneticae/issues">https://​github.com/​jangelini/​geneticae/​issues</a>
