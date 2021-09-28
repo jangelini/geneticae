@@ -31,12 +31,11 @@ text-align: justify}
 <!-- devtools::build_vignettes() -->
 # Getting Started
 
-<!-- __Installing the package.__ To install the released version of `geneticae` from -->
-<!-- [CRAN](https://CRAN.R-project.org): -->
+__Installing the package.__ To install the released version of `geneticae` from [CRAN](https://CRAN.R-project.org):
 
-<!-- ``` {r, eval=F} -->
-<!-- install.packages("geneticae") -->
-<!-- ``` -->
+```{r, eval=F}
+install.packages("geneticae")
+```
 
 You can install the development version from our [GitHub repo](https://github.com/jangelini/geneticae) with:
 

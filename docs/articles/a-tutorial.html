@@ -91,7 +91,7 @@ Centro de Estudios Fotosintéticos y Bioquímicos<br>
 Universidad Nacional de Rosario<br>
 Rosario, Argentina</div></h4>
             
-            <h4 class="date">2021-09-27</h4>
+            <h4 class="date">2021-09-28</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/jangelini/geneticae/blob/master/vignettes/a-tutorial.Rmd"><code>vignettes/a-tutorial.Rmd</code></a></small>
       <div class="hidden name"><code>a-tutorial.Rmd</code></div>
@@ -108,17 +108,15 @@ text-align: justify}
 <!-- devtools::build_vignettes() --><div id="getting-started" class="section level1">
 <h1 class="hasAnchor">
 <a href="#getting-started" class="anchor"></a>Getting Started</h1>
-<!-- __Installing the package.__ To install the released version of `geneticae` from -->
-<!-- [CRAN](https://CRAN.R-project.org): -->
-<!-- ``` {r, eval=F} -->
-<!-- install.packages("geneticae") -->
-<!-- ``` -->
-<p>You can install the development version from our <a href="https://github.com/jangelini/geneticae">GitHub repo</a> with:</p>
+<p><strong>Installing the package.</strong> To install the released version of <code>geneticae</code> from <a href="https://CRAN.R-project.org">CRAN</a>:</p>
 <div class="sourceCode" id="cb1"><pre class="downlit">
+<span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html">install.packages</a></span><span class="op">(</span><span class="st">"geneticae"</span><span class="op">)</span></pre></div>
+<p>You can install the development version from our <a href="https://github.com/jangelini/geneticae">GitHub repo</a> with:</p>
+<div class="sourceCode" id="cb2"><pre class="downlit">
 <span class="co"># install.packages("devtools")</span>
 <span class="fu">devtools</span><span class="fu">::</span><span class="fu"><a href="https://devtools.r-lib.org//reference/remote-reexports.html">install_github</a></span><span class="op">(</span><span class="st">"jangelini/geneticae"</span><span class="op">)</span></pre></div>
 <p><strong>Loading the package.</strong> Once the <code>geneticae</code> package is installed, it needs to be loaded by:</p>
-<div class="sourceCode" id="cb2"><pre class="downlit">
+<div class="sourceCode" id="cb3"><pre class="downlit">
 <span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/jangelini/geneticae">geneticae</a></span><span class="op">)</span></pre></div>
 <p><strong>Help files.</strong> Detailed information on <code>geneticae</code> package functions can be obtained from help files using <code><a href="https://rdrr.io/pkg/geneticae/man">help(package="geneticae")</a></code>. The help file for a function, for example <code>imputation</code> can be obtained using <code><a href="../reference/imputation.html">?imputation</a></code> or <code><a href="../reference/imputation.html">help(imputation)</a></code>.</p>
 </div>
@@ -136,7 +134,7 @@ text-align: justify}
 <ul>
 <li>
 <p><code>yan.winterwheat</code> dataset: yield of 18 winter wheat varieties grown in nine environments in Ontario at 1993. Although four blocks or replicas in each environment were performed in the experiment, only yield mean for each variety and environment combination was available in the dataset obtained from the <a href="https://CRAN.R-project.org/package=agridat">agridat</a> package (Wright, 2020).</p>
-<div class="sourceCode" id="cb3"><pre class="downlit">
+<div class="sourceCode" id="cb4"><pre class="downlit">
 <span class="fu"><a href="https://rdrr.io/r/utils/data.html">data</a></span><span class="op">(</span><span class="va">yan.winterwheat</span><span class="op">)</span>
 <span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="va">yan.winterwheat</span><span class="op">)</span></pre></div>
 <pre><code>##   gen  env yield
@@ -149,7 +147,7 @@ text-align: justify}
 </li>
 <li>
 <p><code>plrv</code> dataset: resistance study to PLRV (Patato Leaf Roll Virus) causing leaf curl. 28 genotypes were experimented at 6 locations in Peru. Each clone was evaluated three times in each environment, and yield, plant weight and plot were registered. This dataset was also obtained from the <a href="https://CRAN.R-project.org/package=agricolae">agricolae</a> package (de Mendiburu, 2020).</p>
-<div class="sourceCode" id="cb5"><pre class="downlit">
+<div class="sourceCode" id="cb6"><pre class="downlit">
 <span class="fu"><a href="https://rdrr.io/r/utils/data.html">data</a></span><span class="op">(</span><span class="va">plrv</span><span class="op">)</span>
 <span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="va">plrv</span><span class="op">)</span></pre></div>
 <pre><code>##   Genotype Locality Rep WeightPlant WeightPlot    Yield
@@ -171,11 +169,11 @@ text-align: justify}
 <p>The <em>AMMI model</em> (Gauch, 1988) is widely used to analyse the effect of GEI. This model includes two stages. First, an ANOVA is performed to obtain estimates for the additive main effects of environments and genotypes. Secondly, the residuals from the ANOVA are arranged in a matrix with genotypes in the rows and environments in the columns and a singular value decomposition (SVD) is applied in order to explore patterns related to GEI, still present in the residuals. The result of the first two multiplicative terms of the SVD is often presented in a biplot called GE and represents a two-rank approximation of GEI effects.</p>
 <p>The <code><a href="../reference/rAMMI.html">rAMMI()</a></code> function returns the GE biplot. Data in long format is required by this function, i.e. each row corresponds to one observation and each column to one variable (genotype, environment, repetition (if any) and the observed phenotype). If each genotype has been evaluated more than once at each environment, the phenotypic mean for each combination of genotype and environment is internally calculated and then the model is estimated. Extra variables that will not be used in the analysis may be present in the dataset. Missing values are not allowed (but can be imputated, see below).</p>
 <p>The GE biplot for <code>yan.winterwheat</code> dataset is shown in Figure 1 along with the sentence used to obtain it. The first argument is the input dataset, then the names of the columns in which the necessary information to apply the technique is found and also the model to be obtained are indicated. Optionally, the percentage of GEI explained by the GE biplot can be added as a footnote with <code>footnote = T</code>, as well as a tittle with <code>titles = T</code>. In this example, BH93, KE93 and OA93 are the environments that contribute the most to the interaction as their vectors are the longest ones. The cultivars <em>m12</em> and <em>Kat</em> present similar interaction patterns (their markers are close to each other in the biplot) and they are very different from <em>Ann</em> and <em>Aug</em>, for example. The closeness between the cultivar <em>Dia</em> and the environment BH93 indicates a strong positive association between them, which means that BH93 is a extremely favorable environment for that genotype. As OA93 and <em>Luc</em> markers are opposite, this environment is considerably unfavorable for that genotype. Finally, <em>Cas</em> and <em>Reb</em> are close to the origin, which means that they adapt equally to all environments.</p>
-<div class="sourceCode" id="cb7"><pre class="downlit">
+<div class="sourceCode" id="cb8"><pre class="downlit">
 <span class="fu"><a href="../reference/rAMMI.html">rAMMI</a></span><span class="op">(</span><span class="va">yan.winterwheat</span>, genotype <span class="op">=</span> <span class="st">"gen"</span>, environment <span class="op">=</span> <span class="st">"env"</span>, 
       response <span class="op">=</span> <span class="st">"yield"</span>, type <span class="op">=</span> <span class="st">"AMMI"</span>, footnote <span class="op">=</span> <span class="cn">F</span>, titles <span class="op">=</span> <span class="cn">F</span><span class="op">)</span></pre></div>
 <div class="figure" style="text-align: center">
-<img src="a-tutorial_files/figure-html/unnamed-chunk-6-1.png" alt="Figure 1: GE biplot based on yield data of 1993 Ontario winter wheat performance trials.  The 71.66% of GE variability is explained by the first two multiplicative terms. Cultivars are shown in lowercase and environments in uppercase." width="60%"><p class="caption">
+<img src="a-tutorial_files/figure-html/unnamed-chunk-7-1.png" alt="Figure 1: GE biplot based on yield data of 1993 Ontario winter wheat performance trials.  The 71.66% of GE variability is explained by the first two multiplicative terms. Cultivars are shown in lowercase and environments in uppercase." width="60%"><p class="caption">
 Figure 1: GE biplot based on yield data of 1993 Ontario winter wheat performance trials. The 71.66% of GE variability is explained by the first two multiplicative terms. Cultivars are shown in lowercase and environments in uppercase.
 </p>
 </div>
@@ -186,7 +184,7 @@ Figure 1: GE biplot based on yield data of 1993 Ontario winter wheat performance
 <a href="#site-regression-model" class="anchor"></a>Site Regression model</h2>
 <p>The <em>Site Regression model</em> (SREG, also called <em>genotype plus genotype-by-environment model</em> or <em>GGE model</em>) is another powerful tool for the analysis and interpretation of MET data in breeding programs. In this case, an ANOVA is performed to obtain estimates for the additive main effects of environments and a SVD is performed on the residuals matrix in order to explore patterns related to genotype (G) and GEI.</p>
 <p>The <code><a href="../reference/GGEmodel.html">GGEmodel()</a></code> function is a wrapper for the <code>GGEModel()</code> function of the <a href="https://CRAN.R-project.org/package=GGEBiplots">GGEBiplots</a> package (Dumble, 2017). As for the <code><a href="../reference/rAMMI.html">rAMMI()</a></code> function, data needs to be presented in a long format and repetitions or extra variables in the dataset are allowed. All the combinations between genotypes and environments must be present.</p>
-<div class="sourceCode" id="cb8"><pre class="downlit">
+<div class="sourceCode" id="cb9"><pre class="downlit">
 <span class="va">GGE1</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/GGEmodel.html">GGEmodel</a></span><span class="op">(</span><span class="va">yan.winterwheat</span>, genotype <span class="op">=</span> <span class="st">"gen"</span>, environment <span class="op">=</span> <span class="st">"env"</span>, 
                  response <span class="op">=</span> <span class="st">"yield"</span>, centering <span class="op">=</span> <span class="st">"tester"</span><span class="op">)</span></pre></div>
 <p>The output from <code><a href="../reference/GGEmodel.html">GGEmodel()</a></code> is a list with the following elements:</p>
@@ -219,55 +217,55 @@ Figure 1: GE biplot based on yield data of 1993 Ontario winter wheat performance
 <p>The result of the first two multiplicative terms of the SVD is often presented in a GGE biplot (Yan et al., 2000), which represents a rank-two approximation of the G + GEI effects. Plant breeders have found GGE biplots as an useful tools for the analysis of mega-environment (Yan et al., 2001; Yan and Rajcan, 2002) and genotype and environment evaluation (Bhan et al., 2005; Kang et al., 2006; Yan et al., 2007). The GGE biplot addresses many issues relative to genotype and test environment evaluation. Considering the average performance of each genotype, this plot can be used to evaluate specific and general adaptation. In addition, environments can be visually grouped according to their ability to discriminate among genotypes and their representativeness of other test environments. GGE biplot reveals the <em>which-won-where</em> pattern and allows to recommend specific genotypes for each environment (Yan and Tinker, 2005).</p>
 <p>Using the output from <code><a href="../reference/GGEmodel.html">GGEmodel()</a></code>, <code><a href="../reference/GGEPlot.html">GGEPlot()</a></code> builds several GGE biplots views, in which cultivars are shown in lowercase and environments in uppercase. The plot also displays the methods used for centering, scaling and SVD. Optionally, the percentage of G + GEI explained by the two axes can be added as a footnote with <code>footnote = T</code>, as well as a tittle with <code>titles = T</code>.</p>
 <p>A basic biplot is produced with the option <code>type="Biplot"</code> (Figure 2). In this example the 78% of G + GE variability is explained by the fist two multiplicative terms. The angles between genotypes markers and environments vectors are considered to understand this plot. Thus, for example, <em>Kat</em> performs below the average in all environments, as it has an angle greater than 90<span class="math inline">\(°\)</span> with all environments. On the other hand, <em>Fun</em> presents an above-average performance in all locations except OA93 and KE93, as indicated by the acute angles. The length of the environment vectors is a measure of the environment’s ability to discriminate between crops.</p>
-<div class="sourceCode" id="cb9"><pre class="downlit">
+<div class="sourceCode" id="cb10"><pre class="downlit">
 <span class="fu"><a href="../reference/GGEPlot.html">GGEPlot</a></span><span class="op">(</span><span class="va">GGE1</span>, type <span class="op">=</span> <span class="st">"Biplot"</span>, footnote <span class="op">=</span> <span class="cn">F</span>, titles <span class="op">=</span> <span class="cn">F</span><span class="op">)</span></pre></div>
 <div class="figure" style="text-align: center">
-<img src="a-tutorial_files/figure-html/unnamed-chunk-8-1.png" alt="Figure 2: GGE biplot based on yield data of 1993 Ontario winter wheat performance trials. The scaling method used is symmetrical singular value partitioning (by default). The 78% of G + GE variability is explained by the first two multiplicative terms. Cultivars are shown in lowercase and environments in uppercase." width="60%"><p class="caption">
+<img src="a-tutorial_files/figure-html/unnamed-chunk-9-1.png" alt="Figure 2: GGE biplot based on yield data of 1993 Ontario winter wheat performance trials. The scaling method used is symmetrical singular value partitioning (by default). The 78% of G + GE variability is explained by the first two multiplicative terms. Cultivars are shown in lowercase and environments in uppercase." width="60%"><p class="caption">
 Figure 2: GGE biplot based on yield data of 1993 Ontario winter wheat performance trials. The scaling method used is symmetrical singular value partitioning (by default). The 78% of G + GE variability is explained by the first two multiplicative terms. Cultivars are shown in lowercase and environments in uppercase.
 </p>
 </div>
 <p>Breeders usually want to identify the most suitable cultivars for a particular environment of interest, i.e., OA93. To do this with GGE biplots, Yan and Hunt (2002) suggest drawing a line that passes through the environment marker and the biplot origin, which may be referred to as the OA93 axis. The performance of the cultivars in this particular environment can be ranked projecting them onto this axis. This can be done by setting <code>type = "Selected Environment"</code> and providing the name of the environment (OA93) in <code>selectedE</code> (Figure 3). Thus, at OA93, the highest-yielding cultivar was <em>Zav</em>, and the lowest-yielding cultivar was <em>Luc</em>. The line that passes through the biplot origin and is perpendicular to the OA93 axis separates genotypes that yielded above and below the mean in this environment.</p>
-<div class="sourceCode" id="cb10"><pre class="downlit">
+<div class="sourceCode" id="cb11"><pre class="downlit">
 <span class="fu"><a href="../reference/GGEPlot.html">GGEPlot</a></span><span class="op">(</span><span class="va">GGE1</span>, type <span class="op">=</span> <span class="st">"Selected Environment"</span>, selectedE <span class="op">=</span> <span class="st">"OA93"</span>, 
         footnote <span class="op">=</span> <span class="cn">F</span>, titles <span class="op">=</span> <span class="cn">F</span><span class="op">)</span></pre></div>
 <div class="figure" style="text-align: center">
-<img src="a-tutorial_files/figure-html/unnamed-chunk-9-1.png" alt="Figure 3: comparison of cultivar performance in a selected environment (OA93). The scaling method used is symmetrical singular value partitioning (by default). The 78% of G + GE variability is explained by the first two multiplicative terms. Cultivars are shown in lowercase and environments in uppercase." width="60%"><p class="caption">
+<img src="a-tutorial_files/figure-html/unnamed-chunk-10-1.png" alt="Figure 3: comparison of cultivar performance in a selected environment (OA93). The scaling method used is symmetrical singular value partitioning (by default). The 78% of G + GE variability is explained by the first two multiplicative terms. Cultivars are shown in lowercase and environments in uppercase." width="60%"><p class="caption">
 Figure 3: comparison of cultivar performance in a selected environment (OA93). The scaling method used is symmetrical singular value partitioning (by default). The 78% of G + GE variability is explained by the first two multiplicative terms. Cultivars are shown in lowercase and environments in uppercase.
 </p>
 </div>
 <p>Another goal of plant breeders is to determine which is the most suitable environment for a genotype. Yan and Hunt (2002) suggest plotting a line that passes through the origin and a cultivar marker, i.e., <em>Kat</em>. To obtain this GGE biplots view the argument <code>type = "Selected Genotype"</code> and <code>selectedG = "Kat"</code> must be indicated (Figure 4). Environments are classified along the genotype axis in the direction indicated by the arrow. The perpendicular axis separates the environments in which the cultivar presented a performance below or above the average. In this example, <em>Kat</em> presented a performance below the average in all the environments studied.</p>
-<div class="sourceCode" id="cb11"><pre class="downlit">
+<div class="sourceCode" id="cb12"><pre class="downlit">
 <span class="fu"><a href="../reference/GGEPlot.html">GGEPlot</a></span><span class="op">(</span><span class="va">GGE1</span>, type <span class="op">=</span> <span class="st">"Selected Genotype"</span>, selectedG <span class="op">=</span> <span class="st">"Kat"</span>, 
         footnote <span class="op">=</span> <span class="cn">F</span>, titles <span class="op">=</span> <span class="cn">F</span><span class="op">)</span></pre></div>
 <div class="figure" style="text-align: center">
-<img src="a-tutorial_files/figure-html/unnamed-chunk-10-1.png" alt="Figure 4: comparison of the performance of cultivar Luc in different environments. The scaling method used is symmetrical singular value partitioning (by default). The 78% of G + GE variability is explained by the first two multiplicative terms. Cultivars are shown in lowercase and environments in uppercase." width="60%"><p class="caption">
+<img src="a-tutorial_files/figure-html/unnamed-chunk-11-1.png" alt="Figure 4: comparison of the performance of cultivar Luc in different environments. The scaling method used is symmetrical singular value partitioning (by default). The 78% of G + GE variability is explained by the first two multiplicative terms. Cultivars are shown in lowercase and environments in uppercase." width="60%"><p class="caption">
 Figure 4: comparison of the performance of cultivar Luc in different environments. The scaling method used is symmetrical singular value partitioning (by default). The 78% of G + GE variability is explained by the first two multiplicative terms. Cultivars are shown in lowercase and environments in uppercase.
 </p>
 </div>
 <p>It is also possible to compare two cultivars, i.e. <em>Kat</em> and <em>Cas</em>, linking them with a line and a segment perpendicular to it. To obtain this GGE biplots view the argument <code>type = "Comparison of Genotype"</code> and the genotypes to be compared <code>selectedG1 = "Kat"</code> and <code>selectedG2 = "Cas"</code> must be indicated (Figure 5). <em>Cas</em> was more yielding than <em>Kat</em> in all environments as they all are in the same side of the perpendicular line as <em>Cas</em>.</p>
-<div class="sourceCode" id="cb12"><pre class="downlit">
+<div class="sourceCode" id="cb13"><pre class="downlit">
 <span class="fu"><a href="../reference/GGEPlot.html">GGEPlot</a></span><span class="op">(</span><span class="va">GGE1</span>, type <span class="op">=</span> <span class="st">"Comparison of Genotype"</span>, 
         selectedG1 <span class="op">=</span> <span class="st">"Kat"</span>, selectedG2 <span class="op">=</span> <span class="st">"Cas"</span>, 
         footnote <span class="op">=</span> <span class="cn">F</span>, titles <span class="op">=</span> <span class="cn">F</span>, axis_expand <span class="op">=</span> <span class="fl">1.5</span><span class="op">)</span></pre></div>
 <div class="figure" style="text-align: center">
-<img src="a-tutorial_files/figure-html/unnamed-chunk-11-1.png" alt="Figure 5: comparison of the cultivars _Kat_ and _Cas_. The scaling method used is symmetrical singular value partitioning (by default). The 78% of G + GE variability is explained by the first two multiplicative terms. Cultivars are shown in lowercase and environments in uppercase." width="60%"><p class="caption">
+<img src="a-tutorial_files/figure-html/unnamed-chunk-12-1.png" alt="Figure 5: comparison of the cultivars _Kat_ and _Cas_. The scaling method used is symmetrical singular value partitioning (by default). The 78% of G + GE variability is explained by the first two multiplicative terms. Cultivars are shown in lowercase and environments in uppercase." width="60%"><p class="caption">
 Figure 5: comparison of the cultivars <em>Kat</em> and <em>Cas</em>. The scaling method used is symmetrical singular value partitioning (by default). The 78% of G + GE variability is explained by the first two multiplicative terms. Cultivars are shown in lowercase and environments in uppercase.
 </p>
 </div>
 <p>The polygonal view of the GGE biplots provides an effective way to visualize the <em>which-won-where</em> pattern of MET data (Figure 6). Cultivars in the vertices of the polygon (<em>Fun</em>,<em>Zav</em>, <em>Ena</em>, <em>Kat</em> and <em>Luc</em>) are those with the longest vectors, in their respective directions, which is a measure of the ability to respond to environments. The vertex cultivars are, therefore, among the most responsive cultivars; all other cultivars are less responsive in their respective directions.</p>
 <p>The dotted lines are perpendicular to the polygon sides and divide the biplot into mega-environments, each of which has a vertex cultivar, which is the one with the highest yield (phenotype) in all environments found in it. OA93 and KE93 are in the same sector, separated from the rest of the biplot by two perpendicular lines, and <em>Zav</em> is the highest-yielding cultivar in this sector. <em>Fun</em> is the highest-yielding cultivar in its sector, which contains seven environments, namely, EA93, BH93, HW93, ID93, WP93, NN93, and RN93. No environments fell in the sectors with <em>Ena</em>, <em>Kat</em>, and <em>Luc</em> as vertex cultivars. This indicates that these vertex cultivars were not the best in any of the test environments. Moreover, these cultivars were the poorest in some or all of the environments.</p>
-<div class="sourceCode" id="cb13"><pre class="downlit">
+<div class="sourceCode" id="cb14"><pre class="downlit">
 <span class="fu"><a href="../reference/GGEPlot.html">GGEPlot</a></span><span class="op">(</span><span class="va">GGE1</span>, type <span class="op">=</span> <span class="st">"Which Won Where/What"</span>, footnote <span class="op">=</span> <span class="cn">F</span>,
         titles <span class="op">=</span> <span class="cn">F</span>, axis_expand <span class="op">=</span> <span class="fl">1.5</span><span class="op">)</span></pre></div>
 <div class="figure" style="text-align: center">
-<img src="a-tutorial_files/figure-html/unnamed-chunk-12-1.png" alt="Figure 6: polygon view of the GGE biplot, showing which cultivars presented highest yield in each environment. The scaling method used is symmetrical singular value partitioning (by default). The 78% of G + GE variability is explained by the first two multiplicative terms. Cultivars are shown in lowercase and environments in uppercase." width="60%"><p class="caption">
+<img src="a-tutorial_files/figure-html/unnamed-chunk-13-1.png" alt="Figure 6: polygon view of the GGE biplot, showing which cultivars presented highest yield in each environment. The scaling method used is symmetrical singular value partitioning (by default). The 78% of G + GE variability is explained by the first two multiplicative terms. Cultivars are shown in lowercase and environments in uppercase." width="60%"><p class="caption">
 Figure 6: polygon view of the GGE biplot, showing which cultivars presented highest yield in each environment. The scaling method used is symmetrical singular value partitioning (by default). The 78% of G + GE variability is explained by the first two multiplicative terms. Cultivars are shown in lowercase and environments in uppercase.
 </p>
 </div>
 <p>Selecting cultivars within each mega-environments is an issue among plant breeders. Figure 6 clearly suggests that <em>Zav</em> is the best cultivar for OA93 and KE93, and <em>Fun</em> is the best cultivar for the other locations. However, breeders do not select a single cultivar in each megaenvironment. Instead, they evaluate all cultivars in order to get an idea of their performance (yield and stability).</p>
 <p>In the GGE biplot it is also possible to visualize mean yield and stability of genotypes in yield units <em>per se</em> (Figure 7 and 8). The GGE biplot based on <em>genotype-focused scaling</em>, obtained indicating <code>SVP = "row"</code> in <code><a href="../reference/GGEmodel.html">GGEmodel()</a></code>, provides an useful way to visualize both mean performance and stability of the tested genotypes. This is because the unit of both axes for the genotypes is the original unit of the data.</p>
 <p>Visualization of the mean and stability of genotypes is achieved by drawing an average environment coordinate (AEC). For example, Figure 7 shows the AEC for the mega-environment composed of he environments BH93, EA93, HW93, ID93, NN93, RN93, WP93. The abscissa represents the G effect, thus, the cultivars are ranked along the AEC abscissa. Cultivar <em>Fun</em> was clearly the highest-yielding cultivar, on average, in this mega-environment, followed by <em>Cas</em> and <em>Har</em>,and <em>Kat</em> was the poorest. The AEC ordinate approximate the GEI associated with each genotype, which is a measure of the variability or instability of the genotype. <em>Rub</em> and <em>Dia</em> are more variable and less stable than other cultivars, by the contrary, <em>Cas</em>, <em>Zav</em>, <em>Reb</em>, <em>Del</em>, <em>Ari</em>, and <em>Kar</em>, were more stable.</p>
-<div class="sourceCode" id="cb14"><pre class="downlit">
+<div class="sourceCode" id="cb15"><pre class="downlit">
 <span class="va">data</span> <span class="op">&lt;-</span> <span class="va">yan.winterwheat</span><span class="op">[</span><span class="va">yan.winterwheat</span><span class="op">$</span><span class="va">env</span> <span class="op">%in%</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"BH93"</span>, <span class="st">"EA93"</span>,<span class="st">"HW93"</span>, <span class="st">"ID93"</span>,
                                                    <span class="st">"NN93"</span>, <span class="st">"RN93"</span>, <span class="st">"WP93"</span><span class="op">)</span>, <span class="op">]</span>
 
@@ -276,35 +274,35 @@ Figure 6: polygon view of the GGE biplot, showing which cultivars presented high
 
 <span class="fu"><a href="../reference/GGEPlot.html">GGEPlot</a></span><span class="op">(</span><span class="va">GGE2</span>, type <span class="op">=</span> <span class="st">"Mean vs. Stability"</span>, footnote <span class="op">=</span> <span class="cn">F</span>, titles <span class="op">=</span> <span class="cn">F</span><span class="op">)</span></pre></div>
 <div class="figure" style="text-align: center">
-<img src="a-tutorial_files/figure-html/unnamed-chunk-13-1.png" alt="Figure 7: average environment view of the GGE biplot based on genotype-focused scaling, showing mean yield and stability of genotypes. Cultivars are shown in lowercase and environments in uppercase." width="60%"><p class="caption">
+<img src="a-tutorial_files/figure-html/unnamed-chunk-14-1.png" alt="Figure 7: average environment view of the GGE biplot based on genotype-focused scaling, showing mean yield and stability of genotypes. Cultivars are shown in lowercase and environments in uppercase." width="60%"><p class="caption">
 Figure 7: average environment view of the GGE biplot based on genotype-focused scaling, showing mean yield and stability of genotypes. Cultivars are shown in lowercase and environments in uppercase.
 </p>
 </div>
 <p>Figure 8 compares the cultivars to the “ideal” one with the highest yield and absolute stability. This ideal cultivar is represented by a small circle and is used as a reference, as it rarely exists. The distance between cultivars and the ideal one can be used as a measure of convenience. Concentric circles help to visualize these distances. In the example, <em>Fun</em> is the closest one to the ideal crop, and therefore the most desirable one, followed by <em>Cas</em> and <em>Hay</em>, which in turn are followed by <em>Rum</em>, <em>Ham</em>, <em>Rub</em>, <em>Zav</em>, <em>Del</em> and <em>Reb</em>, etc.</p>
-<div class="sourceCode" id="cb15"><pre class="downlit">
+<div class="sourceCode" id="cb16"><pre class="downlit">
 <span class="fu"><a href="../reference/GGEPlot.html">GGEPlot</a></span><span class="op">(</span><span class="va">GGE2</span>, type <span class="op">=</span> <span class="st">"Ranking Genotypes"</span>, footnote <span class="op">=</span> <span class="cn">F</span>, titles <span class="op">=</span> <span class="cn">F</span><span class="op">)</span></pre></div>
 <div class="figure" style="text-align: center">
-<img src="a-tutorial_files/figure-html/unnamed-chunk-14-1.png" alt="Figure 8: Classification of genotypes with respect to the ideal genotype. Genotype-focused scaling is used. Cultivars are shown in lowercase and environments in uppercase." width="60%"><p class="caption">
+<img src="a-tutorial_files/figure-html/unnamed-chunk-15-1.png" alt="Figure 8: Classification of genotypes with respect to the ideal genotype. Genotype-focused scaling is used. Cultivars are shown in lowercase and environments in uppercase." width="60%"><p class="caption">
 Figure 8: Classification of genotypes with respect to the ideal genotype. Genotype-focused scaling is used. Cultivars are shown in lowercase and environments in uppercase.
 </p>
 </div>
 <p>Although METs are performed to study cultivars, they are equally useful for the analysis of the environments. This includes several aspects: (i) evaluating whether the target region belongs to one or more megaenvironments; (ii) identifying better test environments; (iii) detecting redundant environments that do not provide additional information on cultivars; and (iv) determining environments that can be used for indirect selection. To obtain GGE biplots for comparing environments the <em>environment-focused scaling</em> should be used as is most informative of interrelationships among them (Figure 9 and 10). This is obtained indicatig <code>SVP = "column"</code> in <code><a href="../reference/GGEmodel.html">GGEmodel()</a></code>.</p>
 <p>In Figure 9 environments are connected to the origin through vectors, allowing us to understand the interrelationships between. The coefficient of correlation between two environments it is approximated by the cosine of the angle formed by the respective vectors. In this example the relation between the environments for the mega-environment with BH93, EA93, HW93, ID93, NN93, RN93 and WP93 is considered. The angle between the vectors for the environments NN93 and WP93 is approximately 10<span class="math inline">\(º\)</span>; therefore, they are closely related; while RN93 and OA93 present a weak negative correlation since the angle is slightly greater than 90<span class="math inline">\(º\)</span>. The cosine of the angles does not translate precisely into coefficients of correlation, since the biplot does not explain all the variability in the dataset. However, they are informative enough to understand the interrelationship between test environments.</p>
-<div class="sourceCode" id="cb16"><pre class="downlit">
+<div class="sourceCode" id="cb17"><pre class="downlit">
 <span class="va">GGE3</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/GGEmodel.html">GGEmodel</a></span><span class="op">(</span><span class="va">data</span>, genotype <span class="op">=</span> <span class="st">"gen"</span>, environment <span class="op">=</span> <span class="st">"env"</span>, 
                  response <span class="op">=</span> <span class="st">"yield"</span>, SVP <span class="op">=</span> <span class="st">"column"</span><span class="op">)</span>
 <span class="fu"><a href="../reference/GGEPlot.html">GGEPlot</a></span><span class="op">(</span><span class="va">GGE3</span>, type <span class="op">=</span> <span class="st">"Relationship Among Environments"</span>, footnote <span class="op">=</span> <span class="cn">F</span>, titles <span class="op">=</span> <span class="cn">F</span><span class="op">)</span></pre></div>
 <div class="figure" style="text-align: center">
-<img src="a-tutorial_files/figure-html/unnamed-chunk-15-1.png" alt="Figure 9: Relationship between environments. Environment-focused scaling is used." width="60%"><p class="caption">
+<img src="a-tutorial_files/figure-html/unnamed-chunk-16-1.png" alt="Figure 9: Relationship between environments. Environment-focused scaling is used." width="60%"><p class="caption">
 Figure 9: Relationship between environments. Environment-focused scaling is used.
 </p>
 </div>
 <p>Discrimination ability as well as representativeness with respect to the target environment are fundamental measures for an environment. An ideal test environment should be both discriminating and representative. If it does not have the ability to discriminate, it does not provide information on cultivars and is therefore of no use. At the same time, if it is not representative, not only does it lack usefulness but it can also provide biased information on the evaluated cultivars.</p>
 <p>To visualize these measurements, an average environment coordinate is defined and the center of a set of concentric circles represents the ideal environment. Figure 10 shows the GGE biplots view for the mega-environment with BH93, EA93, HW93, ID93, NN93, RN93 and WP93. The angle between the vector of an environment and the AEC provides a measure of representativeness. Therefore, EA93 and ID93 are the most representative, while RN93 and BH93 are the least representative of the average environment, when the mega-environment is analyzed. On the other hand, an environment to be discriminative must be close to the ideal environment. HW93 is the closest to ideal environment and therefore the most desirable of the mega-environment, followed by EA93 and ID93. By the contrary, RN93 and BH93 were the least desirable test environments of this mega-environment.</p>
-<div class="sourceCode" id="cb17"><pre class="downlit">
+<div class="sourceCode" id="cb18"><pre class="downlit">
 <span class="fu"><a href="../reference/GGEPlot.html">GGEPlot</a></span><span class="op">(</span><span class="va">GGE3</span>, type <span class="op">=</span> <span class="st">"Ranking Environments"</span>, footnote <span class="op">=</span> <span class="cn">F</span>, titles <span class="op">=</span> <span class="cn">F</span><span class="op">)</span></pre></div>
 <div class="figure" style="text-align: center">
-<img src="a-tutorial_files/figure-html/unnamed-chunk-16-1.png" alt="Figure 10: classification of environments with respect to the ideal environment. Environment-focused scaling is used." width="60%"><p class="caption">
+<img src="a-tutorial_files/figure-html/unnamed-chunk-17-1.png" alt="Figure 10: classification of environments with respect to the ideal environment. Environment-focused scaling is used." width="60%"><p class="caption">
 Figure 10: classification of environments with respect to the ideal environment. Environment-focused scaling is used.
 </p>
 </div>
@@ -314,13 +312,13 @@ Figure 10: classification of environments with respect to the ideal environment.
 <h1 class="hasAnchor">
 <a href="#imputation-methods" class="anchor"></a>Imputation methods</h1>
 <p>One major limitation of the AMMI and SREG models is that they require a complete two-way data table. Although METs are designed so that all genotypes are evaluated in all environments, missing values are very common due to measurement errors or destruction of plants by animals, floods or harvest problems. In addition, genotypes might be incorporated or discarded during the study because of their promising or poor performance. The <code><a href="../reference/imputation.html">imputation()</a></code> function includes several methods to overcome the problem of missing data, some of which have been recently published and were not available in any R package until now. To present an example, some observations from the complete <code>yan.winterwheat</code> are deleted:</p>
-<div class="sourceCode" id="cb18"><pre class="downlit">
+<div class="sourceCode" id="cb19"><pre class="downlit">
 <span class="co"># Generating missing data</span>
 <span class="va">yan.winterwheat</span><span class="op">[</span><span class="fl">1</span>,<span class="fl">3</span><span class="op">]</span> <span class="op">&lt;-</span> <span class="cn">NA</span>
 <span class="va">yan.winterwheat</span><span class="op">[</span><span class="fl">3</span>,<span class="fl">3</span><span class="op">]</span> <span class="op">&lt;-</span> <span class="cn">NA</span>
 <span class="va">yan.winterwheat</span><span class="op">[</span><span class="fl">2</span>,<span class="fl">3</span><span class="op">]</span> <span class="op">&lt;-</span> <span class="cn">NA</span></pre></div>
 <p>Imputation of missing values with the <code>"EM-AMMI"</code> method can be performed as follows:</p>
-<div class="sourceCode" id="cb19"><pre class="downlit">
+<div class="sourceCode" id="cb20"><pre class="downlit">
 <span class="fu"><a href="../reference/imputation.html">imputation</a></span><span class="op">(</span><span class="va">yan.winterwheat</span>, nPC <span class="op">=</span> <span class="fl">2</span>, genotype <span class="op">=</span> <span class="st">"gen"</span>, environment <span class="op">=</span> <span class="st">"env"</span>, 
            response <span class="op">=</span> <span class="st">"yield"</span>, type <span class="op">=</span> <span class="st">"EM-AMMI"</span><span class="op">)</span></pre></div>
 <pre><code>##         BH93  EA93  HW93  ID93  KE93  NN93  OA93  RN93  WP93
