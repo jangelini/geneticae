@@ -2,6 +2,8 @@
 
 This is a development version
 
+Changed default option to "symmetrical" in the SVP argument of the GGEmodel() function.
+
 # geneticae 0.1.0
 
 First submission to CRAN.

@@ -75,7 +75,7 @@
 #'@importFrom dplyr group_by summarise rename
 #'
 GGEmodel <- function(Data, genotype="gen", environment="env", response="yield",
-                     rep=NULL, centering="tester",scaling="none",SVP="column"){
+                     rep=NULL, centering="tester",scaling="none",SVP="symmetrical"){
 
   if (missing(Data)) stop("Need to provide Data data frame or matrix")
   if(any(is.na(Data))){stop("Missing data in input data frame, run the imputation function first to complete the data set")}

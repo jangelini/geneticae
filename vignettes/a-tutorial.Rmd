@@ -368,7 +368,7 @@ data <- yan.winterwheat[yan.winterwheat$env %in% c("BH93", "EA93","HW93", "ID93"
 GGE2 <- GGEmodel(data, genotype = "gen", environment = "env", 
                  response = "yield", SVP = "row")
 
-GGEPlot(GGE2, type = "Mean vs. Stability", footnote = F, titles = F)
+GGEPlot(GGE2, type = "Mean vs. Stability", footnote = F, titles = F, sizeEnv = 0)
 ```
 
 
@@ -383,7 +383,7 @@ _Reb_, etc.
 
 
 ```{r,  fig.align='center', fig.cap='Figure 8: Classification of genotypes with respect to the ideal genotype. Genotype-focused scaling is used. Cultivars are shown in lowercase and environments in uppercase.', warning=FALSE}
-GGEPlot(GGE2, type = "Ranking Genotypes", footnote = F, titles = F)
+GGEPlot(GGE2, type = "Ranking Genotypes", footnote = F, titles = F, sizeEnv = 0)
 ```
 
 Although METs are performed to study cultivars, they are equally useful for the

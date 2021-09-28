@@ -173,7 +173,9 @@ GGEPlot<-function(GGEModel,type="Biplot",d1=1,d2=2, selectedE=NA , selectedG=NA,
   if(type=="Biplot"){
 
     GGE2<-GGE1+geom_segment(xend=0,yend=0,col=alpha(colEnv,0.5),data=subset(plotdata,type=="environment"))+
-      geom_text(aes(col=type,label=label,size=type),show.legend = FALSE)
+      geom_text(aes(label=label),show.legend = FALSE,data=subset(plotdata,type=="genotype"),col=colGen,size=sizeGen)+
+      geom_text(aes(label=label),show.legend = FALSE,data=subset(plotdata,type=="environment"),col=colEnv,size=sizeEnv)
+
     if(titles==TRUE){GGE2<-GGE2+ggtitle("GGE Biplot")}
   }
 
@@ -324,9 +326,9 @@ GGEPlot<-function(GGEModel,type="Biplot",d1=1,d2=2, selectedE=NA , selectedG=NA,
 
     GGE2<-GGE1+geom_polygon(aes(x=X1,y=X2),data=www,fill=NA,col=colHull,size=0.7)+
       geom_segment(data=segs,aes(x=X1,y=X2),xend=0,yend=0,linetype=2,col=colSegment,size=0.7) +
-      geom_text(aes(col=type,label=label,size=type),show.legend = FALSE,data=others)+
+      geom_text(aes(label=label),show.legend = FALSE,data=subset(others,type=="genotype"),col=colGen,size=sizeGen)+
+      geom_text(aes(label=label),show.legend = FALSE,data=subset(others,type=="environment"),col=colEnv,size=sizeEnv)+
       geom_text(aes(label=label,x=d1,y=d2),show.legend = FALSE,hjust="outward",vjust="outward",data=winners,col=colGen,size=largeSize,fontface="bold")
-
 
     if(titles==TRUE){GGE2<-GGE2+ggtitle("Which Won Where/What")}
 
@@ -395,7 +397,9 @@ GGEPlot<-function(GGEModel,type="Biplot",d1=1,d2=2, selectedE=NA , selectedG=NA,
       geom_abline(intercept=0,slope=-med1/med2,col=colSegment,size=0.7)+
       geom_segment(aes(xend=x1_x, yend=x1_y),col=colGen,linetype=2,data=subset(plotdata,type=="genotype"))+
       geom_segment(x=0, y=0,xend=med1,yend=med2,arrow =arrow(length=unit(0.15,"inches") ),size=1,col=colSegment)+
-      geom_text(aes(col=type,label=label,size=type),show.legend = FALSE)
+      geom_text(aes(label=label),show.legend = FALSE,data=subset(plotdata,type=="genotype"),col=colGen,size=sizeGen)+
+      geom_text(aes(label=label),show.legend = FALSE,data=subset(plotdata,type=="environment"),col=colEnv,size=sizeEnv)
+
 
     if(titles==TRUE){GGE2<-GGE2+ggtitle("Mean vs. Stability")}
   }
@@ -433,8 +437,10 @@ GGEPlot<-function(GGEModel,type="Biplot",d1=1,d2=2, selectedE=NA , selectedG=NA,
     if(axes==TRUE){
       GGE2<-GGE2+geom_hline(yintercept=0)+geom_vline(xintercept=0)
     }
-    GGE2<-GGE2+geom_text(aes(col=type,label=label,size=type),show.legend = FALSE)
-    if(titles==TRUE){GGE2<-GGE2+ggtitle("Ranking Genotypes")}
+    GGE2<-GGE2+
+      geom_text(aes(label=label),show.legend = FALSE,data=subset(plotdata,type=="genotype"),col=colGen,size=sizeGen)+
+      geom_text(aes(label=label),show.legend = FALSE,data=subset(plotdata,type=="environment"),col=colEnv,size=sizeEnv)
+      if(titles==TRUE){GGE2<-GGE2+ggtitle("Ranking Genotypes")}
 
 
   }
