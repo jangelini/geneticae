@@ -12,7 +12,7 @@ GGEmodel(
   rep = NULL,
   centering = "tester",
   scaling = "none",
-  SVP = "column"
+  SVP = "symmetrical"
 )
 }
 \arguments{
@@ -38,7 +38,7 @@ centered (GE) or `"none"` for no centering. Defaults to `"tester"`.}
 `"none"` for no scaling. Defaults to `"none"`.}
 
 \item{SVP}{method for singular value partitioning. Either `"row"`, `"column"`,
-`"dual"` or `"symmetrical"`. Defaults to `"column"`.}
+`"dual"` or `"symmetrical"`. Defaults to `"symmetrical"`.}
 }
 \value{
 A list of class \code{GGE_Model} containing:
