@@ -83,17 +83,12 @@ making it available not only for R programmers.
 
 ## Installation
 
-<!-- poner esto cuando esté en cran -->
+You can install the released version of `geneticae` from
+[CRAN](https://CRAN.R-project.org) with:
 
-<!-- You can install the released version of `geneticae` from -->
-
-<!-- [CRAN](https://CRAN.R-project.org) with: -->
-
-<!-- ``` {r, eval=F} -->
-
-<!-- install.packages("geneticae") -->
-
-<!-- ``` -->
+``` r
+install.packages("geneticae")
+```
 
 You can install the development version from our [GitHub
 repo](https://github.com/jangelini/geneticae) with:
@@ -143,7 +138,7 @@ GGEPlot(GGE1, type = "Selected Environment", selectedE = "OA93",
 
 <div class="figure" style="text-align: center">
 
-<img src="man/figures/README-unnamed-chunk-3-1.png" alt="Figure: comparison of cultivar performance in a selected environment." width="45%" />
+<img src="man/figures/README-unnamed-chunk-4-1.png" alt="Figure: comparison of cultivar performance in a selected environment." width="45%" />
 
 <p class="caption">
 
