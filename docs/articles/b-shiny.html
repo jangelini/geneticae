@@ -105,13 +105,28 @@ Rosario, Argentina</div></h4>
 body{
 text-align: justify}
 </style>
-<p>The <code>geneticae</code> can be used through <a href="https://github.com/jangelini/Geneticae-Shiny-Web-APP">this</a> Shiny app, making it available not only for R programmers.</p>
-<p>SITE IN CONSTRUCTION</p>
+<p>The <code>geneticae</code> package can be used through <a href="https://github.com/jangelini/Geneticae-Shiny-Web-APP">this</a> Shiny app, making it available not only for R programmers.</p>
+<!-- The `geneticae` package can be used through [this](https://geneticae.shinyapps.io/geneticae-shiny-web-app/) Shiny app, making it available not only for R programmers. Also available at [Github](https://github.com/jangelini/Geneticae-Shiny-Web-APP) and at [CEFOBI-CONICET](https://www.cefobi-conicet.gov.ar/bases-de-datos-y-programas/). -->
+<div id="motivation" class="section level1">
+<h1 class="hasAnchor">
+<a href="#motivation" class="anchor"></a>Motivation</h1>
+<p>Although there are R packages which tackle different aspects of MET data analysis, there aren’t any packages capable of performing all the steps that need to be considered. The geneticae package was created to gather in one place the most useful functions for this type of analysis and it also implements new methodology which can be found in recent literature. More importantly, geneticae is the first package to implement the robust AMMI model and new imputation methods not available before. In addition, there is no need to preprocess the data to use the <code>geneticae</code> package, as it the case of some previous packages which require a data frame or matrix containing genotype by environment means with the genotypes in rows and the environments in columns. In this package, data in long format is required. Genotypes, environments, repetitions (if any) and phenotypic traits of interest can be presented in any order and there is no restriction on columns names. Also, extra information that will not be used in the analysis may be present in the dataset. Finally, <code>geneticae</code> offers a wide variety of options to customize the biplots, which are part of the graphical output of these methods.</p>
+<p>The goal of the Geneticae Shiny Web APP is to provide a graphical user interface for the R package, so that it can be used by breeders and analysts with no previous experience in R programming. It is an interactive, noncommercial and open source software, offering a free alternative to available commercial software to analize METs.</p>
+</div>
+<div id="small-example" class="section level1">
+<h1 class="hasAnchor">
+<a href="#small-example" class="anchor"></a>Small example</h1>
+<p>If you are just getting started with Geneticae APP we recommend visiting and exploring the examples throughout the tutorial in the APP. Here we present a small example.</p>
+<p>The dataset yan.winterwheat available as example dataset has information about the yield of 18 winter wheat varieties grown in nine environments in Ontario at 1993. The GGE biplot visually addresses many issues relative to genotype and test environment evaluation. The GGE Biplot tab allows to builds several GGE biplots views. The basic one is produced by default. If Which Won Where/What is indicate in plot type, and the other options are left by default the polygonal view of the GGE biplots is provides (Figure 1). This is an effective way to visualize the which-won-where pattern of MET data. Cultivars in the vertices of the polygon (Fun,Zav, Ena, Kat and Luc) are those with the longest vectors, in their respective directions, which is a measure of the ability to respond to environments. The vertex cultivars are, therefore, among the most responsive cultivars; all other cultivars are less responsive in their respective directions.</p>
+<p>The dotted lines are perpendicular to the polygon sides and divide the biplot into mega-environments, each of which has a vertex cultivar, which is the one with the highest yield (phenotype) in all environments found in it. OA93 and KE93 are in the same sector, separated from the rest of the biplot by two perpendicular lines, and Zav is the highest-yielding cultivar in this sector. Fun is the highest-yielding cultivar in its sector, which contains seven environments, namely, EA93, BH93, HW93, ID93, WP93, NN93, and RN93. No environments fell in the sectors with Ena, Kat, and Luc as vertex cultivars. This indicates that these vertex cultivars were not the best in any of the test environments. Moreover, these cultivars were the poorest in some or all of the environments.</p>
+</div>
   </div>
 
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
 
-      </div>
+        <nav id="toc" data-toggle="toc"><h2 data-toc-skip>Contents</h2>
+    </nav>
+</div>
 
 </div>
 
