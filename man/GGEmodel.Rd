@@ -57,8 +57,8 @@ A list of class \code{GGE_Model} containing:
  \item{SVP}{name of SVP method.}
 }
 \description{
-The Site Regression model (also called *genotype +
- genotype-by-environment (GGE) model* is a powerful tool for effective
+The Site Regression model (also called genotype +
+ genotype-by-environment (GGE) model) is a powerful tool for effective
  analysis and interpretation of data from multi-environment trials in
  breeding programs. This function is a wrapper for
  \code{\link[GGEBiplots]{GGEModel}} from the
