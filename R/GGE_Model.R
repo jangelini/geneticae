@@ -29,7 +29,7 @@
 #'@param scaling scaling method. Either `"sd"` for standard deviation or
 #'  `"none"` for no scaling. Defaults to `"none"`.
 #'@param SVP method for singular value partitioning. Either `"row"`, `"column"`,
-#'  `"dual"` or `"symmetrical"`. Defaults to `"column"`.
+#'  `"dual"` or `"symmetrical"`. Defaults to `"symmetrical"`.
 #'@return A list of class \code{GGE_Model} containing:
 #'  \item{coordgenotype}{plotting coordinates for each genotype in every component.}
 #'  \item{coordenviroment}{plotting coordinates for each environment in every
