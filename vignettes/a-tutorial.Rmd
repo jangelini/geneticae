@@ -397,7 +397,7 @@ most informative of interrelationships among them (Figure 9 and 10). This is
 obtained indicatig `SVP = "column"` in `GGEmodel()`.
 
 In Figure 9 environments are connected to the origin through vectors, allowing
-us to understand the interrelationships between. The coefficient of correlation
+us to understand the interrelationships between them. The coefficient of correlation
 between two environments it is approximated by the cosine of the angle formed by
 the respective vectors. In this example the relation between the environments
 for the mega-environment with BH93, EA93, HW93, ID93, NN93, RN93 and WP93 is
