@@ -264,8 +264,8 @@ GGEPlot(GGE1, type = "Biplot", footnote = F, titles = F)
 ```
 
 Breeders usually want to identify the most suitable cultivars for a particular
-environment of interest, i.e., OA93. To do this with GGE biplots, Yan and Hunt
-(2002) suggest drawing a line that passes through the environment marker and the
+environment of interest, i.e., OA93. To do this with GGE biplots, Yan and Kang
+(2003) suggest drawing a line that passes through the environment marker and the
 biplot origin, which may be referred to as the OA93 axis. The performance of the
 cultivars in this particular environment can be ranked projecting them onto this
 axis.
@@ -282,7 +282,7 @@ GGEPlot(GGE1, type = "Selected Environment", selectedE = "OA93",
 ```
 
 Another goal of plant breeders is to determine which is the most suitable
-environment for a genotype. Yan and Hunt (2002) suggest plotting a line that
+environment for a genotype. Yan and Kang (2003) suggest plotting a line that
 passes through the origin and a cultivar marker, i.e., _Kat_. To obtain this GGE
 biplots view the argument  `type = "Selected Genotype"` and `selectedG = "Kat"`
 must be indicated (Figure 4). Environments are classified along the genotype
