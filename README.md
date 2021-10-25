@@ -72,8 +72,8 @@ customize the biplots, which are part of the graphical output of these
 methods.
 
 This package can be used through
-[this](https://github.com/jangelini/Geneticae-Shiny-Web-APP) Shiny app,
-making it available not only for R programmers.
+[this](https://geneticae.shinyapps.io/geneticae-shiny-web-app/) Shiny
+app, making it available not only for R programmers.
 
 ## Installation
 

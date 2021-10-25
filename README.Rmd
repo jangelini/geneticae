@@ -77,7 +77,7 @@ will not be used in the analysis may be present in the dataset. Finally,
 part of the graphical output of these methods.
 
 This package can be used through
-[this](https://github.com/jangelini/Geneticae-Shiny-Web-APP) Shiny app, making
+[this](https://geneticae.shinyapps.io/geneticae-shiny-web-app/) Shiny app, making
 it available not only for R programmers.
 
 ## Installation
