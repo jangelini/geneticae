@@ -27,7 +27,7 @@ body{
 text-align: justify}
 </style>
   
-The `geneticae` package can be used through [this](https://github.com/jangelini/Geneticae-Shiny-Web-APP) Shiny app, making it available not only for R programmers.
+The `geneticae` package can be used through [this](https://geneticae.shinyapps.io/geneticae-shiny-web-app/) Shiny app, making it available not only for R programmers. Source code is in [GitHub repo](https://github.com/jangelini/Geneticae-Shiny-Web-APP).
 
 <!-- The `geneticae` package can be used through [this](https://geneticae.shinyapps.io/geneticae-shiny-web-app/) Shiny app, making it available not only for R programmers. Also available at [Github](https://github.com/jangelini/Geneticae-Shiny-Web-APP) and at [CEFOBI-CONICET](https://www.cefobi-conicet.gov.ar/bases-de-datos-y-programas/). -->
 
@@ -46,7 +46,7 @@ The dataset yan.winterwheat available as example dataset has information about t
 
 The dotted lines are perpendicular to the polygon sides and divide the biplot into mega-environments, each of which has a vertex cultivar, which is the one with the highest yield (phenotype) in all environments found in it. OA93 and KE93 are in the same sector, separated from the rest of the biplot by two perpendicular lines, and Zav is the highest-yielding cultivar in this sector. Fun is the highest-yielding cultivar in its sector, which contains seven environments, namely, EA93, BH93, HW93, ID93, WP93, NN93, and RN93. No environments fell in the sectors with Ena, Kat, and Luc as vertex cultivars. This indicates that these vertex cultivars were not the best in any of the test environments. Moreover, these cultivars were the poorest in some or all of the environments.
 
-
+<img src="selectE_GGE.png" width="500">
 
 
 

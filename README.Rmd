@@ -18,14 +18,10 @@ knitr::opts_chunk$set(
 ## Statistical Tools for the Analysis of Multi Environment Agronomic Trials
 
 
-<!-- cuando este la web poner acá -->
-<!-- --- -->
+Web: <https://jangelini.github.io/geneticae/>
 
-<!-- Web: <https://mpru.github.io/karel/> -->
+CRAN: <https://cran.r-project.org/web/packages/geneticae/index.html> 
 
-<!-- CRAN: <https://CRAN.R-project.org/package=karel> -->
-
-<!-- --- -->
 
 <!-- badges: start -->
 
@@ -102,7 +98,7 @@ devtools::install_github("jangelini/geneticae")
 ## Shiny app
 
 You can use `geneticae` through
-[this](https://github.com/jangelini/Geneticae-Shiny-Web-APP) Shiny app.
+[this](https://geneticae.shinyapps.io/geneticae-shiny-web-app/) Shiny app. Source code is in [GitHub repo](https://github.com/jangelini/Geneticae-Shiny-Web-APP).
 
 ## Getting Started
 
