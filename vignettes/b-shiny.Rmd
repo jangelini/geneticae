@@ -47,6 +47,6 @@ The dotted lines are perpendicular to the polygon sides and divide the biplot in
 
 
 ```{r, out.width='100%', echo=FALSE, fig.align="center"}
-if (knitr::is_html_output()) knitr::include_graphics('selectE_GGE.png')
+knitr::include_graphics('selectE_GGE.png')
 ```
 
