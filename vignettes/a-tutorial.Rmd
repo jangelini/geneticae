@@ -276,7 +276,7 @@ and the lowest-yielding cultivar was _Luc_. The line that passes through the
 biplot origin and is perpendicular to the OA93 axis separates genotypes that
 yielded above and below the mean in this environment.
 
-```{r, fig.align='center', fig.cap='Figure 3: comparison of cultivar performance in a selected environment (OA93). The scaling method used is symmetrical singular value partitioning (by default). The 78% of G + GE variability is explained by the first two multiplicative terms. Cultivars are shown in lowercase and environments in uppercase.'}
+```{r, fig.align='center', fig.cap='Figure 3: comparison of cultivar performance in a selected environment (OA93). The scaling method used is symmetrical singular value partitioning (by default). The 78% of G + GE variability is explained by the first two multiplicative terms.'}
 GGEPlot(GGE1, type = "Selected Environment", selectedE = "OA93", 
         footnote = F, titles = F)
 ```
@@ -291,7 +291,7 @@ the environments in which the cultivar presented a performance below or above
 the average. In this example, _Kat_ presented a performance below the average in
 all the environments studied.
 
-```{r,  fig.align='center', fig.cap='Figure 4: comparison of the performance of cultivar Luc in different environments. The scaling method used is symmetrical singular value partitioning (by default). The 78% of G + GE variability is explained by the first two multiplicative terms. Cultivars are shown in lowercase and environments in uppercase.'}
+```{r,  fig.align='center', fig.cap='Figure 4: comparison of the performance of cultivar Luc in different environments. The scaling method used is symmetrical singular value partitioning (by default). The 78% of G + GE variability is explained by the first two multiplicative terms. '}
 GGEPlot(GGE1, type = "Selected Genotype", selectedG = "Kat", 
         footnote = F, titles = F)
 ```
@@ -361,7 +361,7 @@ _Rub_ and _Dia_ are more variable and less stable than other cultivars, by the
 contrary, _Cas_, _Zav_, _Reb_, _Del_, _Ari_, and _Kar_, were more stable.
 
 
-```{r,  fig.align='center', fig.cap='Figure 7: average environment view of the GGE biplot based on genotype-focused scaling, showing mean yield and stability of genotypes. Cultivars are shown in lowercase and environments in uppercase.'}
+```{r,  fig.align='center', fig.cap='Figure 7: average environment view of the GGE biplot based on genotype-focused scaling, showing mean yield and stability of genotypes. '}
 data <- yan.winterwheat[yan.winterwheat$env %in% c("BH93", "EA93","HW93", "ID93",
                                                    "NN93", "RN93", "WP93"), ]
 
@@ -382,7 +382,7 @@ and _Hay_, which in turn are followed by _Rum_, _Ham_, _Rub_, _Zav_, _Del_ and
 _Reb_, etc.
 
 
-```{r,  fig.align='center', fig.cap='Figure 8: Classification of genotypes with respect to the ideal genotype. Genotype-focused scaling is used. Cultivars are shown in lowercase and environments in uppercase.', warning=FALSE}
+```{r,  fig.align='center', fig.cap='Figure 8: Classification of genotypes with respect to the ideal genotype. Genotype-focused scaling is used.', warning=FALSE}
 GGEPlot(GGE2, type = "Ranking Genotypes", footnote = F, titles = F, sizeEnv = 0)
 ```
 
