@@ -46,13 +46,13 @@ The dataset yan.winterwheat available as example dataset has information about t
 The dotted lines are perpendicular to the polygon sides and divide the biplot into mega-environments, each of which has a vertex cultivar, which is the one with the highest yield (phenotype) in all environments found in it. OA93 and KE93 are in the same sector, separated from the rest of the biplot by two perpendicular lines, and Zav is the highest-yielding cultivar in this sector. Fun is the highest-yielding cultivar in its sector, which contains seven environments, namely, EA93, BH93, HW93, ID93, WP93, NN93, and RN93. No environments fell in the sectors with Ena, Kat, and Luc as vertex cultivars. This indicates that these vertex cultivars were not the best in any of the test environments. Moreover, these cultivars were the poorest in some or all of the environments.
 
 
-```{r, echo=F, fig.align='center', fig.cap='Figure: Comparison of cultivar performance in a selected environment (OA93). The scaling method used is symmetrical singular value partitioning (by default). The 78% of G + GE variability is explained by the first two multiplicative terms.'}
+```{r, echo=F, fig.align='center', fig.cap='Figure: Polygon view of the GGE biplot, showing which cultivars presented highest yield in each environment. The scaling method used is symmetrical singular value partitioning (by default). The 78% of G + GE variability is explained by the first two multiplicative terms. Cultivars are shown in lowercase and environments in uppercase.'}
 library(geneticae)
 data(yan.winterwheat)
 GGE1 <- GGEmodel(yan.winterwheat, genotype = "gen", environment = "env", 
                  response = "yield", centering = "tester")
 
-GGEPlot(GGE1, type = "Selected Environment", selectedE = "OA93", 
-        footnote = F, titles = F)
+GGEPlot(GGE1, type = "Which Won Where/What", footnote = F,
+        titles = F, axis_expand = 1.5)
 ```
 
