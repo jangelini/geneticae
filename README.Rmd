@@ -121,7 +121,8 @@ separates genotypes that yielded above and below the mean in this environment.
 
 ```{r, fig.align='center', fig.cap='Figure: comparison of cultivar performance in a selected environment.'}
 library(geneticae)
-
+library(agridat)
+data(yan.winterwheat)
 GGE1 <- GGEmodel(yan.winterwheat, genotype = "gen", environment = "env", 
                  response = "yield", centering = "tester")
 

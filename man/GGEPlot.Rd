@@ -119,6 +119,7 @@ GGE biplots are used for visual examination of the relationships
  library(geneticae)
 
  # Data without replication
+ library(agridat)
  data(yan.winterwheat)
  GGE1 <- GGEmodel(yan.winterwheat, centering = "tester")
  GGEPlot(GGE1)

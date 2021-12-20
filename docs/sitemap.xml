@@ -1,7 +1,25 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
+    <loc>https://github.com/jangelini/404.html</loc>
+  </url>
+  <url>
+    <loc>https://github.com/jangelini/articles/a-tutorial.html</loc>
+  </url>
+  <url>
+    <loc>https://github.com/jangelini/articles/b-shiny.html</loc>
+  </url>
+  <url>
+    <loc>https://github.com/jangelini/articles/index.html</loc>
+  </url>
+  <url>
+    <loc>https://github.com/jangelini/authors.html</loc>
+  </url>
+  <url>
     <loc>https://github.com/jangelini/index.html</loc>
+  </url>
+  <url>
+    <loc>https://github.com/jangelini/news/index.html</loc>
   </url>
   <url>
     <loc>https://github.com/jangelini/reference/EM.AMMI.html</loc>
@@ -22,6 +40,9 @@
     <loc>https://github.com/jangelini/reference/imputation.html</loc>
   </url>
   <url>
+    <loc>https://github.com/jangelini/reference/index.html</loc>
+  </url>
+  <url>
     <loc>https://github.com/jangelini/reference/plrv.html</loc>
   </url>
   <url>
@@ -29,11 +50,5 @@
   </url>
   <url>
     <loc>https://github.com/jangelini/reference/yan.winterwheat.html</loc>
-  </url>
-  <url>
-    <loc>https://github.com/jangelini/articles/a-tutorial.html</loc>
-  </url>
-  <url>
-    <loc>https://github.com/jangelini/articles/b-shiny.html</loc>
   </url>
 </urlset>

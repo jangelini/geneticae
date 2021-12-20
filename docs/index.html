@@ -41,6 +41,8 @@
 </script>
 </head>
 <body data-spy="scroll" data-target="#toc">
+    
+
     <div class="container template-home">
       <header><div class="navbar navbar-default navbar-fixed-top" role="navigation">
   <div class="container">
@@ -53,7 +55,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="index.html">geneticae</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.1.9000</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.1.9000</span>
       </span>
     </div>
 
@@ -75,7 +77,7 @@
 <ul class="nav navbar-nav navbar-right">
 <li>
   <a href="https://github.com/jangelini/geneticae">
-    <span class="fas fa-github"></span>
+    <span class="fa fa-github"></span>
      
   </a>
 </li>
@@ -91,91 +93,99 @@
 
       </header><div class="row">
   <div class="contents col-md-9">
-<div id="geneticae-" class="section level1">
-<div class="page-header"><h1 class="hasAnchor">
-<a href="#geneticae-" class="anchor"></a>geneticae <img src="reference/figures/baseplot.png" align="right" alt="" width="160">
+<div class="section level1">
+<div class="page-header"><h1 id="geneticae-">geneticae <img src="reference/figures/baseplot.png" align="right" alt="" width="160"><a class="anchor" aria-label="anchor" href="#geneticae-"></a>
 </h1></div>
-<div id="statistical-tools-for-the-analysis-of-multi-environment-agronomic-trials" class="section level2">
-<h2 class="hasAnchor">
-<a href="#statistical-tools-for-the-analysis-of-multi-environment-agronomic-trials" class="anchor"></a>Statistical Tools for the Analysis of Multi Environment Agronomic Trials</h2>
-<p>Web: <a href="https://jangelini.github.io/geneticae/" class="uri">https://jangelini.github.io/geneticae/</a></p>
-<p>CRAN: <a href="https://cran.r-project.org/web/packages/geneticae/index.html" class="uri">https://cran.r-project.org/web/packages/geneticae/index.html</a></p>
+<div class="section level2">
+<h2 id="statistical-tools-for-the-analysis-of-multi-environment-agronomic-trials">Statistical Tools for the Analysis of Multi Environment Agronomic Trials<a class="anchor" aria-label="anchor" href="#statistical-tools-for-the-analysis-of-multi-environment-agronomic-trials"></a>
+</h2>
+<p>Web: <a href="https://jangelini.github.io/geneticae/" class="external-link uri">https://jangelini.github.io/geneticae/</a></p>
+<p>CRAN: <a href="https://cran.r-project.org/web/packages/geneticae/index.html" class="external-link uri">https://cran.r-project.org/web/packages/geneticae/index.html</a></p>
 <!-- badges: start -->
 <!-- dejo esto porque todavia hay links que no estan disponibles: -->
-<p><a href="https://lifecycle.r-lib.org/articles/stages.html"><img src="https://img.shields.io/badge/lifecycle-experimental-orange.svg" alt="Lifecycle: experimental"></a></p>
+
 <!-- cuando este en cran agregar estas -->
-<p><a href="https://CRAN.R-project.org/package=geneticae"><img src="https://www.r-pkg.org/badges/version/geneticae" alt="CRAN status"></a> <a href="https://CRAN.R-project.org/package=geneticae"><img src="https://cranlogs.r-pkg.org/badges/geneticae?color=blue" alt="Downloads"></a> <!-- [![Codecov test coverage](https://codecov.io/gh/r-lib/geneticae/branch/master/graphs/badge.svg)](https://codecov.io/gh/r-lib/geneticae?branch=master) --> <!-- badges: end --></p>
+<p><a href="https://CRAN.R-project.org/package=geneticae" class="external-link"><img src="https://www.r-pkg.org/badges/version/geneticae" alt="CRAN status"></a> <a href="https://CRAN.R-project.org/package=geneticae" class="external-link"><img src="https://cranlogs.r-pkg.org/badges/geneticae?color=blue" alt="Downloads"></a> <!-- [![Codecov test coverage](https://codecov.io/gh/r-lib/geneticae/branch/master/graphs/badge.svg)](https://codecov.io/gh/r-lib/geneticae?branch=master) --> <!-- badges: end --></p>
 <p>Understanding the relationship between crops performance and environment is a key problem for plant breeders and geneticists. In advanced stages of breeding programs, in which few genotypes are evaluated, multi-environmental trials (MET) are one of the most used experiments. Such studies test a number of genotypes in multiple environments in order to identify the superior genotypes according to their performance. In these experimentes, crop performance is modeled as a function of genotype (G), environment (E) and genotype-environment interaction (GEI). The presence of GEI generates differential genotypic responses in the different environments. Therefore appropriate statistical methods should be used to obtain an adequate GEI analysis, which is essential for plant breeders.</p>
 <p>The average performance of genotypes through different environments can only be considered in the absence of GEI. However, GEI is almost always present and the comparison of the mean performance between genotypes is not enough. The most widely used methods to analyze MET data are based on regression models, analysis of variance (ANOVA) and multivariate techniques. In particular, two statistical models are widely used among plant breeders as they provide useful graphical tools for the study of GEI: the Additive Main effects and Multiplicative Interaction model (AMMI) and the Site Regression Model (SREG). However, these models are not always efficient enough to analyze MET data structure of plant breeding programs. They present serious limitations in the presence of atypical observations and missing values, which occur very frequently. To overcome this, several imputation alternatives and a robust AMMI were recently proposed in literature.</p>
 <p>Although there are R packages which tackle different aspects of MET data analysis, there aren’t any packages capable of performing all the steps that need to be considered. The <code>geneticae</code> package was created to gather in one place the most useful functions for this type of analysis and it also implements new methodology which can be found in recent literature. More importantly, <code>geneticae</code> is the first package to implement the robust AMMI model and new imputation methods not available before. In addition, there is no need to preprocess the data to use the <code>geneticae</code> package, as it the case of some previous packages which require a data frame or matrix containing genotype by environment means with the genotypes in rows and the environments in columns. In this package, data in long format is required. Genotypes, environments, repetitions (if any) and phenotypic traits of interest can be presented in any order and there is no restriction on columns names. Also, extra information that will not be used in the analysis may be present in the dataset. Finally, <code>geneticae</code> offers a wide variety of options to customize the biplots, which are part of the graphical output of these methods.</p>
-<p>This package can be used through <a href="https://geneticae.shinyapps.io/geneticae-shiny-web-app/">this</a> Shiny app, making it available not only for R programmers.</p>
+<p>This package can be used through <a href="https://geneticae.shinyapps.io/geneticae-shiny-web-app/" class="external-link">this</a> Shiny app, making it available not only for R programmers.</p>
 </div>
-<div id="installation" class="section level2">
-<h2 class="hasAnchor">
-<a href="#installation" class="anchor"></a>Installation</h2>
-<p>You can install the released version of <code>geneticae</code> from <a href="https://CRAN.R-project.org">CRAN</a> with:</p>
-<div class="sourceCode" id="cb1"><pre class="downlit">
-<span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html">install.packages</a></span><span class="op">(</span><span class="st">"geneticae"</span><span class="op">)</span></pre></div>
+<div class="section level2">
+<h2 id="installation">Installation<a class="anchor" aria-label="anchor" href="#installation"></a>
+</h2>
+<p>You can install the released version of <code>geneticae</code> from <a href="https://CRAN.R-project.org" class="external-link">CRAN</a> with:</p>
+<div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html" class="external-link">install.packages</a></span><span class="op">(</span><span class="st">"geneticae"</span><span class="op">)</span></code></pre></div>
 <p>You can install the development version from our <a href="https://github.com/jangelini/geneticae">GitHub repo</a> with:</p>
-<div class="sourceCode" id="cb2"><pre class="downlit">
-<span class="co"># install.packages("devtools")</span>
-<span class="fu">devtools</span><span class="fu">::</span><span class="fu"><a href="https://devtools.r-lib.org//reference/remote-reexports.html">install_github</a></span><span class="op">(</span><span class="st">"jangelini/geneticae"</span><span class="op">)</span></pre></div>
+<div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co"># install.packages("devtools")</span>
+<span class="fu">devtools</span><span class="fu">::</span><span class="fu"><a href="https://devtools.r-lib.org/reference/remote-reexports.html" class="external-link">install_github</a></span><span class="op">(</span><span class="st">"jangelini/geneticae"</span><span class="op">)</span></code></pre></div>
 </div>
-<div id="shiny-app" class="section level2">
-<h2 class="hasAnchor">
-<a href="#shiny-app" class="anchor"></a>Shiny app</h2>
-<p>You can use <code>geneticae</code> through <a href="https://geneticae.shinyapps.io/geneticae-shiny-web-app/">this</a> Shiny app. Source code is in <a href="https://github.com/jangelini/Geneticae-Shiny-Web-APP">GitHub repo</a>.</p>
+<div class="section level2">
+<h2 id="shiny-app">Shiny app<a class="anchor" aria-label="anchor" href="#shiny-app"></a>
+</h2>
+<p>You can use <code>geneticae</code> through <a href="https://geneticae.shinyapps.io/geneticae-shiny-web-app/" class="external-link">this</a> Shiny app. Source code is in <a href="https://github.com/jangelini/Geneticae-Shiny-Web-APP">GitHub repo</a>.</p>
 </div>
-<div id="getting-started" class="section level2">
-<h2 class="hasAnchor">
-<a href="#getting-started" class="anchor"></a>Getting Started</h2>
+<div class="section level2">
+<h2 id="getting-started">Getting Started<a class="anchor" aria-label="anchor" href="#getting-started"></a>
+</h2>
 <p>If you are just getting started with <code>geneticae</code> we recommend visiting the vignettes and exploring the examples throughout the package documentation.</p>
 <p>Here we present a small example.</p>
 <p>The dataset <code>yan.winterwheat</code> has information about the yield of 18 winter wheat varieties grown in nine environments in Ontario at 1993. The function <code><a href="reference/GGEPlot.html">GGEPlot()</a></code> builds several GGE biplots views. The basic biplot is produced with the argument <code>type="Biplot"</code>. If the function is used with the argument <code>type = "Selected Environment"</code> and the name of one environment is provided in <code>selectedE</code>, a line that passes through the environment marker (i.e. OA93), and the biplot origin is added. The most suitable cultivars for that particular environment can be identified looking at their projection onto this axis. Thus, at the environment OA93, the highest-yielding cultivar was <em>Zav</em>, and the lowest-yielding cultivar was <em>Luc</em>. The perpendicular line to the OA93 axis separates genotypes that yielded above and below the mean in this environment.</p>
-<div class="sourceCode" id="cb3"><pre class="downlit">
-<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://jangelini.github.io/geneticae/">geneticae</a></span><span class="op">)</span>
-
+<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://jangelini.github.io/geneticae/" class="external-link">geneticae</a></span><span class="op">)</span>
+<span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://kwstat.github.io/agridat/" class="external-link">agridat</a></span><span class="op">)</span>
+<span class="fu"><a href="https://rdrr.io/r/utils/data.html" class="external-link">data</a></span><span class="op">(</span><span class="va">yan.winterwheat</span><span class="op">)</span>
 <span class="va">GGE1</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/GGEmodel.html">GGEmodel</a></span><span class="op">(</span><span class="va">yan.winterwheat</span>, genotype <span class="op">=</span> <span class="st">"gen"</span>, environment <span class="op">=</span> <span class="st">"env"</span>, 
                  response <span class="op">=</span> <span class="st">"yield"</span>, centering <span class="op">=</span> <span class="st">"tester"</span><span class="op">)</span>
 
 
 <span class="fu"><a href="reference/GGEPlot.html">GGEPlot</a></span><span class="op">(</span><span class="va">GGE1</span>, type <span class="op">=</span> <span class="st">"Selected Environment"</span>, selectedE <span class="op">=</span> <span class="st">"OA93"</span>, 
-        footnote <span class="op">=</span> <span class="cn">F</span>, titles <span class="op">=</span> <span class="cn">F</span><span class="op">)</span></pre></div>
-<div class="figure" style="text-align: center">
-<p><img src="reference/figures/README-unnamed-chunk-4-1.png" alt="Figure: comparison of cultivar performance in a selected environment." width="45%"></p>
-<p class="caption">
-</p>
-<p>Figure: comparison of cultivar performance in a selected environment.</p>
-
-</div>
+        footnote <span class="op">=</span> <span class="cn">F</span>, titles <span class="op">=</span> <span class="cn">F</span><span class="op">)</span></code></pre></div>
+<p><img src="reference/figures/README-unnamed-chunk-4-1.png" title="Figure: comparison of cultivar performance in a selected environment." alt="Figure: comparison of cultivar performance in a selected environment." width="45%" style="display: block; margin: auto;"></p>
 </div>
 </div>
   </div>
 
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <div class="links">
-<h2>Links</h2>
+<h2 data-toc-skip>Links</h2>
 <ul class="list-unstyled">
-<li>Download from CRAN at <br><a href="https://cloud.r-project.org/package=geneticae">https://​cloud.r-project.org/​package=geneticae</a>
-</li>
-<li>Browse source code at <br><a href="https://github.com/jangelini/geneticae/">https://​github.com/​jangelini/​geneticae/​</a>
-</li>
-<li>Report a bug at <br><a href="https://github.com/jangelini/geneticae/issues">https://​github.com/​jangelini/​geneticae/​issues</a>
-</li>
+<li><a href="https://cloud.r-project.org/package=geneticae" class="external-link">View on CRAN</a></li>
+<li><a href="https://github.com/jangelini/geneticae/">Browse source code</a></li>
+<li><a href="https://github.com/jangelini/geneticae/issues">Report a bug</a></li>
 </ul>
 </div>
+
 <div class="license">
-<h2>License</h2>
+<h2 data-toc-skip>License</h2>
 <ul class="list-unstyled">
-<li><a href="https://www.r-project.org/Licenses/GPL-2">GPL-2</a></li>
+<li><a href="https://www.r-project.org/Licenses/GPL-2" class="external-link">GPL-2</a></li>
 </ul>
 </div>
-<div class="developers">
-<h2>Developers</h2>
+
+
+<div class="citation">
+<h2 data-toc-skip>Citation</h2>
 <ul class="list-unstyled">
-<li>Julia Angelini <br><small class="roles"> Author, maintainer </small> <a href="https://orcid.org/0000-0002-5815-1771" target="orcid.widget" aria-label="ORCID"><span class="fab fa-orcid orcid" aria-hidden="true"></span></a> </li>
-<li>Marcos Prunello <br><small class="roles"> Author </small> <a href="https://orcid.org/0000-0002-9611-527X" target="orcid.widget" aria-label="ORCID"><span class="fab fa-orcid orcid" aria-hidden="true"></span></a> </li>
+<li><a href="authors.html#citation">Citing geneticae</a></li>
+</ul>
+</div>
+
+<div class="developers">
+<h2 data-toc-skip>Developers</h2>
+<ul class="list-unstyled">
+<li>Julia Angelini <br><small class="roles"> Author, maintainer </small> <a href="https://orcid.org/0000-0002-5815-1771" target="orcid.widget" aria-label="ORCID" class="external-link"><span class="fab fa-orcid orcid" aria-hidden="true"></span></a> </li>
+<li>Marcos Prunello <br><small class="roles"> Author </small> <a href="https://orcid.org/0000-0002-9611-527X" target="orcid.widget" aria-label="ORCID" class="external-link"><span class="fab fa-orcid orcid" aria-hidden="true"></span></a> </li>
 <li>Gerardo Cervigni <br><small class="roles"> Author </small>  </li>
+</ul>
+</div>
+
+<div class="dev-status">
+<h2 data-toc-skip>Dev status</h2>
+<ul class="list-unstyled">
+<li><a href="https://lifecycle.r-lib.org/articles/stages.html" class="external-link"><img src="https://img.shields.io/badge/lifecycle-experimental-orange.svg" alt="Lifecycle: experimental"></a></li>
 </ul>
 </div>
 
@@ -184,11 +194,13 @@
 
 
       <footer><div class="copyright">
-  <p>Developed by Julia Angelini, Marcos Prunello, Gerardo Cervigni.</p>
+  <p></p>
+<p>Developed by Julia Angelini, Marcos Prunello, Gerardo Cervigni.</p>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
+  <p></p>
+<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.1.</p>
 </div>
 
       </footer>
@@ -196,6 +208,8 @@
 
   
 
+
+  
 
   </body>
 </html>

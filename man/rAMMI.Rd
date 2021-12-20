@@ -84,6 +84,7 @@ Comentar cuál es cada método.
 
 library(geneticae)
 # Data without replication
+library(agridat)
 data(yan.winterwheat)
 BIP_AMMI <- rAMMI(yan.winterwheat, genotype = "gen", environment = "env",
                   response = "yield", type = "AMMI")

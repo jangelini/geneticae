@@ -124,6 +124,7 @@ multi-environment trials and to subsequently adjust the mentioned methods.
 \examples{
 library(geneticae)
 # Data without replications
+library(agridat)
 data(yan.winterwheat)
 
 # generating missing values

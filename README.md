@@ -10,7 +10,6 @@ Web: <https://jangelini.github.io/geneticae/>
 CRAN: <https://cran.r-project.org/web/packages/geneticae/index.html>
 
 <!-- badges: start -->
-
 <!-- dejo esto porque todavia hay links que no estan disponibles: -->
 
 [![Lifecycle:
@@ -123,7 +122,8 @@ environment.
 
 ``` r
 library(geneticae)
-
+library(agridat)
+data(yan.winterwheat)
 GGE1 <- GGEmodel(yan.winterwheat, genotype = "gen", environment = "env", 
                  response = "yield", centering = "tester")
 
@@ -132,14 +132,4 @@ GGEPlot(GGE1, type = "Selected Environment", selectedE = "OA93",
         footnote = F, titles = F)
 ```
 
-<div class="figure" style="text-align: center">
-
-<img src="man/figures/README-unnamed-chunk-4-1.png" alt="Figure: comparison of cultivar performance in a selected environment." width="45%" />
-
-<p class="caption">
-
-Figure: comparison of cultivar performance in a selected environment.
-
-</p>
-
-</div>
+<img src="man/figures/README-unnamed-chunk-4-1.png" title="Figure: comparison of cultivar performance in a selected environment." alt="Figure: comparison of cultivar performance in a selected environment." width="45%" style="display: block; margin: auto;" />

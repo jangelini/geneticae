@@ -39,7 +39,7 @@ reference:
       - imputation
   - title: "Datasets"
     desc: >
-      Sample datasets (see the [agricolae](https://CRAN.R-project.org/package=agricolae) and [agridat](https://CRAN.R-project.org/package=agridat) packages).
+      Sample datasets (see the [agricolae](https://CRAN.R-project.org/package=agricolae) package).
     contents:
       - yan.winterwheat
       - plrv
