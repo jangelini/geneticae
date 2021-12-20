@@ -3,6 +3,7 @@
 # Data without replication
 library(geneticae)
 # Data without replication
+library(agridat)
 data(yan.winterwheat)
 
 GGE1 <- GGEmodel(yan.winterwheat, genotype="gen",environment="env", response="yield", rep=NULL, centering = "tester")

@@ -3,6 +3,7 @@
 
 library(geneticae)
 # Data without replication
+library(agridat)
 data(yan.winterwheat)
 
 dat2 <- yan.winterwheat
