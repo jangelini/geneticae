@@ -117,6 +117,7 @@ and environment combination was available in the dataset obtained from the
 
 
   ```{r}
+  library(agridat)
   data(yan.winterwheat)
   head(yan.winterwheat)
   ```

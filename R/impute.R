@@ -91,6 +91,7 @@
 #' @examples
 #' library(geneticae)
 #' # Data without replications
+#' library(agridat)
 #' data(yan.winterwheat)
 #'
 #' # generating missing values

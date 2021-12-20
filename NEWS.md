@@ -5,6 +5,8 @@ This is a development version
 Changed default option to "symmetrical" in the SVP argument of the GGEmodel()
 function.
 
+Changed agridat package from Imports to Suggests in DESCRIPTION file.
+
 # geneticae 0.1.0
 
 First submission to CRAN.

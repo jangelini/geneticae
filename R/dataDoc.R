@@ -24,25 +24,3 @@
 #' str(plrv)
 #'
 NULL
-
-#' Winter wheat varieties from Ontario
-#'
-#' @description Yield (t/ha) of 18 winter wheat varieties grown at 9
-#'   environments in Ontario in 1993.
-#'
-#' @name yan.winterwheat
-#' @docType data
-#' @usage data(yan.winterwheat)
-#'
-#' @format Data frame with 162 observations and 3 variables (genotype,
-#'   environment and yield)
-#'
-#' @keywords datasets
-#' @references Kevin Wright (2018). agridat: Agricultural Datasets. R package
-#'   version 1.16.\url{https://CRAN.R-project.org/package=agridat}
-#'
-#' @examples
-#' library(geneticae)
-#' data(yan.winterwheat)
-#' str(yan.winterwheat)
-NULL

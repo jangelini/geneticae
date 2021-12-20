@@ -48,12 +48,12 @@ Imports:
     missMDA,
     calibrate,
     graphics,
-    agridat,
     reshape2,
     matrixStats,
     tidyr,
     prettydoc
 Suggests: 
+	agridat,
     spelling,
     knitr,
     rmarkdown,

@@ -1,8 +1,10 @@
-## First submission to CRAN
-This is a new release to CRAN, and my first re-submission, having fixed these two things mentioned by CRAN's team in their email:
+## New submission to CRAN
+This is a new release to CRAN, having changed these two things:
 
-* Added references in the description field of the DESCRIPTION file.
-* Unwrapped examples from unnecessary \donrun{} blocks.
+*Changed default option to "symmetrical" in the SVP argument of the GGEmodel()
+function.
+
+*Changed agridat package from Imports to Suggests in DESCRIPTION file.
 
 ## Test environments
 * local ubuntu 20.04, R 4.1.0
@@ -12,4 +14,4 @@ This is a new release to CRAN, and my first re-submission, having fixed these tw
 There were no ERRORs, WARNINGs or NOTEs, other than the NEW SUBMISSION note.
 
 ## Downstream dependencies
-There are currently no downstream dependencies for this package
+There are currently no downstream dependencies for this package.

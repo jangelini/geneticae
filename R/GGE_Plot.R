@@ -72,6 +72,7 @@
 #'  library(geneticae)
 #'
 #'  # Data without replication
+#'  library(agridat)
 #'  data(yan.winterwheat)
 #'  GGE1 <- GGEmodel(yan.winterwheat, centering = "tester")
 #'  GGEPlot(GGE1)

@@ -59,6 +59,7 @@
 #'
 #'  library(geneticae)
 #'  # Data without replication
+#'  library(agridat)
 #'  data(yan.winterwheat)
 #'  GGE1 <- GGEmodel(yan.winterwheat, genotype = "gen", environment = "env",
 #'                   response = "yield", centering = "tester")
