@@ -41,6 +41,5 @@ reference:
     desc: >
       Sample datasets (see the [agricolae](https://CRAN.R-project.org/package=agricolae) package).
     contents:
-      - yan.winterwheat
       - plrv
 

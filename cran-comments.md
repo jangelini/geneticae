@@ -7,7 +7,7 @@ function.
 *Changed agridat package from Imports to Suggests in DESCRIPTION file.
 
 ## Test environments
-* local ubuntu 20.04, R 4.1.0
+* local fedora 35, R 4.1.2
 * win-builder (devel, release and oldrelease)
 
 ## R CMD check results

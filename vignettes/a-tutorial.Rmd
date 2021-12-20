@@ -505,12 +505,12 @@ interaction, Biometrics, 44, 705–715. \n
 
 Gauch H.G. and R.W. Zobel. 1997. Identifying mega-environments and targeting
 genotypes. Crop Science, 37, 311–326. doi:
-<https://doi.org/10.2135/cropsci1997.0011183X003700020002x> \n
+\doi{10.2135/cropsci1997.0011183X003700020002x} \n
 
 Giauffret, C., Lothrop, J., Dorvillez, D., Gouesnard, B., and Derieux, M., 2000.
 Genotype x environment interactions in maize hybrids from temperate or highland
 tropical origin. Crop Science, 40, 1004-1012. doi:
-<https://doi.org/10.2135/cropsci2000.4041004x> \n
+\doi{10.2135/cropsci2000.4041004x} \n
 
 Huber, P.J. 1981. Robust Statistics. Wiley, New York. \n
 
@@ -540,14 +540,14 @@ doi: <https://doi.org/10.2135/cropsci2001.413656x> \n
 
 Yan, W., Hunt, L.A., Sheng, Q., and Szlavnics, Z. 2000. Cultivar evaluation and
 mega-en- vironment investigation based on the GGE biplot. Crop Science, 40,
-597–605. doi: <https://doi.org/10.2135/cropsci2000.403597x> \n
+597–605. doi: \doi{10.2135/cropsci2000.403597x} \n
 
 Yan, W. and Kang, M.S. 2003. GGE Biplot Analysis: A Graphical Tool for Breeders,
 Geneticists, and Agronomists. CRC Press, Boca Raton, FL. \n
 
 Yan, W., Kang, M.S., Ma, B., Woods, S., and Cornelius, P.L. 2007. GGE Biplot vs.
 AMMI analysis of genotype-by-environment data. Crop Science, 7, 641–653. doi:
-<https://doi.org/10.2135/cropsci2006.06.0374> \n
+\doi{10.2135/cropsci2006.06.0374} \n
 
 Yan, W. and Rajcan, I. 2002. Biplot analysis of sites and trait relations of
 soybean in Ontario, Crop Science, 42, 11–20. \doi{10.2135/cropsci2002.1100} \n

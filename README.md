@@ -7,7 +7,7 @@
 
 Web: <https://jangelini.github.io/geneticae/>
 
-CRAN: <https://cran.r-project.org/web/packages/geneticae/index.html>
+CRAN: <https://CRAN.R-project.org/package=geneticae/index.html>
 
 <!-- badges: start -->
 <!-- dejo esto porque todavia hay links que no estan disponibles: -->
