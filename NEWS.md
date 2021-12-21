@@ -1,3 +1,7 @@
+# geneticae 0.2.9000
+
+This is a development version
+
 # geneticae 0.2.0
 
 Changed default option to "symmetrical" in the SVP argument of the GGEmodel()
