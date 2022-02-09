@@ -1,6 +1,6 @@
-# geneticae 0.2.9000
+# geneticae 0.3.0
 
-This is a development version
+Dependecy on archived GGEBiplotGUI package removed.
 
 # geneticae 0.2.0
 

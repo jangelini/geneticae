@@ -1,10 +1,7 @@
 ## New submission to CRAN
-This is a new release to CRAN, having changed these two things:
+This is a new release to CRAN, having changed these things:
 
-*Changed default option to "symmetrical" in the SVP argument of the GGEmodel()
-function.
-
-*Changed agridat package from Imports to Suggests in DESCRIPTION file.
+*Dependecy on archived GGEBiplotGUI package removed.
 
 ## Test environments
 * local fedora 35, R 4.1.2
