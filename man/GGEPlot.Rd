@@ -113,7 +113,7 @@ GGE biplots are used for visual examination of the relationships
  Several types of biplots are offered which focus on different aspects of the
  analysis. Customization options are also included. This function is a
  modification of \code{\link[GGEBiplots]{GGEPlot}} from the
- href{https://CRAN.R-project.org/package=GGEBiplots}{GGEBiplots package}.
+ \href{https://CRAN.R-project.org/package=GGEBiplots}{GGEBiplots package}.
 }
 \examples{
  library(geneticae)
