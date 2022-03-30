@@ -24,7 +24,7 @@ options for customization."><!-- mathjax --><script src="https://cdnjs.cloudflar
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">geneticae</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.1.9000</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.3.9000</span>
       </span>
     </div>
 
@@ -142,8 +142,27 @@ Defaults to `TRUE`.</p></dd>
     </div>
     <div id="details">
     <h2>Details</h2>
-    <p>Comentar cuál es cada método.</p>
-    </div>
+    <p>To overcome the problem of data contamination with outlying observations,
+Rodrigues, Monteiro and Lourenco (2015) propose a robust AMMI model based on
+the M-Huber estimator and in robusts SVD/PCA procedures. Several SVD/PC
+methods were considered, briefly described below, thus conveying a total of
+five robust AMMI candidate models:</p><ul><li><p>R-AMMI: uses the L1 norm instead of the more usual least squares L2
+norm, to compute a robust approximation to the SVD of a rectangular matrix.</p></li>
+<li><p>H-AMMI: Combines projection-pursuit and robust covariance estimation
+techniques to compute the robust loadings. It is most adequate for
+high-dimensional data.</p></li>
+<li><p>G-AMMI: Uses projection-pursuit to compute PCA estimators. The
+optimization is done via the grid search algorithm in the plane instead of the
+p-dimensional space.</p></li>
+<li><p>L-AMMI: The idea behind this approach is to perform  classical PCA on
+the data but projected onto a unit sphere. When the data are elliptically
+distributed the estimates of the eigenvectors are consistent</p></li>
+<li><p>PP-AMMI: Uses projection-pursuit calculating the robust eigenvalues and
+eigenvectors without going through robust covariance estimation. The principal
+components can be sequentially computed and thus this method is very appealing
+when few genotypes are evaluated under a wide range of environmental and/or
+experimental conditions.</p></li>
+</ul></div>
     <div id="references">
     <h2>References</h2>
     <p>Rodrigues P.C., Monteiro A., Lourenco V.M. (2015). <em>A robust
@@ -184,7 +203,7 @@ Defaults to `TRUE`.</p></dd>
 </div>
 
 <div class="pkgdown">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.1.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.2.</p>
 </div>
 
       </footer></div>

@@ -78,7 +78,29 @@ Produces classical or robust AMMI biplot as an object of class 'ggplot', with
 options for customization.
 }
 \details{
-Comentar cuál es cada método.
+To overcome the problem of data contamination with outlying observations,
+Rodrigues, Monteiro and Lourenco (2015) propose a robust AMMI model based on
+the M-Huber estimator and in robusts SVD/PCA procedures. Several SVD/PC
+methods were considered, briefly described below, thus conveying a total of
+five robust AMMI candidate models:
+\itemize{
+\item R-AMMI: uses the L1 norm instead of the more usual least squares L2
+norm, to compute a robust approximation to the SVD of a rectangular matrix.
+\item H-AMMI: Combines projection-pursuit and robust covariance estimation
+techniques to compute the robust loadings. It is most adequate for
+high-dimensional data.
+\item G-AMMI: Uses projection-pursuit to compute PCA estimators. The
+optimization is done via the grid search algorithm in the plane instead of the
+p-dimensional space.
+\item L-AMMI: The idea behind this approach is to perform  classical PCA on
+the data but projected onto a unit sphere. When the data are elliptically
+distributed the estimates of the eigenvectors are consistent
+\item PP-AMMI: Uses projection-pursuit calculating the robust eigenvalues and
+eigenvectors without going through robust covariance estimation. The principal
+components can be sequentially computed and thus this method is very appealing
+when few genotypes are evaluated under a wide range of environmental and/or
+experimental conditions.
+}
 }
 \examples{
 

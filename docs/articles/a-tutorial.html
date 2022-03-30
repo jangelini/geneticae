@@ -45,7 +45,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">geneticae</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.1.9000</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.3.9000</span>
       </span>
     </div>
 
@@ -93,7 +93,7 @@ Centro de Estudios Fotosintéticos y Bioquímicos<br>
 Universidad Nacional de Rosario<br>
 Rosario, Argentina</div></h4>
             
-            <h4 data-toc-skip class="date">2021-12-20</h4>
+            <h4 data-toc-skip class="date">2022-03-30</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/jangelini/geneticae/blob/HEAD/vignettes/a-tutorial.Rmd"><code>vignettes/a-tutorial.Rmd</code></a></small>
       <div class="hidden name"><code>a-tutorial.Rmd</code></div>
@@ -107,9 +107,9 @@ Rosario, Argentina</div></h4>
 body{
 text-align: justify}
 </style>
-<!-- devtools::build_vignettes() --><div class="section level1">
-<h1 id="getting-started">Getting Started<a class="anchor" aria-label="anchor" href="#getting-started"></a>
-</h1>
+<!-- devtools::build_vignettes() --><div class="section level2">
+<h2 id="getting-started">Getting Started<a class="anchor" aria-label="anchor" href="#getting-started"></a>
+</h2>
 <p><strong>Installing the package.</strong> To install the released version of <code>geneticae</code> from <a href="https://CRAN.R-project.org" class="external-link">CRAN</a>:</p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html" class="external-link">install.packages</a></span><span class="op">(</span><span class="st">"geneticae"</span><span class="op">)</span></code></pre></div>
@@ -122,16 +122,16 @@ text-align: justify}
 <code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://jangelini.github.io/geneticae/" class="external-link">geneticae</a></span><span class="op">)</span></code></pre></div>
 <p><strong>Help files.</strong> Detailed information on <code>geneticae</code> package functions can be obtained from help files using <code><a href="https://github.com/jangelini/reference">help(package="geneticae")</a></code>. The help file for a function, for example <code>imputation</code> can be obtained using <code><a href="../reference/imputation.html">?imputation</a></code> or <code><a href="../reference/imputation.html">help(imputation)</a></code>.</p>
 </div>
-<div class="section level1">
-<h1 id="introduction">Introduction<a class="anchor" aria-label="anchor" href="#introduction"></a>
-</h1>
+<div class="section level2">
+<h2 id="introduction">Introduction<a class="anchor" aria-label="anchor" href="#introduction"></a>
+</h2>
 <p>Understanding the relationship between crops performance and environment is a key problem for plant breeders and geneticists. In advanced stages of breeding programs, in which few genotypes are evaluated, multi-environment trials (MET) are one of the most used experiments. Such studies test a number of genotypes in multiple environments in order to identify the superior genotypes according to their performance. In these experiments, crop performance is modeled as a function of genotype (G), environment (E) and genotype-environment interaction (GEI). The presence of GEI generates differential genotypic responses in the different environments (Angelini et al., 2019; Crossa, 1990; Kang and Magari, 1996). Therefore appropriate statistical methods should be used to obtain an adequate GEI analysis, which is essential for plant breeders (Giauffret et al., 2000).</p>
 <p>The average performance of genotypes through different environments can only be considered in the absence of GEI (Yan and Kang, 2003). However, GEI is almost always present and the comparison of the mean performance between genotypes is not enough. The most widely used methods to analyze MET data are based on regression models, analysis of variance (ANOVA) and multivariate techniques. In particular, two statistical models are widely used among plant breeders as they provide useful graphical tools for the study of GEI: the Additive Main effects and Multiplicative Interaction model (AMMI) (Kempton, 1984; Gauch, 1988) and the Site Regression Model (SREG) (Cornelius et al., 1996; Gauch and Zobel, 1997). However, these models are not always efficient enough to analyze MET data structure of plant breeding programs. They present serious limitations in the presence of atypical observations and missing values, which occur very frequently. To overcome this, several imputation alternatives and a robust AMMI were recently proposed in literature.</p>
 <p>Although there are R packages which tackle different aspects of MET data analysis, there aren’t any packages capable of performing all the steps that need to be considered. The <code>geneticae</code> package was created to gather in one place the most useful functions for this type of analysis and it also implements new methodology which can be found in recent literature. More importantly, <code>geneticae</code> is the first package to implement the robust AMMI model and new imputation methods not available before. In addition, there is no need to preprocess the data to use the <code>geneticae</code> package, as it the case of some previous packages which require a data frame or matrix containing genotype by environment means with the genotypes in rows and the environments in columns. In this package, data in long format is required. Genotypes, environments, repetitions (if any) and phenotypic traits of interest can be presented in any order and there is no restriction on columns names. Also, extra information that will not be used in the analysis may be present in the dataset. Finally, <code>geneticae</code> offers a wide variety of options to customize the biplots, which are part of the graphical output of these methods.</p>
 </div>
-<div class="section level1">
-<h1 id="datasets">Datasets<a class="anchor" aria-label="anchor" href="#datasets"></a>
-</h1>
+<div class="section level2">
+<h2 id="datasets">Datasets<a class="anchor" aria-label="anchor" href="#datasets"></a>
+</h2>
 <p>The <code>geneticae</code> package provides two datasets to illustrate the methodology included to analyse MET data.</p>
 <ul>
 <li>
@@ -163,12 +163,12 @@ text-align: justify}
 </li>
 </ul>
 </div>
-<div class="section level1">
-<h1 id="statistical-models-for-multi-environment-trials">Statistical models for multi-environment trials<a class="anchor" aria-label="anchor" href="#statistical-models-for-multi-environment-trials"></a>
-</h1>
 <div class="section level2">
-<h2 id="ammi-model">AMMI model<a class="anchor" aria-label="anchor" href="#ammi-model"></a>
+<h2 id="statistical-models-for-multi-environment-trials">Statistical models for multi-environment trials<a class="anchor" aria-label="anchor" href="#statistical-models-for-multi-environment-trials"></a>
 </h2>
+<div class="section level3">
+<h3 id="ammi-model">AMMI model<a class="anchor" aria-label="anchor" href="#ammi-model"></a>
+</h3>
 <p>The <em>AMMI model</em> (Gauch, 1988) is widely used to analyse the effect of GEI. This model includes two stages. First, an ANOVA is performed to obtain estimates for the additive main effects of environments and genotypes. Secondly, the residuals from the ANOVA are arranged in a matrix with genotypes in the rows and environments in the columns and a singular value decomposition (SVD) is applied in order to explore patterns related to GEI, still present in the residuals. The result of the first two multiplicative terms of the SVD is often presented in a biplot called GE and represents a two-rank approximation of GEI effects.</p>
 <p>The <code><a href="../reference/rAMMI.html">rAMMI()</a></code> function returns the GE biplot. Data in long format is required by this function, i.e. each row corresponds to one observation and each column to one variable (genotype, environment, repetition (if any) and the observed phenotype). If each genotype has been evaluated more than once at each environment, the phenotypic mean for each combination of genotype and environment is internally calculated and then the model is estimated. Extra variables that will not be used in the analysis may be present in the dataset. Missing values are not allowed (but can be imputated, see below).</p>
 <p>The GE biplot for <code>yan.winterwheat</code> dataset is shown in Figure 1 along with the sentence used to obtain it. The first argument is the input dataset, then the names of the columns in which the necessary information to apply the technique is found and also the model to be obtained are indicated. Optionally, the percentage of GEI explained by the GE biplot can be added as a footnote with <code>footnote = T</code>, as well as a tittle with <code>titles = T</code>. In this example, BH93, KE93 and OA93 are the environments that contribute the most to the interaction as their vectors are the longest ones. The cultivars <em>m12</em> and <em>Kat</em> present similar interaction patterns (their markers are close to each other in the biplot) and they are very different from <em>Ann</em> and <em>Aug</em>, for example. The closeness between the cultivar <em>Dia</em> and the environment BH93 indicates a strong positive association between them, which means that BH93 is a extremely favorable environment for that genotype. As OA93 and <em>Luc</em> markers are opposite, this environment is considerably unfavorable for that genotype. Finally, <em>Cas</em> and <em>Reb</em> are close to the origin, which means that they adapt equally to all environments.</p>
@@ -182,9 +182,9 @@ Figure 1: GE biplot based on yield data of 1993 Ontario winter wheat performance
 </div>
 <p>The AMMI model, in its standard form, assumes that no outliers are present in the data. To overcome the problem of data contamination with outlying observations, Rodrigues et al. (2016) proposed five robust AMMI models, which can be obtained in two stages: (i) fitting a robust regression model with an M-Huber estimator (Huber, 1981) to replace the ANOVA model; and (ii) using a robust SVD or principal components analysis (PCA) procedure to replace the standard SVD. Until now, robust AMMI models were not available in any R package. All robust biplots proposed by Rodrigues et al. (2016) can be obtained using <code><a href="../reference/rAMMI.html">rAMMI()</a></code>. The argument <code>type</code> can be used to specify the type of model to be fitted (<code>"rAMMI"</code>, <code>"hAMMI"</code>, <code>"gAMMI"</code>, <code>"lAMMI"</code> or <code>"ppAMMI"</code>). Since the sample <code>yan.winterwheat</code> dataset does not present outliers, the conclusions obtained with robust biplots will not differ from those made with the classic biplot (Rodrigues et al., 2016). Thus, no interpretation of the robust biplots is presented in this tutorial.</p>
 </div>
-<div class="section level2">
-<h2 id="site-regression-model">Site Regression model<a class="anchor" aria-label="anchor" href="#site-regression-model"></a>
-</h2>
+<div class="section level3">
+<h3 id="site-regression-model">Site Regression model<a class="anchor" aria-label="anchor" href="#site-regression-model"></a>
+</h3>
 <p>The <em>Site Regression model</em> (SREG, also called <em>genotype plus genotype-by-environment model</em> or <em>GGE model</em>) is another powerful tool for the analysis and interpretation of MET data in breeding programs. In this case, an ANOVA is performed to obtain estimates for the additive main effects of environments and a SVD is performed on the residuals matrix in order to explore patterns related to genotype (G) and GEI.</p>
 <p>The <code><a href="../reference/GGEmodel.html">GGEmodel()</a></code> function is a wrapper for the <code>GGEModel()</code> function of the <a href="https://CRAN.R-project.org/package=GGEBiplots" class="external-link">GGEBiplots</a> package (Dumble, 2017). As for the <code><a href="../reference/rAMMI.html">rAMMI()</a></code> function, data needs to be presented in a long format and repetitions or extra variables in the dataset are allowed. All the combinations between genotypes and environments must be present.</p>
 <div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
@@ -311,9 +311,9 @@ Figure 10: classification of environments with respect to the ideal environment.
 </div>
 </div>
 </div>
-<div class="section level1">
-<h1 id="imputation-methods">Imputation methods<a class="anchor" aria-label="anchor" href="#imputation-methods"></a>
-</h1>
+<div class="section level2">
+<h2 id="imputation-methods">Imputation methods<a class="anchor" aria-label="anchor" href="#imputation-methods"></a>
+</h2>
 <p>One major limitation of the AMMI and SREG models is that they require a complete two-way data table. Although METs are designed so that all genotypes are evaluated in all environments, missing values are very common due to measurement errors or destruction of plants by animals, floods or harvest problems. In addition, genotypes might be incorporated or discarded during the study because of their promising or poor performance. The <code><a href="../reference/imputation.html">imputation()</a></code> function includes several methods to overcome the problem of missing data, some of which have been recently published and were not available in any R package until now. To present an example, some observations from the complete <code>yan.winterwheat</code> are deleted:</p>
 <div class="sourceCode" id="cb19"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># Generating missing data</span>
@@ -345,9 +345,9 @@ Figure 10: classification of environments with respect to the ideal environment.
 <span class="co">## m12 3.340000 3.854 2.419 2.783 4.629 5.090 3.281 3.918 2.561</span></code></pre>
 <p>The other methods available in <code>geneticae</code> are: <code>"EM-SVD"</code>, <code>"Gabriel"</code>, <code>"WGabriel"</code> and <code>"EM-PCA"</code>.</p>
 </div>
-<div class="section level1">
-<h1 id="references">References<a class="anchor" aria-label="anchor" href="#references"></a>
-</h1>
+<div class="section level2">
+<h2 id="references">References<a class="anchor" aria-label="anchor" href="#references"></a>
+</h2>
 <p>Angelini, J., Faviere, G. S., Bortolotto, E. B., Arroyo, L., Valentini, G. H., and Domingo Lucio Cervigni, G. 2019. Biplot pattern interaction analysis and statistical test for crossover and non-crossover genotype-by-environment interaction in peach. Scientia Horticulturae, 252, 298–309. . </p>
 <p>Bhan, M.K., Pal, S., Rao, B.L., Dhar, A.K., and Kang, M.S. 2005. GGE biplot analysis of oil yield in lemongrass. Journal of New Seeds, 7, 127–139.  </p>
 <p>Cornelius, P.L., J. Crossa, and M.S. Seyedsadr. 1996. Statistical tests and estimates of multiplicative models for GE interaction, p. 199–234. In: M.S. Kang and H.G. Gauch, Jr. (Eds.), Genotype-by-environment interaction, CRC Press, Boca Raton, FL. </p>
@@ -370,9 +370,9 @@ Figure 10: classification of environments with respect to the ideal environment.
 <p>Yan, W. and Rajcan, I. 2002. Biplot analysis of sites and trait relations of soybean in Ontario, Crop Science, 42, 11–20.  </p>
 <p>Yan, W. and Tinker, N.A. 2005. An integrated biplot system for displaying, interpreting, and exploring genotype 9 environment interaction. Crop Science, 45, 1004–1016.  </p>
 </div>
-<div class="section level1">
-<h1 id="session-info">Session Info<a class="anchor" aria-label="anchor" href="#session-info"></a>
-</h1>
+<div class="section level2">
+<h2 id="session-info">Session Info<a class="anchor" aria-label="anchor" href="#session-info"></a>
+</h2>
 <pre><code><span class="co">## R version 4.1.2 (2021-11-01)</span>
 <span class="co">## Platform: x86_64-redhat-linux-gnu (64-bit)</span>
 <span class="co">## Running under: Fedora Linux 35 (Workstation Edition)</span>
@@ -392,38 +392,40 @@ Figure 10: classification of environments with respect to the ideal environment.
 <span class="co">## [1] stats     graphics  grDevices utils     datasets  methods   base     </span>
 <span class="co">## </span>
 <span class="co">## other attached packages:</span>
-<span class="co">## [1] agridat_1.20       geneticae_0.1.9000</span>
+<span class="co">## [1] agridat_1.20       geneticae_0.3.9000</span>
 <span class="co">## </span>
 <span class="co">## loaded via a namespace (and not attached):</span>
-<span class="co">##  [1] Biobase_2.54.0       sass_0.4.0           tidyr_1.1.4         </span>
-<span class="co">##  [4] jsonlite_1.7.2       foreach_1.5.1        missMDA_1.18        </span>
-<span class="co">##  [7] bslib_0.3.1          highr_0.9            stats4_4.1.2        </span>
-<span class="co">## [10] yaml_2.2.1           robustbase_0.93-9    ggrepel_0.9.1       </span>
-<span class="co">## [13] pillar_1.6.4         backports_1.4.1      lattice_0.20-45     </span>
-<span class="co">## [16] glue_1.4.2           digest_0.6.27        polyclip_1.10-0     </span>
-<span class="co">## [19] colorspace_2.0-2     htmltools_0.5.2      pcaPP_1.9-74        </span>
-<span class="co">## [22] FactoMineR_2.4       pkgconfig_2.0.3      broom_0.7.10        </span>
-<span class="co">## [25] purrr_0.3.4          mvtnorm_1.1-3        scales_1.1.1        </span>
-<span class="co">## [28] tweenr_1.0.2         ggforce_0.3.3        tibble_3.1.6        </span>
-<span class="co">## [31] generics_0.1.1       farver_2.1.0         ggplot2_3.3.5       </span>
-<span class="co">## [34] ellipsis_0.3.2       DT_0.20              cachem_1.0.6        </span>
-<span class="co">## [37] withr_2.4.3          BiocGenerics_0.40.0  magrittr_2.0.1      </span>
-<span class="co">## [40] crayon_1.4.2         memoise_2.0.1        evaluate_0.14       </span>
-<span class="co">## [43] mice_3.14.0          GGEBiplots_0.1.1     fs_1.5.2            </span>
-<span class="co">## [46] fansi_0.5.0          doParallel_1.0.16    MASS_7.3-54         </span>
-<span class="co">## [49] textshaping_0.3.6    tools_4.1.2          lifecycle_1.0.1     </span>
-<span class="co">## [52] stringr_1.4.0        munsell_0.5.0        cluster_2.1.2       </span>
-<span class="co">## [55] flashClust_1.01-2    pcaMethods_1.86.0    compiler_4.1.2      </span>
-<span class="co">## [58] pkgdown_2.0.1        jquerylib_0.1.4      bcv_1.0.1.4         </span>
-<span class="co">## [61] systemfonts_1.0.3    rlang_0.4.11         grid_4.1.2          </span>
-<span class="co">## [64] iterators_1.0.13     htmlwidgets_1.5.4    leaps_3.1           </span>
-<span class="co">## [67] labeling_0.4.2       rmarkdown_2.10       gtable_0.3.0        </span>
-<span class="co">## [70] codetools_0.2-18     rrcov_1.6-0          R6_2.5.1            </span>
-<span class="co">## [73] knitr_1.33           dplyr_1.0.7          fastmap_1.1.0       </span>
-<span class="co">## [76] utf8_1.2.2           rprojroot_2.0.2      ragg_1.2.1          </span>
-<span class="co">## [79] desc_1.4.0           stringi_1.6.2        parallel_4.1.2      </span>
-<span class="co">## [82] Rcpp_1.0.7           vctrs_0.3.8          DEoptimR_1.0-9      </span>
-<span class="co">## [85] scatterplot3d_0.3-41 tidyselect_1.1.1     xfun_0.23</span></code></pre>
+<span class="co">##  [1] Biobase_2.54.0       sass_0.4.0           tidyr_1.2.0         </span>
+<span class="co">##  [4] jsonlite_1.7.3       foreach_1.5.2        missMDA_1.18        </span>
+<span class="co">##  [7] bslib_0.3.1          assertthat_0.2.1     highr_0.9           </span>
+<span class="co">## [10] stats4_4.1.2         robustbase_0.93-9    yaml_2.2.1          </span>
+<span class="co">## [13] ggrepel_0.9.1        pillar_1.7.0         backports_1.4.1     </span>
+<span class="co">## [16] lattice_0.20-45      glue_1.6.1           digest_0.6.27       </span>
+<span class="co">## [19] polyclip_1.10-0      colorspace_2.0-2     htmltools_0.5.2     </span>
+<span class="co">## [22] pcaPP_1.9-74         FactoMineR_2.4       pkgconfig_2.0.3     </span>
+<span class="co">## [25] broom_0.7.12         purrr_0.3.4          mvtnorm_1.1-3       </span>
+<span class="co">## [28] scales_1.1.1         tweenr_1.0.2         ggforce_0.3.3       </span>
+<span class="co">## [31] tibble_3.1.6         generics_0.1.2       farver_2.1.0        </span>
+<span class="co">## [34] ggplot2_3.3.5        ellipsis_0.3.2       DT_0.20             </span>
+<span class="co">## [37] cachem_1.0.6         withr_2.4.3          BiocGenerics_0.40.0 </span>
+<span class="co">## [40] cli_3.2.0            magrittr_2.0.1       crayon_1.5.0        </span>
+<span class="co">## [43] memoise_2.0.1        evaluate_0.14        mice_3.14.0         </span>
+<span class="co">## [46] GGEBiplots_0.1.3     fs_1.5.2             fansi_1.0.2         </span>
+<span class="co">## [49] doParallel_1.0.17    MASS_7.3-54          textshaping_0.3.6   </span>
+<span class="co">## [52] tools_4.1.2          lifecycle_1.0.1      stringr_1.4.0       </span>
+<span class="co">## [55] munsell_0.5.0        cluster_2.1.2        flashClust_1.01-2   </span>
+<span class="co">## [58] pcaMethods_1.86.0    compiler_4.1.2       pkgdown_2.0.2       </span>
+<span class="co">## [61] jquerylib_0.1.4      bcv_1.0.1.4          systemfonts_1.0.4   </span>
+<span class="co">## [64] rlang_1.0.1          grid_4.1.2           iterators_1.0.14    </span>
+<span class="co">## [67] rstudioapi_0.13      htmlwidgets_1.5.4    leaps_3.1           </span>
+<span class="co">## [70] labeling_0.4.2       rmarkdown_2.10       gtable_0.3.0        </span>
+<span class="co">## [73] codetools_0.2-18     DBI_1.1.2            rrcov_1.6-2         </span>
+<span class="co">## [76] R6_2.5.1             knitr_1.33           dplyr_1.0.8         </span>
+<span class="co">## [79] fastmap_1.1.0        utf8_1.2.2           rprojroot_2.0.2     </span>
+<span class="co">## [82] ragg_1.2.1           desc_1.4.0           stringi_1.6.2       </span>
+<span class="co">## [85] parallel_4.1.2       Rcpp_1.0.8           vctrs_0.3.8         </span>
+<span class="co">## [88] DEoptimR_1.0-10      scatterplot3d_0.3-41 tidyselect_1.1.1    </span>
+<span class="co">## [91] xfun_0.23</span></code></pre>
 </div>
   </div>
 
@@ -444,7 +446,7 @@ Figure 10: classification of environments with respect to the ideal environment.
 
 <div class="pkgdown">
   <p></p>
-<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.1.</p>
+<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.2.</p>
 </div>
 
       </footer>
