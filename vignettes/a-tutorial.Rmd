@@ -106,7 +106,7 @@ part of the graphical output of these methods.
 
 # Datasets
 
-The `geneticae` package provides two datasets to illustrate the methodology
+The `geneticae` package utilizes two datasets to illustrate the methodology
 included to analyse MET data.
 
 * `yan.winterwheat` dataset: yield of 18 winter wheat varieties grown in nine
@@ -125,7 +125,7 @@ and environment combination was available in the dataset obtained from the
 * `plrv` dataset: resistance study to PLRV (Patato Leaf Roll Virus) causing leaf
 curl. 28 genotypes were experimented at 6 locations in Peru. Each clone was
 evaluated three times in each environment, and yield, plant weight and plot were
-registered. This dataset was also obtained from the
+registered. This dataset is available in `geneticae` and was obtained from the
 [agricolae](https://CRAN.R-project.org/package=agricolae) package (de Mendiburu,
 2020).
 
