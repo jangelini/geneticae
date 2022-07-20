@@ -62,13 +62,12 @@ before. In addition, there is no need to preprocess the data to use the
 `geneticae` package, as it the case of some previous packages which
 require a data frame or matrix containing genotype by environment means
 with the genotypes in rows and the environments in columns. In this
-package, data in long format is required. Genotypes, environments,
-repetitions (if any) and phenotypic traits of interest can be presented
-in any order and there is no restriction on columns names. Also, extra
-information that will not be used in the analysis may be present in the
-dataset. Finally, `geneticae` offers a wide variety of options to
-customize the biplots, which are part of the graphical output of these
-methods.
+package, data in long format is required. There is no restriction on
+columns names of genotypes, environments, repetitions (if any) and
+phenotypic traits of interest. Also, extra information that will not be
+used in the analysis may be present in the dataset. Finally, `geneticae`
+offers a wide variety of options to customize the biplots, which are
+part of the graphical output of these methods.
 
 This package can be used through
 [this](https://geneticae.shinyapps.io/geneticae-shiny-web-app/) Shiny
@@ -125,7 +124,7 @@ library(geneticae)
 library(agridat)
 data(yan.winterwheat)
 GGE1 <- GGEmodel(yan.winterwheat, genotype = "gen", environment = "env", 
-                 response = "yield", centering = "tester")
+                 response = "yield")
 
 
 GGEPlot(GGE1, type = "Selected Environment", selectedE = "OA93", 

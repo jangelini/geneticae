@@ -6,16 +6,15 @@ library(geneticae)
 library(agridat)
 data(yan.winterwheat)
 
-GGE1 <- GGEmodel(yan.winterwheat, genotype="gen",environment="env", response="yield", rep=NULL, centering = "tester")
+GGE1 <- GGEmodel(yan.winterwheat, genotype="gen",environment="env", response="yield", rep=NULL)
 
-GGE2 <- GGEmodel(yan.winterwheat, genotype="gen",environment="env", response="yield", rep=NULL, centering = "none")
+GGE2 <- GGEmodel(yan.winterwheat, genotype="gen",environment="env", response="yield", rep=NULL)
 
 
 
 test_that("multiplication works", {
   expect_that(GGE1, is_a("GGEModel") )
 
-  expect_error(GGEPlot(GGE2), "GGEPlot is not compatible with GGE models produced without centering" )
   expect_error(GGEPlot(GGE1,type="Selected Genotype",selectedG="none"), "The genotype selected is not in list of genotype labels" )
   expect_error(GGEPlot(GGE1,type="Comparison of Genotype", selectedG1="none", selectedG2="Fun"), "none The genotype selected is not in list of genotype labels" )
   expect_error(GGEPlot(GGE1,type="Comparison of Genotype", selectedG1="none", selectedG2="none"), "none The genotype selected is not in list of genotype labels")

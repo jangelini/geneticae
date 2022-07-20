@@ -1,7 +1,9 @@
 ## New submission to CRAN
 This is a new release to CRAN, having changed these things:
 
-*Dependecy on archived GGEBiplotGUI package removed.
+*Added SREG robust model in GGEmodel() function.
+
+*Dependecy on archived bcv package removed.
 
 ## Test environments
 * local fedora 35, R 4.1.2

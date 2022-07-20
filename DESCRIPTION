@@ -1,6 +1,6 @@
 Package: geneticae
 Title: Statistical Tools for the Analysis of Multi Environment Agronomic Trials
-Version: 0.3.9000
+Version: 0.4.0
 Authors@R: c(
   person(given = "Julia",
          family = "Angelini",
@@ -44,14 +44,14 @@ Imports:
     pcaMethods,
     rrcov,
     dplyr,
-    bcv,
     missMDA,
     calibrate,
     graphics,
     reshape2,
     matrixStats,
     tidyr,
-    prettydoc
+    prettydoc,
+    rlang
 Suggests: 
 	agridat,
     spelling,

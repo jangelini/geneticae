@@ -74,13 +74,13 @@
 #'  # Data without replication
 #'  library(agridat)
 #'  data(yan.winterwheat)
-#'  GGE1 <- GGEmodel(yan.winterwheat, centering = "tester")
+#'  GGE1 <- GGEmodel(yan.winterwheat)
 #'  GGEPlot(GGE1)
 #'
 #'  # Data with replication
 #'  data(plrv)
 #'  GGE2 <- GGEmodel(plrv, genotype = "Genotype", environment = "Locality",
-#'                   response = "Yield", rep = "Rep", centering = "tester")
+#'                   response = "Yield", rep = "Rep")
 #'  GGEPlot(GGE2)
 #'
 #'@importFrom ggplot2 aes arrow coord_fixed element_text geom_abline geom_hline
@@ -97,6 +97,7 @@ GGEPlot<-function(GGEModel,type="Biplot",d1=1,d2=2, selectedE=NA , selectedG=NA,
                   axislabels=TRUE,axes=TRUE,limits=TRUE,titles=TRUE,footnote=TRUE){
 
     stopifnot(
+    class(GGEModel) == "GGEModel",
     type %in% c("Biplot", "Selected Environment","Selected Genotype","Relationship Among Environments",
                        "Comparison of Genotype","Which Won Where/What","Discrimination vs. representativeness",
                        "Ranking Environments","Mean vs. Stability","Ranking Genotypes"),
@@ -117,22 +118,10 @@ GGEPlot<-function(GGEModel,type="Biplot",d1=1,d2=2, selectedE=NA , selectedG=NA,
     class(footnote)  == "logical"
   )
 
-
-  fail<-1
-  if(class(GGEModel)=="GGEModel"){
-
-    coordgenotype=GGEModel$coordgenotype[,c(d1,d2)];coordenviroment=GGEModel$coordenviroment[,c(d1,d2)]
-    varexpl=GGEModel$varexpl[c(d1,d2)];labelgen=GGEModel$labelgen;
-    labelenv=GGEModel$labelenv;labelaxes=GGEModel$labelaxes[c(d1,d2)];Data=GGEModel$Data
-    centering=GGEModel$centering;SVP=GGEModel$SVP;scaling=GGEModel$scaling
-
-    fail<-0
-
-  }
-
-  if(fail==1){stop(paste("Object",deparse(substitute(GGEModel)),"is not of class 'GGEModel'"))}
-  if(centering=="none"){stop("GGEPlot is not compatible with GGE models produced without centering")}
-
+  coordgenotype=GGEModel$coordgenotype[,c(d1,d2)];coordenviroment=GGEModel$coordenviroment[,c(d1,d2)]
+  varexpl=GGEModel$varexpl[c(d1,d2)];labelgen=GGEModel$labelgen;
+  labelenv=GGEModel$labelenv;labelaxes=GGEModel$labelaxes[c(d1,d2)];Data=GGEModel$Data
+  SVP=GGEModel$SVP
 
   plotdata<-data.frame(rbind(data.frame(coordgenotype,type="genotype",label=labelgen),data.frame(coordenviroment,type="environment",label=labelenv)))
   colnames(plotdata)[1:2]<-c("d1","d2")
@@ -148,10 +137,10 @@ GGEPlot<-function(GGEModel,type="Biplot",d1=1,d2=2, selectedE=NA , selectedG=NA,
     GGE1<-GGE1+xlab(paste(labelaxes[1],format(varexpl[1],nsmall=2), "%", sep = " "))+ylab(paste(labelaxes[2], format(varexpl[2],nsmall=2),"%", sep = " "))
   }else{    GGE1<-GGE1+xlab(" ")+ylab(" ")
 }
-  if(axes==TRUE&centering!=0){
+  if(axes==TRUE){
     GGE1<-GGE1+geom_hline(yintercept=0)+geom_vline(xintercept=0)
   }
-  if(limits==TRUE&centering!=0){
+  if(limits==TRUE){
     xlim<-c(min(plotdata$d1*axis_expand),max(plotdata$d1*axis_expand))
     ylim<-c(min(plotdata$d2*axis_expand),max(plotdata$d2*axis_expand))
     if(which(c(diff(xlim),diff(ylim))==max(c(diff(xlim),diff(ylim))))==1){
@@ -447,16 +436,12 @@ GGEPlot<-function(GGEModel,type="Biplot",d1=1,d2=2, selectedE=NA , selectedG=NA,
   }
 
   if(footnote==TRUE){
-    centertext<-ifelse(centering==1|centering=="global","Global-Centered E+G+GE",
-                       ifelse(centering==2|centering=="tester","Tester-Centered G+GE",
-                              ifelse(centering==3|centering=="double","Double-Centred GE","No Centering")))
     SVPtext<-ifelse(SVP==1|SVP=="row","Row Metric Preserving SVP",
                     ifelse(SVP==2|SVP=="column","Column Metric Preserving SVP",
                            ifelse(SVP==3|SVP=="dual","Dual Metric Preserving SVP",
                                   ifelse(SVP==4|SVP=="symmetrical","Symmetrical SVP","NIPALS algorithm"))))
-    Scalingtext<-ifelse(scaling==1|scaling=="sd","scaling by standard deviation","no scaling")
     footnotetxt=paste("\nGGE Biplot showing components ",d1," and ",d2," explaining ",sum(varexpl),"% of the total variation\nusing ",
-                      SVPtext," and ",centertext," with ",Scalingtext,sep="")
+                      SVPtext,sep="")
 
     GGE2<-GGE2+ labs(caption = footnotetxt)+theme(plot.caption = element_text(size=10,hjust=0,face="italic"))
   }

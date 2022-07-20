@@ -17,7 +17,6 @@ imputation(
   maxiter = 1000,
   change.factor = 1,
   simplified.model = FALSE,
-  k = min(nrow(Data), ncol(Data)),
   scale = TRUE,
   method = "EM",
   row.w = NULL,
@@ -30,9 +29,8 @@ imputation(
 }
 \arguments{
 \item{Data}{dataframe containing genotypes, environments, repetitions (if any)
-and the phenotypic trait of interest. Columns can be in any order in the
-dataset and other variables that will not be used in the analysis can be
-present.}
+and the phenotypic trait of interest. Other variables that will not be used
+in the analysis can be present.}
 
 \item{genotype}{column name containing genotypes.}
 
@@ -43,7 +41,7 @@ present.}
 \item{rep}{column name containing replications. If this argument is NULL,
 there are no replications available in the data. Defaults to NULL.}
 
-\item{type}{imputation method. Either "EM-AMMI", "EM-SVD",
+\item{type}{imputation method. Either "EM-AMMI",
 "Gabriel","WGabriel","EM-PCA". Defaults to "EM-AMMI".}
 
 \item{nPC}{number of components used to predict the missing values.
@@ -87,8 +85,6 @@ convergence is usually smaller and, furthermore, convergence will be reached
 even in some cases where the regular procedure fails. If the regular
 procedure does not converge for the standard initial values, the simplified
 model can be used to determine a better set of initial values.}
-
-\item{k}{rank of the SVD approximation.}
 
 \item{scale}{boolean. By default TRUE leading to a same weight for each
 variable}
@@ -141,13 +137,6 @@ is applied to the completed matrix and the missing values are updated by the
 corresponding AMMI estimates. The arguments used for this method
 are:initial.values, precision, maxiter, change.factor and simplified.model
 
-\item EM-SVD: combines the EM algorithm with SVD. This method replaces the
-missing values of a Genotype by Environment matrix initially by arbitrary
-values to obtain a completed matrix, and a SVD is then computed iteratively on
-this matrix. At the end of the process, when the iterations reach stability, a
-matrix containing the imputations for the missing values is obtained. The
-arguments used for this method are: k, precision and maxiter
-
 \item Gabriel: combines regression and lower-rank approximation using SVD.
 This method initially replaces the missing cells by arbitrary values, and
 subsequently the imputations are refined through an iterative scheme that
@@ -184,13 +173,14 @@ yan.winterwheat[2,3]<-NA
 
 imputation(yan.winterwheat, genotype = "gen", environment = "env",
            response = "yield", type = "EM-AMMI")
+
 # Data with replications
 data(plrv)
 plrv[1,3] <- NA
 plrv[3,3] <- NA
 plrv[2,3] <- NA
 imputation(plrv, genotype = "Genotype", environment = "Locality",
-           response = "Yield", rep = "Rep", type = "EM-SVD")
+           response = "Yield", rep = "Rep", type = "EM-AMMI")
 
 }
 \references{
@@ -206,9 +196,6 @@ Arciniegas-Alarcón S., García-Peña M., Dias C.T.S., Krzanowski
  W.J. (2010). \emph{An alternative methodology for imputing missing data in
  trials with genotype-by-environment interaction}. Biometrical Letters 47,
  1–14.
-
-Perry P.O. (2015). bcv: Cross-Validation for the SVD
- (Bi-Cross-Validation). R package version 1.0.1.
 
 Arciniegas-Alarcón S., García-Peña M., Krzanowski W.J., Dias
  C.T.S. (2014). \emph{An alternative methodology for imputing missing data in

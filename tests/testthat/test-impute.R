@@ -16,10 +16,10 @@ dat2[2,3]<-NA
 
 test_that("Several tests for impute function", {
 
-  expect_error(imputation(yan.winterwheat, genotype="gen",environment="env", response="yield", type="EM-SVD"),
+  expect_error(imputation(yan.winterwheat, genotype="gen",environment="env", response="yield", type="EM-AMMI"),
                "There are not missing data in input data frame")
 
-  expect_error(imputation( genotype="gen",environment="env", response="yield", type="EM-SVD"),
+  expect_error(imputation( genotype="gen",environment="env", response="yield", type="EM-AMMI"),
                "Need to provide Data data frame")
 
 

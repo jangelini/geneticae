@@ -10,16 +10,14 @@ GGEmodel(
   environment = "env",
   response = "yield",
   rep = NULL,
-  centering = "tester",
-  scaling = "none",
+  model = "SREG",
   SVP = "symmetrical"
 )
 }
 \arguments{
 \item{Data}{dataframe with genotypes, environments, repetitions (if any) and
-the phenotypic trait of interest. Variables can be in any order,
-even additional variables that will not be used in the model may be present
-in the data.}
+the phenotypic trait of interest. Additional variables that will not be used
+in the model may be present in the data.}
 
 \item{genotype}{column name for genotypes.}
 
@@ -30,71 +28,72 @@ in the data.}
 \item{rep}{column name for replications. If this argument is NULL, there are
 no replications in the data. Defaults to NULL.}
 
-\item{centering}{centering method. Either `"tester"` for tester centered
-(G+GE), `"global"` for global centered (E+G+GE), `"double"` for double
-centered (GE) or `"none"` for no centering. Defaults to `"tester"`.}
-
-\item{scaling}{scaling method. Either `"sd"` for standard deviation or
-`"none"` for no scaling. Defaults to `"none"`.}
+\item{model}{method for fitting the SREG model: `"SREG"`,`"CovSREG"`,`"hSREG"`
+or `"ppSREG"` (see References). Defaults to `"SREG"`.}
 
 \item{SVP}{method for singular value partitioning. Either `"row"`, `"column"`,
-`"dual"` or `"symmetrical"`. Defaults to `"symmetrical"`.}
+or `"symmetrical"`. Defaults to `"symmetrical"`.}
 }
 \value{
-A list of class \code{GGE_Model} containing:
- \item{coordgenotype}{plotting coordinates for each genotype in every component.}
- \item{coordenviroment}{plotting coordinates for each environment in every
- component.}
- \item{eigenvalues}{vector of eigenvalues for each component.}
- \item{vartotal}{overall variance.}
+A list of class \code{GGE_Model} containing: \item{model}{SREG model
+ version.} \item{coordgenotype}{plotting coordinates for each genotype in
+ every component.} \item{coordenviroment}{plotting coordinates for each
+ environment in every component.} \item{eigenvalues}{vector of eigenvalues
+ for each component.} \item{vartotal}{overall variance.}
  \item{varexpl}{percentage of variance explained by each component.}
- \item{labelgen}{genotype names.}
- \item{labelenv}{environment names.}
- \item{axes}{axis labels.}
- \item{Data}{scaled and centered input data.}
- \item{centering}{name of centering method.}
- \item{scaling}{name of scaling method.}
+ \item{labelgen}{genotype names.} \item{labelenv}{environment names.}
+ \item{axes}{axis labels.} \item{Data}{scaled and centered input data.}
  \item{SVP}{name of SVP method.}
+
+A biplot of class \code{ggplot}
 }
 \description{
 The Site Regression model (also called genotype +
  genotype-by-environment (GGE) model) is a powerful tool for effective
  analysis and interpretation of data from multi-environment trials in
- breeding programs. This function is a wrapper for
- \code{\link[GGEBiplots]{GGEModel}} from the
- \href{https://CRAN.R-project.org/package=GGEBiplots}{GGEBiplots package},
- with the following enhacements:
- \itemize{
-   \item It can be used for data from trials with repetitions (there is no
-   need to calculate means beforehand)
-   \item Other variables not used in the analysis can be present in the
-   dataset.
-   \item Variables can be in any order in the dataset.
- }
+ breeding programs. There are different functions in R to fit the SREG model,
+ such as the \code{\link[GGEBiplots]{GGEModel}} from the
+ \href{https://CRAN.R-project.org/package=GGEBiplots}{GGEBiplots package}.
+ However, this function has the following improvements: \itemize{ \item
+ Includes recently published robust versions of the SREG model (Angelini et
+ al., 2022). \item It can be used for data from trials with repetitions
+ (there is no need to calculate means beforehand). \item Other variables not
+ used in the analysis can be present in the dataset.}
+}
+\details{
+A linear model by robust regression using an M estimator proposed by
+ Huber (1964, 1973) fitted by iterated re-weighted least squares, in
+ combination with three robust SVD/PCA procedures, resulted in a total of
+ three robust SREG alternatives. The robust SVD/PCA considered were:
+ \itemize{ \item CovSREG: robust PCA that is obtained by replacing the
+ classical estimates of location and covariance by their robust analogues
+ using Minimum Regularized Covariance Determinant (MRCD) approach; \item
+ hSREG: robust PCA method that tries to combine the advantages of both
+ approaches, PCA based on a robust covariance matrix and based on projection
+ pursuit; \item ppSREG: robust PCA that uses the projection pursuit and
+ directly calculates the robust estimates of the eigenvalues and eigenvectors
+ without going through robust covariance estimation. It is a very attractive
+ method for bigdata situations, which are very common in METs (a few
+ genotypes tested in a large number of environments), as the principal
+ components can be calculated sequentially. }
 }
 \examples{
-
  library(geneticae)
+
  # Data without replication
  library(agridat)
  data(yan.winterwheat)
- GGE1 <- GGEmodel(yan.winterwheat, genotype = "gen", environment = "env",
-                  response = "yield", centering = "tester")
+ GGE1 <- GGEmodel(yan.winterwheat, genotype="gen", environment="env", response="yield")
 
  # Data with replication
  data(plrv)
  GGE2 <- GGEmodel(plrv, genotype = "Genotype", environment = "Locality",
-                  response = "Yield", rep = "Rep", centering = "tester")
+                  response = "Yield", rep = "Rep")
 
 }
 \references{
-Sam Dumble (2017). GGEBiplots: GGE Biplots with 'ggplot2'. R
- package version 0.1.1. \url{https://CRAN.R-project.org/package=GGEBiplots}
-
-Yan W, Kang M (2003). \emph{GGE Biplot Analysis: A Graphical Tool
- for Breeders, Geneticists, and Agronomists}. CRC Press.
-
-Yan W, Kang M (2002). \emph{Singular-Value Partitioning in Biplot
- Analysis of Multienvironment Trial Data}. Agronomy Journal, 94, 990-996.
- \doi{10.2134/agronj2002.0990}
+Julia Angelini, Gabriela Faviere, Eugenia Bortolotto, Gerardo
+ Domingo Lucio Cervigni & Marta Beatriz Quaglino (2022) Handling outliers in
+ multi-environment trial data analysis: in the direction of robust SREG
+ model, Journal of Crop Improvement, DOI: 10.1080/15427528.2022.2051217
 }

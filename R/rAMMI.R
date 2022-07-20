@@ -4,17 +4,16 @@
 #'options for customization.
 #'
 #'@param Data a dataframe with genotypes, environments, repetitions (if any) and
-#'  the phenotypic trait of interest. There is no restriction on the order in
-#'  which these variables should be presented in the dataframe, and also other
-#'  variables that will not be used in the analysis can be included.
+#'  the phenotypic trait of interest. Other variables that will not be used in
+#'  the analysis can be included.
 #'@param genotype column name containing genotypes.
 #'@param environment column name containing environments.
 #'@param response column name containing the phenotypic trait of interest.
 #'@param rep column name containing replications. If this argument is `NULL`
 #'  (default), replications are not considered for the analysis.
 #'@param Ncomp number of principal components that will be used in the analysis.
-#'@param type method for fitting the AMMI model: "AMMI", "rAMMI", "hAMMI",
-#'  "gAMMI", "lAMMI" or "ppAMMI" (see References). Defaults to "AMMI".
+#'@param type method for fitting the AMMI model: `"AMMI"`, `"rAMMI"`, `"hAMMI"`,
+#'  `"gAMMI"`, `"lAMMI"` or `"ppAMMI"` (see References). Defaults to `"AMMI"`.
 #'@param colGen genotype attributes colour. Defaults to "gray".
 #'@param colEnv environment attributes colour. Defaults to "darkred".
 #'@param sizeGen genotype labels text size. Defaults to 4.
@@ -83,7 +82,8 @@
 #'@importFrom pcaMethods robustSvd
 #'@importFrom rrcov PcaHubert PcaGrid PcaLocantore PcaProj
 #'@importFrom stats lm residuals
-#'@importFrom dplyr group_by summarise rename pull
+#'@importFrom dplyr group_by summarise rename pull %>%
+#'@importFrom rlang sym
 #'
 rAMMI<-function(Data, genotype="gen", environment="env", response="Y", rep=NULL,Ncomp = 2, type = "AMMI",
                 colGen="gray47",colEnv="darkred",sizeGen=4,sizeEnv=4,titles=TRUE, footnote=TRUE, axis_expand=1.2, limits=TRUE,

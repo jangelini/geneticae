@@ -121,13 +121,13 @@ GGE biplots are used for visual examination of the relationships
  # Data without replication
  library(agridat)
  data(yan.winterwheat)
- GGE1 <- GGEmodel(yan.winterwheat, centering = "tester")
+ GGE1 <- GGEmodel(yan.winterwheat)
  GGEPlot(GGE1)
 
  # Data with replication
  data(plrv)
  GGE2 <- GGEmodel(plrv, genotype = "Genotype", environment = "Locality",
-                  response = "Yield", rep = "Rep", centering = "tester")
+                  response = "Yield", rep = "Rep")
  GGEPlot(GGE2)
 
 }

@@ -25,7 +25,7 @@ multi-environment trials and to subsequently adjust the mentioned methods."><!--
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">geneticae</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.3.9000</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.4.0</span>
       </span>
     </div>
 
@@ -82,7 +82,6 @@ multi-environment trials and to subsequently adjust the mentioned methods.</p>
   maxiter <span class="op">=</span> <span class="fl">1000</span>,
   change.factor <span class="op">=</span> <span class="fl">1</span>,
   simplified.model <span class="op">=</span> <span class="cn">FALSE</span>,
-  k <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/Extremes.html" class="external-link">min</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/nrow.html" class="external-link">nrow</a></span><span class="op">(</span><span class="va">Data</span><span class="op">)</span>, <span class="fu"><a href="https://rdrr.io/r/base/nrow.html" class="external-link">ncol</a></span><span class="op">(</span><span class="va">Data</span><span class="op">)</span><span class="op">)</span>,
   scale <span class="op">=</span> <span class="cn">TRUE</span>,
   method <span class="op">=</span> <span class="st">"EM"</span>,
   row.w <span class="op">=</span> <span class="cn">NULL</span>,
@@ -98,9 +97,8 @@ multi-environment trials and to subsequently adjust the mentioned methods.</p>
     <h2>Arguments</h2>
     <dl><dt>Data</dt>
 <dd><p>dataframe containing genotypes, environments, repetitions (if any)
-and the phenotypic trait of interest. Columns can be in any order in the
-dataset and other variables that will not be used in the analysis can be
-present.</p></dd>
+and the phenotypic trait of interest. Other variables that will not be used
+in the analysis can be present.</p></dd>
 <dt>genotype</dt>
 <dd><p>column name containing genotypes.</p></dd>
 <dt>environment</dt>
@@ -111,7 +109,7 @@ present.</p></dd>
 <dd><p>column name containing replications. If this argument is NULL,
 there are no replications available in the data. Defaults to NULL.</p></dd>
 <dt>type</dt>
-<dd><p>imputation method. Either "EM-AMMI", "EM-SVD",
+<dd><p>imputation method. Either "EM-AMMI",
 "Gabriel","WGabriel","EM-PCA". Defaults to "EM-AMMI".</p></dd>
 <dt>nPC</dt>
 <dd><p>number of components used to predict the missing values.
@@ -155,8 +153,6 @@ convergence is usually smaller and, furthermore, convergence will be reached
 even in some cases where the regular procedure fails. If the regular
 procedure does not converge for the standard initial values, the simplified
 model can be used to determine a better set of initial values.</p></dd>
-<dt>k</dt>
-<dd><p>rank of the SVD approximation.</p></dd>
 <dt>scale</dt>
 <dd><p>boolean. By default TRUE leading to a same weight for each
 variable</p></dd>
@@ -203,12 +199,6 @@ appropriate AMMI estimates. In subsequent iterations, the usual AMMI procedure
 is applied to the completed matrix and the missing values are updated by the
 corresponding AMMI estimates. The arguments used for this method
 are:initial.values, precision, maxiter, change.factor and simplified.model</p></li>
-<li><p>EM-SVD: combines the EM algorithm with SVD. This method replaces the
-missing values of a Genotype by Environment matrix initially by arbitrary
-values to obtain a completed matrix, and a SVD is then computed iteratively on
-this matrix. At the end of the process, when the iterations reach stability, a
-matrix containing the imputations for the missing values is obtained. The
-arguments used for this method are: k, precision and maxiter</p></li>
 <li><p>Gabriel: combines regression and lower-rank approximation using SVD.
 This method initially replaces the missing cells by arbitrary values, and
 subsequently the imputations are refined through an iterative scheme that
@@ -240,8 +230,6 @@ nb.init and maxiter</p></li>
  W.J. (2010). <em>An alternative methodology for imputing missing data in
  trials with genotype-by-environment interaction</em>. Biometrical Letters 47,
  1–14.</p>
-<p>Perry P.O. (2015). bcv: Cross-Validation for the SVD
- (Bi-Cross-Validation). R package version 1.0.1.</p>
 <p>Arciniegas-Alarcón S., García-Peña M., Krzanowski W.J., Dias
  C.T.S. (2014). <em>An alternative methodology for imputing missing data in
  trials with genotype-byenvironment interaction: some new aspects.</em>
@@ -276,47 +264,49 @@ nb.init and maxiter</p></li>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Kar 4.293000 4.530 2.760 3.422 6.142 5.250 4.856 4.137 3.149</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Kat 3.151000 3.040 2.388 2.350 4.229 4.257 3.384 4.071 2.103</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Luc 4.104000 3.878 2.302 3.718 4.555 5.149 2.596 4.956 2.886</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> m12 3.340000 3.854 2.419 2.783 4.629 5.090 3.281 3.918 2.561</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Reb 4.375000 4.701 3.655 3.592 6.189 5.141 3.933 4.208 2.925</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Ron 4.940000 4.698 2.950 3.898 6.063 5.326 4.302 4.299 3.031</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Rub 3.786000 4.969 3.379 3.353 4.774 5.304 4.322 4.858 3.382</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Zav 4.238000 4.654 3.607 3.914 6.641 4.830 5.014 4.363 3.111</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> m12 3.340000 3.854 2.419 2.783 4.629 5.090 3.281 3.918 2.561</span>
+<span class="r-in"></span>
 <span class="r-in"><span class="co"># Data with replications</span></span>
 <span class="r-in"><span class="fu"><a href="https://rdrr.io/r/utils/data.html" class="external-link">data</a></span><span class="op">(</span><span class="va">plrv</span><span class="op">)</span></span>
 <span class="r-in"><span class="va">plrv</span><span class="op">[</span><span class="fl">1</span>,<span class="fl">3</span><span class="op">]</span> <span class="op">&lt;-</span> <span class="cn">NA</span></span>
 <span class="r-in"><span class="va">plrv</span><span class="op">[</span><span class="fl">3</span>,<span class="fl">3</span><span class="op">]</span> <span class="op">&lt;-</span> <span class="cn">NA</span></span>
 <span class="r-in"><span class="va">plrv</span><span class="op">[</span><span class="fl">2</span>,<span class="fl">3</span><span class="op">]</span> <span class="op">&lt;-</span> <span class="cn">NA</span></span>
 <span class="r-in"><span class="fu">imputation</span><span class="op">(</span><span class="va">plrv</span>, genotype <span class="op">=</span> <span class="st">"Genotype"</span>, environment <span class="op">=</span> <span class="st">"Locality"</span>,</span>
-<span class="r-in">           response <span class="op">=</span> <span class="st">"Yield"</span>, rep <span class="op">=</span> <span class="st">"Rep"</span>, type <span class="op">=</span> <span class="st">"EM-SVD"</span><span class="op">)</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>           [,1]      [,2]     [,3]     [,4]      [,5]      [,6]</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  [1,] 24.92504 28.888889 32.03704 46.77778 13.518519 11.769547</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  [2,] 21.45062 53.518519 39.19753 50.41838 16.049383  7.098765</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  [3,] 23.46022 41.296296 38.39506 63.70370  2.500000 11.255144</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  [4,] 31.84401 60.462963 33.95062 77.56790 19.234568 15.477366</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  [5,] 19.66980 41.388889 45.16049 76.98553 23.950617 14.555556</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  [6,] 17.53792 29.537037 28.88889 32.02949 12.716049  7.795414</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  [7,] 15.41358 32.037037 31.02469 43.45267  8.543210  7.437586</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  [8,] 24.28326 50.555556 29.19753 47.33333 13.148148  7.481481</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  [9,] 29.91358 73.518519 40.37037 56.13580 14.802469 17.067901</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [10,] 20.44444 36.018519 35.74074 46.24691 11.086420  8.505291</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [11,] 26.06702 47.037037 32.67901 40.79244 19.185185 17.777778</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [12,] 17.32510 49.444444 34.50617 57.24588  8.530864  1.987654</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [13,] 26.61376 53.425926 42.34568 64.01235 14.814815 10.742455</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [14,] 25.77503 56.666667 32.96296 86.80802 21.209877  9.123457</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [15,] 30.32922 31.111111 35.28395 43.29012 13.629630  4.444444</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [16,] 19.89712 40.740741 27.53086 38.80033 17.592593 11.518519</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [17,] 21.57476 32.685185 25.55556 32.03704 18.024691 13.173280</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [18,] 31.74897 50.185185 29.25926 72.02407 20.370370 13.106996</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [19,] 26.63933 52.407407 37.90123 57.06584 13.518519 16.826132</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [20,] 19.29698 42.500000 31.23457 49.76543 12.839506  9.228395</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [21,] 28.66735 35.740741 32.34568 43.25926 16.790123 17.116598</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [22,] 19.58652 59.814815 37.77778 53.58848 13.827160 11.504605</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [23,] 26.08907 55.648148 44.44444 58.33608 21.234568 11.388889</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [24,] 28.72428 50.185185 36.88889 72.24198 15.432099 13.703704</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [25,] 25.00000 46.759259 45.55556 53.24966 18.148148 10.884774</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [26,] 21.32716 47.777778 21.60494 59.24691  9.629630  2.421125</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [27,] 18.76543  8.888889 20.37037 27.42747 10.061728 11.420243</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [28,] 21.30144 72.222222 47.83951 57.53519 18.246914 17.478738</span>
+<span class="r-in">           response <span class="op">=</span> <span class="st">"Yield"</span>, rep <span class="op">=</span> <span class="st">"Rep"</span>, type <span class="op">=</span> <span class="st">"EM-AMMI"</span><span class="op">)</span></span>
+<span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span>no non-missing arguments to max; returning -Inf</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>             Ayac    Hyo-02    LM-02    LM-03     SR-02     SR-03</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 102.18  24.92504 28.888889 32.03704 46.77778 13.518519 11.769547</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 104.22  21.45062 53.518519 39.19753 50.41838 16.049383  7.098765</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 121.31  23.46022 41.296296 38.39506 63.70370  2.500000 11.255144</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 141.28  31.84401 60.462963 33.95062 77.56790 19.234568 15.477366</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 157.26  19.66980 41.388889 45.16049 76.98553 23.950617 14.555556</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 163.9   17.53792 29.537037 28.88889 32.02949 12.716049  7.795414</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 221.19  15.41358 32.037037 31.02469 43.45267  8.543210  7.437586</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 233.11  24.28326 50.555556 29.19753 47.33333 13.148148  7.481481</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 235.6   29.91358 73.518519 40.37037 56.13580 14.802469 17.067901</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 241.2   20.44444 36.018519 35.74074 46.24691 11.086420  8.505291</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 255.7   26.06702 47.037037 32.67901 40.79244 19.185185 17.777778</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 314.12  17.32510 49.444444 34.50617 57.24588  8.530864  1.987654</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 317.6   26.61376 53.425926 42.34568 64.01235 14.814815 10.742455</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 319.20  25.77503 56.666667 32.96296 86.80802 21.209877  9.123457</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 320.16  30.32922 31.111111 35.28395 43.29012 13.629630  4.444444</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 342.15  19.89712 40.740741 27.53086 38.80033 17.592593 11.518519</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 346.2   21.57476 32.685185 25.55556 32.03704 18.024691 13.173280</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 351.26  31.74897 50.185185 29.25926 72.02407 20.370370 13.106996</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 364.21  26.63933 52.407407 37.90123 57.06584 13.518519 16.826132</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 402.7   19.29698 42.500000 31.23457 49.76543 12.839506  9.228395</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 405.2   28.66735 35.740741 32.34568 43.25926 16.790123 17.116598</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 406.12  19.58652 59.814815 37.77778 53.58848 13.827160 11.504605</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 427.7   26.08907 55.648148 44.44444 58.33608 21.234568 11.388889</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 450.3   28.72428 50.185185 36.88889 72.24198 15.432099 13.703704</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 506.2   25.00000 46.759259 45.55556 53.24966 18.148148 10.884774</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Canchan 21.32716 47.777778 21.60494 59.24691  9.629630  2.421125</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Desiree 18.76543  8.888889 20.37037 27.42747 10.061728 11.420243</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Unica   21.30144 72.222222 47.83951 57.53519 18.246914 17.478738</span>
 <span class="r-in"></span>
 </code></pre></div>
     </div>

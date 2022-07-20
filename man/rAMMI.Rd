@@ -26,9 +26,8 @@ rAMMI(
 }
 \arguments{
 \item{Data}{a dataframe with genotypes, environments, repetitions (if any) and
-the phenotypic trait of interest. There is no restriction on the order in
-which these variables should be presented in the dataframe, and also other
-variables that will not be used in the analysis can be included.}
+the phenotypic trait of interest. Other variables that will not be used in
+the analysis can be included.}
 
 \item{genotype}{column name containing genotypes.}
 
@@ -41,8 +40,8 @@ variables that will not be used in the analysis can be included.}
 
 \item{Ncomp}{number of principal components that will be used in the analysis.}
 
-\item{type}{method for fitting the AMMI model: "AMMI", "rAMMI", "hAMMI",
-"gAMMI", "lAMMI" or "ppAMMI" (see References). Defaults to "AMMI".}
+\item{type}{method for fitting the AMMI model: `"AMMI"`, `"rAMMI"`, `"hAMMI"`,
+`"gAMMI"`, `"lAMMI"` or `"ppAMMI"` (see References). Defaults to `"AMMI"`.}
 
 \item{colGen}{genotype attributes colour. Defaults to "gray".}
 

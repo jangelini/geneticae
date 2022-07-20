@@ -1,6 +1,8 @@
-# geneticae 0.3.9000
+# geneticae 0.4.0
 
-This is a development version
+Added SREG robust model in GGEmodel() function.
+
+Dependecy on archived bcv package removed.
 
 # geneticae 0.3.0
 
