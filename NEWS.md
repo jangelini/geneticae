@@ -1,3 +1,7 @@
+# geneticae 0.4.9000
+
+This is a development version
+
 # geneticae 0.4.0
 
 Added SREG robust model in GGEmodel() function.
