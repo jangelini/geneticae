@@ -1,54 +1,27 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-  <url>
-    <loc>https://github.com/jangelini/404.html</loc>
-  </url>
-  <url>
-    <loc>https://github.com/jangelini/articles/a-tutorial.html</loc>
-  </url>
-  <url>
-    <loc>https://github.com/jangelini/articles/b-shiny.html</loc>
-  </url>
-  <url>
-    <loc>https://github.com/jangelini/articles/index.html</loc>
-  </url>
-  <url>
-    <loc>https://github.com/jangelini/authors.html</loc>
-  </url>
-  <url>
-    <loc>https://github.com/jangelini/index.html</loc>
-  </url>
-  <url>
-    <loc>https://github.com/jangelini/news/index.html</loc>
-  </url>
-  <url>
-    <loc>https://github.com/jangelini/reference/EM.AMMI.html</loc>
-  </url>
-  <url>
-    <loc>https://github.com/jangelini/reference/GGEPlot.html</loc>
-  </url>
-  <url>
-    <loc>https://github.com/jangelini/reference/GGEmodel.html</loc>
-  </url>
-  <url>
-    <loc>https://github.com/jangelini/reference/Gabriel.Calinski.html</loc>
-  </url>
-  <url>
-    <loc>https://github.com/jangelini/reference/WGabriel.html</loc>
-  </url>
-  <url>
-    <loc>https://github.com/jangelini/reference/imputation.html</loc>
-  </url>
-  <url>
-    <loc>https://github.com/jangelini/reference/index.html</loc>
-  </url>
-  <url>
-    <loc>https://github.com/jangelini/reference/plrv.html</loc>
-  </url>
-  <url>
-    <loc>https://github.com/jangelini/reference/rAMMI.html</loc>
-  </url>
-  <url>
-    <loc>https://github.com/jangelini/reference/yan.winterwheat.html</loc>
-  </url>
+<urlset xmlns = 'http://www.sitemaps.org/schemas/sitemap/0.9'>
+<url><loc>https://github.com/jangelini/geneticae/404.html</loc></url>
+<url><loc>https://github.com/jangelini/geneticae/articles/a-tutorial.html</loc></url>
+<url><loc>https://github.com/jangelini/geneticae/articles/b-shiny.html</loc></url>
+<url><loc>https://github.com/jangelini/geneticae/articles/index.html</loc></url>
+<url><loc>https://github.com/jangelini/geneticae/authors.html</loc></url>
+<url><loc>https://github.com/jangelini/geneticae/index.html</loc></url>
+<url><loc>https://github.com/jangelini/geneticae/news/index.html</loc></url>
+<url><loc>https://github.com/jangelini/geneticae/reference/BiplotImputfun.html</loc></url>
+<url><loc>https://github.com/jangelini/geneticae/reference/EM.AMMI.html</loc></url>
+<url><loc>https://github.com/jangelini/geneticae/reference/EM.SREG.html</loc></url>
+<url><loc>https://github.com/jangelini/geneticae/reference/Eigenvectorfun.html</loc></url>
+<url><loc>https://github.com/jangelini/geneticae/reference/GGEPlot.html</loc></url>
+<url><loc>https://github.com/jangelini/geneticae/reference/GGEmodel.html</loc></url>
+<url><loc>https://github.com/jangelini/geneticae/reference/Gabriel.Calinski.html</loc></url>
+<url><loc>https://github.com/jangelini/geneticae/reference/WGabriel.html</loc></url>
+<url><loc>https://github.com/jangelini/geneticae/reference/imputation.html</loc></url>
+<url><loc>https://github.com/jangelini/geneticae/reference/index.html</loc></url>
+<url><loc>https://github.com/jangelini/geneticae/reference/plrv.html</loc></url>
+<url><loc>https://github.com/jangelini/geneticae/reference/rAMMI.html</loc></url>
+<url><loc>https://github.com/jangelini/geneticae/reference/rAMMIModel.html</loc></url>
+<url><loc>https://github.com/jangelini/geneticae/reference/rAMMIPlot.html</loc></url>
+<url><loc>https://github.com/jangelini/geneticae/reference/rSREGModel.html</loc></url>
+<url><loc>https://github.com/jangelini/geneticae/reference/rSREGPlot.html</loc></url>
+<url><loc>https://github.com/jangelini/geneticae/reference/yan.winterwheat.html</loc></url>
 </urlset>
+

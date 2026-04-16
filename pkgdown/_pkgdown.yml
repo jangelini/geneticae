@@ -1,9 +1,9 @@
-url: https://github.com/jangelini
+url: https://github.com/jangelini/geneticae
 
 template:
+  bootstrap: 5
   params:
     bootswatch: cosmo
-    ganalytics: UA-000000-01
 
 navbar:
   title: "geneticae"
@@ -17,11 +17,12 @@ navbar:
     - text: "Shiny APP"
       href: articles/b-shiny.html
   right:
-   - icon: fa-github
-     href: https://github.com/jangelini/geneticae
+    - icon: fab fa-github
+      href: https://github.com/jangelini/geneticae
+      aria-label: GitHub
 
 authors:
-    Julia Angelini:
+  Julia Angelini:
     href: https://www.linkedin.com/in/julia-angelini-609a67a7
 
 reference:
@@ -29,9 +30,10 @@ reference:
     desc: >
       Functions to fit the AMMI and SREG models and their biplots.
     contents:
-      - rAMMI
-      - GGEmodel
-      - GGEPlot
+      - rAMMIModel   
+      - rAMMIPlot
+      - rSREGModel     
+      - rSREGPlot
   - title: "Missing data imputation"
     desc: >
       Methods for the imputation of missing data in multi-environment trials.
@@ -43,3 +45,8 @@ reference:
     contents:
       - plrv
 
+articles:
+  - title: "Tutorials"
+    contents:
+      - a-tutorial
+      - b-shiny

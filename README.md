@@ -12,9 +12,7 @@ CRAN: <https://CRAN.R-project.org/package=geneticae/index.html>
 <!-- badges: start -->
 <!-- dejo esto porque todavia hay links que no estan disponibles: -->
 
-[![Lifecycle:
-experimental](https://img.shields.io/badge/lifecycle-experimental-orange.svg)](https://lifecycle.r-lib.org/articles/stages.html)
-
+[![lifecycle](https://img.shields.io/badge/lifecycle-stable-green.svg)](https://lifecycle.r-lib.org/articles/stages.html#stable)
 <!-- cuando este en cran agregar estas -->
 
 [![CRAN

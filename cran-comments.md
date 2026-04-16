@@ -1,12 +1,13 @@
 ## New submission to CRAN
-This is a new release to CRAN, having changed these things:
+This is a new release to CRAN. In this version, we have:
 
-*Added SREG robust model in GGEmodel() function.
-
-*Dependecy on archived bcv package removed.
+* Included new imputation methods specifically developed for multi-environment trials based on Angelini et al. (2024).
+* Renamed several functions to use more descriptive and appropriate names for the user (e.g., rAMMI to rAMMIModel).
+* Fixed an issue in `rAMMIModel.R` where datasets with replicates were not being handled correctly when calculating genotype-by-environment means.
+* Added a comprehensive tutorial vignette ("Tutorial") covering all new features and SREG robust model.
 
 ## Test environments
-* local fedora 35, R 4.1.2
+* local Linux Mint 22.2 Cinnamon, R 4.3.3
 * win-builder (devel, release and oldrelease)
 
 ## R CMD check results

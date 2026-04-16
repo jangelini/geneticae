@@ -41,79 +41,48 @@ in the analysis can be present.}
 \item{rep}{column name containing replications. If this argument is NULL,
 there are no replications available in the data. Defaults to NULL.}
 
-\item{type}{imputation method. Either "EM-AMMI",
-"Gabriel","WGabriel","EM-PCA". Defaults to "EM-AMMI".}
+\item{type}{imputation method. Either "EM-AMMI", "EM-GGE", "EM-SREG", "EM-bSREG",
+"Gabriel", "Eigenvector", "WGabriel", "EM-PCA". Defaults to "EM-AMMI".}
 
 \item{nPC}{number of components used to predict the missing values.
 Default to 2.}
 
 \item{initial.values}{initial values of the missing cells. It can be a single
-value or a vector of length equal to the number of missing cells (starting
-from the missing values in the first column). If omitted, the initial values
-will be obtained by the main effects from the corresponding model, that is,
-by the grand mean of the observed data increased (or decreased) by row and
-column main effects.}
+value or a vector of length equal to the number of missing cells.}
 
 \item{precision}{threshold for assessing convergence.}
 
 \item{maxiter}{maximum number of iteration for the algorithm.}
 
 \item{change.factor}{When `change.factor` is equal to 1, the previous
-approximation is changed with the new values of missing cells (standard
-EM-AMMI algorithm). However, when `change.factor` less than 1, then the new
-approximations are computed and the values of missing cells are changed in
-the direction of this new approximation but the change is smaller. It could
-be useful if the changes are cyclic and thus convergence could not be
-reached. Usually, this argument should not affect the final outcome (that
-is, the imputed values) as compared to the default value of `change.factor`
-= 1.}
+approximation is changed with the new values (standard EM). Smaller values
+can help convergence if changes are cyclic.}
 
-\item{simplified.model}{the AMMI model contains the general mean, effects of
-rows, columns and interaction terms. So the EM-AMMI algorithm in step 2
-calculates the current effects of rows and columns; these effects change
-from iteration to iteration because the empty (at the outset) cells in each
-iteration are filled with different values. In step 3 EM-AMMI uses those
-effects to re-estimate cells marked as missed (as default,
-simplified.model=FALSE). It is, however, possible that this procedure will
-not converge. Thus the user is offered a simplified EM-AMMI procedure that
-calculates the general mean and effects of rows and columns only in the
-first iteration and in next iterations uses these values
-(simplified.model=TRUE). In this simplified procedure the initial values
-affect the outcome (whilst EM-AMMI results usually do not depend on initial
-values). For the simplified procedure the number of iterations to
-convergence is usually smaller and, furthermore, convergence will be reached
-even in some cases where the regular procedure fails. If the regular
-procedure does not converge for the standard initial values, the simplified
-model can be used to determine a better set of initial values.}
+\item{simplified.model}{logical. If TRUE, calculates effects only in the first 
+iteration to speed up convergence or help in cases where the regular 
+procedure fails.}
 
-\item{scale}{boolean. By default TRUE leading to a same weight for each
-variable}
+\item{scale}{boolean. By default TRUE for "EM-PCA".}
 
-\item{method}{"Regularized" by default or "EM"}
+\item{method}{"Regularized" or "EM" for "EM-PCA".}
 
-\item{row.w}{row weights (by default, a vector of 1 for uniform row weights)}
+\item{row.w}{row weights for "EM-PCA".}
 
-\item{coeff.ridge}{1 by default to perform the regularized imputePCA
-algorithm; useful only if method="Regularized". Other regularization terms
-can be implemented by setting the value to less than 1 in order to
-regularized less (to get closer to the results of the EM method}
+\item{coeff.ridge}{ridge coefficient for "EM-PCA".}
 
-\item{seed}{integer, by default seed = NULL implies that missing values are
-initially imputed by the mean of each variable. Other values leads to a
-random initialization}
+\item{seed}{integer for random initialization in "EM-PCA".}
 
-\item{nb.init}{integer corresponding to the number of random initializations;
-the first initialization is the initialization with the mean imputation}
+\item{nb.init}{number of random initializations for "EM-PCA".}
 
-\item{Winf}{peso inferior}
+\item{Winf}{lower weight for WGabriel.}
 
-\item{Wsup}{peso superior}
+\item{Wsup}{upper weight for WGabriel.}
 }
 \value{
-imputed data matrix
+A matrix of the imputed data.
 }
 \description{
-Missing values are not allowed by the AMMI or GGE methods. This function
+Missing values are not allowed by the AMMI, GGE or SREG methods. This function
 provides several methods to impute missing observations in data from
 multi-environment trials and to subsequently adjust the mentioned methods.
 }
@@ -136,6 +105,11 @@ appropriate AMMI estimates. In subsequent iterations, the usual AMMI procedure
 is applied to the completed matrix and the missing values are updated by the
 corresponding AMMI estimates. The arguments used for this method
 are:initial.values, precision, maxiter, change.factor and simplified.model
+
+\item EM-GGE: Iterative SVD-based imputation focusing on G+GE.
+
+\item EM-SREG: Iterative algorithm using the Sites Regression model. Supports variants 
+ like standard SVD and Bayesian PCA (EM-bSREG). 
 
 \item Gabriel: combines regression and lower-rank approximation using SVD.
 This method initially replaces the missing cells by arbitrary values, and
@@ -187,6 +161,19 @@ imputation(plrv, genotype = "Genotype", environment = "Locality",
 Paderewski, J. (2013). \emph{An R function for imputation of missing
  cells in two-way data sets by EM-AMMI algorithm}. Communications in Biometry
  and Crop Science 8, 60–69.
+
+Yan, W. (2013). \emph{Biplot analysis of incomplete two-way data}. 
+Crop Science, 53(1), 48-57. \doi{10.2135/cropsci2012.05.0301}
+
+Arciniegas-Alarcón, S., García-Peña, M., Krzanowski, W., & Dias, C. T. S. 
+(2014b). \emph{An alternative methodology for imputing missing data in 
+trials with genotype-by-environment interaction: some new aspects}. 
+Biometrical Letters, 51(2), 75-88. \doi{10.2478/bile-2014-0006}
+
+Angelini, J., Cervigni, G. D. L., & Quaglino, M. B. (2024). \emph{New 
+imputation methodologies for genotype-by-environment data: an extensive 
+study of properties of estimators}. Euphytica, 220(6), 92. 
+\doi{10.1007/s10681-024-03344-z}
 
 Julie Josse, Francois Husson (2016). missMDA: A Package for
  Handling Missing Values in Multivariate Data Analysis. Journal of

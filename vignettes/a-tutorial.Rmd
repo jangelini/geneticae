@@ -174,9 +174,13 @@ opposite, this environment is considerably unfavorable for that genotype.
 Finally, _Cas_ and _Reb_ are close to the origin, which means that they adapt
 equally to all environments.
 
-```{r, fig.align='center', fig.cap='Figure 1: GE biplot based on yield data of 1993 Ontario winter wheat performance trials.  The 71.66% of GE variability is explained by the first two multiplicative terms. Cultivars are shown in lowercase and environments in uppercase.'}
-rAMMI(yan.winterwheat, genotype = "gen", environment = "env", 
-      response = "yield", type = "AMMI", footnote = F, titles = F)
+```{r, fig.width=6.5, fig.height=6, fig.align='center', dpi=300, out.width="60%", fig.cap='Figure 1: GE biplot based on yield data of 1993 Ontario winter wheat performance trials.  The 71.66% of GE variability is explained by the first two multiplicative terms. Cultivars are shown in lowercase and environments in uppercase.'}
+
+rAMMI_clasic <- rAMMIModel(yan.winterwheat, genotype = "gen", environment = "env", 
+      response = "yield", type = "AMMI")
+
+rAMMIPlot(rAMMI_clasic, titles = TRUE, footnote = TRUE)
+
 ```
 
 The AMMI model, in its standard form, assumes that no outliers are present in
@@ -188,7 +192,7 @@ robust SVD or principal components analysis (PCA) procedure to replace the
 standard SVD. Until now, robust AMMI models  were not available in any R
 package. All robust biplots proposed by Rodrigues et al. (2016) can be obtained
 using `rAMMI()`. The argument `type` can be used to specify the type of
-model to be fitted (`"rAMMI"`, `"hAMMI"`, `"gAMMI"`, `"lAMMI"` or `"ppAMMI"`).
+model to be fitted (`"rAMMI"`, `"hAMMI"`, `"gAMMI"`, `"lAMMI"` or `"ppAMMI"`).0
 Since the sample `yan.winterwheat` dataset does not present outliers, the
 conclusions obtained with robust biplots will not differ from those made with
 the classic biplot (Rodrigues et al., 2016). Thus, no interpretation of the
@@ -202,14 +206,21 @@ genotype-by-environment model* or *GGE model*) is another powerful tool for the
 analysis and interpretation of MET data in breeding programs. In this case, an
 ANOVA is performed to obtain estimates for the additive main effects of
 environments and a SVD is performed on the residuals matrix in order to explore
-patterns related to genotype (G) and GEI.
+patterns related to genotype (G) and GEI. However, ANOVA and SVD are sensitive to
+atypical observations, which are common in MET. To overcome
+this problem, three robust models were proposed by Angelini et al. (2022) to obtain valid
+results even in the presence of outliers. The current package implements these 
+methods, allowing users to perform robust SREG analysis easily. As `yan.winterwheat` 
+dataset does not present outliers, the conclusions obtained with robust biplots 
+will not differ from those made with the classic biplot (Angelini et al., 2022). Thus,
+no interpretation of the robust biplots is presented in this tutorial.
 
 As `rAMMI()` function, `GGEmodel()` data needs to be presented in a long format
 and repetitions or extra variables in the dataset are allowed. All the
 combinations between genotypes and environments must be present.
 
 ```{r}
-GGE1 <- GGEmodel(yan.winterwheat, genotype = "gen", environment = "env", 
+GGE1 <- rSREGModel(yan.winterwheat, genotype = "gen", environment = "env", 
                  response = "yield")
 ```
 
@@ -256,8 +267,8 @@ performance in all locations except OA93 and KE93, as indicated by the acute ang
 The length of the environment vectors is a measure of the environment's ability to
 discriminate between crops.
 
-```{r, fig.align='center', fig.cap='Figure 2: GGE biplot based on yield data of 1993 Ontario winter wheat performance trials. The scaling method used is symmetrical singular value partitioning (by default). The 78% of G + GE variability is explained by the first two multiplicative terms. Cultivars are shown in lowercase and environments in uppercase.'}
-GGEPlot(GGE1, type = "Biplot", footnote = F, titles = F)
+```{r, fig.width=6.5, fig.height=6, fig.align='center', dpi=300, out.width="60%", fig.cap='Figure 2: GGE biplot based on yield data of 1993 Ontario winter wheat performance trials. The scaling method used is symmetrical singular value partitioning (by default). The 78% of G + GE variability is explained by the first two multiplicative terms. Cultivars are shown in lowercase and environments in uppercase.'}
+rSREGPlot(GGE1, type = "Biplot", footnote = F, titles = F)
 ```
 
 Breeders usually want to identify the most suitable cultivars for a particular
@@ -273,8 +284,8 @@ and the lowest-yielding cultivar was _Luc_. The line that passes through the
 biplot origin and is perpendicular to the OA93 axis separates genotypes that
 yielded above and below the mean in this environment.
 
-```{r, fig.align='center', fig.cap='Figure 3: comparison of cultivar performance in a selected environment (OA93). The scaling method used is symmetrical singular value partitioning (by default). The 78% of G + GE variability is explained by the first two multiplicative terms.'}
-GGEPlot(GGE1, type = "Selected Environment", selectedE = "OA93", 
+```{r, fig.width=6.5, fig.height=6, fig.align='center', dpi=300, out.width="60%", fig.cap='Figure 3: comparison of cultivar performance in a selected environment (OA93). The scaling method used is symmetrical singular value partitioning (by default). The 78% of G + GE variability is explained by the first two multiplicative terms.'}
+rSREGPlot(GGE1, type = "Selected Environment", selectedE = "OA93", 
         footnote = F, titles = F)
 ```
 
@@ -288,8 +299,8 @@ the environments in which the cultivar presented a performance below or above
 the average. In this example, _Kat_ presented a performance below the average in
 all the environments studied.
 
-```{r,  fig.align='center', fig.cap='Figure 4: comparison of the performance of cultivar Luc in different environments. The scaling method used is symmetrical singular value partitioning (by default). The 78% of G + GE variability is explained by the first two multiplicative terms. '}
-GGEPlot(GGE1, type = "Selected Genotype", selectedG = "Kat", 
+```{r, fig.width=6.5, fig.height=6, fig.align='center', dpi=300, out.width="60%", fig.cap='Figure 4: comparison of the performance of cultivar Luc in different environments. The scaling method used is symmetrical singular value partitioning (by default). The 78% of G + GE variability is explained by the first two multiplicative terms. '}
+rSREGPlot(GGE1, type = "Selected Genotype", selectedG = "Kat", 
         footnote = F, titles = F)
 ```
 
@@ -300,8 +311,8 @@ the argument  `type = "Comparison of Genotype"` and the genotypes to be compared
 _Cas_ was more yielding than _Kat_ in all environments as they all are in the 
 same side of the perpendicular line as _Cas_.
 
-```{r,  fig.align='center', fig.cap='Figure 5: comparison of the cultivars _Kat_ and _Cas_. The scaling method used is symmetrical singular value partitioning (by default). The 78% of G + GE variability is explained by the first two multiplicative terms. Cultivars are shown in lowercase and environments in uppercase.'}
-GGEPlot(GGE1, type = "Comparison of Genotype", 
+```{r, fig.width=6.5, fig.height=6, fig.align='center', dpi=300, out.width="60%", fig.cap='Figure 5: comparison of the cultivars _Kat_ and _Cas_. The scaling method used is symmetrical singular value partitioning (by default). The 78% of G + GE variability is explained by the first two multiplicative terms. Cultivars are shown in lowercase and environments in uppercase.'}
+rSREGPlot(GGE1, type = "Comparison of Genotype", 
         selectedG1 = "Kat", selectedG2 = "Cas", 
         footnote = F, titles = F, axis_expand = 1.5)
 ```
@@ -326,8 +337,8 @@ cultivars. This indicates that these vertex cultivars were not the best in any
 of the test environments. Moreover, these cultivars were the poorest in some or
 all of the environments.
 
-```{r,  fig.align='center', fig.cap='Figure 6: polygon view of the GGE biplot, showing which cultivars presented highest yield in each environment. The scaling method used is symmetrical singular value partitioning (by default). The 78% of G + GE variability is explained by the first two multiplicative terms. Cultivars are shown in lowercase and environments in uppercase.'}
-GGEPlot(GGE1, type = "Which Won Where/What", footnote = F,
+```{r, fig.width=6.5, fig.height=6, fig.align='center', dpi=300, out.width="60%", fig.cap='Figure 6: polygon view of the GGE biplot, showing which cultivars presented highest yield in each environment. The scaling method used is symmetrical singular value partitioning (by default). The 78% of G + GE variability is explained by the first two multiplicative terms. Cultivars are shown in lowercase and environments in uppercase.'}
+rSREGPlot(GGE1, type = "Which Won Where/What", footnote = F,
         titles = F, axis_expand = 1.5)
 
 ```
@@ -358,14 +369,15 @@ _Rub_ and _Dia_ are more variable and less stable than other cultivars, by the
 contrary, _Cas_, _Zav_, _Reb_, _Del_, _Ari_, and _Kar_, were more stable.
 
 
-```{r,  fig.align='center', fig.cap='Figure 7: average environment view of the GGE biplot based on genotype-focused scaling, showing mean yield and stability of genotypes. '}
+```{r, fig.width=6.5, fig.height=6, fig.align='center', dpi=300, out.width="60%", fig.cap='Figure 7: average environment view of the GGE biplot based on genotype-focused scaling, showing mean yield and stability of genotypes. '}
 data <- yan.winterwheat[yan.winterwheat$env %in% c("BH93", "EA93","HW93", "ID93",
                                                    "NN93", "RN93", "WP93"), ]
 data <- droplevels(data)
-GGE2 <- GGEmodel(data, genotype = "gen", environment = "env", 
+GGE2 <- rSREGModel(data, genotype = "gen", environment = "env", 
                  response = "yield", SVP = "row")
 
-GGEPlot(GGE2, type = "Mean vs. Stability", footnote = F, titles = F, sizeEnv = 0)
+rSREGPlot(GGE2, type = "Mean vs. Stability", footnote = F, titles = F, sizeEnv = 0)
+
 ```
 
 
@@ -379,8 +391,8 @@ and _Hay_, which in turn are followed by _Rum_, _Ham_, _Rub_, _Zav_, _Del_ and
 _Reb_, etc.
 
 
-```{r,  fig.align='center', fig.cap='Figure 8: Classification of genotypes with respect to the ideal genotype. Genotype-focused scaling is used.', warning=FALSE}
-GGEPlot(GGE2, type = "Ranking Genotypes", footnote = F, titles = F, sizeEnv = 0)
+```{r, fig.width=6.5, fig.height=6, fig.align='center', dpi=300, out.width="60%", fig.cap='Figure 8: Classification of genotypes with respect to the ideal genotype. Genotype-focused scaling is used.', warning=FALSE}
+rSREGPlot(GGE2, type = "Ranking Genotypes", footnote = F, titles = F, sizeEnv = 0)
 ```
 
 Although METs are performed to study cultivars, they are equally useful for the
@@ -406,10 +418,11 @@ of correlation, since the biplot does not explain all the variability in the
 dataset. However, they are informative enough to understand the
 interrelationship between test environments.
 
-```{r,  fig.align='center', fig.cap='Figure 9: Relationship between environments. Environment-focused scaling is used.'}
-GGE3 <- GGEmodel(data, genotype = "gen", environment = "env", 
+```{r, fig.width=6.5, fig.height=6, fig.align='center', dpi=300, out.width="60%", fig.cap='Figure 9: Relationship between environments. Environment-focused scaling is used.'}
+
+GGE3 <- rSREGModel(data, genotype = "gen", environment = "env", 
                  response = "yield", SVP = "column")
-GGEPlot(GGE3, type = "Relationship Among Environments", footnote = F, titles = F)
+rSREGPlot(GGE3, type = "Relationship Among Environments", footnote = F, titles = F)
 ```
 
 
@@ -435,9 +448,105 @@ RN93 and BH93 were the least desirable test environments of this
 mega-environment.
 
 
-```{r,  fig.align='center', fig.cap='Figure 10: classification of environments with respect to the ideal environment. Environment-focused scaling is used.'}
-GGEPlot(GGE3, type = "Ranking Environments", footnote = F, titles = F)
+```{r, fig.width=6.5, fig.height=6, fig.align='center', dpi=300, out.width="60%", fig.cap='Figure 10: classification of environments with respect to the ideal environment. Environment-focused scaling is used.'}
+rSREGPlot(GGE3, type = "Ranking Environments", footnote = F, titles = F)
 ```
+
+
+## Robust Site Regression model
+While the previous example used a dataset without contamination, MET data often
+contain atypical observations due to environmental stress, pests, or measurement
+errors. To illustrate the robust capabilities of the package, we refer to the
+study by Angelini et al. (2022) using the `lavoranti.eucalyptus` dataset,
+available in the agridat package (Wright 2020). In this case, a
+distance-distance plot identified five atypical genotypes (1, 2, 21, 22, and
+24).
+As noted by Angelini et al. (2022), when outliers are present, the first PC
+eigenvalues in the classic SREG model are often overestimated. This occurs
+because standard SREG uses measures of variability that are highly influenced by
+extreme values; consequently, outliers in the direction of the first principal
+axes inflate the corresponding variances and artificially increase their
+proportion of explained variability. In this context, the high percentage of
+variability explained by a classic biplot can be spurious, reflecting the
+presence of outliers rather than the actual main structure of the data.
+The package allows fitting robust alternatives to overcome this inflation by
+simply changing the method argument. The following code compares the classic
+SREG with the robust approaches:
+
+
+```{r, fig.width=12, fig.height=10, fig.align='center', dpi=300, out.width="100%", fig.cap='Figure 11: GGE biplot based on the height of 25 progenies of Eucalyptus grandis from trials carried out in seven environments in the southern and southeastern regions of Brazil. The scaling method used is symmetrical singular value partitioning. SREG (A), hSREG (B), CovSREG (C), and ppSREG (D).'}
+
+library(patchwork)
+library(ggplot2)
+data("lavoranti.eucalyptus")
+
+# Bellthorpe
+lavoranti_Bellthorpe <- droplevels(subset(lavoranti.eucalyptus, origin=="Bellthorpe"))
+
+Nenv <-length(levels(lavoranti_Bellthorpe$loc))
+Ngen <- length(levels(lavoranti_Bellthorpe$gen))
+
+lavoranti_Bellthorpe$genot <- rep(1:Ngen, Nenv)
+lavoranti_Bellthorpe$genot <- as.factor(lavoranti_Bellthorpe$genot)
+
+
+# SREG Classic
+SREG_classic <- rSREGModel(lavoranti_Bellthorpe, genotype = "genot", 
+                          environment = "loc", response = "height", 
+                          model = "SREG")
+
+# hSREG
+hSREG <- rSREGModel(lavoranti_Bellthorpe, genotype = "genot", 
+                    environment = "loc", response = "height", 
+                    model = "hSREG")
+
+# CovSREG
+CovSREG <- rSREGModel(lavoranti_Bellthorpe, genotype = "genot", 
+                    environment = "loc", response = "height", 
+                    model = "hSREG")
+
+
+
+# ppSREG
+ppSREG <- rSREGModel(lavoranti_Bellthorpe, genotype = "genot", 
+                    environment = "loc", response = "height", 
+                    model = "ppSREG")
+
+# Graphs
+p1 <- rSREGPlot(SREG_classic, footnote = F, titles = T)
+p2 <- hSREG_plot  <- rSREGPlot(hSREG, footnote = F, titles = T)
+p3 <- CovSREG_plot <- rSREGPlot(CovSREG, footnote = F, titles = T)
+p4 <- ppSREG_plot  <- rSREGPlot(ppSREG, footnote = F, titles = T)
+
+grafico_robusto_SREG <- (p1 + p2) / (p3 + p4) + 
+  plot_annotation(tag_levels = 'A') & 
+  theme(plot.tag = element_text(size = 18, face = "bold"))
+
+grafico_robusto_SREG
+```
+
+The display of genotypes and environments shows a different behavior for
+the classic SREG biplot. The standard SREG biplot shows an overlap of
+genotype markers in the direction of the first PC due to the dominant effect
+of observations 2, 21, 22 and 24, which difficult the interpretation and
+analysis of MET data (Figure 11 A). For example, as the length of the environ­
+mental vectors is a measure of the environment’s ability to discriminate
+between cultivars, we can conclude that environment 2 was one of the
+most discriminating when the classical biplot is analyzed. By the contrary,
+it is near the biplot origin when the robust ones were interpreted, indicating
+the lack of discriminating ability; that is, it does not provide information
+about the cultivars, and therefore, the test environment is useless (Figure 11
+B–D). This contradiction occurs because of the influence of genotypes 2, 21,
+22 and 24 which have the poorest performance in that environment (while all
+the genotypes rendering above 22.60 in that environment give 17.79, 19.77,
+20.45 and 20.36, respectively). Outliers concentrated in a single environment
+may be the result of a particular climatic event or some pests/diseases that
+have influenced the expected performance.
+When considering the robust alternatives, the impact of the outlying
+observations is reduced leading to an easier interpretation, with genotype
+markers being more dispersed. Therefore, the use of robust alternatives
+allowed the inclusion of those genotypes in the analysis, reducing their
+influence, and consequently not distorting the results.
 
 # Imputation methods
 
@@ -448,7 +557,8 @@ errors or destruction of plants by animals, floods or harvest problems. In
 addition, genotypes might be incorporated or discarded during the study because
 of their promising or poor performance. The `imputation()` function includes
 several methods to overcome the problem of missing data, some of which  have
-been recently published and were not available in any R package until now.
+been recently published and were not available in any R package until now, such
+as the recently proposed EM-SREG and EM-bSREG methods (Angelini et al., 2024).
 To present an example, some observations from the complete `yan.winterwheat` are
 deleted:
 
@@ -459,14 +569,19 @@ yan.winterwheat[3,3] <- NA
 yan.winterwheat[2,3] <- NA
 ```
 
-Imputation of missing values with the `"EM-AMMI"` method can be performed as follows:
+
+To impute missing values using the methods proposed by Angelini et al. (2024) `"EM-SREG"` and `"EM-bSREG"`, use the following code:
 
 ```{r}
-imputation(yan.winterwheat, nPC = 2, genotype = "gen", environment = "env", 
-           response = "yield", type = "EM-AMMI")
+imputation(yan.winterwheat, genotype = "gen", environment = "env", 
+           response = "yield", type = "EM-SREG")
+
+
+imputation(yan.winterwheat, genotype = "gen", environment = "env", 
+           response = "yield", type = "EM-bSREG")
 ```
 
-The other methods available in `geneticae` are: `"EM-SVD"`, `"Gabriel"`, `"WGabriel"` and `"EM-PCA"`.
+The other methods available in `geneticae` are: `"EM-SREG"`, `"EM-bSREG"`, `"EM-SVD"`, `"Gabriel"`, `"WGabriel"` and `"EM-PCA"`.
  
 
 
@@ -480,6 +595,10 @@ interaction in peach. Scientia Horticulturae, 252, 298–309. \doi{10.1016/j.sci
 Angelini, J., Faviere, G. S., Bortolotto, E. B., Domingo Lucio Cervigni, G, and
 Quaglino, M. B. 2022. Handling outliers in multi-environment trial data analysis: 
 in the direction of robust SREG model. Journal of Crop Improvement. \doi{10.1080/15427528.2022.2051217} \n
+
+Angelini, J., Domingo Lucio Cervigni, G, and Quaglino, M. B. 2024. New imputation 
+methodologies for genotype‐by‐environment data: an extensive study of properties 
+of estimators. Euphytica. \doi{doi.org/10.1007/s10681-024-03344-z} \n
 
 Bhan, M.K., Pal, S., Rao, B.L., Dhar, A.K., and Kang, M.S. 2005. GGE biplot
 analysis of oil yield in lemongrass. Journal of New Seeds, 7, 127–139. \doi{10.1300/J153v07n02_07} \n

@@ -1,6 +1,20 @@
-# geneticae 0.4.9000
+# geneticae 1.0.0
 
-This is a development version
+**New features:**
+
+* Included new imputation methods specifically developed for multi-environment trials based on Angelini et al. (2024).
+
+**Renamed functions:**
+
+* Several functions were renamed to be more descriptive and consistent: rAMMI is now rAMMIModel, rSREG is now rSREGModel, and GGE is now GGEModel.
+
+**Bug fixes:**
+
+* Fixed an issue in rAMMIModel.R where datasets with replicates were not being handled correctly when calculating genotype-by-environment means.
+
+**Documentation:**
+
+* Added a comprehensive tutorial vignette ("Tutorial") covering all new features and SREG robust model.
 
 # geneticae 0.4.0
 

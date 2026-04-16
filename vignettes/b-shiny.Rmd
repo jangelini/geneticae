@@ -50,10 +50,11 @@ The dotted lines are perpendicular to the polygon sides and divide the biplot in
 library(geneticae)
 library(agridat)
 data(yan.winterwheat)
-GGE1 <- GGEmodel(yan.winterwheat, genotype = "gen", environment = "env", 
+GGE1 <- rSREGModel(yan.winterwheat, genotype = "gen", environment = "env", 
                  response = "yield")
 
-GGEPlot(GGE1, type = "Which Won Where/What", footnote = F,
+rSREGPlot(GGE1, type = "Which Won Where/What", footnote = F,
         titles = F, axis_expand = 1.5)
+
 ```
 
