@@ -143,7 +143,7 @@ Julia Angelini, Gabriela Faviere, Eugenia Bortolotto, Gerardo Domingo
 Lucio Cervigni & Marta Beatriz Quaglino (2022) Handling outliers in
 multi-environment trial data analysis: in the direction of robust SREG
 model, Journal of Crop Improvement,
-<https://doi.org/10.1080/15427528.2022.2051217>
+[doi:10.1080/15427528.2022.2051217](https://doi.org/10.1080/15427528.2022.2051217)
 
 ## Examples
 
