@@ -26,7 +26,7 @@ library(geneticae)
 
 **Help files.** Detailed information on `geneticae` package functions
 can be obtained from help files using
-[`help(package="geneticae")`](https://github.com/jangelini/reference).
+[`help(package="geneticae")`](https://github.com/jangelini/geneticae/reference).
 The help file for a function, for example `imputation` can be obtained
 using
 [`?imputation`](https://github.com/jangelini/geneticae/reference/imputation.md)
@@ -67,19 +67,18 @@ alternatives, a robust AMMI (Rodrigues et al., 2016) and SREG
 alternative (Angelini et al., 2022) were recently proposed in
 literature.
 
-Although there are R packages which tackle different aspects of MET data
-analysis, there aren’t any packages capable of performing all the steps
-that need to be considered. The `geneticae` package was created to
-gather in one place the most useful functions for this type of analysis
-and it also implements new methodology which can be found in recent
-literature. More importantly, `geneticae` is the first package to
-implement the robust AMMI model and new imputation methods not available
-before. In addition, there is no need to preprocess the data to use the
-`geneticae` package, as it the case of some previous packages which
-require a data frame or matrix containing genotype by environment means
-with the genotypes in rows and the environments in columns. In this
-package, data in long format is required. There is no restriction on
-columns namesGenotypes, environments, repetitions (if any) and
+The `geneticae` package was created to gather in one place the most
+useful functions for this type of analysis and it also implements new
+methodology which can be found in recent literature. More importantly,
+`geneticae` is the first package to implement the robust AMMI models
+proposed by Rodrigues et al. (2016), the robusts SREG proposed by
+Angelini et al. (2022) and new imputation methods proposed by Angelini
+et al. (2024). In addition, there is no need to preprocess the data to
+use the `geneticae` package, as it the case of some previous packages
+which require a data frame or matrix containing genotype by environment
+means with the genotypes in rows and the environments in columns. In
+this package, data in long format is required. There is no restriction
+on columns names of genotypes, environments, repetitions (if any) and
 phenotypic traits of interest. Also, extra information that will not be
 used in the analysis may be present in the dataset. Finally, `geneticae`
 offers a wide variety of options to customize the biplots, which are
@@ -863,7 +862,7 @@ interaction. Crop Science, 45, 1004–1016.
     ## [1] stats     graphics  grDevices utils     datasets  methods   base     
     ## 
     ## other attached packages:
-    ## [1] ggplot2_4.0.1   patchwork_1.3.2 agridat_1.26    geneticae_1.0.0
+    ## [1] ggplot2_4.0.1   patchwork_1.3.2 agridat_1.26    geneticae_1.0.1
     ## [5] dplyr_1.1.4    
     ## 
     ## loaded via a namespace (and not attached):

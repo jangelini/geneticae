@@ -136,11 +136,14 @@
 #'
 #' # Data with replications
 #' data(plrv)
-#' plrv[1,3] <- NA
-#' plrv[3,3] <- NA
-#' plrv[2,3] <- NA
-#' imputation(plrv, genotype = "Genotype", environment = "Locality",
-#'            response = "Yield", rep = "Rep", type = "EM-AMMI")
+#' head(plrv)
+#' plrv$Yield[plrv$Locality == "Ayac" & plrv$Rep %in% c(1, 2, 3) & plrv$Genotype == '102.18'] <- NA
+#' 
+#' imputation(plrv, nPC = 2,genotype = "Genotype", environment = "Locality", 
+#'            response = "Yield", rep ='Rep', type = "EM-AMMI")
+#'            
+#' imputation(plrv, genotype = "Genotype", environment = "Locality", 
+#'            response = "Yield", rep ='Rep', type = "EM-SREG")
 #'
 #'@importFrom stats var
 #'@importFrom missMDA imputePCA

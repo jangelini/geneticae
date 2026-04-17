@@ -185,13 +185,13 @@ version 0.1.1. <https://CRAN.R-project.org/package=GGEBiplots>
  library(agridat)
  data(yan.winterwheat)
  GGE1 <- rSREGModel(yan.winterwheat)
- rSREGPlot(GGE1)
+ rSREGPlot(GGE1,sizeGen=4,sizeEnv=4)
 
 
  # Data with replication
  data(plrv)
  GGE2 <- rSREGModel(plrv, genotype = "Genotype", environment = "Locality",
                   response = "Yield", rep = "Rep")
- rSREGPlot(GGE2)
+ rSREGPlot(GGE2,sizeGen=4,sizeEnv=4)
 
 ```

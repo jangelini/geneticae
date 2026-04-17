@@ -1,3 +1,9 @@
+# geneticae 1.0.1
+
+* **Documentation Update**: 
+    * Major improvements to `rAMMIModel()` and `rAMMIPlot()` documentation to clarify robust estimation methods and return objects.
+    * Updated package `Description` with latest references for robust SREG (2022) and MET data imputation (2024).
+
 # geneticae 1.0.0
 
 **New features:**

@@ -1,10 +1,19 @@
-## New submission to CRAN
-This is a new release to CRAN. In this version, we have:
+## New submission to CRAN 
 
-* Included new imputation methods specifically developed for multi-environment trials based on Angelini et al. (2024).
-* Renamed several functions to use more descriptive and appropriate names for the user (e.g., rAMMI to rAMMIModel).
-* Fixed an issue in `rAMMIModel.R` where datasets with replicates were not being handled correctly when calculating genotype-by-environment means.
-* Added a comprehensive tutorial vignette ("Tutorial") covering all new features and SREG robust model.
+This is a minor update for 'geneticae' (version
+1.0.1). The primary focus of this version is to update the state-of-the-art
+bibliography and significantly improve the clarity of the documentation,
+alongside new methodological features.
+
+Key changes:
+* **Documentation Improvements**:
+    * Performed a major overhaul of `rAMMIModel()` and `rAMMIPlot()` manual pages 
+    provide clearer guidance on robust fitting procedures and detailed descriptions
+    of returned objects.
+    * Aligned parameter descriptions across all functions to ensure consistency 
+    and a better user experience.
+    * Updated the package Description and manual pages to include recent 
+    literature: Angelini et al. (2022) for robust SREG and Angelini et al. (2024)
 
 ## Test environments
 * local Linux Mint 22.2 Cinnamon, R 4.3.3

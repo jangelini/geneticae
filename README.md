@@ -10,9 +10,12 @@ Web: <https://jangelini.github.io/geneticae/>
 CRAN: <https://CRAN.R-project.org/package=geneticae/index.html>
 
 <!-- badges: start -->
+
 <!-- dejo esto porque todavia hay links que no estan disponibles: -->
 
-[![lifecycle](https://img.shields.io/badge/lifecycle-stable-green.svg)](https://lifecycle.r-lib.org/articles/stages.html#stable)
+[![Lifecycle:
+stable](https://img.shields.io/badge/lifecycle-stable-brightgreen.svg)](https://lifecycle.r-lib.org/articles/stages.html#stable)
+
 <!-- cuando este en cran agregar estas -->
 
 [![CRAN
@@ -46,22 +49,22 @@ GEI: the Additive Main effects and Multiplicative Interaction model
 not always efficient enough to analyze MET data structure of plant
 breeding programs. They present serious limitations in the presence of
 atypical observations and missing values, which occur very frequently.
-To overcome this, several imputation alternatives and a robust AMMI were
-recently proposed in literature.
+To overcome this, several imputation alternatives (Angelini et al.,
+2024) and a robust AMMI and a SREG model were recently proposed in
+literature (Rodrigues et al., 2016; Angelini et al., 2022).
 
-Although there are R packages which tackle different aspects of MET data
-analysis, there aren’t any packages capable of performing all the steps
-that need to be considered. The `geneticae` package was created to
-gather in one place the most useful functions for this type of analysis
-and it also implements new methodology which can be found in recent
-literature. More importantly, `geneticae` is the first package to
-implement the robust AMMI model and new imputation methods not available
-before. In addition, there is no need to preprocess the data to use the
-`geneticae` package, as it the case of some previous packages which
-require a data frame or matrix containing genotype by environment means
-with the genotypes in rows and the environments in columns. In this
-package, data in long format is required. There is no restriction on
-columns names of genotypes, environments, repetitions (if any) and
+The `geneticae` package was created to gather in one place the most
+useful functions for this type of analysis and it also implements new
+methodology which can be found in recent literature. More importantly,
+`geneticae` is the first package to implement the robust AMMI models
+proposed by Rodrigues et al. (2016), the robusts SREG proposed by
+Angelini et al. (2022) and new imputation methods proposed by Angelini
+et al. (2024). In addition, there is no need to preprocess the data to
+use the `geneticae` package, as it the case of some previous packages
+which require a data frame or matrix containing genotype by environment
+means with the genotypes in rows and the environments in columns. In
+this package, data in long format is required. There is no restriction
+on columns names of genotypes, environments, repetitions (if any) and
 phenotypic traits of interest. Also, extra information that will not be
 used in the analysis may be present in the dataset. Finally, `geneticae`
 offers a wide variety of options to customize the biplots, which are
@@ -121,12 +124,20 @@ environment.
 library(geneticae)
 library(agridat)
 data(yan.winterwheat)
-GGE1 <- GGEmodel(yan.winterwheat, genotype = "gen", environment = "env", 
-                 response = "yield")
 
 
-GGEPlot(GGE1, type = "Selected Environment", selectedE = "OA93", 
-        footnote = F, titles = F)
+GGE1 <- rSREGModel(yan.winterwheat, genotype = "gen", environment = "env", 
+                   response = "yield",  model = "SREG")
+
+rSREGPlot(GGE1, type = "Selected Environment", selectedE = "OA93", footnote = FALSE, titles = FALSE)
 ```
 
-<img src="man/figures/README-unnamed-chunk-4-1.png" title="Figure: comparison of cultivar performance in a selected environment." alt="Figure: comparison of cultivar performance in a selected environment." width="45%" style="display: block; margin: auto;" />
+<div class="figure" style="text-align: center">
+
+<img src="man/figures/README-unnamed-chunk-4-1.png" alt="Figure: comparison of cultivar performance in a selected environment." width="45%" />
+<p class="caption">
+
+Figure: comparison of cultivar performance in a selected environment.
+</p>
+
+</div>

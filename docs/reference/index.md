@@ -5,10 +5,12 @@
 Functions to fit the AMMI and SREG models and their biplots.
 
 - [`rAMMIModel()`](https://github.com/jangelini/geneticae/reference/rAMMIModel.md)
-  : Robust AMMI Model
+  : Robust AMMI Model Fitting
 
 - [`rAMMIPlot()`](https://github.com/jangelini/geneticae/reference/rAMMIPlot.md)
-  : AMMI Biplots with ggplot2
+  :
+
+  AMMI Biplots with ggplot2
 
 - [`rSREGModel()`](https://github.com/jangelini/geneticae/reference/rSREGModel.md)
   : Site Regression model

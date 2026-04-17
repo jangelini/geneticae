@@ -75,13 +75,13 @@
 #'  library(agridat)
 #'  data(yan.winterwheat)
 #'  GGE1 <- rSREGModel(yan.winterwheat)
-#'  rSREGPlot(GGE1)
+#'  rSREGPlot(GGE1, sizeGen=4, sizeEnv=4)
 #'
 #'  # Data with replication
 #'  data(plrv)
 #'  GGE2 <- rSREGModel(plrv, genotype = "Genotype", environment = "Locality",
 #'                   response = "Yield", rep = "Rep")
-#'  rSREGPlot(GGE2)
+#'  rSREGPlot(GGE2, sizeGen=4, sizeEnv=4)
 #'
 #'@importFrom ggplot2 aes arrow coord_fixed element_text geom_abline geom_hline
 #'  geom_point geom_polygon geom_segment geom_text geom_vline ggplot ggtitle
