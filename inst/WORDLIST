@@ -1,6 +1,5 @@
 AEC
 AMMI
-AMMIModel
 Aggarwal
 Alarcón
 Arciniegas
@@ -20,7 +19,6 @@ CovSREG
 CritConvergGabriel
 CritConvergWGabriel
 Crossa
-DOI
 Dependecy
 Derieux
 Dhar
@@ -58,6 +56,7 @@ Kempton
 Krzanowski
 Lifecycle
 Lothrop
+Lourenco
 Lourenço
 Luc
 METs
@@ -72,6 +71,10 @@ NumeroIterWGabriel
 OA
 PLRV
 Patato
+PcaGrid
+PcaHubert
+PcaLocantore
+PcaProj
 Peña
 Quaglino
 Rajcan
@@ -112,6 +115,7 @@ de
 descripcion
 discriminative
 doi
+env
 environ
 et
 experimentes
@@ -124,14 +128,12 @@ indicatig
 init
 initializations
 lAMMI
-lifecycle
 loadings
 maxiter
 megaenvironment
 megaenvironments
 missMDA
 nPC
-namesGenotypes
 nb
 ppAMMI
 ppSREG
@@ -143,7 +145,7 @@ rSREGModel
 rSREGPlot
 repo
 representativeness
-rescaled
+robusts
 scienta
 se
 selectedG
