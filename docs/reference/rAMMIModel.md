@@ -118,9 +118,9 @@ The \`type\` argument allows choosing between several robust strategies:
 
 ## References
 
-Rodrigues P.C., Monteiro A., Lourenco V.M. (2015). *A robust AMMI model
-for the analysis of genotype-by-environment data*. Bioinformatics 32,
-58–66.
+Rodrigues P.C., Monteiro A., Lourenco V.M. (2015). A robust AMMI model
+for the analysis of genotype-by-environment data. Bioinformatics 32,
+58-66.
 
 ## Examples
 
@@ -129,11 +129,11 @@ library(agridat)
 data(yan.winterwheat)
 
 # Classical AMMI
-mod_ammi <- rAMMIModel(yan.winterwheat, genotype = "gen", 
+mod_ammi <- rAMMIModel(yan.winterwheat, genotype = "gen",
                        environment = "env", response = "yield", type = "AMMI")
 
 # Robust AMMI (using Hubert's method)
-mod_rammi <- rAMMIModel(yan.winterwheat, genotype = "gen", 
+mod_rammi <- rAMMIModel(yan.winterwheat, genotype = "gen",
                         environment = "env", response = "yield", type = "hAMMI")
 
 ```

@@ -42,7 +42,6 @@ BiplotImputfun <- function(X, precision = 0.01, max.iter = 1000, n_pc = 2) {
   indicamissing <- is.na(X_mat)
   indicaobservEM <- !indicamissing
   
-  # 1. Valores iniciales: Imputación por media de columna (Ambiente)
   col_means <- colMeans(X_mat, na.rm = TRUE)
   X_original <- X_mat
   X_original[indicamissing] <- col_means[col(X_mat)[indicamissing]]
@@ -50,39 +49,30 @@ BiplotImputfun <- function(X, precision = 0.01, max.iter = 1000, n_pc = 2) {
   iterconverg <- 1
   stabilitycrit <- 1 + precision
   
-  # RSS inicial basado en datos observados
   RSS_N1 <- sqrt(sum(X_original[indicaobservEM]^2) / sum(indicaobservEM))
   
   while (stabilitycrit > precision && iterconverg <= max.iter) {
     
-    # Parámetros del modelo
     C_original <- matrix(colMeans(X_original), nrow = nrow(X_original), ncol = ncol(X_original), byrow = TRUE)
     
-    # Desviación estándar por columna
     desvest_original <- matrix(apply(X_original, 2, stats::sd), 
                                nrow = nrow(X_original), ncol = ncol(X_original), byrow = TRUE)
     
-    # Estandarización
     pij_original <- (X_original - C_original) / desvest_original
     
-    # SVD
     dvs_pij <- svd(pij_original)
     
-    # Reconstrucción usando n_pc componentes
     U <- dvs_pij$u[, 1:n_pc, drop = FALSE]
     D <- diag(dvs_pij$d[1:n_pc], nrow = n_pc)
     V <- dvs_pij$v[, 1:n_pc, drop = FALSE]
     
     YanImputation <- U %*% D %*% t(V)
     
-    # Volver a la escala original
     Y_EMammi1 <- C_original + (YanImputation * desvest_original)
     
-    # Cálculo de convergencia (basado en celdas faltantes)
     RSS_N <- sqrt(sum((X_original[indicamissing] - Y_EMammi1[indicamissing])^2) / sum(indicamissing))
     stabilitycrit <- RSS_N / RSS_N1
     
-    # Actualizar solo los valores faltantes
     X_original[indicamissing] <- Y_EMammi1[indicamissing]
     
     iterconverg <- iterconverg + 1

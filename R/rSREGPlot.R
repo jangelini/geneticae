@@ -13,7 +13,7 @@
 #'@param type type of biplot to produce.
 #'\itemize{
 #'  \item \code{"Biplot"}: Basic biplot.
-#'  \item \code{"Selected Environmen"t}: Ranking of cultivars based on
+#'  \item \code{"Selected Environment"}: Ranking of cultivars based on
 #'  their performance in any given environment.
 #'  \item \code{"Selected Genotype"}: Ranking of environments based on the
 #'  performance of any given cultivar.

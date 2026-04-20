@@ -19,9 +19,9 @@ Authors@R: c(
          role = c("aut")
          )
   )
-Description: This package provides tools for the analysis of multi-environment 
-    agronomic trials, with a specific focus on plant breeding experiments. 
-    It implements the Additive Main effects and Multiplicative Interaction 
+Description: Provides tools for the analysis of multi-environment agronomic 
+    trials, with a specific focus on plant breeding experiments. 
+    Implements the Additive Main effects and Multiplicative Interaction 
     (AMMI) model (Gauch, 1992, ISBN:9780444892409) and the Site Regression 
     (SREG) model (Cornelius, 1996, <doi:10.1201/9780367802226>). To ensure 
     reliable results even with outliers or missing data, it includes robust 

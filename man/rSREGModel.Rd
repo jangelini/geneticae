@@ -93,5 +93,5 @@ A linear model by robust regression using an M estimator proposed by
 Julia Angelini, Gabriela Faviere, Eugenia Bortolotto, Gerardo
  Domingo Lucio Cervigni & Marta Beatriz Quaglino (2022) Handling outliers in
  multi-environment trial data analysis: in the direction of robust SREG
- model, Journal of Crop Improvement,  \doi{10.1080/15427528.2022.2051217}
+ model, Journal of Crop Improvement, \doi{10.1080/15427528.2022.2051217}
 }

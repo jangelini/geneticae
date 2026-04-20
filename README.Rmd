@@ -39,7 +39,7 @@ key problem for plant breeders and geneticists. In advanced stages of breeding
 programs, in which few genotypes are evaluated, multi-environmental trials (MET)
 are one of the most used experiments. Such studies test a number of genotypes in
 multiple environments in order to identify the superior genotypes according to
-their performance. In these experimentes, crop performance is modeled as a
+their performance. In these experiments, crop performance is modeled as a
 function of genotype (G), environment (E) and genotype-environment interaction
 (GEI). The presence of GEI generates differential genotypic responses in the
 different environments. Therefore appropriate statistical methods should be used

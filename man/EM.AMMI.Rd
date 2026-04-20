@@ -96,7 +96,7 @@ A list containing:
  }
 }
 \description{
-This function was writted by Paderewski (2013) and allow imputing
+This function was written by Paderewski (2013) and allow imputing
  missing values by the EM-AMMI algorithm
 }
 \references{

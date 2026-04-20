@@ -404,7 +404,7 @@ that do not provide additional information on cultivars; and (iv) determining
 environments that can be used for indirect selection. To obtain GGE biplots for
 comparing environments the *environment-focused scaling* should be used as is
 most informative of interrelationships among them (Figure 9 and 10). This is
-obtained indicatig `SVP = "column"` in `GGEmodel()`.
+obtained indicating `SVP = "column"` in `GGEmodel()`.
 
 In Figure 9 environments are connected to the origin through vectors, allowing
 us to understand the interrelationships between them. The coefficient of correlation
@@ -591,18 +591,18 @@ The other methods available in `geneticae` are: `"EM-SREG"`, `"EM-bSREG"`, `"EM-
 Angelini, J., Faviere, G. S., Bortolotto, E. B., Arroyo, L., Valentini, G. H.,
 and Domingo Lucio Cervigni, G. 2019. Biplot pattern interaction analysis and
 statistical test for crossover and non-crossover genotype-by-environment
-interaction in peach. Scientia Horticulturae, 252, 298–309. \doi{10.1016/j.scienta.2019.03} \n
+interaction in peach. Scientia Horticulturae, 252, 298–309. \n
 
 Angelini, J., Faviere, G. S., Bortolotto, E. B., Domingo Lucio Cervigni, G, and
 Quaglino, M. B. 2022. Handling outliers in multi-environment trial data analysis: 
-in the direction of robust SREG model. Journal of Crop Improvement. \doi{10.1080/15427528.2022.2051217} \n
+in the direction of robust SREG model. Journal of Crop Improvement. \n
 
 Angelini, J., Domingo Lucio Cervigni, G, and Quaglino, M. B. 2024. New imputation 
 methodologies for genotype‐by‐environment data: an extensive study of properties 
-of estimators. Euphytica. \doi{doi.org/10.1007/s10681-024-03344-z} \n
+of estimators. Euphytica. \n
 
 Bhan, M.K., Pal, S., Rao, B.L., Dhar, A.K., and Kang, M.S. 2005. GGE biplot
-analysis of oil yield in lemongrass. Journal of New Seeds, 7, 127–139. \doi{10.1300/J153v07n02_07} \n
+analysis of oil yield in lemongrass. Journal of New Seeds, 7, 127–139.  \n
 
 Cornelius, P.L., J. Crossa, and M.S. Seyedsadr. 1996. Statistical tests and
 estimates of multiplicative models for GE interaction, p. 199–234. In: M.S. Kang
@@ -613,65 +613,59 @@ Crossa, J. 1990. Statistical Analyses of Multilocation Trials. Advances in
 Agronomy, 55–85. \doi{10.1016/s0065-2113(08)60818-4} \n
 
 Dumble, S. 2017. GGEBiplots: GGE Biplots with 'ggplot2'. R package version
-0.1.1. doi:
-<https://CRAN.R-project.org/package=GGEBiplots> \n
+0.1.1.  \n
 
 de Mendiburu, F. 2020. agricolae: Statistical Procedures for Agricultural
-Research. R package version 1.3-2.
-<https://CRAN.R-project.org/package=agricolae> \n
+Research. R package version 1.3-2. \n
 
 Gauch, H.G., Jr. 1988. Model selection and validation for yield trials with
 interaction, Biometrics, 44, 705–715. \n
 
 Gauch H.G. and R.W. Zobel. 1997. Identifying mega-environments and targeting
-genotypes. Crop Science, 37, 311–326. \doi{10.2135/cropsci1997.0011183X003700020002x} \n
+genotypes. Crop Science, 37, 311–326.  \n
 
 Giauffret, C., Lothrop, J., Dorvillez, D., Gouesnard, B., and Derieux, M., 2000.
 Genotype x environment interactions in maize hybrids from temperate or highland
-tropical origin. Crop Science, 40, 1004-1012. \doi{10.2135/cropsci2000.4041004x} \n
+tropical origin. Crop Science, 40, 1004-1012. \n
 
 Huber, P.J. 1981. Robust Statistics. Wiley, New York. \n
 
 Kang, M.S., Aggarwal, V.D., and Chirwa, R.M. 2006. Adaptability and stability of
 bean cultivars as determined via yield-stability statistic and GGE biplot
-analysis. Journal of Crop Improvement, 15, 97–120. doi:
-<https://doi.org/10.1300/J411v15n01_08> \n
+analysis. Journal of Crop Improvement, 15, 97–120. \n
 
 Kang, M.S. and Magari, R. 1996. New developments in selecting for phenotypic
 stability in crop breeding, p. 1–14. In: M.S. Kang and H.G. Gauch, Jr. (Eds.),
 Genotype-by-environment interaction, CRC Press, Boca Raton, FL. \n
 
 Kempton, R.A. 1984. The use of biplots in interpreting variety by environment
-interactions. The Journal of Agricultural Science, 103, 123–135. doi:
-<https://doi.org/10.1017/S0021859600043392> \n
+interactions. The Journal of Agricultural Science, 103, 123–135.  \n
 
 Rodrigues,  P.C.,  Monteiro,  A., and Lourenço,  V.M. 2016.  A  robust  AMMI
 model  for  the  analysis  of  genotype-by-environment  data. Bioinformatics,32,
-58–66. doi: <https://doi.org/10.1093/bioinformatics/btv533> \n
+58–66.  \n
 
-Wright, K. 2020. agridat: Agricultural Datasets. R package version 1.17.
-<https://CRAN.R-project.org/package=agridat> \n
+Wright, K. 2020. agridat: Agricultural Datasets. R package version 1.17. \n
 
 Yan, W., Cornelius, P.L., Crossa, J., and Hunt, L.A. 2001. Two types of GGE
-biplots for analyzing multi-environment trial data. Crop Science, 41, 656–663.
-\doi{10.2135/cropsci2001.413656x} \n
+biplots for analyzing multi-environment trial data. Crop Science, 41, 656–663. \n
 
 Yan, W., Hunt, L.A., Sheng, Q., and Szlavnics, Z. 2000. Cultivar evaluation and
 mega-environment investigation based on the GGE biplot. Crop Science, 40,
-597–605. \doi{10.2135/cropsci2000.403597x} \n
+597–605.\n
 
 Yan, W. and Kang, M.S. 2003. GGE Biplot Analysis: A Graphical Tool for Breeders,
 Geneticists, and Agronomists. CRC Press, Boca Raton, FL. \n
 
 Yan, W., Kang, M.S., Ma, B., Woods, S., and Cornelius, P.L. 2007. GGE Biplot vs.
-AMMI analysis of genotype-by-environment data. Crop Science, 7, 641–653. \doi{10.2135/cropsci2006.06.0374} \n
+AMMI analysis of genotype-by-environment data. Crop Science, 7, 641–653. \n
 
 Yan, W. and Rajcan, I. 2002. Biplot analysis of sites and trait relations of
-soybean in Ontario, Crop Science, 42, 11–20. \doi{10.2135/cropsci2002.1100} \n
+soybean in Ontario, Crop Science, 42, 11–20. \n
 
 Yan, W. and Tinker, N.A. 2005. An integrated biplot system for displaying,
 interpreting, and exploring genotype 9 environment interaction. Crop Science,
-45, 1004–1016. \doi{10.2135/cropsci2004.0076} \n
+45, 1004–1016.  \n
 
 
 # Session Info

@@ -775,11 +775,10 @@ Crossa, J. 1990. Statistical Analyses of Multilocation Trials. Advances
 in Agronomy, 55–85.
 
 Dumble, S. 2017. GGEBiplots: GGE Biplots with ‘ggplot2’. R package
-version 0.1.1. doi: <https://CRAN.R-project.org/package=GGEBiplots>
+version 0.1.1.
 
 de Mendiburu, F. 2020. agricolae: Statistical Procedures for
 Agricultural Research. R package version 1.3-2.
-<https://CRAN.R-project.org/package=agricolae>
 
 Gauch, H.G., Jr. 1988. Model selection and validation for yield trials
 with interaction, Biometrics, 44, 705–715.
@@ -795,8 +794,7 @@ Huber, P.J. 1981. Robust Statistics. Wiley, New York.
 
 Kang, M.S., Aggarwal, V.D., and Chirwa, R.M. 2006. Adaptability and
 stability of bean cultivars as determined via yield-stability statistic
-and GGE biplot analysis. Journal of Crop Improvement, 15, 97–120. doi:
-<https://doi.org/10.1300/J411v15n01_08>
+and GGE biplot analysis. Journal of Crop Improvement, 15, 97–120.
 
 Kang, M.S. and Magari, R. 1996. New developments in selecting for
 phenotypic stability in crop breeding, p. 1–14. In: M.S. Kang and H.G.
@@ -805,15 +803,13 @@ Raton, FL.
 
 Kempton, R.A. 1984. The use of biplots in interpreting variety by
 environment interactions. The Journal of Agricultural Science, 103,
-123–135. doi: <https://doi.org/10.1017/S0021859600043392>
+123–135.
 
 Rodrigues, P.C., Monteiro, A., and Lourenço, V.M. 2016. A robust AMMI
 model for the analysis of genotype-by-environment data.
-Bioinformatics,32, 58–66. doi:
-<https://doi.org/10.1093/bioinformatics/btv533>
+Bioinformatics,32, 58–66.
 
 Wright, K. 2020. agridat: Agricultural Datasets. R package version 1.17.
-<https://CRAN.R-project.org/package=agridat>
 
 Yan, W., Cornelius, P.L., Crossa, J., and Hunt, L.A. 2001. Two types of
 GGE biplots for analyzing multi-environment trial data. Crop Science,

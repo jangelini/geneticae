@@ -115,7 +115,7 @@
 #'  1–14.
 #'@references Arciniegas-Alarcón S., García-Peña M., Krzanowski W.J., Dias
 #'  C.T.S. (2014). \emph{An alternative methodology for imputing missing data in
-#'  trials with genotype-byenvironment interaction: some new aspects.}
+#'  trials with genotype-by-environment interaction: some new aspects.}
 #'  Biometrical Letters 51, 75-88.
 #'
 #'@export
